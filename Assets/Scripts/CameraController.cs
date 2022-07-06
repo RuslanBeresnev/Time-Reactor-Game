@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     private float horizontalAngle = 0f;
     private float verticalAngle = 0f;
 
-    private float mouseSensitivity = 200f;
+    private float mouseSensitivity = 250f;
 
     public Transform player;
 
@@ -24,8 +24,8 @@ public class CameraController : MonoBehaviour
 
     void FixedUpdate()
     {
-        horizontalAngle += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        verticalAngle += Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        horizontalAngle += Input.GetAxis("Mouse X") * mouseSensitivity * Time.fixedDeltaTime;
+        verticalAngle += Input.GetAxis("Mouse Y") * mouseSensitivity * Time.fixedDeltaTime;
         verticalAngle = Mathf.Clamp(verticalAngle, -60, 60);
 
         var yAxisRotation = Quaternion.AngleAxis(horizontalAngle, Vector3.up);

@@ -56,19 +56,19 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += transform.forward * moveSpeed * Time.deltaTime;
+            transform.position += transform.forward * moveSpeed * Time.fixedDeltaTime;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= transform.forward * moveSpeed * Time.deltaTime;
+            transform.position -= transform.forward * moveSpeed * Time.fixedDeltaTime;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += transform.right * moveSpeed * Time.deltaTime;
+            transform.position += transform.right * moveSpeed * Time.fixedDeltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position -= transform.right * moveSpeed * Time.deltaTime;
+            transform.position -= transform.right * moveSpeed * Time.fixedDeltaTime;
         }
     }
 
@@ -132,16 +132,6 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// “екущее направление игрока по одной из осей
-    /// </summary>
-    public enum AxisDirection
-    {
-        Back = -1,
-        Stay,
-        Forward
-    }
-
-    /// <summary>
     /// ƒвижетс€ ли игрок в данный момент
     /// </summary>
     public bool IsPlayerMoving()
@@ -151,5 +141,15 @@ public class PlayerController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    /// “екущее направление игрока по одной из осей
+    /// </summary>
+    public enum AxisDirection
+    {
+        Back = -1,
+        Stay,
+        Forward
     }
 }
