@@ -30,8 +30,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            SceneManager.LoadScene("Game Over Menu");
-            Cursor.lockState = CursorLockMode.Confined;
+            OnPlayerDeath();
         }
     }
 
@@ -51,5 +50,12 @@ public class EnemyController : MonoBehaviour
     private void FollowTheTarget()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnPlayerDeath()
+    {
+        SceneManager.LoadScene("Game Over Menu");
+        Cursor.lockState = CursorLockMode.Confined;
+        GameProperties.FloorNumber = 0;
     }
 }

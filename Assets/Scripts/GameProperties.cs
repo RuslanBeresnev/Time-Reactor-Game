@@ -4,6 +4,11 @@
 public static class GameProperties
 {
     /// <summary>
+    /// Этаж, на котором сейчас находится игрок
+    /// </summary>
+    public static int FloorNumber { get; set; } = 0;
+
+    /// <summary>
     /// Вероятность появления врага
     /// </summary>
     public static float AppearanceChance { get; set; } = 0.5f;

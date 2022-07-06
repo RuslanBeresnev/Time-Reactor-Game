@@ -8,21 +8,16 @@ public class FloorNumberUpdating : MonoBehaviour
 {
     public TextMeshProUGUI floorNumberText;
 
-    /// <summary>
-    /// Этаж, на котором сейчас находится игрок
-    /// </summary>
-    public static int FloorNumber { get; private set; } = 0;
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name == "Player")
         {
             if (PlayerController.ZAxisDirection == PlayerController.AxisDirection.Forward)
             {
-                FloorNumber--;
+                GameProperties.FloorNumber--;
             }
         }
-        floorNumberText.text = FloorNumber.ToString();
+        floorNumberText.text = GameProperties.FloorNumber.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,9 +26,9 @@ public class FloorNumberUpdating : MonoBehaviour
         {
             if (PlayerController.ZAxisDirection == PlayerController.AxisDirection.Back)
             {
-                FloorNumber++;
+                GameProperties.FloorNumber++;
             }
         }
-        floorNumberText.text = FloorNumber.ToString();
+        floorNumberText.text = GameProperties.FloorNumber.ToString();
     }
 }
