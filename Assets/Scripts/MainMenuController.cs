@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -7,17 +8,23 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenuController : MonoBehaviour
 {
-    public TMP_InputField chanceInputField;
+    public Slider slider;
+    public TextMeshProUGUI probabilityText;
+
+    /// <summary>
+    /// Отобразить текущую вероятность появления врага со слайдера
+    /// </summary>
+    public void DisplayProbabilityFromSlider()
+    {
+        probabilityText.text = slider.value.ToString() + " %";
+    }
 
     /// <summary>
     /// Запустить игровую сцену
     /// </summary>
     public void StartGame()
     {
-        if (chanceInputField.text != "")
-        {
-            GameProperties.AppearanceChance = float.Parse(chanceInputField.text) / 100f;
-        }
+        GameProperties.AppearanceChance = slider.value / 100f;
         SceneManager.LoadScene("Game");
     }
 
