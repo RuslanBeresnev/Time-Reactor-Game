@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 /// <summary>
 /// Игровые параметры
 /// </summary>
@@ -12,4 +14,9 @@ public static class GameProperties
     /// Вероятность появления врага
     /// </summary>
     public static float AppearanceChance { get; set; } = 0.5f;
+
+    /// <summary>
+    /// Список пройденных игроком этажей
+    /// </summary>
+    public static List<int> PassedFloors { get; } = new List<int>();
 }

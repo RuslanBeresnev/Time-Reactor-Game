@@ -56,6 +56,8 @@ public class EnemyController : MonoBehaviour
     {
         SceneManager.LoadScene("Game Over Menu");
         Cursor.lockState = CursorLockMode.Confined;
+
         GameProperties.FloorNumber = 0;
+        GameProperties.PassedFloors.Clear();
     }
 }

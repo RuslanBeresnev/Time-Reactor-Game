@@ -14,6 +14,10 @@ public class FloorNumberUpdating : MonoBehaviour
         {
             if (PlayerController.ZAxisDirection == PlayerController.AxisDirection.Forward)
             {
+                if (!GameProperties.PassedFloors.Contains(GameProperties.FloorNumber))
+                {
+                    GameProperties.PassedFloors.Add(GameProperties.FloorNumber);
+                }
                 GameProperties.FloorNumber--;
             }
         }

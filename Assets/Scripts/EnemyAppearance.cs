@@ -12,7 +12,7 @@ public class EnemyAppearance : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            if (PlayerController.ZAxisDirection == PlayerController.AxisDirection.Forward)
+            if (PlayerController.ZAxisDirection == PlayerController.AxisDirection.Forward && !GameProperties.PassedFloors.Contains(GameProperties.FloorNumber))
             {
                 var random = new System.Random();
                 float generatedFloat = (float)random.NextDouble();
