@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
         var audioSources = GetComponents<AudioSource>();
         foreach (var audioSource in audioSources)
         {
-            if (audioSource.clip.name == "Player Step Sound")
+            if (audioSource.clip.name == "Player Steps Sound")
             {
                 playerMovingSource = audioSource;
             }
@@ -80,6 +80,10 @@ public class PlayerController : MonoBehaviour
         if (IsPlayerMoving() && !playerMovingSource.isPlaying)
         {
             playerMovingSource.Play();
+        }
+        else if (!IsPlayerMoving())
+        {
+            playerMovingSource.Stop();
         }
     }
 
