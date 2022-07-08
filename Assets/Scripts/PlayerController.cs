@@ -95,11 +95,11 @@ public class PlayerController : MonoBehaviour
         // В функциях сравнения ниже берётся значение 0.01f, так как видимо даже когда игрок "стоит на месте", то
         // при поворотах камеры он сдвигается на тысячные или меньшие доли по осям
 
-        if (transform.position.z - previousPosition.z > 0.01f)
+        if (transform.position.z - previousPosition.z > 0.0001f)
         {
             ZAxisDirection = AxisDirection.Forward;
         }
-        else if (transform.position.z - previousPosition.z < -0.01f)
+        else if (transform.position.z - previousPosition.z < -0.0001f)
         {
             ZAxisDirection = AxisDirection.Back;
         }
@@ -108,11 +108,11 @@ public class PlayerController : MonoBehaviour
             ZAxisDirection = AxisDirection.Stay;
         }
 
-        if (transform.position.y - previousPosition.y > 0.01f)
+        if (transform.position.y - previousPosition.y > 0.0001f)
         {
             YAxisDirection = AxisDirection.Forward;
         }
-        else if (transform.position.y - previousPosition.y < -0.01f)
+        else if (transform.position.y - previousPosition.y < -0.0001f)
         {
             YAxisDirection = AxisDirection.Back;
         }
@@ -121,11 +121,11 @@ public class PlayerController : MonoBehaviour
             YAxisDirection = AxisDirection.Stay;
         }
 
-        if (transform.position.x - previousPosition.x > 0.01f)
+        if (transform.position.x - previousPosition.x > 0.0001f)
         {
             XAxisDirection = AxisDirection.Forward;
         }
-        else if (transform.position.x - previousPosition.x < -0.01f)
+        else if (transform.position.x - previousPosition.x < -0.0001f)
         {
             XAxisDirection = AxisDirection.Back;
         }
