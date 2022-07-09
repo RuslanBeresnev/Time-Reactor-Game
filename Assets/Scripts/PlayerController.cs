@@ -28,10 +28,19 @@ public class PlayerController : MonoBehaviour
     {
         GetInput();
         DetectDirection();
+        previousPosition = transform.position;
 
         PlayerMovingPlay();
+    }
 
-        previousPosition = transform.position;
+    /// <summary>
+    /// Текущее направление игрока по одной из осей
+    /// </summary>
+    public enum AxisDirection
+    {
+        Back = -1,
+        Stay,
+        Forward
     }
 
     /// <summary>
@@ -69,21 +78,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.position -= transform.right * moveSpeed * Time.fixedDeltaTime;
-        }
-    }
-
-    /// <summary>
-    /// Проиграть звук ходьбы игрока
-    /// </summary>
-    private void PlayerMovingPlay()
-    {
-        if (IsPlayerMoving() && !playerMovingSource.isPlaying)
-        {
-            playerMovingSource.Play();
-        }
-        else if (!IsPlayerMoving())
-        {
-            playerMovingSource.Stop();
         }
     }
 
@@ -148,12 +142,17 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Текущее направление игрока по одной из осей
+    /// Проиграть звук ходьбы игрока
     /// </summary>
-    public enum AxisDirection
+    private void PlayerMovingPlay()
     {
-        Back = -1,
-        Stay,
-        Forward
+        if (IsPlayerMoving() && !playerMovingSource.isPlaying)
+        {
+            playerMovingSource.Play();
+        }
+        else if (!IsPlayerMoving())
+        {
+            playerMovingSource.Stop();
+        }
     }
 }
