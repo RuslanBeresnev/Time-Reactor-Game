@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// </summary>
 public class EnemyController : MonoBehaviour
 {
-    private float moveSpeed = 3f;
+    private float moveSpeed = 3.5f;
 
     private GameObject target;
     private Queue<Vector3> targetTrajectory = new Queue<Vector3>();

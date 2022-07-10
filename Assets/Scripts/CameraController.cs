@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     private float horizontalAngle = 0f;
     private float verticalAngle = 0f;
 
-    private float mouseSensitivity = 250f;
+    private float mouseSensitivity = 200f;
 
     public Transform player;
 
