@@ -18,7 +18,7 @@ public class EnemyAppearance : MonoBehaviour
 
                 var random = new System.Random();
                 float generatedFloat = (float)random.NextDouble();
-                if (generatedFloat < GameProperties.AppearanceChance)
+                if (generatedFloat < GameProperties.EnemyAppearanceChance)
                 {
                     var enemyPosition = transform.position + enemyOffsetRelativeToTrigger;
                     Instantiate(enemy, enemyPosition, Quaternion.identity);

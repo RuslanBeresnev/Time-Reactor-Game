@@ -24,7 +24,7 @@ public class MainMenuController : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
-        GameProperties.AppearanceChance = slider.value / 100f;
+        GameProperties.EnemyAppearanceChance = slider.value / 100f;
         SceneManager.LoadScene("Game");
     }
 

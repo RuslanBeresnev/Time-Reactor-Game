@@ -9,6 +9,7 @@ using System.Collections.Generic;
 public class EnemyController : MonoBehaviour
 {
     private float moveSpeed = 3.5f;
+    private float rotationSpeed = -100f;
 
     private GameObject target;
     private Queue<Vector3> targetTrajectory = new Queue<Vector3>();
@@ -45,7 +46,7 @@ public class EnemyController : MonoBehaviour
             FollowTheTarget();
         }
 
-        transform.Rotate(new Vector3(0f, -2f, 0f));
+        transform.Rotate(new Vector3(0f, rotationSpeed * Time.fixedDeltaTime, 0f));
     }
 
     /// <summary>
@@ -92,7 +93,6 @@ public class EnemyController : MonoBehaviour
         SceneManager.LoadScene("Game Over Menu");
         Cursor.lockState = CursorLockMode.Confined;
 
-        GameProperties.FloorNumber = 0;
-        GameProperties.PassedFloors.Clear();
+        GameProperties.ResetStatistics();
     }
 }
