@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// ”правление событи€ми из стартового меню
+/// ”правление событи€ми из главного меню
 /// </summary>
 public class MainMenuController : MonoBehaviour
 {
@@ -26,6 +26,14 @@ public class MainMenuController : MonoBehaviour
     {
         GameProperties.EnemyAppearanceChance = slider.value / 100f;
         SceneManager.LoadScene("Game");
+    }
+
+    /// <summary>
+    /// ќткрыть меню настроек
+    /// </summary>
+    public void OpenSettingsMenu()
+    {
+        SceneManager.LoadScene("Settings Menu");
     }
 
     /// <summary>

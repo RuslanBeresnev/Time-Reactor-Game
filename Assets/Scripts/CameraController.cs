@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 /// <summary>
 /// ”правление камерой
@@ -11,8 +12,6 @@ public class CameraController : MonoBehaviour
     private float horizontalAngle = 0f;
     private float verticalAngle = 0f;
 
-    private float mouseSensitivity = 200f;
-
     public Transform player;
 
     void Start()
@@ -20,12 +19,16 @@ public class CameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         cameraOriginRotation = transform.rotation;
         playerOriginalRotation = player.rotation;
+
+        AudioListener.volume = SettingsOptions.GeneralVolume;
+        GetComponent<PostProcessLayer>().enabled = SettingsOptions.ImprovedGraphicsIsOn;
+        GetComponent<PostProcessVolume>().enabled = SettingsOptions.ImprovedGraphicsIsOn;
     }
 
     void FixedUpdate()
     {
-        horizontalAngle += Input.GetAxis("Mouse X") * mouseSensitivity * Time.fixedDeltaTime;
-        verticalAngle += Input.GetAxis("Mouse Y") * mouseSensitivity * Time.fixedDeltaTime;
+        horizontalAngle += Input.GetAxis("Mouse X") * SettingsOptions.MouseSensitivity * Time.fixedDeltaTime;
+        verticalAngle += Input.GetAxis("Mouse Y") * SettingsOptions.MouseSensitivity * Time.fixedDeltaTime;
         verticalAngle = Mathf.Clamp(verticalAngle, -60, 60);
 
         var yAxisRotation = Quaternion.AngleAxis(horizontalAngle, Vector3.up);
