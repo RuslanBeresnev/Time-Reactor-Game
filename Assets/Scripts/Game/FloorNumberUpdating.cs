@@ -12,7 +12,7 @@ public class FloorNumberUpdating : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            if (PlayerController.ZAxisDirection == PlayerController.AxisDirection.Forward)
+            if (PlayerMovement.ZAxisDirection == PlayerMovement.AxisDirection.Forward)
             {
                 GameProperties.FloorNumber--;
             }
@@ -24,7 +24,7 @@ public class FloorNumberUpdating : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            if (PlayerController.ZAxisDirection == PlayerController.AxisDirection.Back)
+            if (PlayerMovement.ZAxisDirection == PlayerMovement.AxisDirection.Back)
             {
                 GameProperties.FloorNumber++;
             }

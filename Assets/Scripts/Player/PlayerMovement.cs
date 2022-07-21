@@ -1,9 +1,9 @@
 using UnityEngine;
 
 /// <summary>
-/// ”правление игроком
+/// ”правление движением игрока
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private float moveSpeed = 3f;
     private Vector3 previousPosition;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        GetInput();
+        Move();
         DetectDirection();
         previousPosition = transform.position;
 
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// ƒвижение игрока в зависимости от нажатых клавиш W, A, S, D
     /// </summary>
-    private void GetInput()
+    private void Move()
     {
         if (Input.GetKey(KeyCode.W))
         {

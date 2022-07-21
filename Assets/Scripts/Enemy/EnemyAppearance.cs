@@ -12,7 +12,7 @@ public class EnemyAppearance : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            if (PlayerController.ZAxisDirection == PlayerController.AxisDirection.Forward && !GameProperties.PassedFloors.Contains(GameProperties.FloorNumber))
+            if (PlayerMovement.ZAxisDirection == PlayerMovement.AxisDirection.Forward && !GameProperties.PassedFloors.Contains(GameProperties.FloorNumber))
             {
                 GameProperties.PassedFloors.Add(GameProperties.FloorNumber);
 

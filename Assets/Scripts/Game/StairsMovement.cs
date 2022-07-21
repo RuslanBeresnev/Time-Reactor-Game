@@ -11,13 +11,13 @@ public class StairsMovement : MonoBehaviour
 
     private const float STRUCTURE_OFFSET = 2.425f;
 
-    private PlayerController.AxisDirection colliderEnteringDirection;
+    private PlayerMovement.AxisDirection colliderEnteringDirection;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player")
         {
-            colliderEnteringDirection = PlayerController.ZAxisDirection;
+            colliderEnteringDirection = PlayerMovement.ZAxisDirection;
         }
     }
 
@@ -25,7 +25,7 @@ public class StairsMovement : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            if (PlayerController.ZAxisDirection == PlayerController.AxisDirection.Forward && colliderEnteringDirection == PlayerController.AxisDirection.Forward)
+            if (PlayerMovement.ZAxisDirection == PlayerMovement.AxisDirection.Forward && colliderEnteringDirection == PlayerMovement.AxisDirection.Forward)
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {
@@ -42,7 +42,7 @@ public class StairsMovement : MonoBehaviour
                         centralWall.transform.position.y + STRUCTURE_OFFSET, centralWall.transform.position.z);
                 }
             }
-            else if (PlayerController.ZAxisDirection == PlayerController.AxisDirection.Back && colliderEnteringDirection == PlayerController.AxisDirection.Back)
+            else if (PlayerMovement.ZAxisDirection == PlayerMovement.AxisDirection.Back && colliderEnteringDirection == PlayerMovement.AxisDirection.Back)
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {
