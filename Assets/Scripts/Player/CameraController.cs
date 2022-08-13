@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
     {
         horizontalAngle += Input.GetAxis("Mouse X") * SettingsOptions.MouseSensitivity * Time.fixedDeltaTime;
         verticalAngle += Input.GetAxis("Mouse Y") * SettingsOptions.MouseSensitivity * Time.fixedDeltaTime;
-        verticalAngle = Mathf.Clamp(verticalAngle, -60, 60);
+        verticalAngle = Mathf.Clamp(verticalAngle, -50, 60);
 
         var yAxisRotation = Quaternion.AngleAxis(horizontalAngle, Vector3.up);
         var xAxisRotation = Quaternion.AngleAxis(-verticalAngle, Vector3.right);
