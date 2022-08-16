@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyAppearance : MonoBehaviour
 {
     public GameObject enemy;
-    private Vector3 enemyOffsetRelativeToTrigger = new Vector3(-2f, -0.6f, 3.5f);
+    public Transform enemySpawner;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,8 +20,7 @@ public class EnemyAppearance : MonoBehaviour
                 float generatedFloat = (float)random.NextDouble();
                 if (generatedFloat < GameProperties.EnemyAppearanceChance)
                 {
-                    var enemyPosition = transform.position + enemyOffsetRelativeToTrigger;
-                    Instantiate(enemy, enemyPosition, Quaternion.identity);
+                    Instantiate(enemy, enemySpawner.position, Quaternion.identity);
                 }
             }
         }

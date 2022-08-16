@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Реализация механизма стрельбы игроком
+/// Реализация механизма стрельбы игроком из определённого оружия
 /// </summary>
 public class ShootingOfPlayer : MonoBehaviour
 {
@@ -10,8 +10,6 @@ public class ShootingOfPlayer : MonoBehaviour
     public Transform gunEnd;
 
     private float rayDistance = 100f;
-    private int damage = 1;
-    private int bulletVelocity = 100;
 
     private bool semiAutoShooting = true;
     private bool stopShooting = false;
@@ -31,10 +29,22 @@ public class ShootingOfPlayer : MonoBehaviour
         {
             stopShooting = false;
         }
+
+        // Для тестов (замедление времени)
+/*        if (Input.GetMouseButton(1))
+        {
+            Time.timeScale = 0.02f;
+            Time.fixedDeltaTime = 0.02f * 0.05f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 0.02f;
+        }*/
     }
 
     /// <summary>
-    /// Сделать выстрел из оружия
+    /// Произвести выстрел из оружия
     /// </summary>
     private void Shoot()
     {
@@ -47,14 +57,8 @@ public class ShootingOfPlayer : MonoBehaviour
         // соприкосновения луча с поверхностью в виде единичного вектора
         Vector3 bulletDirection;
 
-        if (Physics.Raycast(rayToScreenCenter.origin, rayToScreenCenter.direction * rayDistance, out hit, rayDistance, defaultLayerMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(rayToScreenCenter, out hit, rayDistance, defaultLayerMask, QueryTriggerInteraction.Ignore))
         {
-            EntityHealth healthSystem = hit.collider.gameObject.GetComponent<EntityHealth>();
-            if (healthSystem != null)
-            {
-                healthSystem.TakeDamage(damage);
-            }
-
             bulletDirection = (hit.point - gunEnd.position) / Vector3.Distance(hit.point, gunEnd.position);
         }
         else
@@ -67,14 +71,14 @@ public class ShootingOfPlayer : MonoBehaviour
     }
 
     /// <summary>
-    /// Создать пулю и придать ей направленную скорость
+    /// Создать пулю при выстреле
     /// </summary>
     private void FireABullet(Vector3 bulletDirection)
     {
         var bulletRotation = Quaternion.FromToRotation(bulletPrefab.transform.forward, bulletDirection);
         var bullet = Instantiate(bulletPrefab, gunEnd.position, bulletRotation);
 
-        var bulletRigidBody = bullet.GetComponent<Rigidbody>();
-        bulletRigidBody.velocity = bulletDirection * bulletVelocity;
+        var bulletController = bullet.GetComponent<BulletController>();
+        bulletController.GiveBulletKineticEnergy(bulletDirection);
     }
 }

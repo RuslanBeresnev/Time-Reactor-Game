@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     public bool FollowsTheTarget { get; private set; } = true;
 
-    private void Start()
+    private void Awake()
     {
         target = GameObject.Find(TargetName);
         target.GetComponent<AudioSource>().Stop();

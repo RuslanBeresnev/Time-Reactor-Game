@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
 
     public Transform player;
 
-    void Start()
+    void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         cameraOriginRotation = transform.rotation;
@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
     {
         horizontalAngle += Input.GetAxis("Mouse X") * SettingsOptions.MouseSensitivity * Time.fixedDeltaTime;
         verticalAngle += Input.GetAxis("Mouse Y") * SettingsOptions.MouseSensitivity * Time.fixedDeltaTime;
-        verticalAngle = Mathf.Clamp(verticalAngle, -50, 60);
+        verticalAngle = Mathf.Clamp(verticalAngle, -70, 70);
 
         var yAxisRotation = Quaternion.AngleAxis(horizontalAngle, Vector3.up);
         var xAxisRotation = Quaternion.AngleAxis(-verticalAngle, Vector3.right);

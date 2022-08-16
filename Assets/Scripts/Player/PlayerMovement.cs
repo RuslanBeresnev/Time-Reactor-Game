@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     private AudioSource playerMovingSource;
 
-    private void Start()
+    private void Awake()
     {
         var audioSources = GetComponents<AudioSource>();
         foreach (var audioSource in audioSources)
