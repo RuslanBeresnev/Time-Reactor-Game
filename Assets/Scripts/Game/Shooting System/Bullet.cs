@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Реализация полёта пули, урона от неё, взаимодействия с объектами и её уничтожения
 /// </summary>
-public class BulletController : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     private Rigidbody rigidBody;
 

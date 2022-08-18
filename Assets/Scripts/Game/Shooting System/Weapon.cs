@@ -1,52 +1,22 @@
 using UnityEngine;
 
 /// <summary>
-/// Реализация механизма стрельбы игроком из определённого оружия
+/// Класс, реализующий каждое оружие в игре
 /// </summary>
-public class ShootingOfPlayer : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     public new Camera camera;
     public GameObject bulletPrefab;
     public Transform gunEnd;
 
     private float rayDistance = 100f;
-
-    private bool semiAutoShooting = true;
-    private bool stopShooting = false;
-
-    private void FixedUpdate()
-    {
-        if (Input.GetMouseButton(0) && !stopShooting)
-        {
-            Shoot();
-
-            if (semiAutoShooting)
-            {
-                stopShooting = true;
-            }
-        }
-        else if (!Input.GetMouseButton(0))
-        {
-            stopShooting = false;
-        }
-
-        // Для тестов (замедление времени)
-/*        if (Input.GetMouseButton(1))
-        {
-            Time.timeScale = 0.02f;
-            Time.fixedDeltaTime = 0.02f * 0.05f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-            Time.fixedDeltaTime = 0.02f;
-        }*/
-    }
+    public bool semiAutoShooting = true;
+    public string weaponName;
 
     /// <summary>
     /// Произвести выстрел из оружия
     /// </summary>
-    private void Shoot()
+    public void Shoot()
     {
         Ray rayToScreenCenter = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
@@ -78,7 +48,7 @@ public class ShootingOfPlayer : MonoBehaviour
         var bulletRotation = Quaternion.FromToRotation(bulletPrefab.transform.forward, bulletDirection);
         var bullet = Instantiate(bulletPrefab, gunEnd.position, bulletRotation);
 
-        var bulletController = bullet.GetComponent<BulletController>();
-        bulletController.GiveBulletKineticEnergy(bulletDirection);
+        var bulletComponent = bullet.GetComponent<Bullet>();
+        bulletComponent.GiveBulletKineticEnergy(bulletDirection);
     }
 }
