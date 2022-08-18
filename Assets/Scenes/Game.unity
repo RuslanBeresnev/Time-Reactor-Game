@@ -7265,7 +7265,7 @@ GameObject:
   - component: {fileID: 676699723}
   - component: {fileID: 676699724}
   - component: {fileID: 676699725}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8511,7 +8511,7 @@ GameObject:
   - component: {fileID: 892382581}
   - component: {fileID: 892382582}
   - component: {fileID: 892382583}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor UpdateTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8914,7 +8914,7 @@ GameObject:
   - component: {fileID: 1001712224}
   - component: {fileID: 1001712226}
   - component: {fileID: 1001712225}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs Movement Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9893,7 +9893,7 @@ GameObject:
   - component: {fileID: 1377925544}
   - component: {fileID: 1377925546}
   - component: {fileID: 1377925545}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs Movement Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3158151706009851422}
   - component: {fileID: 976736291064250950}
   - component: {fileID: 4013690788437782715}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 1907098244697683408}
   - component: {fileID: 3720541999048438484}
   - component: {fileID: 4728238556086286716}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,8 +157,8 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6510483267521384286}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 8186723261126355544}
   - component: {fileID: 1197959658773579217}
   - component: {fileID: 8493185627489476701}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,8 +255,8 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8998408923620183368}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

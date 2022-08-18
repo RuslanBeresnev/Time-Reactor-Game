@@ -28,9 +28,15 @@ public class Bullet : MonoBehaviour
         if (hitInfo != null)
         {
             Destroy(gameObject);
-            PerformCollisionEffects((RaycastHit)hitInfo);
+            PerformCollisionEffects(((RaycastHit)hitInfo).collider);
         }
         previousPosition = transform.position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+        PerformCollisionEffects(other);
     }
 
     /// <summary>
@@ -42,7 +48,7 @@ public class Bullet : MonoBehaviour
     }
 
     /// <summary>
-    /// Проверка на столкновение с другими объектами (при большой скорости объектов)
+    /// Проверка на столкновение с другими объектами (для объектов с большой скоростью)
     /// </summary>
     private RaycastHit? CheckCollision()
     {
@@ -61,9 +67,9 @@ public class Bullet : MonoBehaviour
     /// <summary>
     /// Произвести действия над объектом после столкновения пули с ним
     /// </summary>
-    private void PerformCollisionEffects(RaycastHit hitObject)
+    private void PerformCollisionEffects(Collider hitObjectCollider)
     {
-        var healthSystem = hitObject.collider.gameObject.GetComponent<EntityHealth>();
+        var healthSystem = hitObjectCollider.gameObject.GetComponent<EntityHealth>();
         if (healthSystem != null)
         {
             healthSystem.TakeDamage(damage);
