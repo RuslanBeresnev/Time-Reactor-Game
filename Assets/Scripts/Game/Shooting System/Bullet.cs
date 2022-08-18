@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
     }
 
     /// <summary>
-    /// Проверка на столкновение с другими объектами
+    /// Проверка на столкновение с другими объектами (при большой скорости объектов)
     /// </summary>
     private RaycastHit? CheckCollision()
     {
