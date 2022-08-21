@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 
 /// <summary>
-/// Управление камерой
+/// Управление основной камерой
 /// </summary>
-public class CameraController : MonoBehaviour
+public class MainCameraController : MonoBehaviour
 {
     private Quaternion cameraOriginRotation;
     private Quaternion playerOriginalRotation;
@@ -14,18 +13,16 @@ public class CameraController : MonoBehaviour
 
     public Transform player;
 
-    void Awake()
+    private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        AudioListener.volume = SettingsOptions.GeneralVolume;
+
         cameraOriginRotation = transform.rotation;
         playerOriginalRotation = player.rotation;
-
-        AudioListener.volume = SettingsOptions.GeneralVolume;
-        GetComponent<PostProcessLayer>().enabled = SettingsOptions.ImprovedGraphicsIsOn;
-        GetComponent<PostProcessVolume>().enabled = SettingsOptions.ImprovedGraphicsIsOn;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         horizontalAngle += Input.GetAxis("Mouse X") * SettingsOptions.MouseSensitivity * Time.fixedDeltaTime;
         verticalAngle += Input.GetAxis("Mouse Y") * SettingsOptions.MouseSensitivity * Time.fixedDeltaTime;

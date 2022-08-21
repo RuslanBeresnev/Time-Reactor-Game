@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     public Transform gunEnd;
 
     private float rayDistance = 100f;
+    public float intervalBetweenShoots = 0.1f;
     public bool semiAutoShooting = true;
     public string weaponName;
 

@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Camera Effects
+  - Post-Process Effects
   - Water
   - UI
   - Player
   - Bullets
   - Stairs Triggers
-  - 
+  - Weapons
   - 
   - 
   - 

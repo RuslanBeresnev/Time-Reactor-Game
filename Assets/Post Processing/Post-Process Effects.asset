@@ -18,7 +18,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 8
+    value: 9
   threshold:
     overrideState: 1
     value: 1
@@ -118,10 +118,10 @@ MonoBehaviour:
     value: 0
   postExposure:
     overrideState: 1
-    value: -0.75
+    value: -1
   contrast:
     overrideState: 1
-    value: -1
+    value: 3
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -151,7 +151,7 @@ MonoBehaviour:
     value: 140
   lift:
     overrideState: 1
-    value: {x: 0.9690294, y: 0.98628783, z: 1, w: 0}
+    value: {x: 0.9767398, y: 0.98255485, z: 1, w: 0}
   gamma:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
@@ -1368,7 +1368,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: Camera Effects
+  m_Name: Post-Process Effects
   m_EditorClassIdentifier: 
   settings:
   - {fileID: -4559820243079270953}

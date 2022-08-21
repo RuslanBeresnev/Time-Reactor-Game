@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
@@ -11,6 +12,7 @@ public class WeaponManager : MonoBehaviour
     private int activeSlotNumber = 1;
     private int arsenalMaxSize = 3;
 
+    private bool canShoot = true;
     private bool stopShooting = false;
 
     private void Awake()
@@ -25,13 +27,24 @@ public class WeaponManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Снова разрешить производить стрельбу по прошествии интервала между выстрелами
+    /// </summary>
+    private IEnumerator AllowShootAfterIntervalPassing()
+    {
+        yield return new WaitForSeconds(activeWeapon.intervalBetweenShoots);
+        canShoot = true;
+    }
+
+    /// <summary>
     /// Проверка на стрельбу в текущем кадре
     /// </summary>
     private void CheckClickForShooting()
     {
-        if (Input.GetMouseButton(0) && !stopShooting)
+        if (Input.GetMouseButton(0) && canShoot && !stopShooting)
         {
             activeWeapon.Shoot();
+            canShoot = false;
+            StartCoroutine(AllowShootAfterIntervalPassing());
 
             if (activeWeapon.semiAutoShooting)
             {
