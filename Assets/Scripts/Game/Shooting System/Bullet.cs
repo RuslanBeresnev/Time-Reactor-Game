@@ -69,10 +69,10 @@ public class Bullet : MonoBehaviour
     /// </summary>
     private void PerformCollisionEffects(Collider hitObjectCollider)
     {
-        var healthSystem = hitObjectCollider.gameObject.GetComponent<EntityHealth>();
-        if (healthSystem != null)
+        var entity = hitObjectCollider.gameObject.GetComponent<Entity>();
+        if (entity != null)
         {
-            healthSystem.TakeDamage(damage);
+            entity.TakeDamage(damage);
         }
     }
 }

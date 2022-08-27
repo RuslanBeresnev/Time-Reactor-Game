@@ -8,16 +8,18 @@ public class StairsMovement : MonoBehaviour
     public GameObject currentStairsStrucure;
     public GameObject otherStairsStructure;
     public GameObject centralWall;
+    public PlayerController playerControllerScript;
 
     private const float STRUCTURE_OFFSET = 2.425f;
-
-    private PlayerMovement.AxisDirection colliderEnteringDirection;
+    
+    // Направление игрока по оси Z (вверх или вниз по лестнице), когда он входит в триггер передвижения структур ступеней
+    private float onColliderEnterZAxisValue;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player")
         {
-            colliderEnteringDirection = PlayerMovement.ZAxisDirection;
+            onColliderEnterZAxisValue = playerControllerScript.PlayerVelocity.z;
         }
     }
 
@@ -25,7 +27,8 @@ public class StairsMovement : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            if (PlayerMovement.ZAxisDirection == PlayerMovement.AxisDirection.Forward && colliderEnteringDirection == PlayerMovement.AxisDirection.Forward)
+            // Проверка на соответсвие одному направлению входа и выхода (игрок полностью прошёл триггер)
+            if (playerControllerScript.PlayerVelocity.z > 0f && onColliderEnterZAxisValue > 0f)
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {
@@ -42,7 +45,7 @@ public class StairsMovement : MonoBehaviour
                         centralWall.transform.position.y + STRUCTURE_OFFSET, centralWall.transform.position.z);
                 }
             }
-            else if (PlayerMovement.ZAxisDirection == PlayerMovement.AxisDirection.Back && colliderEnteringDirection == PlayerMovement.AxisDirection.Back)
+            else if (playerControllerScript.PlayerVelocity.z < 0f && onColliderEnterZAxisValue < 0f)
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {

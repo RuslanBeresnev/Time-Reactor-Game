@@ -7,12 +7,13 @@ using TMPro;
 public class FloorNumberUpdating : MonoBehaviour
 {
     public TextMeshProUGUI floorNumberText;
+    public PlayerController playerControllertScript;
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name == "Player")
         {
-            if (PlayerMovement.ZAxisDirection == PlayerMovement.AxisDirection.Forward)
+            if (playerControllertScript.PlayerVelocity.z > 0f)
             {
                 GameProperties.FloorNumber--;
             }
@@ -24,7 +25,7 @@ public class FloorNumberUpdating : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            if (PlayerMovement.ZAxisDirection == PlayerMovement.AxisDirection.Back)
+            if (playerControllertScript.PlayerVelocity.z < 0f)
             {
                 GameProperties.FloorNumber++;
             }

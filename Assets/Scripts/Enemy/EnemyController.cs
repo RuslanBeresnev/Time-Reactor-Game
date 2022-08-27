@@ -1,18 +1,23 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
 /// Поведение врага
 /// </summary>
-public class EnemyController : MonoBehaviour
+public class EnemyController : Entity
 {
     private float moveSpeed = 3.5f;
     private float rotationSpeed = -100f;
 
+    private AudioSource backgroundMusic;
     private GameObject target;
     private Queue<Vector3> targetTrajectory = new Queue<Vector3>();
+
+    /// <summary>
+    /// Здоровье врага
+    /// </summary>
+    public override float Health { get; protected set; } = 1f;
 
     /// <summary>
     /// Имя для поиска цели
@@ -26,8 +31,11 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        var backgroundMusicObject = GameObject.Find("Background Music");
+        backgroundMusic = backgroundMusicObject.GetComponent<AudioSource>();
+        backgroundMusic.Stop();
+
         target = GameObject.Find(TargetName);
-        target.GetComponent<AudioSource>().Stop();
         StartCoroutine(TrackPlayerTrajectory());
     }
 
@@ -35,7 +43,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            OnPlayerDeath();
+            collision.gameObject.GetComponent<PlayerController>().OnDeath();
         }
     }
 
@@ -86,13 +94,11 @@ public class EnemyController : MonoBehaviour
     }
 
     /// <summary>
-    /// Действия после поражения игрока
+    /// Действия при смерти врага
     /// </summary>
-    private void OnPlayerDeath()
+    public override void OnDeath()
     {
-        SceneManager.LoadScene("Game Over Menu");
-        Cursor.lockState = CursorLockMode.Confined;
-
-        GameProperties.ResetStatistics();
+        Destroy(gameObject);
+        backgroundMusic.Play();
     }
 }

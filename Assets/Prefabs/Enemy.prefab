@@ -4740,7 +4740,6 @@ GameObject:
   - component: {fileID: 1750982007939278814}
   - component: {fileID: 3174435745049896085}
   - component: {fileID: 4600865308886359694}
-  - component: {fileID: -811044958776323107}
   - component: {fileID: 2302735104891734740}
   - component: {fileID: 7335053059286977074}
   m_Layer: 0
@@ -4793,7 +4792,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7113707171483250045}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -4813,19 +4812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a007fd10026a65f4087c0f235435f8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-811044958776323107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7113707171483250045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9651df4f8c94f2d4a81229b18ae1704c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
 --- !u!82 &2302735104891734740
 AudioSource:
   m_ObjectHideFlags: 0
