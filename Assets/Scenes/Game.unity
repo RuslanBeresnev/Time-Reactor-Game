@@ -8671,6 +8671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d496e9ed3a95f3c4f834149f3ed0ab3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionInPlayerHand: {fileID: 1913791155}
   bulletPrefab: {fileID: 3053953687202984356, guid: 5e5b96e699300134496f96e446e70528, type: 3}
   weaponStart: {fileID: 1396448881}
   weaponEnd: {fileID: 694134942}
@@ -9654,6 +9655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d496e9ed3a95f3c4f834149f3ed0ab3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionInPlayerHand: {fileID: 1935584360}
   bulletPrefab: {fileID: 1072976598800286575, guid: 6bd8472b6e79b5449ab8a35729e7db41, type: 3}
   weaponStart: {fileID: 1071593528}
   weaponEnd: {fileID: 1552215980}
@@ -15414,6 +15416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d496e9ed3a95f3c4f834149f3ed0ab3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionInPlayerHand: {fileID: 1960450957}
   bulletPrefab: {fileID: 1072976598800286575, guid: f032753023deea4419616115b4c37bdc, type: 3}
   weaponStart: {fileID: 2050294564}
   weaponEnd: {fileID: 889890687}

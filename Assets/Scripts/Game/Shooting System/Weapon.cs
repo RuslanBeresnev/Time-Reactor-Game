@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Класс, реализующий каждое оружие в игре
 /// </summary>
 public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
 {
+    [SerializeField]
+    private Transform positionInPlayerHand;
     [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
@@ -15,8 +18,6 @@ public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField]
     private string weaponName;
     [SerializeField]
-    private int weaponNumberInGame;
-    [SerializeField]
     private float intervalBetweenShoots = 0.1f;
     [SerializeField]
     private bool semiAutoShooting = true;
@@ -24,14 +25,14 @@ public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
     private float rayDistance = 100f;
 
     /// <summary>
+    /// Положение оружия в руке игрока
+    /// </summary>
+    public Transform PositionInPlayerHand { get; private set; }
+
+    /// <summary>
     /// Название оружия
     /// </summary>
     public string WeaponName { get; private set; }
-
-    /// <summary>
-    /// Порядковый номер оружия в игре (среди всего оружия)
-    /// </summary>
-    public int WeaponNumberInGame { get; private set; }
     
     /// <summary>
     /// Минимальный интервал между выстрелами
@@ -45,16 +46,16 @@ public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
+        positionInPlayerHand = PositionInPlayerHand;
         weaponName = WeaponName;
-        weaponNumberInGame = WeaponNumberInGame;
         intervalBetweenShoots = IntervalBetweenShoots;
         semiAutoShooting = SemiAutoShooting;
     }
 
     public void OnAfterDeserialize()
     {
+        PositionInPlayerHand = positionInPlayerHand;
         WeaponName = weaponName;
-        WeaponNumberInGame = weaponNumberInGame;
         IntervalBetweenShoots = intervalBetweenShoots;
         SemiAutoShooting = semiAutoShooting;
     }
@@ -109,5 +110,31 @@ public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
         {
             transform.position += -transform.forward * weaponDisplacementDistance;
         }
+    }
+
+    /// <summary>
+    /// Установить всем частям оружия определённый слой и включить/выключить коллайдеры (используется при выбрасывании/подбирании оружия)
+    /// </summary>
+    public void SetUpWeaponPartsLayersAndColliders(string layerName, bool collidersEnabled)
+    {
+        Transform[] weaponParts = GetComponentsInChildren<Transform>();
+        foreach (Transform part in weaponParts)
+        {
+            var partCollider = part.GetComponent<Collider>();
+            if (partCollider != null)
+            {
+                partCollider.enabled = collidersEnabled;
+            }
+            part.gameObject.layer = LayerMask.NameToLayer(layerName);
+        }
+    }
+
+    /// <summary>
+    /// Совершить действия с выброшенным оружием после того, как оно остановится после падения
+    /// </summary>
+    public IEnumerator PerformActionsAfterFallOfEjectedWeapon()
+    {
+        yield return new WaitUntil(() => GetComponent<Rigidbody>().velocity == Vector3.zero);
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 }

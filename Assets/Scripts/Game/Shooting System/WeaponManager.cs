@@ -11,8 +11,6 @@ public class WeaponManager : MonoBehaviour
     private int arsenalMaxSize = 3;
     [SerializeField]
     private List<Weapon> weaponsArsenal = new List<Weapon>(3);
-    [SerializeField]
-    private List<Transform> weaponsPositions = new List<Transform>();
     private int activeSlotNumber = 0;
 
     [SerializeField]
@@ -156,23 +154,6 @@ public class WeaponManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Установить всем частям оружия определённый слой и включить/выключить коллайдеры (используется при выбрасывании/подбирании оружия)
-    /// </summary>
-    private void SetUpWeaponPartsLayersAndColliders(GameObject weapon, string layerName, bool collidersEnabled)
-    {
-        Transform[] weaponParts = weapon.GetComponentsInChildren<Transform>();
-        foreach (Transform part in weaponParts)
-        {
-            var partCollider = part.GetComponent<Collider>();
-            if (partCollider != null)
-            {
-                partCollider.enabled = collidersEnabled;
-            }
-            part.gameObject.layer = LayerMask.NameToLayer(layerName);
-        }
-    }
-
-    /// <summary>
     /// Установить оружие в слот, если он пуст
     /// </summary>
     private bool TryPutWeaponInSlot(GameObject weapon, int slotNumber)
@@ -182,27 +163,18 @@ public class WeaponManager : MonoBehaviour
             weaponsArsenal[slotNumber] = weapon.GetComponent<Weapon>();
             weapon.transform.SetParent(weaponCamera.transform);
 
-            var weaponTransform = weaponsPositions[weapon.GetComponent<Weapon>().WeaponNumberInGame];
-            weapon.transform.position = weaponTransform.position;
-            weapon.transform.rotation = weaponTransform.rotation;
-            weapon.transform.localScale = weaponTransform.localScale;
+            var positionInPlayerHand = weapon.GetComponent<Weapon>().PositionInPlayerHand;
+            weapon.transform.position = positionInPlayerHand.position;
+            weapon.transform.rotation = positionInPlayerHand.rotation;
+            weapon.transform.localScale = positionInPlayerHand.localScale;
             weapon.GetComponent<Rigidbody>().isKinematic = true;
 
-            SetUpWeaponPartsLayersAndColliders(weapon, "Weapons", false);
+            weapon.GetComponent<Weapon>().SetUpWeaponPartsLayersAndColliders("Weapons", false);
 
             return true;
         }
 
         return false;
-    }
-
-    /// <summary>
-    /// Совершить действия с выброшенным оружием после того, как оно остановится после падения
-    /// </summary>
-    private IEnumerator PerformActionsAfterFallOfEjectedWeapon(GameObject weapon)
-    {
-        yield return new WaitUntil(() => weapon.GetComponent<Rigidbody>().velocity == Vector3.zero);
-        weapon.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     /// <summary>
@@ -222,12 +194,12 @@ public class WeaponManager : MonoBehaviour
 
             ejectedWeapon.GetComponent<Rigidbody>().isKinematic = false;
             ejectedWeapon.GetComponent<Rigidbody>().AddForce(ejectedWeapon.transform.forward * ejectionForce);
-            SetUpWeaponPartsLayersAndColliders(ejectedWeapon, "Default", true);
+            ejectedWeapon.GetComponent<Weapon>().SetUpWeaponPartsLayersAndColliders("Default", true);
 
             // Здесь присваиваивается скорость, близкая к нулю, для того, чтобы условие в корутине не сработало раньше времени
             // (так как сила броска применяется к объекту только со следующего кадра)
             ejectedWeapon.GetComponent<Rigidbody>().velocity = new Vector3(0.01f, 0, 0);
-            StartCoroutine(PerformActionsAfterFallOfEjectedWeapon(ejectedWeapon));
+            StartCoroutine(ejectedWeapon.GetComponent<Weapon>().PerformActionsAfterFallOfEjectedWeapon());
         }
     }
 
