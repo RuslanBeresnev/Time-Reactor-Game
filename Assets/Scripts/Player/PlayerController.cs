@@ -4,16 +4,22 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Реализация игрока
 /// </summary>
-public class PlayerController : Entity
+public class PlayerController : Entity, ISerializationCallbackReceiver
 {
     private AudioSource playerMovingSource;
     private Rigidbody playerRigidbody;
     
     private Vector3 movementDirection = Vector3.zero;
     private Vector3 previousPosition;
+
+    [SerializeField]
+    private float health = 100f;
+    [SerializeField]
     private float movementSpeed = 3f;
+    [SerializeField]
     private float distanceFromWhichToPushPlayer = 0.2f; // 40% от радиуса игрока
-    public float minimumVelocityForMovingSound = 1f;
+    [SerializeField]
+    private float minimumVelocityForMovingSound = 1f;
 
     /// <summary>
     /// Здоровье игрока
@@ -24,6 +30,16 @@ public class PlayerController : Entity
     /// Получить вектор скорости игрока (физическая скорость + скорость кинематического перемещения)
     /// </summary>
     public Vector3 PlayerVelocity { get; private set; } = Vector3.zero;
+
+    public void OnBeforeSerialize()
+    {
+        health = Health;
+    }
+
+    public void OnAfterDeserialize()
+    {
+        Health = health;
+    }
 
     private void Awake()
     {

@@ -3,18 +3,61 @@ using UnityEngine;
 /// <summary>
 /// Класс, реализующий каждое оружие в игре
 /// </summary>
-public class Weapon : MonoBehaviour
+public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
 {
-    public GameObject bulletPrefab;
-    public Transform weaponStart;
-    public Transform weaponEnd;
+    [SerializeField]
+    private GameObject bulletPrefab;
+    [SerializeField]
+    private Transform weaponStart;
+    [SerializeField]
+    private Transform weaponEnd;
 
+    [SerializeField]
+    private string weaponName;
+    [SerializeField]
+    private int weaponNumberInGame;
+    [SerializeField]
+    private float intervalBetweenShoots = 0.1f;
+    [SerializeField]
+    private bool semiAutoShooting = true;
+    [SerializeField]
     private float rayDistance = 100f;
-    // Порядковый номер оружия в игре (среди всего оружия)
-    public int weaponNumberInGame;
-    public float intervalBetweenShoots = 0.1f;
-    public bool semiAutoShooting = true;
-    public string weaponName;
+
+    /// <summary>
+    /// Название оружия
+    /// </summary>
+    public string WeaponName { get; private set; }
+
+    /// <summary>
+    /// Порядковый номер оружия в игре (среди всего оружия)
+    /// </summary>
+    public int WeaponNumberInGame { get; private set; }
+    
+    /// <summary>
+    /// Минимальный интервал между выстрелами
+    /// </summary>
+    public float IntervalBetweenShoots { get; private set; } = 0.1f;
+
+    /// <summary>
+    /// Если указано true, то оружие будет вести полуавтоматическую стрельбу (пистолет), иначе автоматическую (винтовка)
+    /// </summary>
+    public bool SemiAutoShooting { get; private set; } = true;
+
+    public void OnBeforeSerialize()
+    {
+        weaponName = WeaponName;
+        weaponNumberInGame = WeaponNumberInGame;
+        intervalBetweenShoots = IntervalBetweenShoots;
+        semiAutoShooting = SemiAutoShooting;
+    }
+
+    public void OnAfterDeserialize()
+    {
+        WeaponName = weaponName;
+        WeaponNumberInGame = weaponNumberInGame;
+        IntervalBetweenShoots = intervalBetweenShoots;
+        SemiAutoShooting = semiAutoShooting;
+    }
 
     /// <summary>
     /// Произвести выстрел из оружия

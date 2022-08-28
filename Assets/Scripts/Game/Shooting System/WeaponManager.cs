@@ -7,12 +7,17 @@ using System.Collections.Generic;
 /// </summary>
 public class WeaponManager : MonoBehaviour
 {
-    public List<Weapon> weaponsArsenal = new List<Weapon>(3);
-    public List<Transform> weaponsPositions = new List<Transform>();
-    private int activeSlotNumber = 0;
+    [SerializeField]
     private int arsenalMaxSize = 3;
+    [SerializeField]
+    private List<Weapon> weaponsArsenal = new List<Weapon>(3);
+    [SerializeField]
+    private List<Transform> weaponsPositions = new List<Transform>();
+    private int activeSlotNumber = 0;
 
-    public Camera weaponCamera;
+    [SerializeField]
+    private Camera weaponCamera;
+    [SerializeField]
     private float interactionDistance = 2.5f;
 
     private bool canShoot = true;
@@ -38,7 +43,7 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     private IEnumerator AllowShootAfterIntervalPassing()
     {
-        yield return new WaitForSeconds(weaponsArsenal[activeSlotNumber].intervalBetweenShoots);
+        yield return new WaitForSeconds(weaponsArsenal[activeSlotNumber].IntervalBetweenShoots);
         canShoot = true;
     }
 
@@ -53,7 +58,7 @@ public class WeaponManager : MonoBehaviour
             canShoot = false;
             StartCoroutine(AllowShootAfterIntervalPassing());
 
-            if (weaponsArsenal[activeSlotNumber].semiAutoShooting)
+            if (weaponsArsenal[activeSlotNumber].SemiAutoShooting)
             {
                 stopShooting = true;
             }
@@ -177,7 +182,7 @@ public class WeaponManager : MonoBehaviour
             weaponsArsenal[slotNumber] = weapon.GetComponent<Weapon>();
             weapon.transform.SetParent(weaponCamera.transform);
 
-            var weaponTransform = weaponsPositions[weapon.GetComponent<Weapon>().weaponNumberInGame];
+            var weaponTransform = weaponsPositions[weapon.GetComponent<Weapon>().WeaponNumberInGame];
             weapon.transform.position = weaponTransform.position;
             weapon.transform.rotation = weaponTransform.rotation;
             weapon.transform.localScale = weaponTransform.localScale;

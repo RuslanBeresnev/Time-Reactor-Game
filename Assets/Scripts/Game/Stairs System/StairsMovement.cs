@@ -5,10 +5,14 @@ using UnityEngine;
 /// </summary>
 public class StairsMovement : MonoBehaviour
 {
-    public GameObject currentStairsStrucure;
-    public GameObject otherStairsStructure;
-    public GameObject centralWall;
-    public PlayerController playerControllerScript;
+    [SerializeField]
+    private GameObject currentStairsStrucure;
+    [SerializeField]
+    private GameObject otherStairsStructure;
+    [SerializeField]
+    private GameObject centralWall;
+    [SerializeField]
+    private PlayerController playerControllerScript;
 
     private const float STRUCTURE_OFFSET = 2.425f;
     

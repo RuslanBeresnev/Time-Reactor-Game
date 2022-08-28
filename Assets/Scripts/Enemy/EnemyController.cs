@@ -5,10 +5,18 @@ using System.Collections.Generic;
 /// <summary>
 /// Поведение врага
 /// </summary>
-public class EnemyController : Entity
+public class EnemyController : Entity, ISerializationCallbackReceiver
 {
+    [SerializeField]
+    private float health = 1f;
+    [SerializeField]
     private float moveSpeed = 3.5f;
+    [SerializeField]
     private float rotationSpeed = -100f;
+    [SerializeField]
+    private string targetName = "Player";
+    [SerializeField]
+    private bool followsTheTarget = true;
 
     private AudioSource backgroundMusic;
     private GameObject target;
@@ -28,6 +36,20 @@ public class EnemyController : Entity
     /// Будет ли враг следовать за целью
     /// </summary>
     public bool FollowsTheTarget { get; private set; } = true;
+
+    public void OnBeforeSerialize()
+    {
+        health = Health;
+        targetName = TargetName;
+        followsTheTarget = FollowsTheTarget;
+    }
+
+    public void OnAfterDeserialize()
+    {
+        Health = health;
+        TargetName = targetName;
+        FollowsTheTarget = followsTheTarget;
+    }
 
     private void Awake()
     {

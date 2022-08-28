@@ -11,7 +11,8 @@ public class MainCameraController : MonoBehaviour
     private float horizontalAngle = 0f;
     private float verticalAngle = 0f;
 
-    public Transform player;
+    [SerializeField]
+    private Transform player;
 
     private void Awake()
     {

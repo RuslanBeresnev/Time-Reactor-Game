@@ -6,8 +6,10 @@ using TMPro;
 /// </summary>
 public class FloorNumberUpdating : MonoBehaviour
 {
-    public TextMeshProUGUI floorNumberText;
-    public PlayerController playerControllertScript;
+    [SerializeField]
+    private TextMeshProUGUI floorNumberText;
+    [SerializeField]
+    private PlayerController playerControllertScript;
 
     private void OnTriggerExit(Collider other)
     {

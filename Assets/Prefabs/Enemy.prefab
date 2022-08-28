@@ -4812,6 +4812,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a007fd10026a65f4087c0f235435f8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
+  moveSpeed: 3.5
+  rotationSpeed: -100
+  targetName: Player
+  followsTheTarget: 1
 --- !u!82 &2302735104891734740
 AudioSource:
   m_ObjectHideFlags: 0

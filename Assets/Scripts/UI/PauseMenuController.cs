@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PauseMenuController : MonoBehaviour
 {
-    public GameObject elements;
+    [SerializeField]
+    private GameObject elements;
 
     private bool gameOnPause = false;
 
