@@ -9,27 +9,18 @@ using System.Collections.Specialized;
 /// </summary>
 public class PlayerInterfaceController : MonoBehaviour
 {
-    [SerializeField]
-    private WeaponManager weaponManager;
-    [SerializeField]
-    private Entity player;
+    [SerializeField] private WeaponManager weaponManager;
+    [SerializeField] private Entity player;
 
-    [SerializeField]
-    private List<Image> weaponsInArsenalImages = new List<Image>(GameProperties.PlayerWeaponsArsenalSize);
-    [SerializeField]
-    private List<TextMeshProUGUI> weaponsInArsenalNames = new List<TextMeshProUGUI>(GameProperties.PlayerWeaponsArsenalSize);
-    [SerializeField]
-    private List<Image> weaponsInArsenalBackgrounds = new List<Image>(GameProperties.PlayerWeaponsArsenalSize);
+    [SerializeField] private List<Image> weaponsInArsenalImages = new List<Image>(GameProperties.PlayerWeaponsArsenalSize);
+    [SerializeField] private List<TextMeshProUGUI> weaponsInArsenalNames = new List<TextMeshProUGUI>(GameProperties.PlayerWeaponsArsenalSize);
+    [SerializeField] private List<Image> weaponsInArsenalBackgrounds = new List<Image>(GameProperties.PlayerWeaponsArsenalSize);
 
-    [SerializeField]
-    private Sprite activeSlotSprite;
-    [SerializeField]
-    private Sprite inactiveSlotSprite;
+    [SerializeField] private Sprite activeSlotSprite;
+    [SerializeField] private Sprite inactiveSlotSprite;
 
-    [SerializeField]
-    private Image healthBar;
-    [SerializeField]
-    private TextMeshProUGUI healthCount;
+    [SerializeField] private Image healthBar;
+    [SerializeField] private TextMeshProUGUI healthCount;
 
     private void Awake()
     {

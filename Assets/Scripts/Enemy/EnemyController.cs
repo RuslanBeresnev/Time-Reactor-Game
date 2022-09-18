@@ -7,14 +7,10 @@ using System.Collections.Generic;
 /// </summary>
 public class EnemyController : Entity, ISerializationCallbackReceiver
 {
-    [SerializeField]
-    private float moveSpeed = 3.5f;
-    [SerializeField]
-    private float rotationSpeed = -100f;
-    [SerializeField]
-    private string targetName = "Player";
-    [SerializeField]
-    private bool followsTheTarget = true;
+    [SerializeField] private float moveSpeed = 3.5f;
+    [SerializeField] private float rotationSpeed = -100f;
+    [SerializeField] private string targetName = "Player";
+    [SerializeField] private bool followsTheTarget = true;
 
     private AudioSource backgroundMusic;
     private GameObject target;

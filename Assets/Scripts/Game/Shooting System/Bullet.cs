@@ -8,15 +8,11 @@ public class Bullet : MonoBehaviour
     private Rigidbody rigidBody;
     Vector3 previousPosition;
 
-    [SerializeField]
-    private int damage = 1;
-    [SerializeField]
-    private int velocity = 15;
-    [SerializeField]
-    private float timeToDestruct = 3f;
+    [SerializeField] private int damage = 1;
+    [SerializeField] private int velocity = 15;
+    [SerializeField] private float timeToDestruct = 3f;
     // Дальность луча, исходящего в обратную сторону по траектории пули(для небольших скоростей лучше не ставить больше, чем 0.5f)
-    [SerializeField]
-    private float backRayDistance = 0.5f;
+    [SerializeField] private float backRayDistance = 0.5f;
 
     void Awake()
     {

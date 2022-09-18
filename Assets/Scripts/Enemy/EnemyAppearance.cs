@@ -5,12 +5,9 @@ using UnityEngine;
 /// </summary>
 public class EnemyAppearance : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject enemy;
-    [SerializeField]
-    private Transform enemySpawner;
-    [SerializeField]
-    private PlayerController playerControllerScript;
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private Transform enemySpawner;
+    [SerializeField] private PlayerController playerControllerScript;
 
     private void OnTriggerEnter(Collider other)
     {

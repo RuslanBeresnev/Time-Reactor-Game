@@ -7,33 +7,20 @@ using TMPro;
 /// </summary>
 public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField]
-    private Transform positionInPlayerHand;
-    [SerializeField]
-    private GameObject bulletPrefab;
-    [SerializeField]
-    private TextMeshProUGUI ammoScreen;
-    [SerializeField]
-    private Transform weaponStart;
-    [SerializeField]
-    private Transform weaponEnd;
+    [SerializeField] private Transform positionInPlayerHand;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private TextMeshProUGUI ammoScreen;
+    [SerializeField] private Transform weaponStart;
+    [SerializeField] private Transform weaponEnd;
 
-    [SerializeField]
-    new private string name;
-    [SerializeField]
-    private Sprite sprite;
-    [SerializeField]
-    private float intervalBetweenShoots;
-    [SerializeField]
-    private bool semiAutoShooting = true;
-    [SerializeField]
-    private int magazinCapacity;
-    [SerializeField]
-    private int bulletsCountInMagazine;
-    [SerializeField]
-    private int bulletsCountInReserve;
-    [SerializeField]
-    private float rayDistance;
+    [SerializeField] new private string name;
+    [SerializeField] private Sprite sprite;
+    [SerializeField] private float intervalBetweenShoots;
+    [SerializeField] private bool semiAutoShooting = true;
+    [SerializeField] private int magazinCapacity;
+    [SerializeField] private int bulletsCountInMagazine;
+    [SerializeField] private int bulletsCountInReserve;
+    [SerializeField] private float rayDistance;
 
     /// <summary>
     /// Положение оружия в руке игрока

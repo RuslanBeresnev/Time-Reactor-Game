@@ -12,12 +12,9 @@ public class PlayerController : Entity
     private Vector3 movementDirection = Vector3.zero;
     private Vector3 previousPosition;
 
-    [SerializeField]
-    private float movementSpeed = 3f;
-    [SerializeField]
-    private float distanceFromWhichToPushPlayer = 0.2f; // 40% от радиуса игрока
-    [SerializeField]
-    private float minimumVelocityForMovingSound = 1f;
+    [SerializeField] private float movementSpeed = 3f;
+    [SerializeField] private float distanceFromWhichToPushPlayer = 0.2f; // 40% от радиуса игрока
+    [SerializeField] private float minimumVelocityForMovingSound = 1f;
 
     /// <summary>
     /// ѕолучить вектор скорости игрока (физическа€ скорость + скорость кинематического перемещени€)

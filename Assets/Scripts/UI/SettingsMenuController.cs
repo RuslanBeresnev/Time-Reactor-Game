@@ -8,18 +8,13 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SettingsMenuController : MonoBehaviour
 {
-    [SerializeField]
-    private Slider volumeSlider;
-    [SerializeField]
-    private TextMeshProUGUI volumeValue;
+    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private TextMeshProUGUI volumeValue;
 
-    [SerializeField]
-    private Slider mouseSensitivitySlider;
-    [SerializeField]
-    private TextMeshProUGUI mouseSensitivityValue;
+    [SerializeField] private Slider mouseSensitivitySlider;
+    [SerializeField] private TextMeshProUGUI mouseSensitivityValue;
 
-    [SerializeField]
-    private Toggle improvedGraphicsToggle;
+    [SerializeField] private Toggle improvedGraphicsToggle;
 
     private void Start()
     {

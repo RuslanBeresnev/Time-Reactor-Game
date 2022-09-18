@@ -6,10 +6,8 @@ using System;
 /// </summary>
 public abstract class Entity : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField]
-    protected float health = 100f;
-    [SerializeField]
-    protected float maxHealth = 100f;
+    [SerializeField] protected float health = 100f;
+    [SerializeField] protected float maxHealth = 100f;
     
     /// <summary>
     /// Текущее здоровье сущности

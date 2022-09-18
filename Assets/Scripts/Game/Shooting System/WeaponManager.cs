@@ -9,14 +9,11 @@ using System.Collections.ObjectModel;
 /// </summary>
 public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField]
-    private List<Weapon> weaponsArsenal = new List<Weapon>(GameProperties.PlayerWeaponsArsenalSize);
+    [SerializeField] private List<Weapon> weaponsArsenal = new List<Weapon>(GameProperties.PlayerWeaponsArsenalSize);
     private int activeSlotNumber = 0;
 
-    [SerializeField]
-    private Camera weaponCamera;
-    [SerializeField]
-    private float interactionDistance = 2.5f;
+    [SerializeField] private Camera weaponCamera;
+    [SerializeField] private float interactionDistance = 2.5f;
 
     private bool canShoot = true;
     private bool stopShooting = false;
