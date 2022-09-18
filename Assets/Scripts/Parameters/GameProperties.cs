@@ -22,6 +22,11 @@ public static class GameProperties
     public static float EnemyAppearanceChance { get; set; } = 0.5f;
 
     /// <summary>
+    /// Размер оружейного арсенала игрока
+    /// </summary>
+    public static int PlayerWeaponsArsenalSize { get; } = 3;
+
+    /// <summary>
     /// Обновить всю игровую статистику
     /// </summary>
     public static void ResetStatistics()

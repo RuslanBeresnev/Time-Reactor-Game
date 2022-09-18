@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 /// <summary>
 /// Класс, реализующий каждое оружие в игре
@@ -11,18 +12,28 @@ public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
+    private TextMeshProUGUI ammoScreen;
+    [SerializeField]
     private Transform weaponStart;
     [SerializeField]
     private Transform weaponEnd;
 
     [SerializeField]
-    private string weaponName;
+    new private string name;
     [SerializeField]
-    private float intervalBetweenShoots = 0.1f;
+    private Sprite sprite;
+    [SerializeField]
+    private float intervalBetweenShoots;
     [SerializeField]
     private bool semiAutoShooting = true;
     [SerializeField]
-    private float rayDistance = 100f;
+    private int magazinCapacity;
+    [SerializeField]
+    private int bulletsCountInMagazine;
+    [SerializeField]
+    private int bulletsCountInReserve;
+    [SerializeField]
+    private float rayDistance;
 
     /// <summary>
     /// Положение оружия в руке игрока
@@ -32,7 +43,12 @@ public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
     /// <summary>
     /// Название оружия
     /// </summary>
-    public string WeaponName { get; private set; }
+    public string Name { get; private set; }
+
+    /// <summary>
+    /// Изображение оружия в арсенале игрока
+    /// </summary>
+    public Sprite Sprite { get; private set; }
     
     /// <summary>
     /// Минимальный интервал между выстрелами
@@ -44,20 +60,81 @@ public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     public bool SemiAutoShooting { get; private set; } = true;
 
+    /// <summary>
+    /// Текущее количество патронов в обойме
+    /// </summary>
+    public int BulletsCountInMagazine
+    {
+        get { return bulletsCountInMagazine; }
+        set
+        {
+            if (value > magazinCapacity)
+            {
+                return;
+            }
+
+            var oldBulletsCountInMagazine = bulletsCountInMagazine;
+            bulletsCountInMagazine = value;
+            if (oldBulletsCountInMagazine != bulletsCountInMagazine)
+            {
+                RedrawAmmoScreen();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Количество патронов в запасе
+    /// </summary>
+    public int BulletsCountInReserve
+    {
+        get { return bulletsCountInReserve; }
+        set
+        {
+            var oldBulletsCountInReserve = bulletsCountInReserve;
+            bulletsCountInReserve = value;
+            if (oldBulletsCountInReserve != bulletsCountInReserve)
+            {
+                RedrawAmmoScreen();
+            }
+        }
+    }
+
     public void OnBeforeSerialize()
     {
         positionInPlayerHand = PositionInPlayerHand;
-        weaponName = WeaponName;
+        name = Name;
+        sprite = Sprite;
         intervalBetweenShoots = IntervalBetweenShoots;
         semiAutoShooting = SemiAutoShooting;
+        bulletsCountInMagazine = BulletsCountInMagazine;
+        bulletsCountInReserve = BulletsCountInReserve;
     }
 
     public void OnAfterDeserialize()
     {
         PositionInPlayerHand = positionInPlayerHand;
-        WeaponName = weaponName;
+        Name = name;
+        Sprite = sprite;
         IntervalBetweenShoots = intervalBetweenShoots;
         SemiAutoShooting = semiAutoShooting;
+        BulletsCountInMagazine = bulletsCountInMagazine;
+        BulletsCountInReserve = bulletsCountInReserve;
+    }
+
+    private void Awake()
+    {
+        if (BulletsCountInMagazine > magazinCapacity)
+        {
+            BulletsCountInMagazine = magazinCapacity;
+        }
+    }
+
+    /// <summary>
+    /// Перерисовать экран с информацией о количестве патронов
+    /// </summary>
+    private void RedrawAmmoScreen()
+    {
+        ammoScreen.text = BulletsCountInMagazine.ToString() + " / " + BulletsCountInReserve.ToString();
     }
 
     /// <summary>
@@ -65,6 +142,12 @@ public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     public void Shoot()
     {
+        if (BulletsCountInMagazine == 0)
+        {
+            return;
+        }
+        BulletsCountInMagazine--;
+
         Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
         int defaultLayerMask = 1;
@@ -136,5 +219,28 @@ public class Weapon : MonoBehaviour, ISerializationCallbackReceiver
     {
         yield return new WaitUntil(() => GetComponent<Rigidbody>().velocity == Vector3.zero);
         GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+    /// <summary>
+    /// Перезарядить оружие
+    /// </summary>
+    public void ReloadWeapon()
+    {
+        if (BulletsCountInMagazine == magazinCapacity)
+        {
+            return;
+        }
+
+        var bulletsCountToFillMagazine = magazinCapacity - BulletsCountInMagazine;
+        if (BulletsCountInReserve < bulletsCountToFillMagazine)
+        {
+            BulletsCountInMagazine += BulletsCountInReserve;
+            BulletsCountInReserve = 0;
+        }
+        else
+        {
+            BulletsCountInReserve -= bulletsCountToFillMagazine;
+            BulletsCountInMagazine = magazinCapacity;
+        }
     }
 }

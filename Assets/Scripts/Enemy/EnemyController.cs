@@ -8,8 +8,6 @@ using System.Collections.Generic;
 public class EnemyController : Entity, ISerializationCallbackReceiver
 {
     [SerializeField]
-    private float health = 1f;
-    [SerializeField]
     private float moveSpeed = 3.5f;
     [SerializeField]
     private float rotationSpeed = -100f;
@@ -23,11 +21,6 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
     private Queue<Vector3> targetTrajectory = new Queue<Vector3>();
 
     /// <summary>
-    /// Здоровье врага
-    /// </summary>
-    public override float Health { get; protected set; } = 1f;
-
-    /// <summary>
     /// Имя для поиска цели
     /// </summary>
     public string TargetName { get; set; } = "Player";
@@ -37,16 +30,20 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
     /// </summary>
     public bool FollowsTheTarget { get; private set; } = true;
 
-    public void OnBeforeSerialize()
+    public override void OnBeforeSerialize()
     {
         health = Health;
+        maxHealth = MaxHealth;
+
         targetName = TargetName;
         followsTheTarget = FollowsTheTarget;
     }
 
-    public void OnAfterDeserialize()
+    public override void OnAfterDeserialize()
     {
         Health = health;
+        MaxHealth = maxHealth;
+
         TargetName = targetName;
         FollowsTheTarget = followsTheTarget;
     }
@@ -63,9 +60,9 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.name == TargetName)
         {
-            collision.gameObject.GetComponent<PlayerController>().OnDeath();
+            collision.gameObject.GetComponent<Entity>().OnDeath();
         }
     }
 

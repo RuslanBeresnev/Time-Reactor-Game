@@ -1,14 +1,65 @@
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Абстракция определённой живой сущности
 /// </summary>
-public abstract class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour, ISerializationCallbackReceiver
 {
+    [SerializeField]
+    protected float health = 100f;
+    [SerializeField]
+    protected float maxHealth = 100f;
+    
     /// <summary>
-    /// Здоровье сущности
+    /// Текущее здоровье сущности
     /// </summary>
-    public abstract float Health { get; protected set; }
+    public virtual float Health
+    {
+        get { return health; }
+        protected set
+        {
+            if (value <= 0f)
+            {
+                OnDeath();
+            }
+            else if (value > MaxHealth)
+            {
+                return;
+            }
+            health = value;
+            if (HealthChanged != null)
+            {
+                HealthChanged(Health);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Максимальное здоровье сущности
+    /// </summary>
+    public virtual float MaxHealth
+    {
+        get { return maxHealth; }
+        protected set { maxHealth = value; }
+    }
+
+    /// <summary>
+    /// Событие изменения здоровья сущности
+    /// </summary>
+    public Action<float> HealthChanged { get; set; }
+
+    public virtual void OnBeforeSerialize()
+    {
+        health = Health;
+        maxHealth = MaxHealth;
+    }
+
+    public virtual void OnAfterDeserialize()
+    {
+        Health = health;
+        MaxHealth = maxHealth;
+    }
 
     /// <summary>
     /// Получить урон
@@ -16,11 +67,6 @@ public abstract class Entity : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         Health -= damage;
-
-        if (Health <= 0)
-        {
-            OnDeath();
-        }
     }
 
     /// <summary>

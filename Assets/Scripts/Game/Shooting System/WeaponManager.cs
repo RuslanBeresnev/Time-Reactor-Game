@@ -1,16 +1,16 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 /// <summary>
 /// Управление оружием игрока и его смена
 /// </summary>
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
 {
     [SerializeField]
-    private int arsenalMaxSize = 3;
-    [SerializeField]
-    private List<Weapon> weaponsArsenal = new List<Weapon>(3);
+    private List<Weapon> weaponsArsenal = new List<Weapon>(GameProperties.PlayerWeaponsArsenalSize);
     private int activeSlotNumber = 0;
 
     [SerializeField]
@@ -21,10 +21,81 @@ public class WeaponManager : MonoBehaviour
     private bool canShoot = true;
     private bool stopShooting = false;
 
+    // Переменная нужна для того, чтобы процессы сериализации и десериализации не исполнялись до старта игры, так как
+    // изначально WeaponsArsenal пуст
+    private bool performSerializationAndDeserealization = false;
+
+    /// <summary>
+    /// Арсенал оружия игрока
+    /// </summary>
+    public ObservableCollection<Weapon> WeaponsArsenal { get; private set; } = new ObservableCollection<Weapon>();
+
+    /// <summary>
+    /// Индекс слота с активным оружием
+    /// </summary>
+    private int ActiveSlotNumber
+    {
+        get { return activeSlotNumber; }
+        set
+        {
+            if (ActiveSlotChanged != null)
+            {
+                ActiveSlotChanged(ActiveSlotNumber, false);
+            }
+            activeSlotNumber = value;
+            if (ActiveSlotChanged != null)
+            {
+                ActiveSlotChanged(ActiveSlotNumber, true);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Событие смены автивного оружия в руках игрока
+    /// </summary>
+    public Action<int, bool> ActiveSlotChanged { get; set; }
+
+    public void OnBeforeSerialize()
+    {
+        if (!performSerializationAndDeserealization)
+        {
+            return;
+        }
+
+        for (int i = 0; i < GameProperties.PlayerWeaponsArsenalSize; i++)
+        {
+            weaponsArsenal[i] = WeaponsArsenal[i];
+        }
+    }
+
+    public void OnAfterDeserialize()
+    {
+        if (!performSerializationAndDeserealization)
+        {
+            return;
+        }
+
+        for (int i = 0; i < GameProperties.PlayerWeaponsArsenalSize; i++)
+        {
+            WeaponsArsenal[i] = weaponsArsenal[i];
+        }
+    }
+
+    private void Awake()
+    {
+        foreach (var weapon in weaponsArsenal)
+        {
+            WeaponsArsenal.Add(weapon);
+        }
+
+        performSerializationAndDeserealization = true;
+    }
+
     private void FixedUpdate()
     {
         CheckClickForShooting();
-        CheckClickForChangeWeapon();
+        CheckClickForWeaponReloading();
+        CheckClickForWeaponChanging();
         CheckClickForEjectionOrInteraction();
     }
 
@@ -33,7 +104,7 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     private bool IsActiveSlotEmpty()
     {
-        return weaponsArsenal[activeSlotNumber] == null;
+        return WeaponsArsenal[ActiveSlotNumber] == null;
     }
 
     /// <summary>
@@ -41,7 +112,7 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     private IEnumerator AllowShootAfterIntervalPassing()
     {
-        yield return new WaitForSeconds(weaponsArsenal[activeSlotNumber].IntervalBetweenShoots);
+        yield return new WaitForSeconds(WeaponsArsenal[ActiveSlotNumber].IntervalBetweenShoots);
         canShoot = true;
     }
 
@@ -52,11 +123,11 @@ public class WeaponManager : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && !IsActiveSlotEmpty() && canShoot && !stopShooting)
         {
-            weaponsArsenal[activeSlotNumber].Shoot();
+            WeaponsArsenal[ActiveSlotNumber].Shoot();
             canShoot = false;
             StartCoroutine(AllowShootAfterIntervalPassing());
 
-            if (weaponsArsenal[activeSlotNumber].SemiAutoShooting)
+            if (WeaponsArsenal[ActiveSlotNumber].SemiAutoShooting)
             {
                 stopShooting = true;
             }
@@ -80,9 +151,20 @@ public class WeaponManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Проверка на перезарядку активного оружия в руке
+    /// </summary>
+    private void CheckClickForWeaponReloading()
+    {
+        if (Input.GetKey(KeyCode.R))
+        {
+            WeaponsArsenal[activeSlotNumber].ReloadWeapon();
+        }
+    }
+
+    /// <summary>
     /// Проверка на смену активного оружия в текущем кадре
     /// </summary>
-    private void CheckClickForChangeWeapon()
+    private void CheckClickForWeaponChanging()
     {
         if (Input.GetKey(KeyCode.Alpha1))
         {
@@ -118,16 +200,18 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     private void ChangeActiveWeapon(int newActiveSlotNumber)
     {
-        if (newActiveSlotNumber >= 0 && newActiveSlotNumber < arsenalMaxSize && newActiveSlotNumber != activeSlotNumber)
+        if (newActiveSlotNumber >= 0 && newActiveSlotNumber < GameProperties.PlayerWeaponsArsenalSize && newActiveSlotNumber != ActiveSlotNumber)
         {
             if (!IsActiveSlotEmpty())
             {
-                weaponsArsenal[activeSlotNumber].gameObject.SetActive(false);
+                WeaponsArsenal[ActiveSlotNumber].gameObject.SetActive(false);
             }
-            activeSlotNumber = newActiveSlotNumber;
+
+            ActiveSlotNumber = newActiveSlotNumber;
+
             if (!IsActiveSlotEmpty())
             {
-                weaponsArsenal[activeSlotNumber].gameObject.SetActive(true);
+                WeaponsArsenal[ActiveSlotNumber].gameObject.SetActive(true);
             }
         }
     }
@@ -158,10 +242,11 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     private bool TryPutWeaponInSlot(GameObject weapon, int slotNumber)
     {
-        if (weaponsArsenal[slotNumber] == null)
+        if (WeaponsArsenal[slotNumber] == null)
         {
-            weaponsArsenal[slotNumber] = weapon.GetComponent<Weapon>();
+            WeaponsArsenal[slotNumber] = weapon.GetComponent<Weapon>();
             weapon.transform.SetParent(weaponCamera.transform);
+            // playerInterface.RedrawWeaponSlotContent(slotNumber, weapon.GetComponent<Weapon>());
 
             var positionInPlayerHand = weapon.GetComponent<Weapon>().PositionInPlayerHand;
             weapon.transform.position = positionInPlayerHand.position;
@@ -186,9 +271,10 @@ public class WeaponManager : MonoBehaviour
          
         if (!IsActiveSlotEmpty())
         {
-            GameObject ejectedWeapon = weaponsArsenal[activeSlotNumber].gameObject;
+            GameObject ejectedWeapon = WeaponsArsenal[ActiveSlotNumber].gameObject;
             ejectedWeapon.transform.SetParent(null);
-            weaponsArsenal[activeSlotNumber] = null;
+            WeaponsArsenal[ActiveSlotNumber] = null;
+            // playerInterface.RedrawWeaponSlotContent(activeSlotNumber, null);
 
             ejectedWeapon.GetComponent<Weapon>().PushOutWeaponFromWall(0f);
 
@@ -213,12 +299,12 @@ public class WeaponManager : MonoBehaviour
         {
             if (IsActiveSlotEmpty())
             {
-                TryPutWeaponInSlot(weaponInFrontOfPlayer, activeSlotNumber);
+                TryPutWeaponInSlot(weaponInFrontOfPlayer, ActiveSlotNumber);
             }
             else
             {
                 // Установка оружия в первый свободный слот
-                for (int slotNumber = 0; slotNumber < arsenalMaxSize; slotNumber++)
+                for (int slotNumber = 0; slotNumber < GameProperties.PlayerWeaponsArsenalSize; slotNumber++)
                 {
                     bool weaponPickedUp = TryPutWeaponInSlot(weaponInFrontOfPlayer, slotNumber);
                     if (weaponPickedUp)

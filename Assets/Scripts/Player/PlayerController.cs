@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Реализация игрока
 /// </summary>
-public class PlayerController : Entity, ISerializationCallbackReceiver
+public class PlayerController : Entity
 {
     private AudioSource playerMovingSource;
     private Rigidbody playerRigidbody;
@@ -13,8 +13,6 @@ public class PlayerController : Entity, ISerializationCallbackReceiver
     private Vector3 previousPosition;
 
     [SerializeField]
-    private float health = 100f;
-    [SerializeField]
     private float movementSpeed = 3f;
     [SerializeField]
     private float distanceFromWhichToPushPlayer = 0.2f; // 40% от радиуса игрока
@@ -22,24 +20,9 @@ public class PlayerController : Entity, ISerializationCallbackReceiver
     private float minimumVelocityForMovingSound = 1f;
 
     /// <summary>
-    /// Здоровье игрока
-    /// </summary>
-    public override float Health { get; protected set; } = 100f;
-
-    /// <summary>
     /// Получить вектор скорости игрока (физическая скорость + скорость кинематического перемещения)
     /// </summary>
     public Vector3 PlayerVelocity { get; private set; } = Vector3.zero;
-
-    public void OnBeforeSerialize()
-    {
-        health = Health;
-    }
-
-    public void OnAfterDeserialize()
-    {
-        Health = health;
-    }
 
     private void Awake()
     {
@@ -53,6 +36,13 @@ public class PlayerController : Entity, ISerializationCallbackReceiver
             {
                 playerMovingSource = audioSource;
             }
+        }
+
+        Health = MaxHealth;
+        // Инициализация визуальной шкалы здоровья в начале игры в соответствии с введённым значением
+        if (HealthChanged != null)
+        {
+            HealthChanged(Health);
         }
     }
 
