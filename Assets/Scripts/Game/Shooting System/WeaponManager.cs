@@ -135,7 +135,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         }
 
         // Для тестов (замедление времени), потом убрать
-        if (Input.GetMouseButton(1))
+/*        if (Input.GetMouseButton(1))
         {
             Time.timeScale = 0.02f;
             Time.fixedDeltaTime = 0.02f * 0.02f;
@@ -144,7 +144,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f;
-        }
+        }*/
     }
 
     /// <summary>
