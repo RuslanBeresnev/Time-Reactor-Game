@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Реализация полёта пули, урона от неё, взаимодействия с объектами и её уничтожения
 /// </summary>
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
 {
     private Rigidbody rigidBody;
     Vector3 previousPosition;
@@ -13,6 +13,28 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float timeToDestruct = 3f;
     // Дальность луча, исходящего в обратную сторону по траектории пули(для небольших скоростей лучше не ставить больше, чем 0.5f)
     [SerializeField] private float backRayDistance = 0.5f;
+
+    /// <summary>
+    /// Количество получаемого сущностью урона
+    /// </summary>
+    public int Damage { get; private set; }
+
+    /// <summary>
+    /// Скорость полёта пули
+    /// </summary>
+    public int Velocity { get; private set; }
+
+    public void OnBeforeSerialize()
+    {
+        velocity = Velocity;
+        damage = Damage;
+    }
+
+    public void OnAfterDeserialize()
+    {
+        Velocity = velocity;
+        Damage = damage;
+    }
 
     void Awake()
     {

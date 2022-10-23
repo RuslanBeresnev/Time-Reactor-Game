@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// Игровые параметры
+/// Игровые параметры и некоторые объекты
 /// </summary>
 public static class GameProperties
 {

@@ -13,7 +13,6 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     private int activeSlotNumber = 0;
 
     [SerializeField] private Camera weaponCamera;
-    [SerializeField] private float interactionDistance = 2.5f;
 
     private bool canShoot = true;
     private bool stopShooting = false;
@@ -218,19 +217,12 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private GameObject CheckObjectAheadIsWeapon()
     {
-        Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        RaycastHit hit;
-        int defaultLayerMask = 1;
-
-        if (Physics.Raycast(rayToScreenCenter, out hit, interactionDistance, defaultLayerMask, QueryTriggerInteraction.Ignore))
+        var graphicAnalyzer = GetComponent<GraphicAnalyzerController>();
+        (var objectAhead, var _) = graphicAnalyzer.GetObjectPlayerIsLookingAt();
+        if (objectAhead != null && objectAhead.GetComponent<Weapon>() != null)
         {
-            GameObject hitObject = hit.transform.gameObject;
-            if (hitObject.GetComponent<Weapon>() != null)
-            {
-                return hitObject;
-            }
+            return objectAhead;
         }
-
         return null;
     }
 
