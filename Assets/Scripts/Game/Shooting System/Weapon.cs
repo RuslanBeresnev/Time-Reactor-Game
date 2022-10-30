@@ -37,7 +37,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// »зображение оружи€ в арсенале игрока
     /// </summary>
     public Sprite Sprite { get; private set; }
-    
+
     /// <summary>
     /// ћинимальный интервал между выстрелами
     /// </summary>
@@ -87,6 +87,12 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         }
     }
 
+    public override string[,] ObjectInfoParameters { get; set; }
+
+    public override string ObjectInfoHeader { get; set; } = "Weapon";
+
+    public override Color ObjectInfoHeaderColor { get; set; } = Color.yellow;
+
     public void OnBeforeSerialize()
     {
         positionInPlayerHand = PositionInPlayerHand;
@@ -111,60 +117,17 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     private void Awake()
     {
-        infoPanelPrefab = Resources.Load<GameObject>("Prefabs/Object Information Panel");
+        InitializeInfoPanelPrefab();
+        ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
+                                                  { "Shooting type:", SemiAutoShooting ? "Semi-Automatic" : "Automatic" },
+                                                  { "Firing Frequency:", Math.Round(1 / IntervalBetweenShoots).ToString() + " per sec." },
+                                                  { "Bullet velocity:", bulletPrefab.GetComponent<Bullet>().Velocity.ToString() + " m/s" },
+                                                  { "Damage:", bulletPrefab.GetComponent<Bullet>().Damage.ToString() + " HP" } };
 
         if (BulletsCountInMagazine > magazinCapacity)
         {
             BulletsCountInMagazine = magazinCapacity;
         }
-    }
-
-    public override void ShowInfoPanel()
-    {
-        if (!panelWasCreated)
-        {
-            createdPanel = Instantiate(infoPanelPrefab);
-            panelWasCreated = true;
-
-            createdPanel.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
-            createdPanel.GetComponent<Canvas>().worldCamera = Camera.main;
-
-            var header = createdPanel.transform.Find("Header").Find("Type Of Object").GetComponent<TextMeshProUGUI>();
-            header.text = "Weapon";
-            header.color = Color.red;
-
-            var firstParameter = createdPanel.transform.Find("First Parameter");
-            firstParameter.Find("Parameter Text").GetComponent<TextMeshProUGUI>().text = "Name:";
-            firstParameter.Find("Parameter Value").GetComponent<TextMeshProUGUI>().text = Name;
-
-            var secondParameter = createdPanel.transform.Find("Second Parameter");
-            secondParameter.Find("Parameter Text").GetComponent<TextMeshProUGUI>().text = "Shooting type:";
-            secondParameter.Find("Parameter Value").GetComponent<TextMeshProUGUI>().text = semiAutoShooting ? "Semi-Automatic" : "Automatic";
-
-            var thirdParameter = createdPanel.transform.Find("Third Parameter");
-            thirdParameter.Find("Parameter Text").GetComponent<TextMeshProUGUI>().text = "Firing frequency:";
-            thirdParameter.Find("Parameter Value").GetComponent<TextMeshProUGUI>().text = Math.Round(1 / IntervalBetweenShoots).ToString() + " per sec.";
-
-            var fourthParameter = createdPanel.transform.Find("Fourth Parameter");
-            fourthParameter.Find("Parameter Text").GetComponent<TextMeshProUGUI>().text = "Bullet velocity:";
-            fourthParameter.Find("Parameter Value").GetComponent<TextMeshProUGUI>().text = bulletPrefab.GetComponent<Bullet>().Velocity.ToString() + " m/s";
-
-            var fifthParameter = createdPanel.transform.Find("Fifth Parameter");
-            fifthParameter.Find("Parameter Text").GetComponent<TextMeshProUGUI>().text = "Damage:";
-            fifthParameter.Find("Parameter Value").GetComponent<TextMeshProUGUI>().text = bulletPrefab.GetComponent<Bullet>().Damage.ToString() + " HP";
-        }
-
-        createdPanel.SetActive(true);
-    }
-
-    public override void HideInfoPanel()
-    {
-        if (!panelWasCreated)
-        {
-            return;
-        }
-
-        createdPanel.SetActive(false);
     }
 
     /// <summary>

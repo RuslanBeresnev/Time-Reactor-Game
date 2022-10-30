@@ -8,18 +8,25 @@ public class PlayerController : Entity
 {
     private AudioSource playerMovingSource;
     private Rigidbody playerRigidbody;
-    
-    private Vector3 movementDirection = Vector3.zero;
+
+    private Vector3 movementDirection;
     private Vector3 previousPosition;
 
-    [SerializeField] private float movementSpeed = 3f;
-    [SerializeField] private float distanceFromWhichToPushPlayer = 0.2f; // 40% от радиуса игрока
-    [SerializeField] private float minimumVelocityForMovingSound = 1f;
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private float distanceFromWhichToPushPlayer; // 40% от радиуса игрока
+    [SerializeField] private float minimumVelocityForMovingSound;
 
     /// <summary>
     /// ѕолучить вектор скорости игрока (физическа€ скорость + скорость кинематического перемещени€)
     /// </summary>
-    public Vector3 PlayerVelocity { get; private set; } = Vector3.zero;
+    public Vector3 PlayerVelocity { get; private set; }
+
+    // —ледующие 3 свойства дл€ игрока не используютс€
+    public override string[,] ObjectInfoParameters { get; set; }
+
+    public override string ObjectInfoHeader { get; set; }
+
+    public override Color ObjectInfoHeaderColor { get; set; }
 
     private void Awake()
     {

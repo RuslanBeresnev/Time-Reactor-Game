@@ -4,7 +4,7 @@ using System;
 /// <summary>
 /// Абстракция определённой живой сущности
 /// </summary>
-public abstract class Entity : MonoBehaviour, ISerializationCallbackReceiver
+public abstract class Entity : ObjectWithInformation, ISerializationCallbackReceiver
 {
     [SerializeField] protected float health = 100f;
     [SerializeField] protected float maxHealth = 100f;

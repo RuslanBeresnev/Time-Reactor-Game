@@ -7,10 +7,10 @@ using System.Collections.Generic;
 /// </summary>
 public class EnemyController : Entity, ISerializationCallbackReceiver
 {
-    [SerializeField] private float moveSpeed = 3.5f;
-    [SerializeField] private float rotationSpeed = -100f;
-    [SerializeField] private string targetName = "Player";
-    [SerializeField] private bool followsTheTarget = true;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private string targetName;
+    [SerializeField] private bool followsTheTarget;
 
     private AudioSource backgroundMusic;
     private GameObject target;
@@ -19,12 +19,18 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
     /// <summary>
     /// Имя для поиска цели
     /// </summary>
-    public string TargetName { get; set; } = "Player";
+    public string TargetName { get; set; }
 
     /// <summary>
     /// Будет ли враг следовать за целью
     /// </summary>
-    public bool FollowsTheTarget { get; private set; } = true;
+    public bool FollowsTheTarget { get; private set; }
+
+    public override string[,] ObjectInfoParameters { get; set; } = null;
+
+    public override string ObjectInfoHeader { get; set; } = "Enemy";
+
+    public override Color ObjectInfoHeaderColor { get; set; } = Color.red;
 
     public override void OnBeforeSerialize()
     {
@@ -46,6 +52,11 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
 
     private void Awake()
     {
+        ObjectInfoParameters = new string[3, 2] { { "Health:", Health.ToString() + " HP" },
+                                                  { "Damage:", "One punch to death" },
+                                                  { "Movement speed:", moveSpeed.ToString() + " m/s" } };
+        InitializeInfoPanelPrefab();
+
         var backgroundMusicObject = GameObject.Find("Background Music");
         backgroundMusic = backgroundMusicObject.GetComponent<AudioSource>();
         backgroundMusic.Stop();
@@ -113,6 +124,7 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
     /// </summary>
     public override void OnDeath()
     {
+        Destroy(createdPanel);
         Destroy(gameObject);
         backgroundMusic.Play();
     }
