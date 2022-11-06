@@ -36,5 +36,8 @@ public static class GameProperties
 
         FloorNumber = 0;
         PassedFloors.Clear();
+
+        GraphicAnalyzerController.AnalyzerIsActive = false;
+        GraphicAnalyzerController.StateChanged = null;
     }
 }

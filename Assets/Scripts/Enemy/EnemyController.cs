@@ -52,7 +52,7 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
 
     private void Awake()
     {
-        ObjectInfoParameters = new string[3, 2] { { "Health:", Health.ToString() + " HP" },
+        ObjectInfoParameters = new string[3, 2] { { "Max health:", MaxHealth.ToString() + " HP" },
                                                   { "Damage:", "One punch to death" },
                                                   { "Movement speed:", moveSpeed.ToString() + " m/s" } };
         InitializeInfoPanelPrefab();

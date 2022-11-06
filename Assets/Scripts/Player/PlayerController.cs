@@ -41,13 +41,6 @@ public class PlayerController : Entity
                 playerMovingSource = audioSource;
             }
         }
-
-        Health = MaxHealth;
-        // Инициализация визуальной шкалы здоровья в начале игры в соответствии с введённым значением
-        if (HealthChanged != null)
-        {
-            HealthChanged(Health);
-        }
     }
 
     private void FixedUpdate()

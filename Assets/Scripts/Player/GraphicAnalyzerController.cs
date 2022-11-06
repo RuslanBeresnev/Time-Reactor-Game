@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 
 /// <summary>
@@ -20,7 +21,7 @@ public class GraphicAnalyzerController : MonoBehaviour
     // Должен быть от 0f до 1f
     [SerializeField] private float panelOffsetCoefficientToPlayer = 0.5f;
 
-    private bool analyzerIsActive = false;
+    private static bool analyzerIsActive = false;
     // Минимальное время между сменой режимов активировано/неактивно
     private float intervalBetweenStateChanging = 0.5f;
     private bool stateChangingIsAllowed = true;
@@ -35,6 +36,27 @@ public class GraphicAnalyzerController : MonoBehaviour
     }
 
     /// <summary>
+    /// Активен ли графический анализатор в данный момент
+    /// </summary>
+    public static bool AnalyzerIsActive
+    {
+        get { return analyzerIsActive; }
+        set
+        {
+            analyzerIsActive = value;
+            if (StateChanged != null)
+            {
+                StateChanged(analyzerIsActive);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Событие, которое вызывается при активации/деактивации графического анализатора
+    /// </summary>
+    public static Action<bool> StateChanged { get; set; }
+
+    /// <summary>
     /// Проверка на нажатие кнопки для смены режима
     /// </summary>
     private void CheckStateChanging()
@@ -43,9 +65,9 @@ public class GraphicAnalyzerController : MonoBehaviour
         {
             if (stateChangingIsAllowed)
             {
-                analyzerIsActive = !analyzerIsActive;
-                analyzerInfoPanel.SetActive(analyzerIsActive);
-                if (!analyzerIsActive)
+                AnalyzerIsActive = !AnalyzerIsActive;
+                analyzerInfoPanel.SetActive(AnalyzerIsActive);
+                if (!AnalyzerIsActive)
                 {
                     if (objectPlayerCurrentlyLookingAt != null)
                     {
@@ -109,7 +131,7 @@ public class GraphicAnalyzerController : MonoBehaviour
     /// </summary>
     private void DisplayInformationIfPlayerLookingAtObject()
     {
-        if (!analyzerIsActive)
+        if (!AnalyzerIsActive)
         {
             return;
         }

@@ -8,7 +8,13 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
 {
     [SerializeField] protected float health = 100f;
     [SerializeField] protected float maxHealth = 100f;
-    
+
+    private void Start()
+    {
+        // Синхронизация перед спавном сущности количества здоровья с максимальным количеством здоровья
+        Health = MaxHealth;
+    }
+
     /// <summary>
     /// Текущее здоровье сущности
     /// </summary>

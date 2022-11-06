@@ -19,14 +19,10 @@ public class PlayerInterfaceController : MonoBehaviour
     [SerializeField] private Sprite activeSlotSprite;
     [SerializeField] private Sprite inactiveSlotSprite;
 
-    [SerializeField] private Image healthBar;
-    [SerializeField] private TextMeshProUGUI healthCount;
-
     private void Awake()
     {
         weaponManager.WeaponsArsenal.CollectionChanged += RedrawWeaponSlotContent;
         weaponManager.ActiveSlotChanged += RedrawWeaponSlotBackground;
-        player.HealthChanged += RedrawHealthInfo;
     }
 
     /// <summary>
@@ -63,14 +59,5 @@ public class PlayerInterfaceController : MonoBehaviour
         }
 
         weaponsInArsenalBackgrounds[slotNumber].sprite = inactiveSlotSprite;
-    }
-
-    /// <summary>
-    /// Перерисовать полоску и изменить выводимое значение здоровья игрока
-    /// </summary>
-    private void RedrawHealthInfo(float health)
-    {
-        healthBar.fillAmount = health / player.MaxHealth;
-        healthCount.text = health.ToString();
     }
 }
