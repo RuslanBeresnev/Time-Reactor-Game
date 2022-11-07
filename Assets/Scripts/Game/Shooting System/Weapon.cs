@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 
 /// <summary>
@@ -14,10 +15,17 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     [SerializeField] private Transform weaponStart;
     [SerializeField] private Transform weaponEnd;
 
+    private AudioSource shotSound;
+    private AudioSource reloadingSound;
+    private List<AudioSource> weaponHitingOnSurfaceSounds = new List<AudioSource>();
+
+    private System.Random random = new System.Random();
+
     [SerializeField] new private string name;
     [SerializeField] private Sprite sprite;
     [SerializeField] private float intervalBetweenShoots;
-    [SerializeField] private bool semiAutoShooting = true;
+    [SerializeField] private bool semiAutoShooting;
+    [SerializeField] private float reloadingDuration;
     [SerializeField] private int magazinCapacity;
     [SerializeField] private int bulletsCountInMagazine;
     [SerializeField] private int bulletsCountInReserve;
@@ -41,12 +49,22 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Минимальный интервал между выстрелами
     /// </summary>
-    public float IntervalBetweenShoots { get; private set; } = 0.1f;
+    public float IntervalBetweenShoots { get; private set; }
+
+    /// <summary>
+    /// Длительность перезарядки оружия
+    /// </summary>
+    public float ReloadingDuration { get; private set; }
 
     /// <summary>
     /// Если указано true, то оружие будет вести полуавтоматическую стрельбу (пистолет), иначе автоматическую (винтовка)
     /// </summary>
     public bool SemiAutoShooting { get; private set; } = true;
+
+    /// <summary>
+    /// Звук подбирания оружия
+    /// </summary>
+    public AudioSource PickUpSound { get; private set; }
 
     /// <summary>
     /// Текущее количество патронов в обойме
@@ -99,6 +117,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         name = Name;
         sprite = Sprite;
         intervalBetweenShoots = IntervalBetweenShoots;
+        reloadingDuration = ReloadingDuration;
         semiAutoShooting = SemiAutoShooting;
         bulletsCountInMagazine = BulletsCountInMagazine;
         bulletsCountInReserve = BulletsCountInReserve;
@@ -110,6 +129,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         Name = name;
         Sprite = sprite;
         IntervalBetweenShoots = intervalBetweenShoots;
+        ReloadingDuration = reloadingDuration;
         SemiAutoShooting = semiAutoShooting;
         BulletsCountInMagazine = bulletsCountInMagazine;
         BulletsCountInReserve = bulletsCountInReserve;
@@ -117,6 +137,27 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     private void Awake()
     {
+        foreach (var audioSource in GetComponents<AudioSource>())
+        {
+            var clipName = audioSource.clip.name;
+            if (clipName.EndsWith("Shot"))
+            {
+                shotSound = audioSource;
+            }
+            else if (clipName.EndsWith("Reloading"))
+            {
+                reloadingSound = audioSource;
+            }
+            else if (clipName.StartsWith("Weapon Hitting On Surface"))
+            {
+                weaponHitingOnSurfaceSounds.Add(audioSource);
+            }
+            else if (clipName == "Weapon Picking Up")
+            {
+                PickUpSound = audioSource;
+            }
+        }
+
         InitializeInfoPanelPrefab();
         ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
                                                   { "Shooting type:", SemiAutoShooting ? "Semi-Automatic" : "Automatic" },
@@ -127,6 +168,25 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         if (BulletsCountInMagazine > magazinCapacity)
         {
             BulletsCountInMagazine = magazinCapacity;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Оружие издаёт случайный звук удара с поверхностью, только когда касается слоя Default
+        if (collision.gameObject.layer == 0)
+        {
+            // Если какой-то звук уже проигрывается, то он должен доиграться до конца
+            foreach (var sound in weaponHitingOnSurfaceSounds)
+            {
+                if (sound.isPlaying)
+                {
+                    return;
+                }
+            }
+
+            var randomIndex = random.Next(weaponHitingOnSurfaceSounds.Count);
+            weaponHitingOnSurfaceSounds[randomIndex].Play();
         }
     }
 
@@ -148,6 +208,8 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
             return;
         }
         BulletsCountInMagazine--;
+
+        shotSound.Play();
 
         Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
@@ -223,11 +285,19 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
+    /// Может ли быть выполнена перезарядка оружия
+    /// </summary>
+    public bool ReloadingCanBePerformed()
+    {
+        return BulletsCountInMagazine != magazinCapacity && BulletsCountInReserve != 0;
+    }
+
+    /// <summary>
     /// Перезарядить оружие
     /// </summary>
     public void ReloadWeapon()
     {
-        if (BulletsCountInMagazine == magazinCapacity)
+        if (!ReloadingCanBePerformed())
         {
             return;
         }
@@ -242,6 +312,28 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         {
             BulletsCountInReserve -= bulletsCountToFillMagazine;
             BulletsCountInMagazine = magazinCapacity;
+        }
+    }
+
+    /// <summary>
+    /// Проиграть звук перезарядки оружия
+    /// </summary>
+    public void PlayReloadingSound()
+    {
+        if (reloadingSound != null)
+        {
+            reloadingSound.Play();
+        }
+    }
+
+    /// <summary>
+    /// Прервать звук перезарядки оружия
+    /// </summary>
+    public void StopReloadingSound()
+    {
+        if (reloadingSound != null)
+        {
+            reloadingSound.Stop();
         }
     }
 }

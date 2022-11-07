@@ -12,21 +12,24 @@ public class GraphicAnalyzerController : MonoBehaviour
     [SerializeField] private GameObject analyzerInfoPanel;
 
     // Максимальная дистанция, на которой игрок может взаимодействовать с объектами
-    [SerializeField] private float interactionDistance = 2.5f;
+    [SerializeField] private float interactionDistance;
+    // Минимальное время между сменой режимов активировано/неактивно
+    [SerializeField] private float intervalBetweenStateChanging;
 
     // Коэффициент от ширины/высоты панели, который умножается на ширину/высоту, и смещает панель таким образом,
     // чтобы она не загораживала объект
-    [SerializeField] private float panelOffsetCoefficientInPlane = 0.5f;
+    [SerializeField] private float panelOffsetCoefficientInPlane;
     // Коэффициент расстояния между предметом и игроком, который определяет, насколько близко панель будет к игроку
     // Должен быть от 0f до 1f
-    [SerializeField] private float panelOffsetCoefficientToPlayer = 0.5f;
+    [SerializeField] private float panelOffsetCoefficientToPlayer;
 
     private static bool analyzerIsActive = false;
-    // Минимальное время между сменой режимов активировано/неактивно
-    private float intervalBetweenStateChanging = 0.5f;
     private bool stateChangingIsAllowed = true;
 
     private ObjectWithInformation objectPlayerCurrentlyLookingAt = null;
+
+    private AudioSource activationSound;
+    private AudioSource deactivationSound;
 
     public void FixedUpdate()
     {
@@ -56,6 +59,22 @@ public class GraphicAnalyzerController : MonoBehaviour
     /// </summary>
     public static Action<bool> StateChanged { get; set; }
 
+    private void Awake()
+    {
+        foreach (var audioSource in GetComponents<AudioSource>())
+        {
+            var clipName = audioSource.clip.name;
+            if (clipName == "Activation")
+            {
+                activationSound = audioSource;
+            }
+            else if (clipName == "Deactivation")
+            {
+                deactivationSound = audioSource;
+            }
+        }
+    }
+
     /// <summary>
     /// Проверка на нажатие кнопки для смены режима
     /// </summary>
@@ -65,6 +84,15 @@ public class GraphicAnalyzerController : MonoBehaviour
         {
             if (stateChangingIsAllowed)
             {
+                if (!AnalyzerIsActive)
+                {
+                    activationSound.Play();
+                }
+                else
+                {
+                    deactivationSound.Play();
+                }
+
                 AnalyzerIsActive = !AnalyzerIsActive;
                 analyzerInfoPanel.SetActive(AnalyzerIsActive);
                 if (!AnalyzerIsActive)

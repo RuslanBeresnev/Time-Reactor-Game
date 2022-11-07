@@ -31,16 +31,8 @@ public class PlayerController : Entity
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        playerMovingSource = GetComponent<AudioSource>();
         previousPosition = transform.position;
-
-        var audioSources = GetComponents<AudioSource>();
-        foreach (var audioSource in audioSources)
-        {
-            if (audioSource.clip.name == "Player Steps Sound")
-            {
-                playerMovingSource = audioSource;
-            }
-        }
     }
 
     private void FixedUpdate()

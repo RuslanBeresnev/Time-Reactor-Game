@@ -13,9 +13,11 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     private int activeSlotNumber = 0;
 
     [SerializeField] private Camera weaponCamera;
+    [SerializeField] private GameObject graphicAnalyzer;
 
     private bool canShoot = true;
     private bool stopShooting = false;
+    private bool inProcessOfReloading = false;
 
     // Переменная нужна для того, чтобы процессы сериализации и десериализации не исполнялись до старта игры, так как
     // изначально WeaponsArsenal пуст
@@ -89,8 +91,8 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
 
     private void FixedUpdate()
     {
-        CheckClickForShooting();
         CheckClickForWeaponReloading();
+        CheckClickForShooting();
         CheckClickForWeaponChanging();
         CheckClickForEjectionOrInteraction();
     }
@@ -117,7 +119,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private void CheckClickForShooting()
     {
-        if (Input.GetMouseButton(0) && !IsActiveSlotEmpty() && canShoot && !stopShooting)
+        if (Input.GetMouseButton(0) && !IsActiveSlotEmpty() && !inProcessOfReloading && canShoot && !stopShooting)
         {
             WeaponsArsenal[ActiveSlotNumber].Shoot();
             canShoot = false;
@@ -132,18 +134,25 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         {
             stopShooting = false;
         }
+    }
 
-        // Для тестов (замедление времени), потом убрать
-/*        if (Input.GetMouseButton(1))
-        {
-            Time.timeScale = 0.02f;
-            Time.fixedDeltaTime = 0.02f * 0.02f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-            Time.fixedDeltaTime = 0.02f;
-        }*/
+    /// <summary>
+    /// Снова разрешить перезарядку оружия после прошествия интервала времени
+    /// </summary>
+    private IEnumerator AllowReloadingAfterIntervalPassing()
+    {
+        yield return new WaitForSeconds(WeaponsArsenal[ActiveSlotNumber].ReloadingDuration);
+        WeaponsArsenal[activeSlotNumber].ReloadWeapon();
+        inProcessOfReloading = false;
+    }
+
+    /// <summary>
+    /// Остановтить сопроцесс, который блокирует оружие во время перезарядки
+    /// </summary>
+    private void StopWeaponReloadingCoroutine()
+    {
+        StopCoroutine("AllowReloadingAfterIntervalPassing");
+        inProcessOfReloading = false;
     }
 
     /// <summary>
@@ -151,9 +160,16 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private void CheckClickForWeaponReloading()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.R) && !Input.GetMouseButton(0) && !IsActiveSlotEmpty() && !inProcessOfReloading)
         {
-            WeaponsArsenal[activeSlotNumber].ReloadWeapon();
+            if (!WeaponsArsenal[activeSlotNumber].ReloadingCanBePerformed())
+            {
+                return;
+            }
+
+            inProcessOfReloading = true;
+            WeaponsArsenal[activeSlotNumber].PlayReloadingSound();
+            StartCoroutine("AllowReloadingAfterIntervalPassing");
         }
     }
 
@@ -198,6 +214,12 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     {
         if (newActiveSlotNumber >= 0 && newActiveSlotNumber < GameProperties.PlayerWeaponsArsenalSize && newActiveSlotNumber != ActiveSlotNumber)
         {
+            StopWeaponReloadingCoroutine();
+            if (!IsActiveSlotEmpty())
+            {
+                WeaponsArsenal[ActiveSlotNumber].StopReloadingSound();
+            }
+
             if (!IsActiveSlotEmpty())
             {
                 WeaponsArsenal[ActiveSlotNumber].gameObject.SetActive(false);
@@ -217,8 +239,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private GameObject CheckObjectAheadIsWeapon()
     {
-        var graphicAnalyzer = GetComponent<GraphicAnalyzerController>();
-        (var objectAhead, var _) = graphicAnalyzer.GetObjectPlayerIsLookingAt();
+        (var objectAhead, var _) = graphicAnalyzer.GetComponent<GraphicAnalyzerController>().GetObjectPlayerIsLookingAt();
         if (objectAhead != null && objectAhead.GetComponent<Weapon>() != null)
         {
             return objectAhead;
@@ -231,24 +252,25 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private bool TryPutWeaponInSlot(GameObject weapon, int slotNumber)
     {
-        if (WeaponsArsenal[slotNumber] == null)
+        if (WeaponsArsenal[slotNumber] != null)
         {
-            WeaponsArsenal[slotNumber] = weapon.GetComponent<Weapon>();
-            weapon.transform.SetParent(weaponCamera.transform);
-            // playerInterface.RedrawWeaponSlotContent(slotNumber, weapon.GetComponent<Weapon>());
-
-            var positionInPlayerHand = weapon.GetComponent<Weapon>().PositionInPlayerHand;
-            weapon.transform.position = positionInPlayerHand.position;
-            weapon.transform.rotation = positionInPlayerHand.rotation;
-            weapon.transform.localScale = positionInPlayerHand.localScale;
-            weapon.GetComponent<Rigidbody>().isKinematic = true;
-
-            weapon.GetComponent<Weapon>().SetUpWeaponPartsLayersAndColliders("Weapons", false);
-
-            return true;
+            return false;
         }
 
-        return false;
+        WeaponsArsenal[slotNumber] = weapon.GetComponent<Weapon>();
+        weapon.transform.SetParent(weaponCamera.transform);
+
+        WeaponsArsenal[slotNumber].PickUpSound.Play();
+
+        var positionInPlayerHand = weapon.GetComponent<Weapon>().PositionInPlayerHand;
+        weapon.transform.position = positionInPlayerHand.position;
+        weapon.transform.rotation = positionInPlayerHand.rotation;
+        weapon.transform.localScale = positionInPlayerHand.localScale;
+        weapon.GetComponent<Rigidbody>().isKinematic = true;
+
+        weapon.GetComponent<Weapon>().SetUpWeaponPartsLayersAndColliders("Weapons", false);
+
+        return true;
     }
 
     /// <summary>
@@ -256,26 +278,32 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private void EjectWeapon()
     {
-        var ejectionForce = 200f;
-         
+        if (IsActiveSlotEmpty())
+        {
+            return;
+        }
+
+        StopWeaponReloadingCoroutine();
         if (!IsActiveSlotEmpty())
         {
-            GameObject ejectedWeapon = WeaponsArsenal[ActiveSlotNumber].gameObject;
-            ejectedWeapon.transform.SetParent(null);
-            WeaponsArsenal[ActiveSlotNumber] = null;
-            // playerInterface.RedrawWeaponSlotContent(activeSlotNumber, null);
-
-            ejectedWeapon.GetComponent<Weapon>().PushOutWeaponFromWall(0f);
-
-            ejectedWeapon.GetComponent<Rigidbody>().isKinematic = false;
-            ejectedWeapon.GetComponent<Rigidbody>().AddForce(ejectedWeapon.transform.forward * ejectionForce);
-            ejectedWeapon.GetComponent<Weapon>().SetUpWeaponPartsLayersAndColliders("Default", true);
-
-            // Здесь присваиваивается скорость, близкая к нулю, для того, чтобы условие в корутине не сработало раньше времени
-            // (так как сила броска применяется к объекту только со следующего кадра)
-            ejectedWeapon.GetComponent<Rigidbody>().velocity = new Vector3(0.01f, 0, 0);
-            StartCoroutine(ejectedWeapon.GetComponent<Weapon>().PerformActionsAfterFallOfEjectedWeapon());
+            WeaponsArsenal[ActiveSlotNumber].StopReloadingSound();
         }
+
+        var ejectionForce = 200f;
+        GameObject ejectedWeapon = WeaponsArsenal[ActiveSlotNumber].gameObject;
+        ejectedWeapon.transform.SetParent(null);
+        WeaponsArsenal[ActiveSlotNumber] = null;
+
+        ejectedWeapon.GetComponent<Weapon>().PushOutWeaponFromWall(0f);
+
+        ejectedWeapon.GetComponent<Rigidbody>().isKinematic = false;
+        ejectedWeapon.GetComponent<Rigidbody>().AddForce(ejectedWeapon.transform.forward * ejectionForce);
+        ejectedWeapon.GetComponent<Weapon>().SetUpWeaponPartsLayersAndColliders("Default", true);
+
+        // Здесь присваиваивается скорость, близкая к нулю, для того, чтобы условие в корутине не сработало раньше времени
+        // (так как сила броска применяется к объекту только со следующего кадра)
+        ejectedWeapon.GetComponent<Rigidbody>().velocity = new Vector3(0.01f, 0, 0);
+        StartCoroutine(ejectedWeapon.GetComponent<Weapon>().PerformActionsAfterFallOfEjectedWeapon());
     }
 
     /// <summary>
