@@ -65,6 +65,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   velocity: 45
+  timeToDestruct: 3
+  backRayDistance: 0.5
 --- !u!1 &6510483267521384286
 GameObject:
   m_ObjectHideFlags: 0
