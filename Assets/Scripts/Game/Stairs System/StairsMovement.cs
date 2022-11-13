@@ -28,7 +28,7 @@ public class StairsMovement : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             // Проверка на соответсвие одному направлению входа и выхода (игрок полностью прошёл триггер)
-            if (playerControllerScript.PlayerVelocity.z >= 0f && onColliderEnterZAxisValue >= 0f)
+            if (playerControllerScript.PlayerVelocity.z > 0f && onColliderEnterZAxisValue > 0f)
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {
@@ -45,7 +45,7 @@ public class StairsMovement : MonoBehaviour
                         centralWall.transform.position.y + STRUCTURE_OFFSET, centralWall.transform.position.z);
                 }
             }
-            else if (playerControllerScript.PlayerVelocity.z <= 0f && onColliderEnterZAxisValue <= 0f)
+            else if (playerControllerScript.PlayerVelocity.z < 0f && onColliderEnterZAxisValue < 0f)
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {
