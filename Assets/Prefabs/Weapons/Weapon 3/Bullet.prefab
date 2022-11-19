@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3158151706009851422}
   - component: {fileID: 976736291064250950}
+  - component: {fileID: 780965093541805306}
   - component: {fileID: 4013690788437782715}
   m_Layer: 7
   m_Name: Bullet
@@ -51,6 +52,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &780965093541805306
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3053953687202984356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.035813, y: 1.0409288, z: 1.9752531}
+  m_Center: {x: -0.0025579706, y: 0, z: 0.5746549}
 --- !u!114 &4013690788437782715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +92,6 @@ GameObject:
   - component: {fileID: 3420985721893924345}
   - component: {fileID: 1907098244697683408}
   - component: {fileID: 3720541999048438484}
-  - component: {fileID: 4728238556086286716}
   m_Layer: 7
   m_Name: Rod
   m_TagString: Untagged
@@ -151,20 +164,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4728238556086286716
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6510483267521384286}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &8998408923620183368
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +175,6 @@ GameObject:
   - component: {fileID: 6408826877882855451}
   - component: {fileID: 8186723261126355544}
   - component: {fileID: 1197959658773579217}
-  - component: {fileID: 8493185627489476701}
   m_Layer: 7
   m_Name: Tip
   m_TagString: Untagged
@@ -249,16 +247,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8493185627489476701
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8998408923620183368}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
