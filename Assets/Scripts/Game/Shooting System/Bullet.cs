@@ -10,9 +10,13 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
 
     [SerializeField] private int damage = 1;
     [SerializeField] private int velocity = 15;
-    [SerializeField] private float timeToDestruct = 3f;
     // ƒальность луча, исход€щего в обратную сторону по траектории пули(дл€ небольших скоростей лучше не ставить больше, чем 0.5f)
     [SerializeField] private float backRayDistance = 0.5f;
+
+    /// <summary>
+    /// ѕул патронов, которому принадлежит данный патрон
+    /// </summary>
+    public PoolOfBullets Pool { get; set; }
 
     /// <summary>
     ///  оличество получаемого сущностью урона
@@ -40,7 +44,6 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
     {
         rigidBody = GetComponent<Rigidbody>();
         previousPosition = transform.position;
-        Destroy(gameObject, timeToDestruct);
     }
 
     void FixedUpdate()
@@ -48,7 +51,7 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
         var hitInfo = CheckCollision();
         if (hitInfo != null)
         {
-            Destroy(gameObject);
+            Pool.ReturnBullet(gameObject);
             PerformCollisionEffects(((RaycastHit)hitInfo).collider);
         }
         previousPosition = transform.position;
@@ -56,7 +59,7 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        Pool.ReturnBullet(gameObject);
         PerformCollisionEffects(other);
     }
 
