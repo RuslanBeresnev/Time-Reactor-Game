@@ -8,7 +8,6 @@ public class StairsMovement : MonoBehaviour
     [SerializeField] private GameObject currentStairsStrucure;
     [SerializeField] private GameObject otherStairsStructure;
     [SerializeField] private GameObject centralWall;
-    [SerializeField] private PlayerController playerControllerScript;
 
     private const float STRUCTURE_OFFSET = 2.425f;
     
@@ -19,7 +18,8 @@ public class StairsMovement : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            onColliderEnterZAxisValue = playerControllerScript.PlayerVelocity.z;
+            var playerController = other.gameObject.GetComponent<PlayerController>();
+            onColliderEnterZAxisValue = playerController.PlayerVelocity.z;
         }
     }
 
@@ -27,8 +27,10 @@ public class StairsMovement : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
+            var playerController = other.gameObject.GetComponent<PlayerController>();
+
             // Проверка на соответсвие одному направлению входа и выхода (игрок полностью прошёл триггер)
-            if (playerControllerScript.PlayerVelocity.z > 0f && onColliderEnterZAxisValue > 0f)
+            if (playerController.PlayerVelocity.z > 0f && onColliderEnterZAxisValue > 0f)
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {
@@ -45,7 +47,7 @@ public class StairsMovement : MonoBehaviour
                         centralWall.transform.position.y + STRUCTURE_OFFSET, centralWall.transform.position.z);
                 }
             }
-            else if (playerControllerScript.PlayerVelocity.z < 0f && onColliderEnterZAxisValue < 0f)
+            else if (playerController.PlayerVelocity.z < 0f && onColliderEnterZAxisValue < 0f)
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {
