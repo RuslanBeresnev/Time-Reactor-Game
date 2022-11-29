@@ -9,6 +9,8 @@ public class EnemyAppearance : MonoBehaviour
     [SerializeField] private Transform enemySpawner;
     [SerializeField] private PlayerController playerControllerScript;
 
+    private System.Random random = new System.Random();
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player")
@@ -17,7 +19,6 @@ public class EnemyAppearance : MonoBehaviour
             {
                 GameProperties.PassedFloors.Add(GameProperties.FloorNumber);
 
-                var random = new System.Random();
                 float generatedFloat = (float)random.NextDouble();
                 if (generatedFloat < GameProperties.EnemyAppearanceChance)
                 {

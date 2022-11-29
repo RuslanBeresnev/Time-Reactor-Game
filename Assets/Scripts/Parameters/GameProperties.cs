@@ -14,7 +14,17 @@ public static class GameProperties
     /// <summary>
     /// Список пройденных игроком этажей
     /// </summary>
-    public static List<int> PassedFloors { get; } = new List<int>();
+    public static List<int> PassedFloors { get; } = new();
+
+    /// <summary>
+    /// Список, который определяет наличие на каждом этаже двери со сгенерированной комнатой
+    /// </summary>
+    public static List<bool> DoorOnFloor { get; } = new();
+
+    /// <summary>
+    /// Словарь со всеми сгенерированными комнатами, где ключ - номер этажа, значение - комната на этом этаже
+    /// </summary>
+    public static Dictionary<int, GameObject> GeneratedRooms { get; } = new();
 
     /// <summary>
     /// Вероятность появления врага
@@ -36,6 +46,8 @@ public static class GameProperties
 
         FloorNumber = 0;
         PassedFloors.Clear();
+        DoorOnFloor.Clear();
+        GeneratedRooms.Clear();
 
         GraphicAnalyzerController.AnalyzerIsActive = false;
         GraphicAnalyzerController.StateChanged = null;
