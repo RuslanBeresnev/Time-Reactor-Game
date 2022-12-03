@@ -501,9 +501,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positionInPlayerHand: {fileID: 0}
   bulletPrefab: {fileID: 3053953687202984356, guid: 5e5b96e699300134496f96e446e70528, type: 3}
-  ammoScreen: {fileID: 0}
-  weaponStart: {fileID: 0}
-  weaponEnd: {fileID: 0}
+  pool: {fileID: 0}
+  ammoScreen: {fileID: 1990019313232005228}
+  weaponStart: {fileID: 7066753361090046074}
+  weaponEnd: {fileID: 3551015612565294975}
   name: Assault Riffle
   sprite: {fileID: 21300000, guid: 5c8c5a0a79c3ec44a86341098ff19436, type: 3}
   intervalBetweenShoots: 0.1
@@ -1532,6 +1533,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78b197d2c860c8c42b68fed6c172be73, type: 3}
+--- !u!114 &1990019313232005228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3614087167603462854, guid: 78b197d2c860c8c42b68fed6c172be73, type: 3}
+  m_PrefabInstance: {fileID: 3006760939594783402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1990019313972395443 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3614087166196229913, guid: 78b197d2c860c8c42b68fed6c172be73, type: 3}

@@ -37,6 +37,11 @@ public static class GameProperties
     public static int PlayerWeaponsArsenalSize { get; } = 3;
 
     /// <summary>
+    /// Общий пул в виде словаря, где ключ - это название пула объектов, а значение - сам пул объектов
+    /// </summary>
+    public static Dictionary<string, Pool> GeneralPool { get; } = new();
+
+    /// <summary>
     /// Обновить всю игровую статистику
     /// </summary>
     public static void ResetStatistics()
@@ -48,6 +53,7 @@ public static class GameProperties
         PassedFloors.Clear();
         DoorOnFloor.Clear();
         GeneratedRooms.Clear();
+        GeneralPool.Clear();
 
         GraphicAnalyzerController.AnalyzerIsActive = false;
         GraphicAnalyzerController.StateChanged = null;

@@ -11,7 +11,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 {
     [SerializeField] private Transform positionInPlayerHand;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private PoolOfBullets pool;
+    [SerializeField] private Pool pool;
     [SerializeField] private TextMeshProUGUI ammoScreen;
     [SerializeField] private Transform weaponStart;
     [SerializeField] private Transform weaponEnd;
@@ -239,13 +239,12 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     private void FireABullet(Vector3 bulletDirection)
     {
-        var bullet = pool.GetBullet();
+        var bullet = pool.GetObject();
         if (bullet != null)
         {
             var bulletRotation = Quaternion.FromToRotation(bulletPrefab.transform.forward, bulletDirection);
             bullet.transform.position = weaponEnd.position;
             bullet.transform.rotation = bulletRotation;
-            bullet.SetActive(true);
         }
 
         var bulletComponent = bullet.GetComponent<Bullet>();

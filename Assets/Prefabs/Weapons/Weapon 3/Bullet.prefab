@@ -79,8 +79,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   velocity: 45
-  timeToDestruct: 3
   backRayDistance: 0.5
+  lifeTime: 3
+  poolName: '"Assault Riffle" Bullets Pool'
 --- !u!1 &6510483267521384286
 GameObject:
   m_ObjectHideFlags: 0

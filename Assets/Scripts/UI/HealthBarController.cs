@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using TMPro;
 
 /// <summary>
@@ -37,7 +38,7 @@ public class HealthBarController : MonoBehaviour
     private void RedrawHealthInfo(float health)
     {
         healthBar.fillAmount = health / entity.MaxHealth;
-        healthCount.text = health.ToString() + " HP";
+        healthCount.text = Math.Ceiling(health).ToString() + " HP";
     }
 
     /// <summary>

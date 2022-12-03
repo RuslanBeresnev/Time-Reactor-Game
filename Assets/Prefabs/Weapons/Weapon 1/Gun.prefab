@@ -76,9 +76,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positionInPlayerHand: {fileID: 0}
   bulletPrefab: {fileID: 1072976598800286575, guid: 6bd8472b6e79b5449ab8a35729e7db41, type: 3}
-  ammoScreen: {fileID: 0}
-  weaponStart: {fileID: 0}
-  weaponEnd: {fileID: 0}
+  pool: {fileID: 0}
+  ammoScreen: {fileID: 329216095688658705}
+  weaponStart: {fileID: 4214498380827431789}
+  weaponEnd: {fileID: 2983743121053251494}
   name: Gun 1
   sprite: {fileID: 21300000, guid: 17a53949c69c2fa4296b47392313e0f1, type: 3}
   intervalBetweenShoots: 0.2
@@ -1239,3 +1240,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3614087166196229913, guid: 78b197d2c860c8c42b68fed6c172be73, type: 3}
   m_PrefabInstance: {fileID: 3942423641497558487}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &329216095688658705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3614087167603462854, guid: 78b197d2c860c8c42b68fed6c172be73, type: 3}
+  m_PrefabInstance: {fileID: 3942423641497558487}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

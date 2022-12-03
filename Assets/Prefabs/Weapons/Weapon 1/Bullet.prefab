@@ -64,6 +64,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   velocity: 15
+  backRayDistance: 0.5
+  lifeTime: 3
+  poolName: '"Gun 1" Bullets Pool'
 --- !u!1 &5304925321020707676
 GameObject:
   m_ObjectHideFlags: 0

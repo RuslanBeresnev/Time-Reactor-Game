@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Реализация полёта пули, урона от неё, взаимодействия с объектами и её уничтожения
@@ -6,17 +7,16 @@ using UnityEngine;
 public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
 {
     private Rigidbody rigidBody;
-    Vector3 previousPosition;
+    private Vector3 previousPosition;
+    private Pool pool;
 
     [SerializeField] private int damage = 1;
     [SerializeField] private int velocity = 15;
     // Дальность луча, исходящего в обратную сторону по траектории пули(для небольших скоростей лучше не ставить больше, чем 0.5f)
     [SerializeField] private float backRayDistance = 0.5f;
-
-    /// <summary>
-    /// Пул патронов, которому принадлежит данный патрон
-    /// </summary>
-    public PoolOfBullets Pool { get; set; }
+    [SerializeField] private float lifeTime = 3f;
+    // Название пула объектов, в котором хранятся экземпляры данного патрона
+    [SerializeField] private string poolName;
 
     /// <summary>
     /// Количество получаемого сущностью урона
@@ -44,6 +44,12 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
     {
         rigidBody = GetComponent<Rigidbody>();
         previousPosition = transform.position;
+        pool = GameProperties.GeneralPool[poolName];
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(DestroyBulletAfterLifeTime());
     }
 
     void FixedUpdate()
@@ -51,15 +57,21 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
         var hitInfo = CheckCollision();
         if (hitInfo != null)
         {
-            Pool.ReturnBullet(gameObject);
+            pool.ReturnObject(gameObject);
             PerformCollisionEffects(((RaycastHit)hitInfo).collider);
         }
         previousPosition = transform.position;
     }
 
+    private IEnumerator DestroyBulletAfterLifeTime()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        pool.ReturnObject(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        Pool.ReturnBullet(gameObject);
+        pool.ReturnObject(gameObject);
         PerformCollisionEffects(other);
     }
 

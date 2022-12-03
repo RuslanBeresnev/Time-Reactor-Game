@@ -4813,7 +4813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a007fd10026a65f4087c0f235435f8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 6
+  health: 50
   maxHealth: 50
   moveSpeed: 3.5
   rotationSpeed: -100
@@ -5073,7 +5073,7 @@ PrefabInstance:
       objectReference: {fileID: 4600865308886359694}
     - target: {fileID: 5582894711027957586, guid: 3e0b864f5c0388041b5ee5531e20e8fe, type: 3}
       propertyPath: m_text
-      value: 6 HP
+      value: '- HP'
       objectReference: {fileID: 0}
     - target: {fileID: 5582894711027957588, guid: 3e0b864f5c0388041b5ee5531e20e8fe, type: 3}
       propertyPath: m_Layer
