@@ -48235,6 +48235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5594463679516607541}
   - component: {fileID: -7992326001121698731}
+  - component: {fileID: 6894514747901324624}
   m_Layer: 0
   m_Name: Laser Tower
   m_TagString: Untagged
@@ -48282,6 +48283,22 @@ MonoBehaviour:
   reachRadius: 10
   hitsInterval: 0.05
   damagePerSecond: 30
+--- !u!114 &6894514747901324624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7503757161129239661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d0998666a368b64d8bf9f445b5020c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserSource: {fileID: 5723778178693862022}
+  laserSourceChargedState: {fileID: 2100000, guid: 2393814053ce3db47814cc74c1639d84, type: 2}
+  laserSourceDischargedState: {fileID: 2100000, guid: cf7a07ae6ae6c874c8daf3a0fc1a0565, type: 2}
+  chargingDuration: 2
 --- !u!1 &7724959967473301416
 GameObject:
   m_ObjectHideFlags: 0

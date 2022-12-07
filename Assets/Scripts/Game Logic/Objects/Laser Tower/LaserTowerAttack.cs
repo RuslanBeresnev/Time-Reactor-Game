@@ -2,17 +2,14 @@ using UnityEngine;
 using System.Collections;
 
 /// <summary>
-/// Описывает поведение лазерной башни
+/// Описывает поведение лазерной башни при атаке цели
 /// </summary>
-public class LaserTowerController : MonoBehaviour
+public class LaserTowerAttack : MonoBehaviour
 {
     [SerializeField] private Transform emitter;
     [SerializeField] private string targetName;
     // Название пула, где хранятся лазерные лучи
     [SerializeField] private string nameOfLaserPool;
-
-    [SerializeField] private Material laserSource;
-    [SerializeField] private Material fieryLaserSource;
 
     [SerializeField] private float reachRadius;
     // Интервал между двумя нанесениями урона цели
@@ -25,6 +22,28 @@ public class LaserTowerController : MonoBehaviour
     private GameObject laser;
     private bool onAttack = false;
 
+    /// <summary>
+    /// Досягаема ли цель для лазерной башни 
+    /// </summary>
+    public bool TargetInSight { get; set; }
+
+    /// <summary>
+    /// Готова ли к атаке башня в данный момент
+    /// </summary>
+    public bool TowerCharged { get; set; } = false;
+
+    private void Awake()
+    {
+        var chargingComponent = GetComponent<LaserTowerCharging>();
+
+        // Если на лазерной башне нет компонента LaserTowerCharging, то она всегда
+        // будет заряжана и начнёт атаку, как только цель попадёт в её поле зрения
+        if (chargingComponent == null || !chargingComponent.enabled)
+        {
+            TowerCharged = true;
+        }
+    }
+
     private void Start()
     {
         target = GameObject.Find(targetName).transform;
@@ -33,7 +52,19 @@ public class LaserTowerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        TryToAttackTarget();
+        if (IsTargetAvailableForAttack())
+        {
+            TargetInSight = true;
+        }
+        else
+        {
+            TargetInSight = false;
+        }
+
+        if (TowerCharged)
+        {
+            TryToAttackTarget();
+        }
     }
 
     /// <summary>
@@ -87,7 +118,7 @@ public class LaserTowerController : MonoBehaviour
     /// </summary>
     private void TryToAttackTarget()
     {
-        if (IsTargetAvailableForAttack())
+        if (TargetInSight)
         {
             if (!onAttack)
             {

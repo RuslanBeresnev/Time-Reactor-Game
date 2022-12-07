@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Laser Source Fiery
+  m_Name: Laser Source Discharged
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords:
   - _EMISSION
@@ -76,6 +76,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _EmissionColor: {r: 1.7411011, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.87076914, b: 0, a: 1}
+    - _EmissionColor: {r: 1.1486983, g: 1.0180621, b: 0, a: 1}
   m_BuildTextureStacks: []
