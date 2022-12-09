@@ -22,13 +22,15 @@ public class LaserTowerAttack : MonoBehaviour
     private GameObject laser;
     private bool onAttack = false;
 
+    private AudioSource laserAttackSound;
+
     /// <summary>
     /// ƒос€гаема ли цель дл€ лазерной башни 
     /// </summary>
     public bool TargetInSight { get; set; }
 
     /// <summary>
-    /// √отова ли к атаке башн€ в данный момент
+    /// √отова ли к атаке башн€ в данный момент (полностью ли она зар€жена)
     /// </summary>
     public bool TowerCharged { get; set; } = false;
 
@@ -41,6 +43,15 @@ public class LaserTowerAttack : MonoBehaviour
         if (chargingComponent == null || !chargingComponent.enabled)
         {
             TowerCharged = true;
+        }
+
+        foreach (var audioSource in GetComponents<AudioSource>())
+        {
+            var clipName = audioSource.clip.name;
+            if (clipName == "Laser Tower Attack")
+            {
+                laserAttackSound = audioSource;
+            }
         }
     }
 
@@ -64,6 +75,15 @@ public class LaserTowerAttack : MonoBehaviour
         if (TowerCharged)
         {
             TryToAttackTarget();
+
+            if (TargetInSight)
+            {
+                PlayAttackSound();
+            }
+        }
+        else
+        {
+            laserAttackSound.Stop();
         }
     }
 
@@ -139,6 +159,17 @@ public class LaserTowerAttack : MonoBehaviour
             laserPool.ReturnObject(laser);
             onAttack = false;
             StopCoroutine("DealDamageToTarget");
+        }
+    }
+
+    /// <summary>
+    /// ѕроиграть звук лазерной атаки
+    /// </summary>
+    private void PlayAttackSound()
+    {
+        if (!laserAttackSound.isPlaying)
+        {
+            laserAttackSound.Play();
         }
     }
 }

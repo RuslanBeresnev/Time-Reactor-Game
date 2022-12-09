@@ -18,11 +18,22 @@ public class LaserTowerCharging : MonoBehaviour
     private Renderer render;
     private LaserTowerAttack behaviourOnAttack;
 
+    private AudioSource chargingSound;
+
     private void Awake()
     {
         render = laserSource.GetComponent<Renderer>();
         render.material = laserSourceDischargedState;
         behaviourOnAttack = GetComponent<LaserTowerAttack>();
+
+        foreach (var audioSource in GetComponents<AudioSource>())
+        {
+            var clipName = audioSource.clip.name;
+            if (clipName == "Laser Tower Charging")
+            {
+                chargingSound = audioSource;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -30,19 +41,27 @@ public class LaserTowerCharging : MonoBehaviour
         if (behaviourOnAttack.TargetInSight)
         {
             LaserSourceCharging();
+            PlayCharhingSound();
         }
         else
         {
             LaserSourceDischarging();
+            PlayCharhingSound();
         }
 
         if (IsTowerCharged())
         {
             behaviourOnAttack.TowerCharged = true;
+            chargingSound.Stop();
         }
         else
         {
             behaviourOnAttack.TowerCharged = false;
+        }
+
+        if (IsTowerDischarged())
+        {
+            chargingSound.Stop();
         }
     }
 
@@ -69,10 +88,29 @@ public class LaserTowerCharging : MonoBehaviour
     }
 
     /// <summary>
-    /// Проверить, заряжена ли лазерная башня в данный момент
+    /// Проверить, полностью ли заряжена лазерная башня в данный момент
     /// </summary>
     private bool IsTowerCharged()
     {
         return Mathf.Abs(chargeDegree - 1) < 0.0001f;
+    }
+
+    /// <summary>
+    /// Проверить, полностью ли разряжена лазерная башня в данный момент
+    /// </summary>
+    private bool IsTowerDischarged()
+    {
+        return chargeDegree < 0.0001f;
+    }
+
+    /// <summary>
+    /// Проиграть звук зарядки/разрядки лазерной башни
+    /// </summary>
+    private void PlayCharhingSound()
+    {
+        if (!chargingSound.isPlaying)
+        {
+            chargingSound.Play();
+        }
     }
 }
