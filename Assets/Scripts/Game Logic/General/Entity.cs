@@ -79,5 +79,6 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
     public virtual void OnDeath()
     {
         Destroy(gameObject);
+        Destroy(createdPanel);
     }
 }

@@ -34,18 +34,14 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
 
     public override void OnBeforeSerialize()
     {
-        health = Health;
-        maxHealth = MaxHealth;
-
+        base.OnBeforeSerialize();
         targetName = TargetName;
         followsTheTarget = FollowsTheTarget;
     }
 
     public override void OnAfterDeserialize()
     {
-        Health = health;
-        MaxHealth = maxHealth;
-
+        base.OnAfterDeserialize();
         TargetName = targetName;
         FollowsTheTarget = followsTheTarget;
     }
@@ -124,8 +120,7 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
     /// </summary>
     public override void OnDeath()
     {
-        Destroy(createdPanel);
-        Destroy(gameObject);
+        base.OnDeath();
         backgroundMusic.Play();
     }
 }

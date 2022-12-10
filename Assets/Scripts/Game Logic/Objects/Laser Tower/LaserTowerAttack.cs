@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// Описывает поведение лазерной башни при атаке цели
 /// </summary>
-public class LaserTowerAttack : MonoBehaviour
+public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
 {
     [SerializeField] private Transform emitter;
     [SerializeField] private string targetName;
@@ -33,6 +33,28 @@ public class LaserTowerAttack : MonoBehaviour
     /// Готова ли к атаке башня в данный момент (полностью ли она заряжена)
     /// </summary>
     public bool TowerCharged { get; set; } = false;
+
+    /// <summary>
+    /// Радиус досягаемости цели
+    /// </summary>
+    public float ReachRadius { get; private set; }
+
+    /// <summary>
+    /// Количество урона в секунду
+    /// </summary>
+    public float DamagePerSecond { get; set; }
+
+    public void OnBeforeSerialize()
+    {
+        reachRadius = ReachRadius;
+        damagePerSecond = DamagePerSecond;
+    }
+
+    public void OnAfterDeserialize()
+    {
+        ReachRadius = reachRadius;
+        DamagePerSecond = damagePerSecond;
+    }
 
     private void Awake()
     {
@@ -95,7 +117,7 @@ public class LaserTowerAttack : MonoBehaviour
         var layerMask = LayerMask.GetMask("Default", "Player");
         var laserDirection = (target.position - emitter.position).normalized;
 
-        if (Physics.Raycast(emitter.position, laserDirection, out RaycastHit hit, reachRadius, layerMask, QueryTriggerInteraction.Ignore)
+        if (Physics.Raycast(emitter.position, laserDirection, out RaycastHit hit, ReachRadius, layerMask, QueryTriggerInteraction.Ignore)
             && hit.transform.name == targetName)
         {
             return true;
@@ -113,7 +135,7 @@ public class LaserTowerAttack : MonoBehaviour
             var entityComponent = target.GetComponent<Entity>();
             if (entityComponent != null)
             {
-                entityComponent.TakeDamage(damagePerSecond * hitsInterval);
+                entityComponent.TakeDamage(DamagePerSecond * hitsInterval);
                 yield return new WaitForSeconds(hitsInterval);
             }
         }
@@ -156,7 +178,7 @@ public class LaserTowerAttack : MonoBehaviour
                 return;
             }
 
-            laserPool.ReturnObject(laser);
+            ReturnLaserToPool();
             onAttack = false;
             StopCoroutine("DealDamageToTarget");
         }
@@ -171,5 +193,13 @@ public class LaserTowerAttack : MonoBehaviour
         {
             laserAttackSound.Play();
         }
+    }
+
+    /// <summary>
+    /// Вернуть лазерный луч в пул лучей
+    /// </summary>
+    public void ReturnLaserToPool()
+    {
+        laserPool.ReturnObject(laser);
     }
 }

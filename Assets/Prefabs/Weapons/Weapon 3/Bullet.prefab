@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   velocity: 45
-  backRayDistance: 0.5
+  backRayDistance: 1
   lifeTime: 3
   poolName: '"Assault Riffle" Bullets Pool'
 --- !u!1 &6510483267521384286
