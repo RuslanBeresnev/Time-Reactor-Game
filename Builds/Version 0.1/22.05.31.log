@@ -1,0 +1,4 @@
+31.05.2022 23:41:18:436 - PipeClient.cpp (205): Start pipe thread
+31.05.2022 23:41:18:446 - dllmain.cpp (283): Main pipe successfully opened
+31.05.2022 23:46:50:395 - PipeClient.cpp (205): Start pipe thread
+31.05.2022 23:46:50:415 - dllmain.cpp (283): Main pipe successfully opened
