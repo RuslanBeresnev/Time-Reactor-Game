@@ -31,6 +31,7 @@ public class PauseMenuController : MonoBehaviour
     public void Pause()
     {
         elements.SetActive(true);
+        // Изменяется стандартный Time.timeScale, так как игрок тоже должен замирать
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
         AudioListener.pause = true;

@@ -65,7 +65,7 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
 
     private IEnumerator DestroyBulletAfterLifeTime()
     {
-        yield return new WaitForSeconds(lifeTime);
+        yield return StartCoroutine(TimeScale.WaitForSeconds(lifeTime));
         pool.ReturnObject(gameObject);
     }
 
@@ -80,7 +80,7 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     public void GiveBulletKineticEnergy(Vector3 bulletDirection)
     {
-        rigidBody.velocity = bulletDirection * velocity;
+        rigidBody.velocity = bulletDirection * velocity * TimeScale.Scale;
     }
 
     /// <summary>

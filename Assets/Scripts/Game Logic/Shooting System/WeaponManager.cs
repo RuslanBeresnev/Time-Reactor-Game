@@ -110,6 +110,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private IEnumerator AllowShootAfterIntervalPassing()
     {
+        // Задержка в реальных секундах
         yield return new WaitForSeconds(WeaponsArsenal[ActiveSlotNumber].IntervalBetweenShoots);
         canShoot = true;
     }
@@ -141,6 +142,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private IEnumerator AllowReloadingAfterIntervalPassing()
     {
+        // Задержка в реальных секундах
         yield return new WaitForSeconds(WeaponsArsenal[ActiveSlotNumber].ReloadingDuration);
         WeaponsArsenal[activeSlotNumber].ReloadWeapon();
         inProcessOfReloading = false;
