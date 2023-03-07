@@ -24,10 +24,11 @@ public class GravitationController : MonoBehaviour
         set { gravityScale = value; }
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.useGravity = false;
+        GravityScale = TimeScale.Scale * TimeScale.Scale;
     }
 
     private void FixedUpdate()

@@ -47,6 +47,7 @@ public static class GameProperties
     public static void ResetStatistics()
     {
         TimeScale.SetTimeScale(1f);
+        Time.timeScale = 1f;
         AudioListener.pause = false;
 
         FloorNumber = 0;

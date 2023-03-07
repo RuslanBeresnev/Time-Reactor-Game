@@ -8,18 +8,43 @@ public class TimeScale : MonoBehaviour
 {
     /// <summary>
     /// Скорость течения времени. Все величины, которые меняются в течение некоторого времени
-    /// (например, движение объекта), должны домножаться на TimeScale.Scale, чтобы иметь зависимость
-    /// от течения времени
+    /// (например, скорость при кинематическом движении объекта), а также приложенные силы
+    /// (например, толчок при выбрасывании предмета) должны домножаться на TimeScale.Scale,
+    /// чтобы иметь зависимость от течения времени
     /// </summary>
     public static float Scale { get; private set; } = 1f;
 
     /// <summary>
     /// Изменить течение времени и замедлить/ускорить физику объектов
     /// </summary>
-    public static void SetTimeScale(float scale)
+    public static void SetTimeScale(float newScale)
     {
-        Scale = scale;
-        // pass
+        if (newScale <= 0)
+        {
+            return;
+        }
+
+        // Замедление/ускорение действия физики на объекты
+        foreach (var rigidBody in GameObject.FindObjectsOfType<Rigidbody>())
+        {
+            if (rigidBody.gameObject.name == "Player")
+            {
+                continue;
+            }
+            rigidBody.velocity *= newScale / Scale;
+            rigidBody.angularVelocity *= newScale / Scale;
+        }
+        foreach (var gravitationComponent in GameObject.FindObjectsOfType<GravitationController>())
+        {
+            if (gravitationComponent.gameObject.name == "Player")
+            {
+                continue;
+            }
+            // Так как изменение скорости падения квадратично зависит от изменения ускорения свободного падения
+            gravitationComponent.GravityScale = newScale * newScale;
+        }
+
+        Scale = newScale;
     }
 
     /// <summary>

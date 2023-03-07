@@ -299,7 +299,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         ejectedWeapon.GetComponent<Weapon>().PushOutWeaponFromWall(0f);
 
         ejectedWeapon.GetComponent<Rigidbody>().isKinematic = false;
-        ejectedWeapon.GetComponent<Rigidbody>().AddForce(ejectedWeapon.transform.forward * ejectionForce);
+        ejectedWeapon.GetComponent<Rigidbody>().AddForce(ejectedWeapon.transform.forward * ejectionForce * TimeScale.Scale);
         ejectedWeapon.GetComponent<Weapon>().SetUpWeaponPartsLayersAndColliders("Default", true);
 
         // Здесь присваиваивается скорость, близкая к нулю, для того, чтобы условие в корутине не сработало раньше времени

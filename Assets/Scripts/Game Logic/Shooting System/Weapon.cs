@@ -286,7 +286,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     public IEnumerator PerformActionsAfterFallOfEjectedWeapon()
     {
-        yield return new WaitUntil(() => GetComponent<Rigidbody>().velocity == Vector3.zero);
+        yield return new WaitUntil(() => GetComponent<Rigidbody>().velocity.magnitude <= 0.001f);
         GetComponent<Rigidbody>().isKinematic = true;
     }
 
