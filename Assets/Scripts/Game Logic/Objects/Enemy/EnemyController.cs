@@ -76,7 +76,7 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
             FollowTheTarget();
         }
 
-        transform.Rotate(new Vector3(0f, rotationSpeed * Time.fixedDeltaTime * TimeScale.Scale, 0f));
+        transform.Rotate(new Vector3(0f, rotationSpeed * Time.fixedDeltaTime * TimeScale.SharedInstance.Scale, 0f));
     }
 
     /// <summary>
@@ -110,7 +110,7 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
             }
             if (targetTrajectory.Count > 0)
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetTrajectory.Peek(), moveSpeed * Time.fixedDeltaTime * TimeScale.Scale);
+                transform.position = Vector3.MoveTowards(transform.position, targetTrajectory.Peek(), moveSpeed * Time.fixedDeltaTime * TimeScale.SharedInstance.Scale);
             }
         }
     }

@@ -42,7 +42,7 @@ public class TimeManagerController : MonoBehaviour
     /// </summary>
     private void SlowdownTime()
     {
-        TimeScale.SetTimeScale(1 / timeSlowdownFactor);
+        TimeScale.SharedInstance.SetTimeScale(1 / timeSlowdownFactor);
         abilityCanBeUsed = false;
         StartCoroutine(RevertToStandardTimescaleAfterAbilityPassing());
     }
@@ -53,7 +53,7 @@ public class TimeManagerController : MonoBehaviour
     private IEnumerator RevertToStandardTimescaleAfterAbilityPassing()
     {
         yield return new WaitForSeconds(slowdownDuration);
-        TimeScale.SetTimeScale(1f);
+        TimeScale.SharedInstance.SetTimeScale(1f);
         StartCoroutine(ImplementCooldownMechanic());
     }
 

@@ -28,7 +28,6 @@ public class GravitationController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.useGravity = false;
-        GravityScale = TimeScale.Scale * TimeScale.Scale;
     }
 
     private void FixedUpdate()

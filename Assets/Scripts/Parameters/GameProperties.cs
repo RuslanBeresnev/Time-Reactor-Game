@@ -46,7 +46,7 @@ public static class GameProperties
     /// </summary>
     public static void ResetStatistics()
     {
-        TimeScale.SetTimeScale(1f);
+        TimeScale.SharedInstance.SetTimeScale(1f);
         Time.timeScale = 1f;
         AudioListener.pause = false;
 

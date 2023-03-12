@@ -1,31 +1,60 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Реализация механики течения времени (замена для Time.timeScale)
 /// </summary>
 public class TimeScale : MonoBehaviour
 {
+    private AudioSource timeSlowdownSound;
+    private AudioSource timeAccelerationSound;
+
+    // Имена источников звука, на которые не действует эффект замедления/ускорения времени
+    private List<string> sourcesWithoutPitchChange = new()
+    {
+        "Player Steps Sound", "Gun Shot", "Gun Reloading", "Weapon Picking Up",
+        "Assault Riffle Shot", "Assault Riffle Reloading", "Activation", "Deactivation",
+        "Time Slowdown", "Time Acceleration"
+    };
+
     /// <summary>
     /// Скорость течения времени. Все величины, которые меняются в течение некоторого времени
     /// (например, скорость при кинематическом движении объекта), а также приложенные силы
     /// (например, толчок при выбрасывании предмета) должны домножаться на TimeScale.Scale,
     /// чтобы иметь зависимость от течения времени
     /// </summary>
-    public static float Scale { get; private set; } = 1f;
+    public float Scale { get; private set; } = 1f;
 
     /// <summary>
-    /// Изменить течение времени и замедлить/ускорить физику объектов
+    /// Общий экземпляр класса для других классов
     /// </summary>
-    public static void SetTimeScale(float newScale)
-    {
-        if (newScale <= 0)
-        {
-            return;
-        }
+    public static TimeScale SharedInstance { get; private set; }
 
-        // Замедление/ускорение действия физики на объекты
-        foreach (var rigidBody in GameObject.FindObjectsOfType<Rigidbody>())
+    private void Awake()
+    {
+        SharedInstance = this;
+
+        foreach (var audioSource in GetComponents<AudioSource>())
+        {
+            var clipName = audioSource.clip.name;
+            if (clipName == "Time Slowdown")
+            {
+                timeSlowdownSound = audioSource;
+            }
+            else if (clipName == "Time Acceleration")
+            {
+                timeAccelerationSound = audioSource;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Применить эффекты замедления/ускорения к физике объектов
+    /// </summary>
+    private void ApplyTimeEffectsToObjectPhysics(float newScale)
+    {
+        foreach (var rigidBody in GameObject.FindObjectsOfType<Rigidbody>(true))
         {
             if (rigidBody.gameObject.name == "Player")
             {
@@ -34,7 +63,7 @@ public class TimeScale : MonoBehaviour
             rigidBody.velocity *= newScale / Scale;
             rigidBody.angularVelocity *= newScale / Scale;
         }
-        foreach (var gravitationComponent in GameObject.FindObjectsOfType<GravitationController>())
+        foreach (var gravitationComponent in GameObject.FindObjectsOfType<GravitationController>(true))
         {
             if (gravitationComponent.gameObject.name == "Player")
             {
@@ -42,6 +71,43 @@ public class TimeScale : MonoBehaviour
             }
             // Так как изменение скорости падения квадратично зависит от изменения ускорения свободного падения
             gravitationComponent.GravityScale = newScale * newScale;
+        }
+    }
+
+    /// <summary>
+    /// Понизить/повысить высоту звука и музыки
+    /// </summary>
+    private void ApplyTimeEffectsToAudioSources(float newScale)
+    {
+        foreach (var audioSource in GameObject.FindObjectsOfType<AudioSource>(true))
+        {
+            if (!sourcesWithoutPitchChange.Contains(audioSource.clip.name))
+            {
+                audioSource.pitch *= newScale / Scale;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Изменить течение времени и применить эффекты на игровые объекты и звуки
+    /// </summary>
+    public void SetTimeScale(float newScale)
+    {
+        if (newScale <= 0)
+        {
+            return;
+        }
+
+        ApplyTimeEffectsToObjectPhysics(newScale);
+        ApplyTimeEffectsToAudioSources(newScale);
+
+        if (newScale <= Scale)
+        {
+            timeSlowdownSound.Play();
+        }
+        else
+        {
+            timeAccelerationSound.Play();
         }
 
         Scale = newScale;
@@ -52,7 +118,7 @@ public class TimeScale : MonoBehaviour
     /// с помощью данного класса (Так как Time.timeScale не изменятеся, стандартный WaitForSeconds()
     /// всегда будет отсчитывать некоторое количество секунд РЕАЛЬНОГО времени, что не подходит для корректной работы)
     /// </summary>
-    public static IEnumerator WaitForSeconds(float seconds)
+    public IEnumerator WaitForSeconds(float seconds)
     {
         float numberOfSecondsElapsed = 0f;
 

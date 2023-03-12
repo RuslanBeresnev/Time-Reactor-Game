@@ -70,7 +70,7 @@ public class LaserTowerCharging : MonoBehaviour
     /// </summary>
     private void LaserSourceCharging()
     {
-        chargeDegree += (1f / chargingDuration) * Time.fixedDeltaTime * TimeScale.Scale;
+        chargeDegree += (1f / chargingDuration) * Time.fixedDeltaTime * TimeScale.SharedInstance.Scale;
         chargeDegree = Mathf.Clamp(chargeDegree, 0, 1);
 
         render.material.Lerp(laserSourceDischargedState, laserSourceChargedState, chargeDegree);
@@ -81,7 +81,7 @@ public class LaserTowerCharging : MonoBehaviour
     /// </summary>
     private void LaserSourceDischarging()
     {
-        chargeDegree -= (1f / chargingDuration) * Time.fixedDeltaTime * TimeScale.Scale;
+        chargeDegree -= (1f / chargingDuration) * Time.fixedDeltaTime * TimeScale.SharedInstance.Scale;
         chargeDegree = Mathf.Clamp(chargeDegree, 0, 1);
 
         render.material.Lerp(laserSourceChargedState, laserSourceDischargedState, 1f - chargeDegree);

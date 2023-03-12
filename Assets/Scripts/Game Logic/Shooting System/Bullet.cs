@@ -57,22 +57,29 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
         var hitInfo = CheckCollision();
         if (hitInfo != null)
         {
-            pool.ReturnObject(gameObject);
-            PerformCollisionEffects(((RaycastHit)hitInfo).collider);
+            // Пуля не уничтожается при столкновении с пулей
+            if (hitInfo.Value.collider.gameObject.GetComponent<Bullet>() == null)
+            {
+                pool.ReturnObject(gameObject);
+                PerformCollisionEffects(((RaycastHit)hitInfo).collider);
+            }
         }
         previousPosition = transform.position;
     }
 
     private IEnumerator DestroyBulletAfterLifeTime()
     {
-        yield return StartCoroutine(TimeScale.WaitForSeconds(lifeTime));
+        yield return StartCoroutine(TimeScale.SharedInstance.WaitForSeconds(lifeTime));
         pool.ReturnObject(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        pool.ReturnObject(gameObject);
-        PerformCollisionEffects(other);
+        if (other.gameObject.GetComponent<Bullet>() == null)
+        {
+            pool.ReturnObject(gameObject);
+            PerformCollisionEffects(other);
+        }
     }
 
     /// <summary>
@@ -80,7 +87,7 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     public void GiveBulletKineticEnergy(Vector3 bulletDirection)
     {
-        rigidBody.velocity = bulletDirection * velocity * TimeScale.Scale;
+        rigidBody.velocity = bulletDirection * velocity * TimeScale.SharedInstance.Scale;
     }
 
     /// <summary>

@@ -136,7 +136,7 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
             if (entityComponent != null)
             {
                 entityComponent.TakeDamage(DamagePerSecond * hitsInterval);
-                yield return StartCoroutine(TimeScale.WaitForSeconds(hitsInterval));
+                yield return StartCoroutine(TimeScale.SharedInstance.WaitForSeconds(hitsInterval));
             }
         }
     }
