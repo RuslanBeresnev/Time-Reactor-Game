@@ -4815,6 +4815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   maxHealth: 50
+  entityHardcoreCoefficient: 3
   moveSpeed: 3.5
   rotationSpeed: -100
   targetName: Player

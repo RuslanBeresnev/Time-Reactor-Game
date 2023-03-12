@@ -8,6 +8,8 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
 {
     [SerializeField] protected float health = 100f;
     [SerializeField] protected float maxHealth = 100f;
+    // Коэффициент сложности в сражении с сущностью
+    [SerializeField] protected float entityHardcoreCoefficient = 1f;
 
     private void Start()
     {
@@ -78,6 +80,10 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
     /// </summary>
     public virtual void OnDeath()
     {
+        // Core-механика: при победе над сущностями игрок увеличивает максимальный коэффициент способности
+        // замедлять время по формуле, зависящей от количества здоровья сущности и её хардкорности
+        TimeManagerController.SharedInstance.TimeSlowdownFactor += MaxHealth * entityHardcoreCoefficient * 0.01f;
+
         Destroy(gameObject);
         Destroy(createdPanel);
     }

@@ -73,6 +73,7 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
             if (clipName == "Laser Tower Attack")
             {
                 laserAttackSound = audioSource;
+                laserAttackSound.pitch = TimeScale.SharedInstance.Scale;
             }
         }
     }

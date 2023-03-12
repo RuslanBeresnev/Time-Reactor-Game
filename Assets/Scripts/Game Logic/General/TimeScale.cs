@@ -93,7 +93,7 @@ public class TimeScale : MonoBehaviour
     /// </summary>
     public void SetTimeScale(float newScale)
     {
-        if (newScale <= 0)
+        if (newScale <= 0 || newScale == Scale)
         {
             return;
         }
@@ -101,11 +101,11 @@ public class TimeScale : MonoBehaviour
         ApplyTimeEffectsToObjectPhysics(newScale);
         ApplyTimeEffectsToAudioSources(newScale);
 
-        if (newScale <= Scale)
+        if (newScale < Scale)
         {
             timeSlowdownSound.Play();
         }
-        else
+        else if (newScale > Scale)
         {
             timeAccelerationSound.Play();
         }

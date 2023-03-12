@@ -40314,6 +40314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
+  entityHardcoreCoefficient: 5
 --- !u!65 &1846836937690316991
 BoxCollider:
   m_ObjectHideFlags: 0

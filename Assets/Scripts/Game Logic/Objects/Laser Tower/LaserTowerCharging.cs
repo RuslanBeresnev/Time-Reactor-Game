@@ -32,6 +32,7 @@ public class LaserTowerCharging : MonoBehaviour
             if (clipName == "Laser Tower Charging")
             {
                 chargingSound = audioSource;
+                chargingSound.pitch = TimeScale.SharedInstance.Scale;
             }
         }
     }

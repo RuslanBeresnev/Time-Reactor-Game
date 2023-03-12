@@ -57,6 +57,11 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
         backgroundMusic = backgroundMusicObject.GetComponent<AudioSource>();
         backgroundMusic.Stop();
 
+        foreach (var audioSource in GetComponents<AudioSource>())
+        {
+            audioSource.pitch = TimeScale.SharedInstance.Scale;
+        }
+
         target = GameObject.Find(TargetName);
         StartCoroutine(TrackPlayerTrajectory());
     }
