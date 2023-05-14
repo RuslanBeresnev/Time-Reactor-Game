@@ -9,6 +9,14 @@
 /[Mm]emoryCaptures/
 /[Uu]ser[Ss]ettings/
 
+/[Aa]ssets/CGY_ATM/
+/[Aa]ssets/LowpolySciFiWeaponPack/
+/[Aa]ssets/Other Assets/
+/[Aa]ssets/Rooms/
+/[Aa]ssets/SciFi Warehouse Kit/
+/[Aa]ssets/ScifiOfficeLite/
+/[Aa]ssets/SFLCK_2/
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
