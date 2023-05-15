@@ -46,10 +46,18 @@ public class DoorSpawn : MonoBehaviour
     /// </summary>
     private void DetermineIfDoorWillOnFloor()
     {
-        // Если игрок впервые проходит триггер на текущем этаже, то для данного этажа
-        // с некоторым шансом определяется наличие двери (иначе обычная стена)
+        // Если игрок впервые проходит триггер на данном этаже
         if (GameProperties.DoorOnFloor.Count == -GameProperties.FloorNumber)
         {
+            // Если на предыдущем этаже нет двери с комнатой, то для данного этажа с некоторым шансом
+            // определяется наличие двери (иначе обычная стена). То есть комнаты генерируются минимум
+            // каждый второй этаж, чтобы не было пересечения высоких комнат.
+            if (GameProperties.FloorNumber != 0 && GameProperties.DoorOnFloor[-GameProperties.FloorNumber - 1])
+            {
+                GameProperties.DoorOnFloor.Add(false);
+                return;
+            }
+
             float generatedFloat = (float)random.NextDouble();
             if (generatedFloat < doorSpawnChance)
             {
