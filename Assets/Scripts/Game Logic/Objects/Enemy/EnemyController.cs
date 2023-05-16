@@ -66,10 +66,6 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
                                                   { "Movement speed:", moveSpeed.ToString() + " m/s" } };
         InitializeInfoPanelPrefab();
 
-        var backgroundMusicObject = GameObject.Find("Background Music");
-        backgroundMusic = backgroundMusicObject.GetComponent<AudioSource>();
-        backgroundMusic.Stop();
-
         foreach (var audioSource in GetComponents<AudioSource>())
         {
             audioSource.pitch = TimeScale.SharedInstance.Scale;
@@ -141,14 +137,5 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
                 transform.position = Vector3.MoveTowards(transform.position, targetTrajectory.Peek(), moveSpeed * Time.fixedDeltaTime * TimeScale.SharedInstance.Scale);
             }
         }
-    }
-
-    /// <summary>
-    /// Действия при смерти врага
-    /// </summary>
-    public override void OnDeath()
-    {
-        base.OnDeath();
-        backgroundMusic.Play();
     }
 }
