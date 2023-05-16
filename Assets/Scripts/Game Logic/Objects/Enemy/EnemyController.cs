@@ -7,10 +7,13 @@ using System.Collections.Generic;
 /// </summary>
 public class EnemyController : Entity, ISerializationCallbackReceiver
 {
+    [SerializeField] private string enemyType;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private string targetName;
+    [SerializeField] private float damagePerSecond;
     [SerializeField] private bool followsTheTarget;
+    [SerializeField] private bool killTargetOnTouch;
 
     private AudioSource backgroundMusic;
     private GameObject target;
@@ -28,7 +31,7 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
 
     public override string[,] ObjectInfoParameters { get; set; } = null;
 
-    public override string ObjectInfoHeader { get; set; } = "Enemy";
+    public override string ObjectInfoHeader { get; set; } = null;
 
     public override Color ObjectInfoHeaderColor { get; set; } = Color.red;
 
@@ -48,8 +51,18 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
 
     private void Awake()
     {
+        ObjectInfoHeader = enemyType;
+        string infoAboutDamage;
+        if (killTargetOnTouch)
+        {
+            infoAboutDamage = "One punch to death";
+        }
+        else
+        {
+            infoAboutDamage = damagePerSecond.ToString() + " HP/s";
+        }
         ObjectInfoParameters = new string[3, 2] { { "Max health:", MaxHealth.ToString() + " HP" },
-                                                  { "Damage:", "One punch to death" },
+                                                  { "Damage:", infoAboutDamage },
                                                   { "Movement speed:", moveSpeed.ToString() + " m/s" } };
         InitializeInfoPanelPrefab();
 
@@ -66,11 +79,19 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
         StartCoroutine(TrackPlayerTrajectory());
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.name == TargetName)
         {
-            collision.gameObject.GetComponent<Entity>().OnDeath();
+            if (killTargetOnTouch)
+            {
+                collision.gameObject.GetComponent<Entity>().OnDeath();
+            }
+            else
+            {
+                var damagePerTouch = damagePerSecond * Time.fixedDeltaTime * TimeScale.SharedInstance.Scale;
+                collision.gameObject.GetComponent<Entity>().TakeDamage(damagePerTouch);
+            }
         }
     }
 
@@ -94,7 +115,9 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
         {
             if (targetTrajectory.Count == 0 || targetTrajectory.Count > 0 && Vector3.Distance(target.transform.position, lastAddedPoint) >= 0.25f)
             {
-                targetTrajectory.Enqueue(target.transform.position);
+                // + new Vector3(...) - костыль, так как центр врага находится под ним, поэтому враг должен
+                // стремиться к точке, которая ниже центра игрока
+                targetTrajectory.Enqueue(target.transform.position + new Vector3(0, -1.5f, 0));
                 lastAddedPoint = target.transform.position;
             }
             yield return new WaitForSeconds(0.5f);
@@ -109,7 +132,7 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
         if (targetTrajectory.Count > 0)
         {
             // Расстояние для достижения каждой точки траектории игрока не нулевое, так как иначе враг упирается в стену и не может достать до точки
-            if (Vector3.Distance(transform.position, targetTrajectory.Peek()) <= 0.25f)
+            if (Vector3.Distance(transform.position, targetTrajectory.Peek()) <= 1f)
             {
                 targetTrajectory.Dequeue();
             }

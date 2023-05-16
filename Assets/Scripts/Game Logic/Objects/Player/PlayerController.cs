@@ -69,7 +69,7 @@ public class PlayerController : Entity
             movementDirection += -transform.right;
         }
 
-        transform.Translate(movementDirection * movementSpeed * Time.fixedDeltaTime, Space.World);
+        transform.Translate(movementDirection.normalized * movementSpeed * Time.fixedDeltaTime, Space.World);
     }
 
     /// <summary>

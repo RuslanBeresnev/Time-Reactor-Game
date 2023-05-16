@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 using TMPro;
 
@@ -28,7 +29,7 @@ public class TimeManagerController : MonoBehaviour
         get { return timeSlowdownFactor; }
         set
         {
-            timeSlowdownFactor = value;
+            timeSlowdownFactor = (float)Math.Round(value, 2);
             TSFCounter.text = value.ToString();
         }
     }

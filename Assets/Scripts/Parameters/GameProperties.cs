@@ -27,11 +27,6 @@ public static class GameProperties
     public static Dictionary<int, GameObject> GeneratedRooms { get; } = new();
 
     /// <summary>
-    /// Вероятность появления врага
-    /// </summary>
-    public static float EnemyAppearanceChance { get; set; } = 0.5f;
-
-    /// <summary>
     /// Размер оружейного арсенала игрока
     /// </summary>
     public static int PlayerWeaponsArsenalSize { get; } = 3;

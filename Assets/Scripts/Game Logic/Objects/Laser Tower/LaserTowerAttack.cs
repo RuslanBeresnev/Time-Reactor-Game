@@ -201,6 +201,9 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     public void ReturnLaserToPool()
     {
-        laserPool.ReturnObject(laser);
+        if (laser != null)
+        {
+            laserPool.ReturnObject(laser);
+        }
     }
 }
