@@ -31,10 +31,10 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// <summary>
     /// Индекс слота с активным оружием
     /// </summary>
-    private int ActiveSlotNumber
+    public int ActiveSlotNumber
     {
         get { return activeSlotNumber; }
-        set
+        private set
         {
             if (ActiveSlotChanged != null)
             {

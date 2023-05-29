@@ -12,9 +12,12 @@ public class Pool : MonoBehaviour
 
     private void Awake()
     {
-        GameProperties.GeneralPool.Add(gameObject.name, this);
         objects = new List<GameObject>();
+        GameProperties.GeneralPool.Add(gameObject.name, this);
+    }
 
+    private void Start()
+    {
         for (int i = 0; i < amount; i++)
         {
             var poolObject = Instantiate(prefab);
