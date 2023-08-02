@@ -126,7 +126,6 @@ public class GraphicAnalyzerController : MonoBehaviour
     public (GameObject, Vector3) GetObjectPlayerIsLookingAt()
     {
         Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        Debug.Log(rayToScreenCenter);
         RaycastHit hit;
         int defaultLayerMask = 1;
 

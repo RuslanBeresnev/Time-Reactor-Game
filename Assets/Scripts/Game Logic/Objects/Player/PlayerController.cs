@@ -15,6 +15,7 @@ public class PlayerController : Entity
     [SerializeField] private float movementSpeed;
     [SerializeField] private float distanceFromWhichToPushPlayer; // 40% от радиуса игрока
     [SerializeField] private float minimumVelocityForMovingSound;
+    [SerializeField] private GroundCheckerController groundChecker;
 
     /// <summary>
     /// Получить вектор скорости игрока (физическая скорость + скорость кинематического перемещения)
@@ -99,6 +100,12 @@ public class PlayerController : Entity
     /// </summary>
     private void PlayerMovingSourcePlay()
     {
+        if (!groundChecker.IsGrounded)
+        {
+            playerMovingSource.Stop();
+            return;
+        }
+
         if (IsPlayerVelocityHigher(minimumVelocityForMovingSound) && !playerMovingSource.isPlaying)
         {
             playerMovingSource.Play();
