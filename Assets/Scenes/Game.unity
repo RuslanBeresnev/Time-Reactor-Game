@@ -10916,6 +10916,38 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 2952089787211472427, guid: 7cac519ecd621524685483dc25f9cee3, type: 3}
+      propertyPath: m_text
+      value: '- WASD : Walking
+
+        - Space : Jump
+
+        - Shift : Running
+
+        -
+        Left mouse button : Shooting
+
+        - R : Weapon reloading
+
+        - Q
+        : Drop weapon
+
+        - E : Pick up weapon
+
+        - G : Activate/Deactivate
+        graphic analyzer
+
+        - Right Mouse Button : Use time ability (When TSF
+        > 1)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952089787211472427, guid: 7cac519ecd621524685483dc25f9cee3, type: 3}
+      propertyPath: m_fontSize
+      value: 61
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952089787211472427, guid: 7cac519ecd621524685483dc25f9cee3, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 61
+      objectReference: {fileID: 0}
     - target: {fileID: 3069446378710651887, guid: 7cac519ecd621524685483dc25f9cee3, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -11071,6 +11103,10 @@ PrefabInstance:
     - target: {fileID: 5820354050403064766, guid: 7cac519ecd621524685483dc25f9cee3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157699559210459696, guid: 7cac519ecd621524685483dc25f9cee3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -112
       objectReference: {fileID: 0}
     - target: {fileID: 6183940191087505246, guid: 7cac519ecd621524685483dc25f9cee3, type: 3}
       propertyPath: m_Layer
