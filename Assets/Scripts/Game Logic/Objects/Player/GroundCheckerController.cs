@@ -6,7 +6,10 @@ using UnityEngine;
 public class GroundCheckerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody player;
+    [SerializeField] private StaminaController staminaController;
+
     [SerializeField] private float jumpHeight;
+    [SerializeField] private float staminaCostPerJump;
 
     /// <summary>
     /// Находится ли игрок в данный момент на какой-либо поверхности
@@ -23,19 +26,25 @@ public class GroundCheckerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space) && IsGrounded)
-        {
-            Jump();
-        }
+        CheckJump();
     }
 
     /// <summary>
-    /// Совершить прыжок
+    /// Реализация механики прыжка и проверка на его возможность
     /// </summary>
-    private void Jump()
+    private void CheckJump()
     {
-        IsGrounded = false;
-        // Формула скорости тела, брошенного с поверхности вертикально вверх
-        player.velocity = new Vector3(player.velocity.x, Mathf.Sqrt(2f * -GravitationController.GlobalGravity * jumpHeight), player.velocity.z);
+        if (staminaController.Tired)
+        {
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.Space) && IsGrounded)
+        {
+            IsGrounded = false;
+            // Формула скорости тела, брошенного с поверхности вертикально вверх
+            player.velocity = new Vector3(player.velocity.x, Mathf.Sqrt(2f * -GravitationController.GlobalGravity * jumpHeight), player.velocity.z);
+            staminaController.Stamina -= staminaCostPerJump;
+        }
     }
 }

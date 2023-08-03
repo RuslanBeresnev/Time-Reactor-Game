@@ -18,9 +18,15 @@ public class PlayerController : Entity
     [SerializeField] private float walkingSpeed;
     // —корость бега игрока
     [SerializeField] private float runningSpeed;
-    [SerializeField] private float distanceFromWhichToPushPlayer; // 40% от радиуса игрока
+    [SerializeField] private float staminaCostPerSecondOfRunning;
     [SerializeField] private float minimumVelocityForMovingSound;
+    [SerializeField] private float distanceFromWhichToPushPlayer; // 40% от радиуса игрока
+
     [SerializeField] private GroundCheckerController groundChecker;
+    [SerializeField] private StaminaController staminaController;
+
+    [SerializeField] private AudioClip playerWalkingSound;
+    [SerializeField] private AudioClip playerRunningSound;
 
     /// <summary>
     /// ѕолучить вектор скорости игрока (физическа€ скорость + скорость кинематического перемещени€)
@@ -85,13 +91,28 @@ public class PlayerController : Entity
     /// </summary>
     private void CheckRunning()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && !staminaController.Tired &&
+            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
         {
+            staminaController.StaminaCanRegenerating = false;
             currentSpeed = runningSpeed;
+            staminaController.Stamina -= staminaCostPerSecondOfRunning * Time.fixedDeltaTime;
+
+            if (playerMovingSource.clip == playerWalkingSound)
+            {
+                SwapMovingSoundToRunning();
+            }
         }
         else
         {
             currentSpeed = walkingSpeed;
+            // Ўкала выносливости восстанавливаетс€, только если игрок не бежит
+            staminaController.StaminaCanRegenerating = true;
+
+            if (playerMovingSource.clip == playerRunningSound)
+            {
+                SwapMovingSoundToWalking();
+            }
         }
     }
 
@@ -136,6 +157,22 @@ public class PlayerController : Entity
         {
             playerMovingSource.Stop();
         }
+    }
+
+    /// <summary>
+    /// ѕомен€ть звуковой клип шагов игрока на звуки ходьбы
+    /// </summary>
+    private void SwapMovingSoundToWalking()
+    {
+        playerMovingSource.clip = playerWalkingSound;
+    }
+
+    /// <summary>
+    /// ѕомен€ть звуковой клип шагов игрока на звуки бега
+    /// </summary>
+    private void SwapMovingSoundToRunning()
+    {
+        playerMovingSource.clip = playerRunningSound;
     }
 
     /// <summary>

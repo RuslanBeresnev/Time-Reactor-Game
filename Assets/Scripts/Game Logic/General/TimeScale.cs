@@ -13,7 +13,7 @@ public class TimeScale : MonoBehaviour
     // Имена источников звука, на которые не действует эффект замедления/ускорения времени
     private List<string> sourcesWithoutPitchChange = new()
     {
-        "Player Steps Sound", "Gun Shot", "Gun Reloading", "Weapon Picking Up",
+        "Player Walking Sound", "Player Running Sound", "Gun Shot", "Gun Reloading", "Weapon Picking Up",
         "Assault Riffle Shot", "Assault Riffle Reloading", "Activation", "Deactivation",
         "Time Slowdown", "Time Acceleration"
     };
