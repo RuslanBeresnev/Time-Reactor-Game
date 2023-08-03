@@ -9,10 +9,15 @@ public class PlayerController : Entity
     private AudioSource playerMovingSource;
     private Rigidbody playerRigidbody;
 
+    // Скорость, с которой игрок должен двигаться в данный момент времени
+    private float currentSpeed;
     private Vector3 movementDirection;
     private Vector3 previousPosition;
 
-    [SerializeField] private float movementSpeed;
+    // Скорость ходьбы игрока
+    [SerializeField] private float walkingSpeed;
+    // Скорость бега игрока
+    [SerializeField] private float runningSpeed;
     [SerializeField] private float distanceFromWhichToPushPlayer; // 40% от радиуса игрока
     [SerializeField] private float minimumVelocityForMovingSound;
     [SerializeField] private GroundCheckerController groundChecker;
@@ -34,11 +39,13 @@ public class PlayerController : Entity
         playerRigidbody = GetComponent<Rigidbody>();
         playerMovingSource = GetComponent<AudioSource>();
         previousPosition = transform.position;
+        currentSpeed = walkingSpeed;
     }
 
     private void FixedUpdate()
     {
-        Move();
+        CheckMoving();
+        CheckRunning();
         PushOutPlayerFromWall();
         PlayerMovingSourcePlay();
 
@@ -49,7 +56,7 @@ public class PlayerController : Entity
     /// <summary>
     /// Движение игрока в зависимости от нажатых клавиш W, A, S, D
     /// </summary>
-    private void Move()
+    private void CheckMoving()
     {
         movementDirection = Vector3.zero;
 
@@ -70,7 +77,22 @@ public class PlayerController : Entity
             movementDirection += -transform.right;
         }
 
-        transform.Translate(movementDirection.normalized * movementSpeed * Time.fixedDeltaTime, Space.World);
+        transform.Translate(movementDirection.normalized * currentSpeed * Time.fixedDeltaTime, Space.World);
+    }
+
+    /// <summary>
+    /// Реализация механики бега
+    /// </summary>
+    private void CheckRunning()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = runningSpeed;
+        }
+        else
+        {
+            currentSpeed = walkingSpeed;
+        }
     }
 
     /// <summary>

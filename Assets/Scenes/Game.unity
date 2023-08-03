@@ -8765,9 +8765,10 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   entityHardcoreCoefficient: 0
-  movementSpeed: 5
+  walkingSpeed: 5
+  runningSpeed: 8
   distanceFromWhichToPushPlayer: 0.2
-  minimumVelocityForMovingSound: 1
+  minimumVelocityForMovingSound: 0.5
   groundChecker: {fileID: 1586682126}
 --- !u!136 &873495996
 CapsuleCollider:
@@ -15382,7 +15383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 873496000}
-  jumpHeight: 1.2
+  jumpHeight: 0.8
 --- !u!54 &1586682127
 Rigidbody:
   m_ObjectHideFlags: 0
