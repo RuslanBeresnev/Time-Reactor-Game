@@ -36,7 +36,7 @@ public class StairsMovement : MonoBehaviour
                 {
                     // ≈сли игрок находитс€ на предпоследнем этаже, то не перемещать лестничные структуры
                     // („тобы сгенерировать финальную комнату на последнем этаже)
-                    if (GameProperties.FloorNumber == GameProperties.GeneralFloorCount - 1)
+                    if (GameProperties.FloorNumber == GameProperties.LastFloorNumber + 1)
                     {
                         return;
                     }
@@ -58,7 +58,7 @@ public class StairsMovement : MonoBehaviour
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {
-                    if (GameProperties.FloorNumber == GameProperties.GeneralFloorCount - 1)
+                    if (GameProperties.FloorNumber == GameProperties.LastFloorNumber + 1)
                     {
                         return;
                     }

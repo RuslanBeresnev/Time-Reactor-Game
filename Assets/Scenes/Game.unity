@@ -9886,8 +9886,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  minFloorCount: 25
-  maxFloorCount: 50
+  minBoundOfLastFloorNumber: -50
+  maxBoundOfLastFloorNumber: -25
 --- !u!4 &936963735
 Transform:
   m_ObjectHideFlags: 0

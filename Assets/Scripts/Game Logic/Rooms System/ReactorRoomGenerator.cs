@@ -10,8 +10,9 @@ public class ReactorRoomGenerator : MonoBehaviour
     // в нижней лестничной структуре ("Lower Structure")
     [SerializeField] private Transform spawnPoint;
 
-    [SerializeField] private int minFloorCount;
-    [SerializeField] private int maxFloorCount;
+    // Границы для генерации номера самого нижнего этажа лестницы (отрицательные)
+    [SerializeField] private int minBoundOfLastFloorNumber;
+    [SerializeField] private int maxBoundOfLastFloorNumber;
 
     private System.Random random = new System.Random();
     private bool finalRoomWasGenerated = false;
@@ -25,7 +26,7 @@ public class ReactorRoomGenerator : MonoBehaviour
     {
         // Финальная комната создаётся на последнем этаже лестницы, когда игрок находится
         // на предпоследнем этаже и проходит триггер генератора
-        if (GameProperties.FloorNumber == GameProperties.GeneralFloorCount - 1 && !finalRoomWasGenerated)
+        if (GameProperties.FloorNumber == GameProperties.LastFloorNumber + 1 && !finalRoomWasGenerated)
         {
             GenerateFinalRoom();
             finalRoomWasGenerated = true;
@@ -37,8 +38,8 @@ public class ReactorRoomGenerator : MonoBehaviour
     /// </summary>
     private void GenerateGeneralFloorCount()
     {
-        int generatedFloorCount = random.Next(minFloorCount, maxFloorCount + 1);
-        GameProperties.GeneralFloorCount = generatedFloorCount;
+        int generatedFloorCount = random.Next(minBoundOfLastFloorNumber, maxBoundOfLastFloorNumber + 1);
+        GameProperties.LastFloorNumber = generatedFloorCount;
     }
 
     /// <summary>

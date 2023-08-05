@@ -37,10 +37,10 @@ public static class GameProperties
     public static Dictionary<string, Pool> GeneralPool { get; } = new();
 
     /// <summary>
-    /// ќбщее количество сгенерированных этажей на лестнице (Ќа самом нижнем находитс€ финальна€ комната)
+    /// Ќомер последнего этажа на лестнице (на нЄм находитс€ финальна€ комната)
     /// «начение каждую игру генерируетс€ случайно в заданном дипазоне
     /// </summary>
-    public static int GeneralFloorCount { get; set; }
+    public static int LastFloorNumber { get; set; }
 
     /// <summary>
     /// ќбновить всю игровую статистику
