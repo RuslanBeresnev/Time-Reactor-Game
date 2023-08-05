@@ -37,6 +37,12 @@ public static class GameProperties
     public static Dictionary<string, Pool> GeneralPool { get; } = new();
 
     /// <summary>
+    /// ќбщее количество сгенерированных этажей на лестнице (Ќа самом нижнем находитс€ финальна€ комната)
+    /// «начение каждую игру генерируетс€ случайно в заданном дипазоне
+    /// </summary>
+    public static int GeneralFloorCount { get; set; }
+
+    /// <summary>
     /// ќбновить всю игровую статистику
     /// </summary>
     public static void ResetStatistics()
