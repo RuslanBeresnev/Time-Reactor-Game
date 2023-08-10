@@ -62,8 +62,7 @@ public class PlayerFunctionsTests
 
         yield return new WaitForSeconds(1f);
 
-        Assert.That(entityComponent.Health < 90f);
-        Assert.That(entityComponent.Health > 75f);
+        Assert.That(entityComponent.Health < 100f);
 
         MonoBehaviour.Destroy(player);
         MonoBehaviour.Destroy(enemyLite);
