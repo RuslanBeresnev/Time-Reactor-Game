@@ -1,8 +1,8 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
 /// <summary>
-/// Управление камерой с эффектами пост-обработки
+/// РЈРїСЂР°РІР»РµРЅРёРµ РєР°РјРµСЂРѕР№ СЃ СЌС„С„РµРєС‚Р°РјРё РїРѕСЃС‚-РѕР±СЂР°Р±РѕС‚РєРё
 /// </summary>
 public class PostProcessCameraController : MonoBehaviour
 {

@@ -1,14 +1,14 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// Реализация создания случайных врагов в определённых точках комнат
+/// Р РµР°Р»РёР·Р°С†РёСЏ СЃРѕР·РґР°РЅРёСЏ СЃР»СѓС‡Р°Р№РЅС‹С… РІСЂР°РіРѕРІ РІ РѕРїСЂРµРґРµР»С‘РЅРЅС‹С… С‚РѕС‡РєР°С… РєРѕРјРЅР°С‚
 /// </summary>
 public class EnemySpawner : MonoBehaviour
 {
-    // Точки в комнате, где могут появляться враги
+    // РўРѕС‡РєРё РІ РєРѕРјРЅР°С‚Рµ, РіРґРµ РјРѕРіСѓС‚ РїРѕСЏРІР»СЏС‚СЊСЃСЏ РІСЂР°РіРё
     [SerializeField] private List<SpawnPoint> spawnPositions = new();
-    // Количество врагов, которые должны появиться в одной комнате при заходе в неё
+    // РљРѕР»РёС‡РµСЃС‚РІРѕ РІСЂР°РіРѕРІ, РєРѕС‚РѕСЂС‹Рµ РґРѕР»Р¶РЅС‹ РїРѕСЏРІРёС‚СЊСЃСЏ РІ РѕРґРЅРѕР№ РєРѕРјРЅР°С‚Рµ РїСЂРё Р·Р°С…РѕРґРµ РІ РЅРµС‘
     [SerializeField] private int enemyCount;
 
     private System.Random random = new();
@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Перемешать позиции спавна врагов в списке spawnPositions
+    /// РџРµСЂРµРјРµС€Р°С‚СЊ РїРѕР·РёС†РёРё СЃРїР°РІРЅР° РІСЂР°РіРѕРІ РІ СЃРїРёСЃРєРµ spawnPositions
     /// </summary>
     private void ShuffleSpawnPositions()
     {
@@ -33,13 +33,13 @@ public class EnemySpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Создать случайных врагов в случайных позициях комнаты (среди начально заданных позиций в spawnPositions)
+    /// РЎРѕР·РґР°С‚СЊ СЃР»СѓС‡Р°Р№РЅС‹С… РІСЂР°РіРѕРІ РІ СЃР»СѓС‡Р°Р№РЅС‹С… РїРѕР·РёС†РёСЏС… РєРѕРјРЅР°С‚С‹ (СЃСЂРµРґРё РЅР°С‡Р°Р»СЊРЅРѕ Р·Р°РґР°РЅРЅС‹С… РїРѕР·РёС†РёР№ РІ spawnPositions)
     /// </summary>
     public void InstantiateRandomEnemies()
     {
         for (int i = 0; i < enemyCount; i++)
         {
-            // Список префабов врагов, которые могут повиться в данной точке
+            // РЎРїРёСЃРѕРє РїСЂРµС„Р°Р±РѕРІ РІСЂР°РіРѕРІ, РєРѕС‚РѕСЂС‹Рµ РјРѕРіСѓС‚ РїРѕРІРёС‚СЊСЃСЏ РІ РґР°РЅРЅРѕР№ С‚РѕС‡РєРµ
             var pointPrefabs = spawnPositions[i].EnemyPrefabs;
             var randomEnemyPrefab = pointPrefabs[random.Next(pointPrefabs.Count)];
             Instantiate(randomEnemyPrefab, spawnPositions[i].transform.position, Quaternion.identity);

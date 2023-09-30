@@ -1,7 +1,7 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 /// <summary>
-/// Реализация триггера при входе в комнату, который создаёт врагов
+/// Р РµР°Р»РёР·Р°С†РёСЏ С‚СЂРёРіРіРµСЂР° РїСЂРё РІС…РѕРґРµ РІ РєРѕРјРЅР°С‚Сѓ, РєРѕС‚РѕСЂС‹Р№ СЃРѕР·РґР°С‘С‚ РІСЂР°РіРѕРІ
 /// </summary>
 public class SpawnTriggerController : MonoBehaviour
 {

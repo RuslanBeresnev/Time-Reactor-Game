@@ -1,8 +1,8 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Реализация пула объектов (для оптимизации механик с большим количеством создаваемых объектов)
+/// Р РµР°Р»РёР·Р°С†РёСЏ РїСѓР»Р° РѕР±СЉРµРєС‚РѕРІ (РґР»СЏ РѕРїС‚РёРјРёР·Р°С†РёРё РјРµС…Р°РЅРёРє СЃ Р±РѕР»СЊС€РёРј РєРѕР»РёС‡РµСЃС‚РІРѕРј СЃРѕР·РґР°РІР°РµРјС‹С… РѕР±СЉРµРєС‚РѕРІ)
 /// </summary>
 public class Pool : MonoBehaviour
 {
@@ -28,7 +28,7 @@ public class Pool : MonoBehaviour
     }
 
     /// <summary>
-    /// Получить один из свободных для использования объектов
+    /// РџРѕР»СѓС‡РёС‚СЊ РѕРґРёРЅ РёР· СЃРІРѕР±РѕРґРЅС‹С… РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РѕР±СЉРµРєС‚РѕРІ
     /// </summary>
     public GameObject GetObject()
     {
@@ -45,7 +45,7 @@ public class Pool : MonoBehaviour
     }
 
     /// <summary>
-    /// Вернуть объект в пул
+    /// Р’РµСЂРЅСѓС‚СЊ РѕР±СЉРµРєС‚ РІ РїСѓР»
     /// </summary>
     public void ReturnObject(GameObject poolObject)
     {

@@ -1,10 +1,10 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Управление событиями из меню настроек
+/// РЈРїСЂР°РІР»РµРЅРёРµ СЃРѕР±С‹С‚РёСЏРјРё РёР· РјРµРЅСЋ РЅР°СЃС‚СЂРѕРµРє
 /// </summary>
 public class SettingsMenuController : MonoBehaviour
 {
@@ -29,7 +29,7 @@ public class SettingsMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Изменить значение громкости (при изменении слайдера)
+    /// РР·РјРµРЅРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РіСЂРѕРјРєРѕСЃС‚Рё (РїСЂРё РёР·РјРµРЅРµРЅРёРё СЃР»Р°Р№РґРµСЂР°)
     /// </summary>
     public void ChangeVolumeValue()
     {
@@ -38,7 +38,7 @@ public class SettingsMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Изменить значение чувствительности мыши (при изменении слайдера)
+    /// РР·РјРµРЅРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ С‡СѓРІСЃС‚РІРёС‚РµР»СЊРЅРѕСЃС‚Рё РјС‹С€Рё (РїСЂРё РёР·РјРµРЅРµРЅРёРё СЃР»Р°Р№РґРµСЂР°)
     /// </summary>
     public void ChangeMouseSensitivityValue()
     {
@@ -47,7 +47,7 @@ public class SettingsMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Изменить тип графики (при изменении состояния флажка)
+    /// РР·РјРµРЅРёС‚СЊ С‚РёРї РіСЂР°С„РёРєРё (РїСЂРё РёР·РјРµРЅРµРЅРёРё СЃРѕСЃС‚РѕСЏРЅРёСЏ С„Р»Р°Р¶РєР°)
     /// </summary>
     public void ChangeGraphics()
     {
@@ -55,7 +55,7 @@ public class SettingsMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Вернуться в главное меню
+    /// Р’РµСЂРЅСѓС‚СЊСЃСЏ РІ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ
     /// </summary>
     public void BackToMainMenu()
     {

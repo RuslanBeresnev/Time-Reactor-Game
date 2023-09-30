@@ -1,7 +1,7 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 /// <summary>
-/// Реализация механики прыжка игрока и проверка соприкосновения с поверхностями под игроком
+/// Р РµР°Р»РёР·Р°С†РёСЏ РјРµС…Р°РЅРёРєРё РїСЂС‹Р¶РєР° РёРіСЂРѕРєР° Рё РїСЂРѕРІРµСЂРєР° СЃРѕРїСЂРёРєРѕСЃРЅРѕРІРµРЅРёСЏ СЃ РїРѕРІРµСЂС…РЅРѕСЃС‚СЏРјРё РїРѕРґ РёРіСЂРѕРєРѕРј
 /// </summary>
 public class GroundCheckerController : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class GroundCheckerController : MonoBehaviour
     [SerializeField] private float staminaCostPerJump;
 
     /// <summary>
-    /// Находится ли игрок в данный момент на какой-либо поверхности
+    /// РќР°С…РѕРґРёС‚СЃСЏ Р»Рё РёРіСЂРѕРє РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РЅР° РєР°РєРѕР№-Р»РёР±Рѕ РїРѕРІРµСЂС…РЅРѕСЃС‚Рё
     /// </summary>
     public bool IsGrounded { get; private set; } = true;
 
@@ -30,7 +30,7 @@ public class GroundCheckerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Реализация механики прыжка и проверка на его возможность
+    /// Р РµР°Р»РёР·Р°С†РёСЏ РјРµС…Р°РЅРёРєРё РїСЂС‹Р¶РєР° Рё РїСЂРѕРІРµСЂРєР° РЅР° РµРіРѕ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ
     /// </summary>
     private void CheckJump()
     {
@@ -42,7 +42,7 @@ public class GroundCheckerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && IsGrounded)
         {
             IsGrounded = false;
-            // Формула скорости тела, брошенного с поверхности вертикально вверх
+            // Р¤РѕСЂРјСѓР»Р° СЃРєРѕСЂРѕСЃС‚Рё С‚РµР»Р°, Р±СЂРѕС€РµРЅРЅРѕРіРѕ СЃ РїРѕРІРµСЂС…РЅРѕСЃС‚Рё РІРµСЂС‚РёРєР°Р»СЊРЅРѕ РІРІРµСЂС…
             player.velocity = new Vector3(player.velocity.x, Mathf.Sqrt(2f * -GravitationController.GlobalGravity * jumpHeight), player.velocity.z);
             staminaController.Stamina -= staminaCostPerJump;
         }

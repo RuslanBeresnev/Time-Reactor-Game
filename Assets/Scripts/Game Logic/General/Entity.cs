@@ -1,24 +1,24 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System;
 
 /// <summary>
-/// Абстракция определённой живой сущности
+/// РђР±СЃС‚СЂР°РєС†РёСЏ РѕРїСЂРµРґРµР»С‘РЅРЅРѕР№ Р¶РёРІРѕР№ СЃСѓС‰РЅРѕСЃС‚Рё
 /// </summary>
 public abstract class Entity : ObjectWithInformation, ISerializationCallbackReceiver
 {
     [SerializeField] protected float health = 100f;
     [SerializeField] protected float maxHealth = 100f;
-    // Коэффициент сложности в сражении с сущностью
+    // РљРѕСЌС„С„РёС†РёРµРЅС‚ СЃР»РѕР¶РЅРѕСЃС‚Рё РІ СЃСЂР°Р¶РµРЅРёРё СЃ СЃСѓС‰РЅРѕСЃС‚СЊСЋ
     [SerializeField] protected float entityHardcoreCoefficient = 1f;
 
     private void Start()
     {
-        // Синхронизация перед спавном сущности количества здоровья с максимальным количеством здоровья
+        // РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ РїРµСЂРµРґ СЃРїР°РІРЅРѕРј СЃСѓС‰РЅРѕСЃС‚Рё РєРѕР»РёС‡РµСЃС‚РІР° Р·РґРѕСЂРѕРІСЊСЏ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј Р·РґРѕСЂРѕРІСЊСЏ
         Health = MaxHealth;
     }
 
     /// <summary>
-    /// Текущее здоровье сущности
+    /// РўРµРєСѓС‰РµРµ Р·РґРѕСЂРѕРІСЊРµ СЃСѓС‰РЅРѕСЃС‚Рё
     /// </summary>
     public virtual float Health
     {
@@ -42,7 +42,7 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
     }
 
     /// <summary>
-    /// Максимальное здоровье сущности
+    /// РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РґРѕСЂРѕРІСЊРµ СЃСѓС‰РЅРѕСЃС‚Рё
     /// </summary>
     public virtual float MaxHealth
     {
@@ -51,7 +51,7 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
     }
 
     /// <summary>
-    /// Событие изменения здоровья сущности
+    /// РЎРѕР±С‹С‚РёРµ РёР·РјРµРЅРµРЅРёСЏ Р·РґРѕСЂРѕРІСЊСЏ СЃСѓС‰РЅРѕСЃС‚Рё
     /// </summary>
     public Action<float> HealthChanged { get; set; }
 
@@ -68,7 +68,7 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
     }
 
     /// <summary>
-    /// Получить урон
+    /// РџРѕР»СѓС‡РёС‚СЊ СѓСЂРѕРЅ
     /// </summary>
     public virtual void TakeDamage(float damage)
     {
@@ -76,12 +76,12 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
     }
 
     /// <summary>
-    /// Действия при смерти сущности
+    /// Р”РµР№СЃС‚РІРёСЏ РїСЂРё СЃРјРµСЂС‚Рё СЃСѓС‰РЅРѕСЃС‚Рё
     /// </summary>
     public virtual void OnDeath()
     {
-        // Core-механика: при победе над сущностями игрок увеличивает максимальный коэффициент способности
-        // замедлять время по формуле, зависящей от количества здоровья сущности и её хардкорности
+        // Core-РјРµС…Р°РЅРёРєР°: РїСЂРё РїРѕР±РµРґРµ РЅР°Рґ СЃСѓС‰РЅРѕСЃС‚СЏРјРё РёРіСЂРѕРє СѓРІРµР»РёС‡РёРІР°РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚ СЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё
+        // Р·Р°РјРµРґР»СЏС‚СЊ РІСЂРµРјСЏ РїРѕ С„РѕСЂРјСѓР»Рµ, Р·Р°РІРёСЃСЏС‰РµР№ РѕС‚ РєРѕР»РёС‡РµСЃС‚РІР° Р·РґРѕСЂРѕРІСЊСЏ СЃСѓС‰РЅРѕСЃС‚Рё Рё РµС‘ С…Р°СЂРґРєРѕСЂРЅРѕСЃС‚Рё
         TimeManagerController.SharedInstance.TimeSlowdownFactor += MaxHealth * entityHardcoreCoefficient * 0.01f;
 
         Destroy(gameObject);

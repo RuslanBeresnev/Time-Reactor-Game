@@ -1,14 +1,14 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Реализация генерации комнаты случайного типа на каждом этаже
+/// Р РµР°Р»РёР·Р°С†РёСЏ РіРµРЅРµСЂР°С†РёРё РєРѕРјРЅР°С‚С‹ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ С‚РёРїР° РЅР° РєР°Р¶РґРѕРј СЌС‚Р°Р¶Рµ
 /// </summary>
 public class RoomGeneration : MonoBehaviour
 {
-    // Префабы комнат разного типа (лаборатория, склад и т.д.)
+    // РџСЂРµС„Р°Р±С‹ РєРѕРјРЅР°С‚ СЂР°Р·РЅРѕРіРѕ С‚РёРїР° (Р»Р°Р±РѕСЂР°С‚РѕСЂРёСЏ, СЃРєР»Р°Рґ Рё С‚.Рґ.)
     [SerializeField] private List<GameObject> differentTypeRooms = new List<GameObject>();
-    // Центр двери, к которой должна "примкнуть" комната
+    // Р¦РµРЅС‚СЂ РґРІРµСЂРё, Рє РєРѕС‚РѕСЂРѕР№ РґРѕР»Р¶РЅР° "РїСЂРёРјРєРЅСѓС‚СЊ" РєРѕРјРЅР°С‚Р°
     [SerializeField] private Transform centerOfDoor;
 
     private System.Random random = new System.Random();
@@ -17,8 +17,8 @@ public class RoomGeneration : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            // Комната создаётся, если для данного этажа сгенерировался дверной проём и на данном этаже ранее
-            // не была сгенерирована комната
+            // РљРѕРјРЅР°С‚Р° СЃРѕР·РґР°С‘С‚СЃСЏ, РµСЃР»Рё РґР»СЏ РґР°РЅРЅРѕРіРѕ СЌС‚Р°Р¶Р° СЃРіРµРЅРµСЂРёСЂРѕРІР°Р»СЃСЏ РґРІРµСЂРЅРѕР№ РїСЂРѕС‘Рј Рё РЅР° РґР°РЅРЅРѕРј СЌС‚Р°Р¶Рµ СЂР°РЅРµРµ
+            // РЅРµ Р±С‹Р»Р° СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅР° РєРѕРјРЅР°С‚Р°
             if (GameProperties.DoorOnFloor[-GameProperties.FloorNumber] &&
                 !GameProperties.GeneratedRooms.ContainsKey(GameProperties.FloorNumber))
             {
@@ -29,9 +29,9 @@ public class RoomGeneration : MonoBehaviour
     }
 
     /// <summary>
-    /// Выбрать комнату случайного типа из списка префабов
+    /// Р’С‹Р±СЂР°С‚СЊ РєРѕРјРЅР°С‚Сѓ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ С‚РёРїР° РёР· СЃРїРёСЃРєР° РїСЂРµС„Р°Р±РѕРІ
     /// </summary>
-    /// <returns>Возврщает префаб выбранной комнаты</returns>
+    /// <returns>Р’РѕР·РІСЂС‰Р°РµС‚ РїСЂРµС„Р°Р± РІС‹Р±СЂР°РЅРЅРѕР№ РєРѕРјРЅР°С‚С‹</returns>
     private GameObject ChooseRandomRoom()
     {
         var randomRoomNumber = random.Next(differentTypeRooms.Count);
@@ -39,7 +39,7 @@ public class RoomGeneration : MonoBehaviour
     }
 
     /// <summary>
-    /// Создать из префаба комнату и разместить её входом к двери
+    /// РЎРѕР·РґР°С‚СЊ РёР· РїСЂРµС„Р°Р±Р° РєРѕРјРЅР°С‚Сѓ Рё СЂР°Р·РјРµСЃС‚РёС‚СЊ РµС‘ РІС…РѕРґРѕРј Рє РґРІРµСЂРё
     /// </summary>
     private void CreateAndPlaceRoom(GameObject roomPrefab)
     {
@@ -47,7 +47,7 @@ public class RoomGeneration : MonoBehaviour
         GameProperties.GeneratedRooms.Add(GameProperties.FloorNumber, room);
 
         var roomEntranceCenter = room.transform.Find("Center Of Entrance");
-        // Центр двери в стене лестницы совмещается с центром входа в комнату
+        // Р¦РµРЅС‚СЂ РґРІРµСЂРё РІ СЃС‚РµРЅРµ Р»РµСЃС‚РЅРёС†С‹ СЃРѕРІРјРµС‰Р°РµС‚СЃСЏ СЃ С†РµРЅС‚СЂРѕРј РІС…РѕРґР° РІ РєРѕРјРЅР°С‚Сѓ
         room.transform.position = centerOfDoor.position + (roomPrefab.transform.position - roomEntranceCenter.position);
     }
 }

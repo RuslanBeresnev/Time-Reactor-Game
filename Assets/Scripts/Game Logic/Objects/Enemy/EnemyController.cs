@@ -1,9 +1,9 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// Поведение врага
+/// РџРѕРІРµРґРµРЅРёРµ РІСЂР°РіР°
 /// </summary>
 public class EnemyController : Entity, ISerializationCallbackReceiver
 {
@@ -20,12 +20,12 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
     private Queue<Vector3> targetTrajectory = new Queue<Vector3>();
 
     /// <summary>
-    /// Имя для поиска цели
+    /// РРјСЏ РґР»СЏ РїРѕРёСЃРєР° С†РµР»Рё
     /// </summary>
     public string TargetName { get; set; }
 
     /// <summary>
-    /// Будет ли враг следовать за целью
+    /// Р‘СѓРґРµС‚ Р»Рё РІСЂР°Рі СЃР»РµРґРѕРІР°С‚СЊ Р·Р° С†РµР»СЊСЋ
     /// </summary>
     public bool FollowsTheTarget { get; private set; }
 
@@ -102,7 +102,7 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Отслеживать траекторию игрока и добавлять метки положения раз в несколько миллисекунд
+    /// РћС‚СЃР»РµР¶РёРІР°С‚СЊ С‚СЂР°РµРєС‚РѕСЂРёСЋ РёРіСЂРѕРєР° Рё РґРѕР±Р°РІР»СЏС‚СЊ РјРµС‚РєРё РїРѕР»РѕР¶РµРЅРёСЏ СЂР°Р· РІ РЅРµСЃРєРѕР»СЊРєРѕ РјРёР»Р»РёСЃРµРєСѓРЅРґ
     /// </summary>
     private IEnumerator TrackPlayerTrajectory()
     {
@@ -111,8 +111,8 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
         {
             if (targetTrajectory.Count == 0 || targetTrajectory.Count > 0 && Vector3.Distance(target.transform.position, lastAddedPoint) >= 0.25f)
             {
-                // + new Vector3(...) - костыль, так как центр врага находится под ним, поэтому враг должен
-                // стремиться к точке, которая ниже центра игрока
+                // + new Vector3(...) - РєРѕСЃС‚С‹Р»СЊ, С‚Р°Рє РєР°Рє С†РµРЅС‚СЂ РІСЂР°РіР° РЅР°С…РѕРґРёС‚СЃСЏ РїРѕРґ РЅРёРј, РїРѕСЌС‚РѕРјСѓ РІСЂР°Рі РґРѕР»Р¶РµРЅ
+                // СЃС‚СЂРµРјРёС‚СЊСЃСЏ Рє С‚РѕС‡РєРµ, РєРѕС‚РѕСЂР°СЏ РЅРёР¶Рµ С†РµРЅС‚СЂР° РёРіСЂРѕРєР°
                 targetTrajectory.Enqueue(target.transform.position + new Vector3(0, -1.5f, 0));
                 lastAddedPoint = target.transform.position;
             }
@@ -121,13 +121,13 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Следовать за целью
+    /// РЎР»РµРґРѕРІР°С‚СЊ Р·Р° С†РµР»СЊСЋ
     /// </summary>
     private void FollowTheTarget()
     {
         if (targetTrajectory.Count > 0)
         {
-            // Расстояние для достижения каждой точки траектории игрока не нулевое, так как иначе враг упирается в стену и не может достать до точки
+            // Р Р°СЃСЃС‚РѕСЏРЅРёРµ РґР»СЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ РєР°Р¶РґРѕР№ С‚РѕС‡РєРё С‚СЂР°РµРєС‚РѕСЂРёРё РёРіСЂРѕРєР° РЅРµ РЅСѓР»РµРІРѕРµ, С‚Р°Рє РєР°Рє РёРЅР°С‡Рµ РІСЂР°Рі СѓРїРёСЂР°РµС‚СЃСЏ РІ СЃС‚РµРЅСѓ Рё РЅРµ РјРѕР¶РµС‚ РґРѕСЃС‚Р°С‚СЊ РґРѕ С‚РѕС‡РєРё
             if (Vector3.Distance(transform.position, targetTrajectory.Peek()) <= 1f)
             {
                 targetTrajectory.Dequeue();

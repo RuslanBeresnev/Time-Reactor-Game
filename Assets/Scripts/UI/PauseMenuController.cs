@@ -1,8 +1,8 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Управление событиями из меню паузы в игре
+/// РЈРїСЂР°РІР»РµРЅРёРµ СЃРѕР±С‹С‚РёСЏРјРё РёР· РјРµРЅСЋ РїР°СѓР·С‹ РІ РёРіСЂРµ
 /// </summary>
 public class PauseMenuController : MonoBehaviour
 {
@@ -26,12 +26,12 @@ public class PauseMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Действия при остановке игры на паузу
+    /// Р”РµР№СЃС‚РІРёСЏ РїСЂРё РѕСЃС‚Р°РЅРѕРІРєРµ РёРіСЂС‹ РЅР° РїР°СѓР·Сѓ
     /// </summary>
     public void Pause()
     {
         elements.SetActive(true);
-        // Изменяется стандартный Time.timeScale, так как игрок тоже должен замирать
+        // РР·РјРµРЅСЏРµС‚СЃСЏ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ Time.timeScale, С‚Р°Рє РєР°Рє РёРіСЂРѕРє С‚РѕР¶Рµ РґРѕР»Р¶РµРЅ Р·Р°РјРёСЂР°С‚СЊ
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
         AudioListener.pause = true;
@@ -39,7 +39,7 @@ public class PauseMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Действия при продолжении игры после паузы
+    /// Р”РµР№СЃС‚РІРёСЏ РїСЂРё РїСЂРѕРґРѕР»Р¶РµРЅРёРё РёРіСЂС‹ РїРѕСЃР»Рµ РїР°СѓР·С‹
     /// </summary>
     public void Resume()
     {
@@ -51,7 +51,7 @@ public class PauseMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Запустить главное меню
+    /// Р—Р°РїСѓСЃС‚РёС‚СЊ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ
     /// </summary>
     public void ToMainMenu()
     {
@@ -60,7 +60,7 @@ public class PauseMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Выйти из игры
+    /// Р’С‹Р№С‚Рё РёР· РёРіСЂС‹
     /// </summary>
     public void QuitFromGame()
     {

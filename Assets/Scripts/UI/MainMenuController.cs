@@ -1,13 +1,13 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Управление событиями из главного меню
+/// РЈРїСЂР°РІР»РµРЅРёРµ СЃРѕР±С‹С‚РёСЏРјРё РёР· РіР»Р°РІРЅРѕРіРѕ РјРµРЅСЋ
 /// </summary>
 public class MainMenuController : MonoBehaviour
 {
     /// <summary>
-    /// Запустить игровую сцену
+    /// Р—Р°РїСѓСЃС‚РёС‚СЊ РёРіСЂРѕРІСѓСЋ СЃС†РµРЅСѓ
     /// </summary>
     public void StartGame()
     {
@@ -15,7 +15,7 @@ public class MainMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Открыть меню настроек
+    /// РћС‚РєСЂС‹С‚СЊ РјРµРЅСЋ РЅР°СЃС‚СЂРѕРµРє
     /// </summary>
     public void OpenSettingsMenu()
     {
@@ -23,7 +23,7 @@ public class MainMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Выйти из игры
+    /// Р’С‹Р№С‚Рё РёР· РёРіСЂС‹
     /// </summary>
     public void QuitFromGame()
     {

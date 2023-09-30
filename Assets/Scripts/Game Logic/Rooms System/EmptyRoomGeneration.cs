@@ -1,16 +1,16 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
-// На данный момент пустые комнаты больше не генерируются в игре. Логика генерации непустых комнат
-// находится в файле RoomGeneration.cs
+// РќР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РїСѓСЃС‚С‹Рµ РєРѕРјРЅР°С‚С‹ Р±РѕР»СЊС€Рµ РЅРµ РіРµРЅРµСЂРёСЂСѓСЋС‚СЃСЏ РІ РёРіСЂРµ. Р›РѕРіРёРєР° РіРµРЅРµСЂР°С†РёРё РЅРµРїСѓСЃС‚С‹С… РєРѕРјРЅР°С‚
+// РЅР°С…РѕРґРёС‚СЃСЏ РІ С„Р°Р№Р»Рµ RoomGeneration.cs
 
 /// <summary>
-/// Алгоритм генерации пустых комнат случайного размера, которые можно создавать на каждом этаже
+/// РђР»РіРѕСЂРёС‚Рј РіРµРЅРµСЂР°С†РёРё РїСѓСЃС‚С‹С… РєРѕРјРЅР°С‚ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ СЂР°Р·РјРµСЂР°, РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РЅРѕ СЃРѕР·РґР°РІР°С‚СЊ РЅР° РєР°Р¶РґРѕРј СЌС‚Р°Р¶Рµ
 /// </summary>
 public class EmptyRoomGeneration : MonoBehaviour
 {
-    // Центр двери, к которой должна "примкнуть" комната
+    // Р¦РµРЅС‚СЂ РґРІРµСЂРё, Рє РєРѕС‚РѕСЂРѕР№ РґРѕР»Р¶РЅР° "РїСЂРёРјРєРЅСѓС‚СЊ" РєРѕРјРЅР°С‚Р°
     [SerializeField] private Transform centerOfDoor;
-    // Толщина каждой стены
+    // РўРѕР»С‰РёРЅР° РєР°Р¶РґРѕР№ СЃС‚РµРЅС‹
     [SerializeField] private float wallDepth;
 
     [SerializeField] private float wallMinLength;
@@ -39,7 +39,7 @@ public class EmptyRoomGeneration : MonoBehaviour
     }
 
     /// <summary>
-    /// Сгенерировать случайные размеры комнаты (ширина: X, высота: Y, длина: Z)
+    /// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ СЃР»СѓС‡Р°Р№РЅС‹Рµ СЂР°Р·РјРµСЂС‹ РєРѕРјРЅР°С‚С‹ (С€РёСЂРёРЅР°: X, РІС‹СЃРѕС‚Р°: Y, РґР»РёРЅР°: Z)
     /// </summary>
     private Vector3 GenerateRoomDimensions()
     {
@@ -51,7 +51,7 @@ public class EmptyRoomGeneration : MonoBehaviour
     }
 
     /// <summary>
-    /// Сгенерировать расстояние, на которое будет смещён центр входа по оси Z относительно центра стены со входом
+    /// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ СЂР°СЃСЃС‚РѕСЏРЅРёРµ, РЅР° РєРѕС‚РѕСЂРѕРµ Р±СѓРґРµС‚ СЃРјРµС‰С‘РЅ С†РµРЅС‚СЂ РІС…РѕРґР° РїРѕ РѕСЃРё Z РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ С†РµРЅС‚СЂР° СЃС‚РµРЅС‹ СЃРѕ РІС…РѕРґРѕРј
     /// </summary>
     private float GenerateEntranceOffset(Vector3 roomDimensions)
     {
@@ -61,9 +61,9 @@ public class EmptyRoomGeneration : MonoBehaviour
     }
 
     /// <summary>
-    /// Создать комнату случайного размера (с центром в начале координат и входом по положительному направлению оси X)
+    /// РЎРѕР·РґР°С‚СЊ РєРѕРјРЅР°С‚Сѓ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ СЂР°Р·РјРµСЂР° (СЃ С†РµРЅС‚СЂРѕРј РІ РЅР°С‡Р°Р»Рµ РєРѕРѕСЂРґРёРЅР°С‚ Рё РІС…РѕРґРѕРј РїРѕ РїРѕР»РѕР¶РёС‚РµР»СЊРЅРѕРјСѓ РЅР°РїСЂР°РІР»РµРЅРёСЋ РѕСЃРё X)
     /// </summary>
-    /// <returns>Возврашает объект комнаты и смещение центра комнаты относительно центра входа в комнату</returns>
+    /// <returns>Р’РѕР·РІСЂР°С€Р°РµС‚ РѕР±СЉРµРєС‚ РєРѕРјРЅР°С‚С‹ Рё СЃРјРµС‰РµРЅРёРµ С†РµРЅС‚СЂР° РєРѕРјРЅР°С‚С‹ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ С†РµРЅС‚СЂР° РІС…РѕРґР° РІ РєРѕРјРЅР°С‚Сѓ</returns>
     private (GameObject room, Vector3 offset) CreateRoom()
     {
         var roomDimensions = GenerateRoomDimensions();
@@ -71,7 +71,7 @@ public class EmptyRoomGeneration : MonoBehaviour
         var centerOfEntrance = new Vector3(-roomDimensions.x * 0.5f, -(roomDimensions.y * 0.5f - wallDepth - entranceHeight * 0.5f), entranceOffset);
 
         roomCounter++;
-        // Объект комнаты создался с центром в точке (0, 0, 0)
+        // РћР±СЉРµРєС‚ РєРѕРјРЅР°С‚С‹ СЃРѕР·РґР°Р»СЃСЏ СЃ С†РµРЅС‚СЂРѕРј РІ С‚РѕС‡РєРµ (0, 0, 0)
         var room = new GameObject($"Room {roomCounter}");
 
         var leftWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -132,7 +132,7 @@ public class EmptyRoomGeneration : MonoBehaviour
     }
 
     /// <summary>
-    /// Расположить комнату таким образом, чтобы вход в неё точно совместился с дверью на лестнице
+    /// Р Р°СЃРїРѕР»РѕР¶РёС‚СЊ РєРѕРјРЅР°С‚Сѓ С‚Р°РєРёРј РѕР±СЂР°Р·РѕРј, С‡С‚РѕР±С‹ РІС…РѕРґ РІ РЅРµС‘ С‚РѕС‡РЅРѕ СЃРѕРІРјРµСЃС‚РёР»СЃСЏ СЃ РґРІРµСЂСЊСЋ РЅР° Р»РµСЃС‚РЅРёС†Рµ
     /// </summary>
     private void MatchRoomEntranceWithDoor(GameObject room, Vector3 roomCenterOffsetRelativeToDoorCenter)
     {

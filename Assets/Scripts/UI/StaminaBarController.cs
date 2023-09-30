@@ -1,8 +1,8 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Реализация шкалы выносливости
+/// Р РµР°Р»РёР·Р°С†РёСЏ С€РєР°Р»С‹ РІС‹РЅРѕСЃР»РёРІРѕСЃС‚Рё
 /// </summary>
 public class StaminaBarController : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class StaminaBarController : MonoBehaviour
     [SerializeField] private Sprite barBackgroundSpriteForTiredState;
 
     /// <summary>
-    /// Перерисовать шкалу выносливости
+    /// РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ С€РєР°Р»Сѓ РІС‹РЅРѕСЃР»РёРІРѕСЃС‚Рё
     /// </summary>
     public void RedrawStaminaBar(float stamina)
     {
@@ -24,7 +24,7 @@ public class StaminaBarController : MonoBehaviour
     }
 
     /// <summary>
-    /// Показать шкалу выносливости
+    /// РџРѕРєР°Р·Р°С‚СЊ С€РєР°Р»Сѓ РІС‹РЅРѕСЃР»РёРІРѕСЃС‚Рё
     /// </summary>
     public void ShowStaminaBar()
     {
@@ -32,7 +32,7 @@ public class StaminaBarController : MonoBehaviour
     }
 
     /// <summary>
-    /// Скрыть шкалу выносливости
+    /// РЎРєСЂС‹С‚СЊ С€РєР°Р»Сѓ РІС‹РЅРѕСЃР»РёРІРѕСЃС‚Рё
     /// </summary>
     public void HideStaminaBar()
     {
@@ -40,7 +40,7 @@ public class StaminaBarController : MonoBehaviour
     }
 
     /// <summary>
-    /// Изменить стиль шкалы выносливости на обычный стиль
+    /// РР·РјРµРЅРёС‚СЊ СЃС‚РёР»СЊ С€РєР°Р»С‹ РІС‹РЅРѕСЃР»РёРІРѕСЃС‚Рё РЅР° РѕР±С‹С‡РЅС‹Р№ СЃС‚РёР»СЊ
     /// </summary>
     public void SwapBarToNormalState()
     {
@@ -49,7 +49,7 @@ public class StaminaBarController : MonoBehaviour
     }
 
     /// <summary>
-    /// Изменить стиль шкалы выносливости на стиль во время истощения игрока
+    /// РР·РјРµРЅРёС‚СЊ СЃС‚РёР»СЊ С€РєР°Р»С‹ РІС‹РЅРѕСЃР»РёРІРѕСЃС‚Рё РЅР° СЃС‚РёР»СЊ РІРѕ РІСЂРµРјСЏ РёСЃС‚РѕС‰РµРЅРёСЏ РёРіСЂРѕРєР°
     /// </summary>
     public void SwapBarToTiredState()
     {

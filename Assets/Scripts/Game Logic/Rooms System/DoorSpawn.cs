@@ -1,7 +1,7 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 /// <summary>
-/// Спавн двери с некоторым шансом на каждом этаже
+/// РЎРїР°РІРЅ РґРІРµСЂРё СЃ РЅРµРєРѕС‚РѕСЂС‹Рј С€Р°РЅСЃРѕРј РЅР° РєР°Р¶РґРѕРј СЌС‚Р°Р¶Рµ
 /// </summary>
 public class DoorSpawn : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class DoorSpawn : MonoBehaviour
     [SerializeField] private GameObject wallWithDoor;
     [SerializeField] private GameObject wallWithoutDoor;
 
-    // Направление игрока по оси Z (вверх или вниз по лестнице), когда он входит в триггер передвижения структур ступеней
+    // РќР°РїСЂР°РІР»РµРЅРёРµ РёРіСЂРѕРєР° РїРѕ РѕСЃРё Z (РІРІРµСЂС… РёР»Рё РІРЅРёР· РїРѕ Р»РµСЃС‚РЅРёС†Рµ), РєРѕРіРґР° РѕРЅ РІС…РѕРґРёС‚ РІ С‚СЂРёРіРіРµСЂ РїРµСЂРµРґРІРёР¶РµРЅРёСЏ СЃС‚СЂСѓРєС‚СѓСЂ СЃС‚СѓРїРµРЅРµР№
     private float onColliderEnterZAxisValue;
     private System.Random random = new();
 
@@ -28,7 +28,7 @@ public class DoorSpawn : MonoBehaviour
         {
             var playerController = other.gameObject.GetComponent<PlayerController>();
 
-            // Проверка на соответсвие одному направлению входа и выхода (игрок полностью прошёл триггер)
+            // РџСЂРѕРІРµСЂРєР° РЅР° СЃРѕРѕС‚РІРµС‚СЃРІРёРµ РѕРґРЅРѕРјСѓ РЅР°РїСЂР°РІР»РµРЅРёСЋ РІС…РѕРґР° Рё РІС‹С…РѕРґР° (РёРіСЂРѕРє РїРѕР»РЅРѕСЃС‚СЊСЋ РїСЂРѕС€С‘Р» С‚СЂРёРіРіРµСЂ)
             if (playerController.PlayerVelocity.z > 0f && onColliderEnterZAxisValue > 0f)
             {
                 CreateOrDestroyDoorDependingFloorNumber(-GameProperties.FloorNumber - 1);
@@ -42,16 +42,16 @@ public class DoorSpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Определить наличие двери на этаже, где находится игрок
+    /// РћРїСЂРµРґРµР»РёС‚СЊ РЅР°Р»РёС‡РёРµ РґРІРµСЂРё РЅР° СЌС‚Р°Р¶Рµ, РіРґРµ РЅР°С…РѕРґРёС‚СЃСЏ РёРіСЂРѕРє
     /// </summary>
     private void DetermineIfDoorWillOnFloor()
     {
-        // Если игрок впервые проходит триггер на данном этаже
+        // Р•СЃР»Рё РёРіСЂРѕРє РІРїРµСЂРІС‹Рµ РїСЂРѕС…РѕРґРёС‚ С‚СЂРёРіРіРµСЂ РЅР° РґР°РЅРЅРѕРј СЌС‚Р°Р¶Рµ
         if (GameProperties.DoorOnFloor.Count == -GameProperties.FloorNumber)
         {
-            // Если на предыдущем этаже нет двери с комнатой, то для данного этажа с некоторым шансом
-            // определяется наличие двери (иначе обычная стена). То есть комнаты генерируются минимум
-            // каждый второй этаж, чтобы не было пересечения высоких комнат.
+            // Р•СЃР»Рё РЅР° РїСЂРµРґС‹РґСѓС‰РµРј СЌС‚Р°Р¶Рµ РЅРµС‚ РґРІРµСЂРё СЃ РєРѕРјРЅР°С‚РѕР№, С‚Рѕ РґР»СЏ РґР°РЅРЅРѕРіРѕ СЌС‚Р°Р¶Р° СЃ РЅРµРєРѕС‚РѕСЂС‹Рј С€Р°РЅСЃРѕРј
+            // РѕРїСЂРµРґРµР»СЏРµС‚СЃСЏ РЅР°Р»РёС‡РёРµ РґРІРµСЂРё (РёРЅР°С‡Рµ РѕР±С‹С‡РЅР°СЏ СЃС‚РµРЅР°). РўРѕ РµСЃС‚СЊ РєРѕРјРЅР°С‚С‹ РіРµРЅРµСЂРёСЂСѓСЋС‚СЃСЏ РјРёРЅРёРјСѓРј
+            // РєР°Р¶РґС‹Р№ РІС‚РѕСЂРѕР№ СЌС‚Р°Р¶, С‡С‚РѕР±С‹ РЅРµ Р±С‹Р»Рѕ РїРµСЂРµСЃРµС‡РµРЅРёСЏ РІС‹СЃРѕРєРёС… РєРѕРјРЅР°С‚.
             if (GameProperties.FloorNumber != 0 && GameProperties.DoorOnFloor[-GameProperties.FloorNumber - 1])
             {
                 GameProperties.DoorOnFloor.Add(false);
@@ -71,7 +71,7 @@ public class DoorSpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Создать или убрать дверь в зависимости от номера этажа
+    /// РЎРѕР·РґР°С‚СЊ РёР»Рё СѓР±СЂР°С‚СЊ РґРІРµСЂСЊ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РЅРѕРјРµСЂР° СЌС‚Р°Р¶Р°
     /// </summary>
     private void CreateOrDestroyDoorDependingFloorNumber(int floorNumber)
     {

@@ -1,7 +1,7 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 /// <summary>
-/// Управление основной камерой
+/// РЈРїСЂР°РІР»РµРЅРёРµ РѕСЃРЅРѕРІРЅРѕР№ РєР°РјРµСЂРѕР№
 /// </summary>
 public class MainCameraController : MonoBehaviour
 {

@@ -1,8 +1,8 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System.Collections;
 
 /// <summary>
-/// Реализация полёта пули, урона от неё, взаимодействия с объектами и её уничтожения
+/// Р РµР°Р»РёР·Р°С†РёСЏ РїРѕР»С‘С‚Р° РїСѓР»Рё, СѓСЂРѕРЅР° РѕС‚ РЅРµС‘, РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ СЃ РѕР±СЉРµРєС‚Р°РјРё Рё РµС‘ СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ
 /// </summary>
 public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
 {
@@ -12,19 +12,19 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
 
     [SerializeField] private int damage = 1;
     [SerializeField] private int velocity = 15;
-    // Дальность луча, исходящего в обратную сторону по траектории пули(для небольших скоростей лучше не ставить больше, чем 0.5f)
+    // Р”Р°Р»СЊРЅРѕСЃС‚СЊ Р»СѓС‡Р°, РёСЃС…РѕРґСЏС‰РµРіРѕ РІ РѕР±СЂР°С‚РЅСѓСЋ СЃС‚РѕСЂРѕРЅСѓ РїРѕ С‚СЂР°РµРєС‚РѕСЂРёРё РїСѓР»Рё(РґР»СЏ РЅРµР±РѕР»СЊС€РёС… СЃРєРѕСЂРѕСЃС‚РµР№ Р»СѓС‡С€Рµ РЅРµ СЃС‚Р°РІРёС‚СЊ Р±РѕР»СЊС€Рµ, С‡РµРј 0.5f)
     [SerializeField] private float backRayDistance = 0.5f;
     [SerializeField] private float lifeTime = 3f;
-    // Название пула объектов, в котором хранятся экземпляры данного патрона
+    // РќР°Р·РІР°РЅРёРµ РїСѓР»Р° РѕР±СЉРµРєС‚РѕРІ, РІ РєРѕС‚РѕСЂРѕРј С…СЂР°РЅСЏС‚СЃСЏ СЌРєР·РµРјРїР»СЏСЂС‹ РґР°РЅРЅРѕРіРѕ РїР°С‚СЂРѕРЅР°
     [SerializeField] private string poolName;
 
     /// <summary>
-    /// Количество получаемого сущностью урона
+    /// РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕР»СѓС‡Р°РµРјРѕРіРѕ СЃСѓС‰РЅРѕСЃС‚СЊСЋ СѓСЂРѕРЅР°
     /// </summary>
     public int Damage { get; private set; }
 
     /// <summary>
-    /// Скорость полёта пули
+    /// РЎРєРѕСЂРѕСЃС‚СЊ РїРѕР»С‘С‚Р° РїСѓР»Рё
     /// </summary>
     public int Velocity { get; private set; }
 
@@ -57,7 +57,7 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
         var hitInfo = CheckCollision();
         if (hitInfo != null)
         {
-            // Пуля не уничтожается при столкновении с пулей
+            // РџСѓР»СЏ РЅРµ СѓРЅРёС‡С‚РѕР¶Р°РµС‚СЃСЏ РїСЂРё СЃС‚РѕР»РєРЅРѕРІРµРЅРёРё СЃ РїСѓР»РµР№
             if (hitInfo.Value.collider.gameObject.GetComponent<Bullet>() == null)
             {
                 pool.ReturnObject(gameObject);
@@ -83,7 +83,7 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Придать пуле кинетическую энергию
+    /// РџСЂРёРґР°С‚СЊ РїСѓР»Рµ РєРёРЅРµС‚РёС‡РµСЃРєСѓСЋ СЌРЅРµСЂРіРёСЋ
     /// </summary>
     public void GiveBulletKineticEnergy(Vector3 bulletDirection)
     {
@@ -91,7 +91,7 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Проверка на столкновение с другими объектами (для объектов с большой скоростью)
+    /// РџСЂРѕРІРµСЂРєР° РЅР° СЃС‚РѕР»РєРЅРѕРІРµРЅРёРµ СЃ РґСЂСѓРіРёРјРё РѕР±СЉРµРєС‚Р°РјРё (РґР»СЏ РѕР±СЉРµРєС‚РѕРІ СЃ Р±РѕР»СЊС€РѕР№ СЃРєРѕСЂРѕСЃС‚СЊСЋ)
     /// </summary>
     private RaycastHit? CheckCollision()
     {
@@ -108,7 +108,7 @@ public class Bullet : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Произвести действия над объектом после столкновения пули с ним
+    /// РџСЂРѕРёР·РІРµСЃС‚Рё РґРµР№СЃС‚РІРёСЏ РЅР°Рґ РѕР±СЉРµРєС‚РѕРј РїРѕСЃР»Рµ СЃС‚РѕР»РєРЅРѕРІРµРЅРёСЏ РїСѓР»Рё СЃ РЅРёРј
     /// </summary>
     private void PerformCollisionEffects(Collider hitObjectCollider)
     {

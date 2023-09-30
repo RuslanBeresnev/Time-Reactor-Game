@@ -1,26 +1,26 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Реализация игрока
+/// Р РµР°Р»РёР·Р°С†РёСЏ РёРіСЂРѕРєР°
 /// </summary>
 public class PlayerController : Entity
 {
     private AudioSource playerMovingSource;
     private Rigidbody playerRigidbody;
 
-    // Скорость, с которой игрок должен двигаться в данный момент времени
+    // РЎРєРѕСЂРѕСЃС‚СЊ, СЃ РєРѕС‚РѕСЂРѕР№ РёРіСЂРѕРє РґРѕР»Р¶РµРЅ РґРІРёРіР°С‚СЊСЃСЏ РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РІСЂРµРјРµРЅРё
     private float currentSpeed;
     private Vector3 movementDirection;
     private Vector3 previousPosition;
 
-    // Скорость ходьбы игрока
+    // РЎРєРѕСЂРѕСЃС‚СЊ С…РѕРґСЊР±С‹ РёРіСЂРѕРєР°
     [SerializeField] private float walkingSpeed;
-    // Скорость бега игрока
+    // РЎРєРѕСЂРѕСЃС‚СЊ Р±РµРіР° РёРіСЂРѕРєР°
     [SerializeField] private float runningSpeed;
     [SerializeField] private float staminaCostPerSecondOfRunning;
     [SerializeField] private float minimumVelocityForMovingSound;
-    [SerializeField] private float distanceFromWhichToPushPlayer; // 40% от радиуса игрока
+    [SerializeField] private float distanceFromWhichToPushPlayer; // 40% РѕС‚ СЂР°РґРёСѓСЃР° РёРіСЂРѕРєР°
 
     [SerializeField] private GroundCheckerController groundChecker;
     [SerializeField] private StaminaController staminaController;
@@ -29,11 +29,11 @@ public class PlayerController : Entity
     [SerializeField] private AudioClip playerRunningSound;
 
     /// <summary>
-    /// Получить вектор скорости игрока (физическая скорость + скорость кинематического перемещения)
+    /// РџРѕР»СѓС‡РёС‚СЊ РІРµРєС‚РѕСЂ СЃРєРѕСЂРѕСЃС‚Рё РёРіСЂРѕРєР° (С„РёР·РёС‡РµСЃРєР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ + СЃРєРѕСЂРѕСЃС‚СЊ РєРёРЅРµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РїРµСЂРµРјРµС‰РµРЅРёСЏ)
     /// </summary>
     public Vector3 PlayerVelocity { get; private set; }
 
-    // Следующие 3 свойства для игрока не используются
+    // РЎР»РµРґСѓСЋС‰РёРµ 3 СЃРІРѕР№СЃС‚РІР° РґР»СЏ РёРіСЂРѕРєР° РЅРµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ
     public override string[,] ObjectInfoParameters { get; set; }
 
     public override string ObjectInfoHeader { get; set; }
@@ -60,7 +60,7 @@ public class PlayerController : Entity
     }
 
     /// <summary>
-    /// Движение игрока в зависимости от нажатых клавиш W, A, S, D
+    /// Р”РІРёР¶РµРЅРёРµ РёРіСЂРѕРєР° РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РЅР°Р¶Р°С‚С‹С… РєР»Р°РІРёС€ W, A, S, D
     /// </summary>
     private void CheckMoving()
     {
@@ -87,7 +87,7 @@ public class PlayerController : Entity
     }
 
     /// <summary>
-    /// Реализация механики бега
+    /// Р РµР°Р»РёР·Р°С†РёСЏ РјРµС…Р°РЅРёРєРё Р±РµРіР°
     /// </summary>
     private void CheckRunning()
     {
@@ -106,7 +106,7 @@ public class PlayerController : Entity
         else
         {
             currentSpeed = walkingSpeed;
-            // Шкала выносливости восстанавливается, только если игрок не бежит
+            // РЁРєР°Р»Р° РІС‹РЅРѕСЃР»РёРІРѕСЃС‚Рё РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ, С‚РѕР»СЊРєРѕ РµСЃР»Рё РёРіСЂРѕРє РЅРµ Р±РµР¶РёС‚
             staminaController.StaminaCanRegenerating = true;
 
             if (playerMovingSource.clip == playerRunningSound)
@@ -117,7 +117,7 @@ public class PlayerController : Entity
     }
 
     /// <summary>
-    /// Вытолкнуть игрока из стены, если он в ней застрял
+    /// Р’С‹С‚РѕР»РєРЅСѓС‚СЊ РёРіСЂРѕРєР° РёР· СЃС‚РµРЅС‹, РµСЃР»Рё РѕРЅ РІ РЅРµР№ Р·Р°СЃС‚СЂСЏР»
     /// </summary>
     private void PushOutPlayerFromWall()
     {
@@ -131,7 +131,7 @@ public class PlayerController : Entity
     }
 
     /// <summary>
-    /// Проверить, движется ли игрок с большей скоростью, чем заданная
+    /// РџСЂРѕРІРµСЂРёС‚СЊ, РґРІРёР¶РµС‚СЃСЏ Р»Рё РёРіСЂРѕРє СЃ Р±РѕР»СЊС€РµР№ СЃРєРѕСЂРѕСЃС‚СЊСЋ, С‡РµРј Р·Р°РґР°РЅРЅР°СЏ
     /// </summary>
     private bool IsPlayerVelocityHigher(float velocity)
     {
@@ -139,7 +139,7 @@ public class PlayerController : Entity
     }
 
     /// <summary>
-    /// Проиграть звук ходьбы игрока
+    /// РџСЂРѕРёРіСЂР°С‚СЊ Р·РІСѓРє С…РѕРґСЊР±С‹ РёРіСЂРѕРєР°
     /// </summary>
     private void PlayerMovingSourcePlay()
     {
@@ -160,7 +160,7 @@ public class PlayerController : Entity
     }
 
     /// <summary>
-    /// Поменять звуковой клип шагов игрока на звуки ходьбы
+    /// РџРѕРјРµРЅСЏС‚СЊ Р·РІСѓРєРѕРІРѕР№ РєР»РёРї С€Р°РіРѕРІ РёРіСЂРѕРєР° РЅР° Р·РІСѓРєРё С…РѕРґСЊР±С‹
     /// </summary>
     private void SwapMovingSoundToWalking()
     {
@@ -168,7 +168,7 @@ public class PlayerController : Entity
     }
 
     /// <summary>
-    /// Поменять звуковой клип шагов игрока на звуки бега
+    /// РџРѕРјРµРЅСЏС‚СЊ Р·РІСѓРєРѕРІРѕР№ РєР»РёРї С€Р°РіРѕРІ РёРіСЂРѕРєР° РЅР° Р·РІСѓРєРё Р±РµРіР°
     /// </summary>
     private void SwapMovingSoundToRunning()
     {
@@ -176,7 +176,7 @@ public class PlayerController : Entity
     }
 
     /// <summary>
-    /// Действия при смерти игрока
+    /// Р”РµР№СЃС‚РІРёСЏ РїСЂРё СЃРјРµСЂС‚Рё РёРіСЂРѕРєР°
     /// </summary>
     public override void OnDeath()
     {

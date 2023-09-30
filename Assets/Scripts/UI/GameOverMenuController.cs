@@ -1,13 +1,13 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Управление событиями из меню проигрыша
+/// РЈРїСЂР°РІР»РµРЅРёРµ СЃРѕР±С‹С‚РёСЏРјРё РёР· РјРµРЅСЋ РїСЂРѕРёРіСЂС‹С€Р°
 /// </summary>
 public class GameOverMenuController : MonoBehaviour
 {
     /// <summary>
-    /// Запустить главное меню
+    /// Р—Р°РїСѓСЃС‚РёС‚СЊ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ
     /// </summary>
     public void ToMainMenu()
     {
@@ -15,7 +15,7 @@ public class GameOverMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Выйти из игры
+    /// Р’С‹Р№С‚Рё РёР· РёРіСЂС‹
     /// </summary>
     public void QuitFromGame()
     {

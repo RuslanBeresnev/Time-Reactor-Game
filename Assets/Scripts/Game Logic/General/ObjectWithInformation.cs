@@ -1,9 +1,9 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using TMPro;
 
 /// <summary>
-/// Реализация объекта, имеющего информацию о себе, которую можно посмотреть через графический анализатор
-/// В методе Awake() класса-наследника нужно вызвать метод InitializePanelPrefab()
+/// Р РµР°Р»РёР·Р°С†РёСЏ РѕР±СЉРµРєС‚Р°, РёРјРµСЋС‰РµРіРѕ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃРµР±Рµ, РєРѕС‚РѕСЂСѓСЋ РјРѕР¶РЅРѕ РїРѕСЃРјРѕС‚СЂРµС‚СЊ С‡РµСЂРµР· РіСЂР°С„РёС‡РµСЃРєРёР№ Р°РЅР°Р»РёР·Р°С‚РѕСЂ
+/// Р’ РјРµС‚РѕРґРµ Awake() РєР»Р°СЃСЃР°-РЅР°СЃР»РµРґРЅРёРєР° РЅСѓР¶РЅРѕ РІС‹Р·РІР°С‚СЊ РјРµС‚РѕРґ InitializePanelPrefab()
 /// </summary>
 public abstract class ObjectWithInformation : MonoBehaviour
 {
@@ -12,23 +12,23 @@ public abstract class ObjectWithInformation : MonoBehaviour
     protected GameObject createdPanel = null;
 
     /// <summary>
-    /// Тип игрового объекта
+    /// РўРёРї РёРіСЂРѕРІРѕРіРѕ РѕР±СЉРµРєС‚Р°
     /// </summary>
     public abstract string ObjectInfoHeader { get; set; }
 
     /// <summary>
-    /// Цвет типа игрового объекта
+    /// Р¦РІРµС‚ С‚РёРїР° РёРіСЂРѕРІРѕРіРѕ РѕР±СЉРµРєС‚Р°
     /// </summary>
     public abstract Color ObjectInfoHeaderColor { get; set; }
 
     /// <summary>
-    /// Двумерный массив с информацией об игровом объекте, содержащий null или от 1 до 5 подмассивов (параметры объекта),
-    /// каждый из которых содержит 2 элемента - название параметра объекта и значение этого параметра
+    /// Р”РІСѓРјРµСЂРЅС‹Р№ РјР°СЃСЃРёРІ СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ РѕР± РёРіСЂРѕРІРѕРј РѕР±СЉРµРєС‚Рµ, СЃРѕРґРµСЂР¶Р°С‰РёР№ null РёР»Рё РѕС‚ 1 РґРѕ 5 РїРѕРґРјР°СЃСЃРёРІРѕРІ (РїР°СЂР°РјРµС‚СЂС‹ РѕР±СЉРµРєС‚Р°),
+    /// РєР°Р¶РґС‹Р№ РёР· РєРѕС‚РѕСЂС‹С… СЃРѕРґРµСЂР¶РёС‚ 2 СЌР»РµРјРµРЅС‚Р° - РЅР°Р·РІР°РЅРёРµ РїР°СЂР°РјРµС‚СЂР° РѕР±СЉРµРєС‚Р° Рё Р·РЅР°С‡РµРЅРёРµ СЌС‚РѕРіРѕ РїР°СЂР°РјРµС‚СЂР°
     /// </summary>
     public abstract string[,] ObjectInfoParameters { get; set; }
 
     /// <summary>
-    /// Загрузка префаба информационной панели из ресурсов
+    /// Р—Р°РіСЂСѓР·РєР° РїСЂРµС„Р°Р±Р° РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅРѕР№ РїР°РЅРµР»Рё РёР· СЂРµСЃСѓСЂСЃРѕРІ
     /// </summary>
     public void InitializeInfoPanelPrefab()
     {
@@ -36,7 +36,7 @@ public abstract class ObjectWithInformation : MonoBehaviour
     }
 
     /// <summary>
-    /// Показать панель с информацией об объекте
+    /// РџРѕРєР°Р·Р°С‚СЊ РїР°РЅРµР»СЊ СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ РѕР± РѕР±СЉРµРєС‚Рµ
     /// </summary>
     public void ShowInfoPanel()
     {
@@ -68,7 +68,7 @@ public abstract class ObjectWithInformation : MonoBehaviour
             var canvasRect = createdPanel.GetComponent<RectTransform>();
             var headerHeight = header.rectTransform.rect.height;
 
-            // Подсчёт высоты информационной панели в зависимости от количества параметров игрового объекта
+            // РџРѕРґСЃС‡С‘С‚ РІС‹СЃРѕС‚С‹ РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅРѕР№ РїР°РЅРµР»Рё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РєРѕР»РёС‡РµСЃС‚РІР° РїР°СЂР°РјРµС‚СЂРѕРІ РёРіСЂРѕРІРѕРіРѕ РѕР±СЉРµРєС‚Р°
             if (ObjectInfoParameters == null)
             {
                 canvasRect.sizeDelta = new Vector2(canvasRect.rect.width, headerHeight);
@@ -82,7 +82,7 @@ public abstract class ObjectWithInformation : MonoBehaviour
     }
 
     /// <summary>
-    /// Скрыть панель с информацией об объекте
+    /// РЎРєСЂС‹С‚СЊ РїР°РЅРµР»СЊ СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ РѕР± РѕР±СЉРµРєС‚Рµ
     /// </summary>
     public void HideInfoPanel()
     {
@@ -95,7 +95,7 @@ public abstract class ObjectWithInformation : MonoBehaviour
     }
 
     /// <summary>
-    /// Получить панель с информацией об объекте
+    /// РџРѕР»СѓС‡РёС‚СЊ РїР°РЅРµР»СЊ СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ РѕР± РѕР±СЉРµРєС‚Рµ
     /// </summary>
     public GameObject GetInfoPanel()
     {
@@ -103,9 +103,9 @@ public abstract class ObjectWithInformation : MonoBehaviour
     }
 
     /// <summary>
-    /// Настроить компонент Transform панели с информацией об объекте
+    /// РќР°СЃС‚СЂРѕРёС‚СЊ РєРѕРјРїРѕРЅРµРЅС‚ Transform РїР°РЅРµР»Рё СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ РѕР± РѕР±СЉРµРєС‚Рµ
     /// </summary>
-    /// <returns>true, если панель успешно настроена, иначе false</returns>
+    /// <returns>true, РµСЃР»Рё РїР°РЅРµР»СЊ СѓСЃРїРµС€РЅРѕ РЅР°СЃС‚СЂРѕРµРЅР°, РёРЅР°С‡Рµ false</returns>
     public bool SetInfoPanelTransform(Vector3 setterPosition, Quaternion setterRotation, Vector3 setterScale)
     {
         if (createdPanel == null)

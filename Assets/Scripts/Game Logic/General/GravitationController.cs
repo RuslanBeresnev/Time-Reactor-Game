@@ -1,7 +1,7 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 /// <summary>
-/// Реализация механики гравитации для объектов с Rigidbody
+/// Р РµР°Р»РёР·Р°С†РёСЏ РјРµС…Р°РЅРёРєРё РіСЂР°РІРёС‚Р°С†РёРё РґР»СЏ РѕР±СЉРµРєС‚РѕРІ СЃ Rigidbody
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class GravitationController : MonoBehaviour
@@ -11,12 +11,12 @@ public class GravitationController : MonoBehaviour
     private Rigidbody rigidBody;
 
     /// <summary>
-    /// Мировое ускорение свободного падения
+    /// РњРёСЂРѕРІРѕРµ СѓСЃРєРѕСЂРµРЅРёРµ СЃРІРѕР±РѕРґРЅРѕРіРѕ РїР°РґРµРЅРёСЏ
     /// </summary>
     public static float GlobalGravity => -9.81f;
 
     /// <summary>
-    /// Множитель гравитации для каждого объекта
+    /// РњРЅРѕР¶РёС‚РµР»СЊ РіСЂР°РІРёС‚Р°С†РёРё РґР»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р°
     /// </summary>
     public float GravityScale
     {

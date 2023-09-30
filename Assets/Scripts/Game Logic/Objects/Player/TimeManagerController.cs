@@ -1,28 +1,28 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections;
 using TMPro;
 
 /// <summary>
-/// Реализация управления временем (главная механика в игре)
+/// Р РµР°Р»РёР·Р°С†РёСЏ СѓРїСЂР°РІР»РµРЅРёСЏ РІСЂРµРјРµРЅРµРј (РіР»Р°РІРЅР°СЏ РјРµС…Р°РЅРёРєР° РІ РёРіСЂРµ)
 /// </summary>
 public class TimeManagerController : MonoBehaviour
 {
-    // Коэффициент замедления времени на экране
+    // РљРѕСЌС„С„РёС†РёРµРЅС‚ Р·Р°РјРµРґР»РµРЅРёСЏ РІСЂРµРјРµРЅРё РЅР° СЌРєСЂР°РЅРµ
     [SerializeField] private TextMeshProUGUI TSFCounter;
     [SerializeField] private Image timeSlowdownTimer;
 
     private float timeSlowdownFactor = 1f;
-    // Длительность способности замедлять время
+    // Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ СЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё Р·Р°РјРµРґР»СЏС‚СЊ РІСЂРµРјСЏ
     [SerializeField] private float slowdownDuration;
-    // Время перезарядки способности замедлять время (в секундах)
+    // Р’СЂРµРјСЏ РїРµСЂРµР·Р°СЂСЏРґРєРё СЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё Р·Р°РјРµРґР»СЏС‚СЊ РІСЂРµРјСЏ (РІ СЃРµРєСѓРЅРґР°С…)
     [SerializeField] private float abilityCooldown;
 
     private bool abilityCanBeUsed = true;
 
     /// <summary>
-    /// Во сколько раз может быть замедлено время (коэффициент будет расти от 1 до 20)
+    /// Р’Рѕ СЃРєРѕР»СЊРєРѕ СЂР°Р· РјРѕР¶РµС‚ Р±С‹С‚СЊ Р·Р°РјРµРґР»РµРЅРѕ РІСЂРµРјСЏ (РєРѕСЌС„С„РёС†РёРµРЅС‚ Р±СѓРґРµС‚ СЂР°СЃС‚Рё РѕС‚ 1 РґРѕ 20)
     /// </summary>
     public float TimeSlowdownFactor
     {
@@ -35,7 +35,7 @@ public class TimeManagerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Общий экземпляр класса для других классов
+    /// РћР±С‰РёР№ СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ РґСЂСѓРіРёС… РєР»Р°СЃСЃРѕРІ
     /// </summary>
     public static TimeManagerController SharedInstance { get; private set; }
 
@@ -50,7 +50,7 @@ public class TimeManagerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Отслеживание нажатия клавиши мыши для распознания использования способности
+    /// РћС‚СЃР»РµР¶РёРІР°РЅРёРµ РЅР°Р¶Р°С‚РёСЏ РєР»Р°РІРёС€Рё РјС‹С€Рё РґР»СЏ СЂР°СЃРїРѕР·РЅР°РЅРёСЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё
     /// </summary>
     private void CheckForAbilityUsing()
     {
@@ -61,7 +61,7 @@ public class TimeManagerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Замедлить время на несколько секунд
+    /// Р—Р°РјРµРґР»РёС‚СЊ РІСЂРµРјСЏ РЅР° РЅРµСЃРєРѕР»СЊРєРѕ СЃРµРєСѓРЅРґ
     /// </summary>
     private void SlowdownTime()
     {
@@ -77,7 +77,7 @@ public class TimeManagerController : MonoBehaviour
     }
 
     /// <summary>
-    /// По прошествии времени действия способности вернуть стандартное течение времени
+    /// РџРѕ РїСЂРѕС€РµСЃС‚РІРёРё РІСЂРµРјРµРЅРё РґРµР№СЃС‚РІРёСЏ СЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё РІРµСЂРЅСѓС‚СЊ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРµ С‚РµС‡РµРЅРёРµ РІСЂРµРјРµРЅРё
     /// </summary>
     private IEnumerator RevertToStandardTimescaleAfterAbilityPassing()
     {
@@ -87,7 +87,7 @@ public class TimeManagerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Произвести кулдаун перед возможностью снова использовать способность
+    /// РџСЂРѕРёР·РІРµСЃС‚Рё РєСѓР»РґР°СѓРЅ РїРµСЂРµРґ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ СЃРЅРѕРІР° РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЃРїРѕСЃРѕР±РЅРѕСЃС‚СЊ
     /// </summary>
     /// <returns></returns>
     private IEnumerator ImplementCooldownMechanic()
@@ -97,7 +97,7 @@ public class TimeManagerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Отобразить истекающий круговой таймер во время замедления времени
+    /// РћС‚РѕР±СЂР°Р·РёС‚СЊ РёСЃС‚РµРєР°СЋС‰РёР№ РєСЂСѓРіРѕРІРѕР№ С‚Р°Р№РјРµСЂ РІРѕ РІСЂРµРјСЏ Р·Р°РјРµРґР»РµРЅРёСЏ РІСЂРµРјРµРЅРё
     /// </summary>
     private IEnumerator DisplayTimeSlowdownTimer()
     {

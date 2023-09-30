@@ -1,46 +1,46 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System.Collections;
 
 /// <summary>
-/// Описывает поведение лазерной башни при атаке цели
+/// РћРїРёСЃС‹РІР°РµС‚ РїРѕРІРµРґРµРЅРёРµ Р»Р°Р·РµСЂРЅРѕР№ Р±Р°С€РЅРё РїСЂРё Р°С‚Р°РєРµ С†РµР»Рё
 /// </summary>
 public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
 {
     [SerializeField] private Transform emitter;
     [SerializeField] private string targetName;
-    // Название пула, где хранятся лазерные лучи
+    // РќР°Р·РІР°РЅРёРµ РїСѓР»Р°, РіРґРµ С…СЂР°РЅСЏС‚СЃСЏ Р»Р°Р·РµСЂРЅС‹Рµ Р»СѓС‡Рё
     [SerializeField] private string nameOfLaserPool;
 
     [SerializeField] private float reachRadius;
-    // Интервал между двумя нанесениями урона цели
+    // РРЅС‚РµСЂРІР°Р» РјРµР¶РґСѓ РґРІСѓРјСЏ РЅР°РЅРµСЃРµРЅРёСЏРјРё СѓСЂРѕРЅР° С†РµР»Рё
     [SerializeField] private float hitsInterval;
     [SerializeField] private float damagePerSecond;
 
     private Transform target;
     private Pool laserPool;
-    // Лазерный луч для данной лазерной башни
+    // Р›Р°Р·РµСЂРЅС‹Р№ Р»СѓС‡ РґР»СЏ РґР°РЅРЅРѕР№ Р»Р°Р·РµСЂРЅРѕР№ Р±Р°С€РЅРё
     private GameObject laser;
     private bool onAttack = false;
 
     private AudioSource laserAttackSound;
 
     /// <summary>
-    /// Досягаема ли цель для лазерной башни 
+    /// Р”РѕСЃСЏРіР°РµРјР° Р»Рё С†РµР»СЊ РґР»СЏ Р»Р°Р·РµСЂРЅРѕР№ Р±Р°С€РЅРё 
     /// </summary>
     public bool TargetInSight { get; set; }
 
     /// <summary>
-    /// Готова ли к атаке башня в данный момент (полностью ли она заряжена)
+    /// Р“РѕС‚РѕРІР° Р»Рё Рє Р°С‚Р°РєРµ Р±Р°С€РЅСЏ РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ (РїРѕР»РЅРѕСЃС‚СЊСЋ Р»Рё РѕРЅР° Р·Р°СЂСЏР¶РµРЅР°)
     /// </summary>
     public bool TowerCharged { get; set; } = false;
 
     /// <summary>
-    /// Радиус досягаемости цели
+    /// Р Р°РґРёСѓСЃ РґРѕСЃСЏРіР°РµРјРѕСЃС‚Рё С†РµР»Рё
     /// </summary>
     public float ReachRadius { get; private set; }
 
     /// <summary>
-    /// Количество урона в секунду
+    /// РљРѕР»РёС‡РµСЃС‚РІРѕ СѓСЂРѕРЅР° РІ СЃРµРєСѓРЅРґСѓ
     /// </summary>
     public float DamagePerSecond { get; set; }
 
@@ -60,8 +60,8 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
     {
         var chargingComponent = GetComponent<LaserTowerCharging>();
 
-        // Если на лазерной башне нет компонента LaserTowerCharging, то она всегда
-        // будет заряжана и начнёт атаку, как только цель попадёт в её поле зрения
+        // Р•СЃР»Рё РЅР° Р»Р°Р·РµСЂРЅРѕР№ Р±Р°С€РЅРµ РЅРµС‚ РєРѕРјРїРѕРЅРµРЅС‚Р° LaserTowerCharging, С‚Рѕ РѕРЅР° РІСЃРµРіРґР°
+        // Р±СѓРґРµС‚ Р·Р°СЂСЏР¶Р°РЅР° Рё РЅР°С‡РЅС‘С‚ Р°С‚Р°РєСѓ, РєР°Рє С‚РѕР»СЊРєРѕ С†РµР»СЊ РїРѕРїР°РґС‘С‚ РІ РµС‘ РїРѕР»Рµ Р·СЂРµРЅРёСЏ
         if (chargingComponent == null || !chargingComponent.enabled)
         {
             TowerCharged = true;
@@ -111,7 +111,7 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Проверить досягаемость цели для атаки
+    /// РџСЂРѕРІРµСЂРёС‚СЊ РґРѕСЃСЏРіР°РµРјРѕСЃС‚СЊ С†РµР»Рё РґР»СЏ Р°С‚Р°РєРё
     /// </summary>
     private bool IsTargetAvailableForAttack()
     {
@@ -127,7 +127,7 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Наносить урон игроку через промежутки времени
+    /// РќР°РЅРѕСЃРёС‚СЊ СѓСЂРѕРЅ РёРіСЂРѕРєСѓ С‡РµСЂРµР· РїСЂРѕРјРµР¶СѓС‚РєРё РІСЂРµРјРµРЅРё
     /// </summary>
     private IEnumerator DealDamageToTarget()
     {
@@ -143,7 +143,7 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Отрисовать лазерный луч между излучателем и целью
+    /// РћС‚СЂРёСЃРѕРІР°С‚СЊ Р»Р°Р·РµСЂРЅС‹Р№ Р»СѓС‡ РјРµР¶РґСѓ РёР·Р»СѓС‡Р°С‚РµР»РµРј Рё С†РµР»СЊСЋ
     /// </summary>
     private void DrawLaserRay()
     {
@@ -157,7 +157,7 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Начать атаку цели, если это возможно
+    /// РќР°С‡Р°С‚СЊ Р°С‚Р°РєСѓ С†РµР»Рё, РµСЃР»Рё СЌС‚Рѕ РІРѕР·РјРѕР¶РЅРѕ
     /// </summary>
     private void TryToAttackTarget()
     {
@@ -186,7 +186,7 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Проиграть звук лазерной атаки
+    /// РџСЂРѕРёРіСЂР°С‚СЊ Р·РІСѓРє Р»Р°Р·РµСЂРЅРѕР№ Р°С‚Р°РєРё
     /// </summary>
     private void PlayAttackSound()
     {
@@ -197,7 +197,7 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Вернуть лазерный луч в пул лучей
+    /// Р’РµСЂРЅСѓС‚СЊ Р»Р°Р·РµСЂРЅС‹Р№ Р»СѓС‡ РІ РїСѓР» Р»СѓС‡РµР№
     /// </summary>
     public void ReturnLaserToPool()
     {

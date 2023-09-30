@@ -1,20 +1,20 @@
-/// <summary>
-/// Параметры игровых настроек
+п»ї/// <summary>
+/// РџР°СЂР°РјРµС‚СЂС‹ РёРіСЂРѕРІС‹С… РЅР°СЃС‚СЂРѕРµРє
 /// </summary>
 public static class SettingsOptions
 {
     /// <summary>
-    /// Общая громкость звуков и музыки в игре
+    /// РћР±С‰Р°СЏ РіСЂРѕРјРєРѕСЃС‚СЊ Р·РІСѓРєРѕРІ Рё РјСѓР·С‹РєРё РІ РёРіСЂРµ
     /// </summary>
     public static float GeneralVolume { get; set; } = 1f;
 
     /// <summary>
-    /// Чувствительность мыши
+    /// Р§СѓРІСЃС‚РІРёС‚РµР»СЊРЅРѕСЃС‚СЊ РјС‹С€Рё
     /// </summary>
     public static float MouseSensitivity { get; set; } = 200;
 
     /// <summary>
-    /// Включена ли улучшенная графика
+    /// Р’РєР»СЋС‡РµРЅР° Р»Рё СѓР»СѓС‡С€РµРЅРЅР°СЏ РіСЂР°С„РёРєР°
     /// </summary>
     public static bool ImprovedGraphicsIsOn { get; set; } = true;
 }

@@ -1,15 +1,15 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// Реализация точки, в которой может появиться враг
+/// Р РµР°Р»РёР·Р°С†РёСЏ С‚РѕС‡РєРё, РІ РєРѕС‚РѕСЂРѕР№ РјРѕР¶РµС‚ РїРѕСЏРІРёС‚СЊСЃСЏ РІСЂР°Рі
 /// </summary>
 public class SpawnPoint : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemyPrefabs = new();
 
     /// <summary>
-    /// Список префабов врагов, которые могут появиться в данной точке
+    /// РЎРїРёСЃРѕРє РїСЂРµС„Р°Р±РѕРІ РІСЂР°РіРѕРІ, РєРѕС‚РѕСЂС‹Рµ РјРѕРіСѓС‚ РїРѕСЏРІРёС‚СЊСЃСЏ РІ РґР°РЅРЅРѕР№ С‚РѕС‡РєРµ
     /// </summary>
     public List<GameObject> EnemyPrefabs { get => enemyPrefabs; }
 }

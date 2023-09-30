@@ -1,11 +1,11 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
 /// <summary>
-/// Класс, реализующий каждое оружие в игре
+/// РљР»Р°СЃСЃ, СЂРµР°Р»РёР·СѓСЋС‰РёР№ РєР°Р¶РґРѕРµ РѕСЂСѓР¶РёРµ РІ РёРіСЂРµ
 /// </summary>
 public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 {
@@ -33,42 +33,42 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     [SerializeField] private float rayDistance;
 
     /// <summary>
-    /// Положение оружия в руке игрока
+    /// РџРѕР»РѕР¶РµРЅРёРµ РѕСЂСѓР¶РёСЏ РІ СЂСѓРєРµ РёРіСЂРѕРєР°
     /// </summary>
     public Transform PositionInPlayerHand { get; private set; }
 
     /// <summary>
-    /// Название оружия
+    /// РќР°Р·РІР°РЅРёРµ РѕСЂСѓР¶РёСЏ
     /// </summary>
     public string Name { get; private set; }
 
     /// <summary>
-    /// Изображение оружия в арсенале игрока
+    /// РР·РѕР±СЂР°Р¶РµРЅРёРµ РѕСЂСѓР¶РёСЏ РІ Р°СЂСЃРµРЅР°Р»Рµ РёРіСЂРѕРєР°
     /// </summary>
     public Sprite Sprite { get; private set; }
 
     /// <summary>
-    /// Минимальный интервал между выстрелами
+    /// РњРёРЅРёРјР°Р»СЊРЅС‹Р№ РёРЅС‚РµСЂРІР°Р» РјРµР¶РґСѓ РІС‹СЃС‚СЂРµР»Р°РјРё
     /// </summary>
     public float IntervalBetweenShoots { get; private set; }
 
     /// <summary>
-    /// Длительность перезарядки оружия
+    /// Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ РїРµСЂРµР·Р°СЂСЏРґРєРё РѕСЂСѓР¶РёСЏ
     /// </summary>
     public float ReloadingDuration { get; private set; }
 
     /// <summary>
-    /// Если указано true, то оружие будет вести полуавтоматическую стрельбу (пистолет), иначе автоматическую (винтовка)
+    /// Р•СЃР»Рё СѓРєР°Р·Р°РЅРѕ true, С‚Рѕ РѕСЂСѓР¶РёРµ Р±СѓРґРµС‚ РІРµСЃС‚Рё РїРѕР»СѓР°РІС‚РѕРјР°С‚РёС‡РµСЃРєСѓСЋ СЃС‚СЂРµР»СЊР±Сѓ (РїРёСЃС‚РѕР»РµС‚), РёРЅР°С‡Рµ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєСѓСЋ (РІРёРЅС‚РѕРІРєР°)
     /// </summary>
     public bool SemiAutoShooting { get; private set; } = true;
 
     /// <summary>
-    /// Звук подбирания оружия
+    /// Р—РІСѓРє РїРѕРґР±РёСЂР°РЅРёСЏ РѕСЂСѓР¶РёСЏ
     /// </summary>
     public AudioSource PickUpSound { get; private set; }
 
     /// <summary>
-    /// Текущее количество патронов в обойме
+    /// РўРµРєСѓС‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїР°С‚СЂРѕРЅРѕРІ РІ РѕР±РѕР№РјРµ
     /// </summary>
     public int BulletsCountInMagazine
     {
@@ -90,7 +90,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Количество патронов в запасе
+    /// РљРѕР»РёС‡РµСЃС‚РІРѕ РїР°С‚СЂРѕРЅРѕРІ РІ Р·Р°РїР°СЃРµ
     /// </summary>
     public int BulletsCountInReserve
     {
@@ -174,10 +174,10 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Оружие издаёт случайный звук удара с поверхностью, только когда касается слоя Default
+        // РћСЂСѓР¶РёРµ РёР·РґР°С‘С‚ СЃР»СѓС‡Р°Р№РЅС‹Р№ Р·РІСѓРє СѓРґР°СЂР° СЃ РїРѕРІРµСЂС…РЅРѕСЃС‚СЊСЋ, С‚РѕР»СЊРєРѕ РєРѕРіРґР° РєР°СЃР°РµС‚СЃСЏ СЃР»РѕСЏ Default
         if (collision.gameObject.layer == 0)
         {
-            // Если какой-то звук уже проигрывается, то он должен доиграться до конца
+            // Р•СЃР»Рё РєР°РєРѕР№-С‚Рѕ Р·РІСѓРє СѓР¶Рµ РїСЂРѕРёРіСЂС‹РІР°РµС‚СЃСЏ, С‚Рѕ РѕРЅ РґРѕР»Р¶РµРЅ РґРѕРёРіСЂР°С‚СЊСЃСЏ РґРѕ РєРѕРЅС†Р°
             foreach (var sound in weaponHitingOnSurfaceSounds)
             {
                 if (sound.isPlaying)
@@ -192,7 +192,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Перерисовать экран с информацией о количестве патронов
+    /// РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ СЌРєСЂР°РЅ СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ РєРѕР»РёС‡РµСЃС‚РІРµ РїР°С‚СЂРѕРЅРѕРІ
     /// </summary>
     private void RedrawAmmoScreen()
     {
@@ -200,7 +200,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Произвести выстрел из оружия
+    /// РџСЂРѕРёР·РІРµСЃС‚Рё РІС‹СЃС‚СЂРµР» РёР· РѕСЂСѓР¶РёСЏ
     /// </summary>
     public void Shoot()
     {
@@ -216,9 +216,9 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         RaycastHit hit;
         int defaultLayerMask = 1;
 
-        // Эта переменная отвечает за направление пули к центру экрана (прицелу);
-        // Из центра камеры выпускается нормированный луч, пересекает какой-то объект, и задаётся направление от дула оружия до точки
-        // соприкосновения луча с поверхностью в виде единичного вектора
+        // Р­С‚Р° РїРµСЂРµРјРµРЅРЅР°СЏ РѕС‚РІРµС‡Р°РµС‚ Р·Р° РЅР°РїСЂР°РІР»РµРЅРёРµ РїСѓР»Рё Рє С†РµРЅС‚СЂСѓ СЌРєСЂР°РЅР° (РїСЂРёС†РµР»Сѓ);
+        // РР· С†РµРЅС‚СЂР° РєР°РјРµСЂС‹ РІС‹РїСѓСЃРєР°РµС‚СЃСЏ РЅРѕСЂРјРёСЂРѕРІР°РЅРЅС‹Р№ Р»СѓС‡, РїРµСЂРµСЃРµРєР°РµС‚ РєР°РєРѕР№-С‚Рѕ РѕР±СЉРµРєС‚, Рё Р·Р°РґР°С‘С‚СЃСЏ РЅР°РїСЂР°РІР»РµРЅРёРµ РѕС‚ РґСѓР»Р° РѕСЂСѓР¶РёСЏ РґРѕ С‚РѕС‡РєРё
+        // СЃРѕРїСЂРёРєРѕСЃРЅРѕРІРµРЅРёСЏ Р»СѓС‡Р° СЃ РїРѕРІРµСЂС…РЅРѕСЃС‚СЊСЋ РІ РІРёРґРµ РµРґРёРЅРёС‡РЅРѕРіРѕ РІРµРєС‚РѕСЂР°
         Vector3 bulletDirection;
 
         if (Physics.Raycast(rayToScreenCenter, out hit, rayDistance, defaultLayerMask, QueryTriggerInteraction.Ignore))
@@ -235,7 +235,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Создать пулю при выстреле
+    /// РЎРѕР·РґР°С‚СЊ РїСѓР»СЋ РїСЂРё РІС‹СЃС‚СЂРµР»Рµ
     /// </summary>
     private void FireABullet(Vector3 bulletDirection)
     {
@@ -252,7 +252,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Смещение оружия назад, если оно застряло в стене
+    /// РЎРјРµС‰РµРЅРёРµ РѕСЂСѓР¶РёСЏ РЅР°Р·Р°Рґ, РµСЃР»Рё РѕРЅРѕ Р·Р°СЃС‚СЂСЏР»Рѕ РІ СЃС‚РµРЅРµ
     /// </summary>
     public void PushOutWeaponFromWall(float distanceFromWhichToPushWeapon)
     {
@@ -265,7 +265,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Установить всем частям оружия определённый слой и включить/выключить коллайдеры (используется при выбрасывании/подбирании оружия)
+    /// РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РІСЃРµРј С‡Р°СЃС‚СЏРј РѕСЂСѓР¶РёСЏ РѕРїСЂРµРґРµР»С‘РЅРЅС‹Р№ СЃР»РѕР№ Рё РІРєР»СЋС‡РёС‚СЊ/РІС‹РєР»СЋС‡РёС‚СЊ РєРѕР»Р»Р°Р№РґРµСЂС‹ (РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РїСЂРё РІС‹Р±СЂР°СЃС‹РІР°РЅРёРё/РїРѕРґР±РёСЂР°РЅРёРё РѕСЂСѓР¶РёСЏ)
     /// </summary>
     public void SetUpWeaponPartsLayersAndColliders(string layerName, bool collidersEnabled)
     {
@@ -282,7 +282,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Совершить действия с выброшенным оружием после того, как оно остановится после падения
+    /// РЎРѕРІРµСЂС€РёС‚СЊ РґРµР№СЃС‚РІРёСЏ СЃ РІС‹Р±СЂРѕС€РµРЅРЅС‹Рј РѕСЂСѓР¶РёРµРј РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РѕРЅРѕ РѕСЃС‚Р°РЅРѕРІРёС‚СЃСЏ РїРѕСЃР»Рµ РїР°РґРµРЅРёСЏ
     /// </summary>
     public IEnumerator PerformActionsAfterFallOfEjectedWeapon()
     {
@@ -291,7 +291,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Может ли быть выполнена перезарядка оружия
+    /// РњРѕР¶РµС‚ Р»Рё Р±С‹С‚СЊ РІС‹РїРѕР»РЅРµРЅР° РїРµСЂРµР·Р°СЂСЏРґРєР° РѕСЂСѓР¶РёСЏ
     /// </summary>
     public bool ReloadingCanBePerformed()
     {
@@ -299,7 +299,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Перезарядить оружие
+    /// РџРµСЂРµР·Р°СЂСЏРґРёС‚СЊ РѕСЂСѓР¶РёРµ
     /// </summary>
     public void ReloadWeapon()
     {
@@ -322,7 +322,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Проиграть звук перезарядки оружия
+    /// РџСЂРѕРёРіСЂР°С‚СЊ Р·РІСѓРє РїРµСЂРµР·Р°СЂСЏРґРєРё РѕСЂСѓР¶РёСЏ
     /// </summary>
     public void PlayReloadingSound()
     {
@@ -333,7 +333,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Прервать звук перезарядки оружия
+    /// РџСЂРµСЂРІР°С‚СЊ Р·РІСѓРє РїРµСЂРµР·Р°СЂСЏРґРєРё РѕСЂСѓР¶РёСЏ
     /// </summary>
     public void StopReloadingSound()
     {

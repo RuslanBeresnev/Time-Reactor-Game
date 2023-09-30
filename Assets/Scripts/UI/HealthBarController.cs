@@ -1,10 +1,10 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
 
 /// <summary>
-/// Реализация шкалы здоровья у каждой сущности
+/// Р РµР°Р»РёР·Р°С†РёСЏ С€РєР°Р»С‹ Р·РґРѕСЂРѕРІСЊСЏ Сѓ РєР°Р¶РґРѕР№ СЃСѓС‰РЅРѕСЃС‚Рё
 /// </summary>
 public class HealthBarController : MonoBehaviour
 {
@@ -30,7 +30,7 @@ public class HealthBarController : MonoBehaviour
     }
 
     /// <summary>
-    /// Перерисовать полоску и изменить выводимое значение здоровья сущности
+    /// РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ РїРѕР»РѕСЃРєСѓ Рё РёР·РјРµРЅРёС‚СЊ РІС‹РІРѕРґРёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ Р·РґРѕСЂРѕРІСЊСЏ СЃСѓС‰РЅРѕСЃС‚Рё
     /// </summary>
     private void RedrawHealthInfo(float health)
     {
@@ -39,7 +39,7 @@ public class HealthBarController : MonoBehaviour
     }
 
     /// <summary>
-    /// Повернуть полосу здоровья сущности так, чтобы она была параллельна плоскости камеры игрока
+    /// РџРѕРІРµСЂРЅСѓС‚СЊ РїРѕР»РѕСЃСѓ Р·РґРѕСЂРѕРІСЊСЏ СЃСѓС‰РЅРѕСЃС‚Рё С‚Р°Рє, С‡С‚РѕР±С‹ РѕРЅР° Р±С‹Р»Р° РїР°СЂР°Р»Р»РµР»СЊРЅР° РїР»РѕСЃРєРѕСЃС‚Рё РєР°РјРµСЂС‹ РёРіСЂРѕРєР°
     /// </summary>
     private void SetRotationOfHealthBar()
     {
@@ -47,7 +47,7 @@ public class HealthBarController : MonoBehaviour
     }
 
     /// <summary>
-    /// Показать или скрыть шкалу здоровья сущности в зависимости от режима графического анализатора игрока
+    /// РџРѕРєР°Р·Р°С‚СЊ РёР»Рё СЃРєСЂС‹С‚СЊ С€РєР°Р»Сѓ Р·РґРѕСЂРѕРІСЊСЏ СЃСѓС‰РЅРѕСЃС‚Рё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂРµР¶РёРјР° РіСЂР°С„РёС‡РµСЃРєРѕРіРѕ Р°РЅР°Р»РёР·Р°С‚РѕСЂР° РёРіСЂРѕРєР°
     /// </summary>
     private void ShowOrHideHealthBar(bool graphicAnalyzerIsActive)
     {

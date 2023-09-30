@@ -1,7 +1,7 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 /// <summary>
-/// Описывает поведение генератора энергии для лазерной башни
+/// РћРїРёСЃС‹РІР°РµС‚ РїРѕРІРµРґРµРЅРёРµ РіРµРЅРµСЂР°С‚РѕСЂР° СЌРЅРµСЂРіРёРё РґР»СЏ Р»Р°Р·РµСЂРЅРѕР№ Р±Р°С€РЅРё
 /// </summary>
 public class LaserTowerGeneratorController : Entity
 {
