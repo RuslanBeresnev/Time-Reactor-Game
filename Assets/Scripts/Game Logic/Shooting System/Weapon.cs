@@ -5,67 +5,176 @@ using System.Collections.Generic;
 using TMPro;
 
 /// <summary>
+/// Вид оружия
+/// </summary>
+public enum Type
+{
+    Firearm,
+    RPG,
+    Laser,
+    Annihilating,
+    Wall
+}
+
+/// <summary>
 /// Класс, реализующий каждое оружие в игре
 /// </summary>
 public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 {
-    [SerializeField] private Transform positionInPlayerHand;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Pool pool;
-    [SerializeField] private TextMeshProUGUI ammoScreen;
-    [SerializeField] private Transform weaponStart;
-    [SerializeField] private Transform weaponEnd;
+    [HideInInspector] [SerializeField] private Type type;
 
-    private AudioSource shotSound;
-    private AudioSource reloadingSound;
-    private List<AudioSource> weaponHitingOnSurfaceSounds = new List<AudioSource>();
+    [HideInInspector] [SerializeField] private Transform positionInPlayerHand;
+    [HideInInspector] [SerializeField] private GameObject bulletPrefab;
+    [HideInInspector] [SerializeField] private Pool pool;
+    [HideInInspector] [SerializeField] private TextMeshProUGUI ammoScreen;
+    [HideInInspector] [SerializeField] private Transform weaponStart;
+    [HideInInspector] [SerializeField] private Transform weaponEnd;
+
+    [HideInInspector] [SerializeField] private AudioSource shotSound;
+    [HideInInspector] [SerializeField] private AudioSource reloadingSound;
+
+    //@typo: hiting=>hitting
+    [HideInInspector] [SerializeField] private List<AudioSource> weaponHitingOnSurfaceSounds = new List<AudioSource>();
 
     private System.Random random = new System.Random();
 
-    [SerializeField] new private string name;
-    [SerializeField] private Sprite sprite;
-    [SerializeField] private float intervalBetweenShoots;
-    [SerializeField] private bool semiAutoShooting;
-    [SerializeField] private float reloadingDuration;
-    [SerializeField] private int magazinCapacity;
-    [SerializeField] private int bulletsCountInMagazine;
-    [SerializeField] private int bulletsCountInReserve;
-    [SerializeField] private float rayDistance;
+    [HideInInspector] [SerializeField] new private string name;
+    [HideInInspector] [SerializeField] private Sprite sprite;
+
+    //@ typo: shoots=>shots
+    [HideInInspector] [SerializeField] private float intervalBetweenShoots;
+
+    [HideInInspector] [SerializeField] private bool semiAutoShooting;
+    [HideInInspector] [SerializeField] private float reloadingDuration;
+    [HideInInspector] [SerializeField] private int magazinCapacity;
+    [HideInInspector] [SerializeField] private int bulletsCountInMagazine;
+    [HideInInspector] [SerializeField] private int bulletsCountInReserve;
+    [HideInInspector] [SerializeField] private float rayDistance;
+
+    /// <summary>
+    /// Вид (тип) оружия
+    /// </summary>
+    public Type Type
+    {
+        get { return type; }
+        set { type = value; }
+    }
 
     /// <summary>
     /// Положение оружия в руке игрока
     /// </summary>
-    public Transform PositionInPlayerHand { get; private set; }
+    public Transform PositionInPlayerHand { get; set; }
+
+    /// <summary>
+    /// Префаб пули (снаряда)
+    /// </summary>
+    public GameObject BulletPrefab 
+    {
+        get { return bulletPrefab; }
+        set {  bulletPrefab = value; } 
+    }
+
+    /// <summary>
+    /// Пул объектов (пуль)
+    /// </summary>
+    public Pool Pool
+    {
+        get { return pool; }
+        set { pool = value; }
+    }
+
+    /// <summary>
+    /// Экран с информацией о количестве патронов
+    /// </summary>
+    public TextMeshProUGUI AmmoScreen
+    {
+        get { return ammoScreen; }
+        set { ammoScreen = value; }
+    }
+
+    /// <summary>
+    /// Позиция начала оружия
+    /// </summary>
+    public Transform WeaponStart
+    {
+        get { return weaponStart; }
+        set { weaponStart = value; }
+    }
+
+    /// <summary>
+    /// Позиция конца оружия
+    /// </summary>
+    public Transform WeaponEnd
+    {
+        get { return weaponEnd; }
+        set { weaponEnd = value; }
+    }
+
+    /// <summary>
+    /// Звук выстрела
+    /// </summary>
+    public AudioSource ShotSound
+    {
+        get { return shotSound; }
+        set { shotSound = value; }
+    }
+
+    /// <summary>
+    /// Звук перезарядки
+    /// </summary>
+    public AudioSource ReloadingSound
+    {
+        get { return reloadingSound; }
+        set { reloadingSound = value; }
+    }
+
+    /// <summary>
+    /// Звуки удара оружия о поверхность
+    /// </summary>
+    public List<AudioSource> WeaponHitingOnSurfaceSounds
+    {
+        get { return weaponHitingOnSurfaceSounds; }
+        set { weaponHitingOnSurfaceSounds = value; }
+    }
 
     /// <summary>
     /// Название оружия
     /// </summary>
-    public string Name { get; private set; }
+    public string Name { get; set; }
 
     /// <summary>
     /// Изображение оружия в арсенале игрока
     /// </summary>
-    public Sprite Sprite { get; private set; }
+    public Sprite Sprite { get; set; }
 
     /// <summary>
     /// Минимальный интервал между выстрелами
     /// </summary>
-    public float IntervalBetweenShoots { get; private set; }
+    public float IntervalBetweenShoots { get; set; }
 
     /// <summary>
     /// Длительность перезарядки оружия
     /// </summary>
-    public float ReloadingDuration { get; private set; }
+    public float ReloadingDuration { get; set; }
 
     /// <summary>
     /// Если указано true, то оружие будет вести полуавтоматическую стрельбу (пистолет), иначе автоматическую (винтовка)
     /// </summary>
-    public bool SemiAutoShooting { get; private set; } = true;
+    public bool SemiAutoShooting { get; set; } = true;
 
     /// <summary>
-    /// Звук подбирания оружия
+    /// Звук подбора оружия
     /// </summary>
-    public AudioSource PickUpSound { get; private set; }
+    public AudioSource PickUpSound { get; set; }
+
+    /// <summary>
+    /// Вместимость обоймы
+    /// </summary>
+    public int MagazinCapacity
+    {
+        get { return magazinCapacity; }
+        set { magazinCapacity = value; }
+    }
 
     /// <summary>
     /// Текущее количество патронов в обойме
@@ -104,6 +213,15 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
                 RedrawAmmoScreen();
             }
         }
+    }
+
+    /// <summary>
+    /// Дальность стрельбы
+    /// </summary>
+    public float RayDistance
+    {
+        get { return rayDistance; }
+        set {  rayDistance = value; }
     }
 
     public override string[,] ObjectInfoParameters { get; set; }

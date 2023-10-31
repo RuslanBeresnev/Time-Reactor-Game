@@ -12498,6 +12498,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1586286418}
     - target: {fileID: -7767229191147409252, guid: 2ac2fb4feea4ef54abd6916cd51e0c1e, type: 3}
+      propertyPath: type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7767229191147409252, guid: 2ac2fb4feea4ef54abd6916cd51e0c1e, type: 3}
       propertyPath: positionInPlayerHand
       value: 
       objectReference: {fileID: 2007026954}
@@ -16918,13 +16922,41 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
+      propertyPath: Test
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: pool
       value: 
       objectReference: {fileID: 1934172317}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
+      propertyPath: magazinCapacity
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
+      propertyPath: semiAutoShooting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: positionInPlayerHand
       value: 
       objectReference: {fileID: 514123952}
+    - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
+      propertyPath: bulletsCountInReserve
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
+      propertyPath: intervalBetweenShoots
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
+      propertyPath: bulletsCountInMagazine
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
+      propertyPath: weaponHitingOnSurfaceSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4160945714847368073, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: m_IsKinematic
       value: 1
