@@ -32,7 +32,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     [HideInInspector] [SerializeField] private AudioSource shotSound;
     [HideInInspector] [SerializeField] private AudioSource reloadingSound;
-
     //@typo: hiting=>hitting
     [HideInInspector] [SerializeField] private List<AudioSource> weaponHitingOnSurfaceSounds = new List<AudioSource>();
 
@@ -40,10 +39,8 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     [HideInInspector] [SerializeField] new private string name;
     [HideInInspector] [SerializeField] private Sprite sprite;
-
     //@ typo: shoots=>shots
     [HideInInspector] [SerializeField] private float intervalBetweenShoots;
-
     [HideInInspector] [SerializeField] private bool semiAutoShooting;
     [HideInInspector] [SerializeField] private float reloadingDuration;
     [HideInInspector] [SerializeField] private int magazinCapacity;
@@ -349,7 +346,26 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
                 Vector3.Distance(weaponEnd.position, rayToScreenCenter.origin + rayToScreenCenter.direction * rayDistance);
         }
 
-        FireABullet(bulletDirection);
+        switch (type)
+        {
+            case Type.Firearm:
+                FireABullet(bulletDirection); 
+                break;
+            case Type.RPG:
+                FireBomb(bulletDirection);
+                break;
+        }
+    }
+
+    private void FireBomb(Vector3 direction)
+    {
+        Debug.Log("BOMB");
+        GameObject bomb = Instantiate(bulletPrefab, WeaponEnd.position, Quaternion.identity);
+        var rotation = Quaternion.FromToRotation(bulletPrefab.transform.forward, direction);
+        bomb.transform.rotation = rotation;
+
+        bomb.GetComponent<Bomb>().GiveKineticEnergy(direction);
+
     }
 
     /// <summary>

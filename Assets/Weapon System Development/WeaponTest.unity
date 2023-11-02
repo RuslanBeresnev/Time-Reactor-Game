@@ -1137,6 +1137,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 897527127}
     - target: {fileID: 1031649329562479221, guid: b486f9a4672829445936690bf795c6ef, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031649329562479221, guid: b486f9a4672829445936690bf795c6ef, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5661181745838182605, guid: 42693fcdede862f4b9a69d1e7ba8d718, type: 3}
+    - target: {fileID: 1031649329562479221, guid: b486f9a4672829445936690bf795c6ef, type: 3}
       propertyPath: positionInPlayerHand
       value: 
       objectReference: {fileID: 1968297263}
@@ -7460,7 +7468,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25104
+  m_Name: pb_Mesh24906
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9324,7 +9332,7 @@ Transform:
   - {fileID: 1586682124}
   - {fileID: 891516608}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &873496000
 Rigidbody:
@@ -10970,7 +10978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1283478839386001840, guid: 7cac519ecd621524685483dc25f9cee3, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1283478839386001840, guid: 7cac519ecd621524685483dc25f9cee3, type: 3}
       propertyPath: m_LocalScale.x
@@ -16929,6 +16937,14 @@ PrefabInstance:
       propertyPath: pool
       value: 
       objectReference: {fileID: 1934172317}
+    - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5994419726597024171, guid: 9fd98004fdd23f1408fd0274c7131535, type: 3}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: magazinCapacity
       value: 30
