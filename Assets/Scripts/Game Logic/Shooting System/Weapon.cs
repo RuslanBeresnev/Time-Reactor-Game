@@ -21,32 +21,72 @@ public enum Type
 /// </summary>
 public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 {
-    [HideInInspector] [SerializeField] private Type type;
+    [HideInInspector][SerializeField] private Type type;
 
-    [HideInInspector] [SerializeField] private Transform positionInPlayerHand;
-    [HideInInspector] [SerializeField] private GameObject bulletPrefab;
-    [HideInInspector] [SerializeField] private Pool pool;
-    [HideInInspector] [SerializeField] private TextMeshProUGUI ammoScreen;
-    [HideInInspector] [SerializeField] private Transform weaponStart;
-    [HideInInspector] [SerializeField] private Transform weaponEnd;
+    [HideInInspector][SerializeField] private float laserDamage;
+    [HideInInspector][SerializeField] private float laserWidth = 0.2f;
+    [HideInInspector][SerializeField] private Color laserColor;
+    [HideInInspector][SerializeField] private Material laserMaterial;
+    private GameObject laserGO;
 
-    [HideInInspector] [SerializeField] private AudioSource shotSound;
-    [HideInInspector] [SerializeField] private AudioSource reloadingSound;
+    [HideInInspector][SerializeField] private Transform positionInPlayerHand;
+    [HideInInspector][SerializeField] private GameObject bulletPrefab;
+    [HideInInspector][SerializeField] private Pool pool;
+    [HideInInspector][SerializeField] private TextMeshProUGUI ammoScreen;
+    [HideInInspector][SerializeField] private Transform weaponStart;
+    [HideInInspector][SerializeField] private Transform weaponEnd;
+
+    [HideInInspector][SerializeField] private AudioSource shotSound;
+    [HideInInspector][SerializeField] private AudioSource reloadingSound;
     //@typo: hiting=>hitting
-    [HideInInspector] [SerializeField] private List<AudioSource> weaponHitingOnSurfaceSounds = new List<AudioSource>();
+    [HideInInspector][SerializeField] private List<AudioSource> weaponHitingOnSurfaceSounds = new List<AudioSource>();
 
     private System.Random random = new System.Random();
 
-    [HideInInspector] [SerializeField] new private string name;
-    [HideInInspector] [SerializeField] private Sprite sprite;
+    [HideInInspector][SerializeField] new private string name;
+    [HideInInspector][SerializeField] private Sprite sprite;
     //@ typo: shoots=>shots
-    [HideInInspector] [SerializeField] private float intervalBetweenShoots;
-    [HideInInspector] [SerializeField] private bool semiAutoShooting;
-    [HideInInspector] [SerializeField] private float reloadingDuration;
-    [HideInInspector] [SerializeField] private int magazinCapacity;
-    [HideInInspector] [SerializeField] private int bulletsCountInMagazine;
-    [HideInInspector] [SerializeField] private int bulletsCountInReserve;
-    [HideInInspector] [SerializeField] private float rayDistance;
+    [HideInInspector][SerializeField] private float intervalBetweenShoots;
+    [HideInInspector][SerializeField] private bool semiAutoShooting;
+    [HideInInspector][SerializeField] private float reloadingDuration;
+    [HideInInspector][SerializeField] private int magazinCapacity;
+    [HideInInspector][SerializeField] private int bulletsCountInMagazine;
+    [HideInInspector][SerializeField] private int bulletsCountInReserve;
+    [HideInInspector][SerializeField] private float rayDistance;
+
+    #region Свойства
+    public Material LaserMaterial
+    {
+        get { return laserMaterial; }
+        set { laserMaterial = value; }
+    }
+
+    /// <summary>
+    /// Цвет лазера
+    /// </summary>
+    public Color LaserColor
+    {
+        get { return laserColor; }
+        set { laserColor = value; }
+    }
+
+    /// <summary>
+    /// Ширина лазера
+    /// </summary>
+    public float LaserWidth
+    {
+        get { return laserWidth; }
+        set { laserWidth = value; }
+    }
+
+    /// <summary>
+    /// Урон от лазера
+    /// </summary>
+    public float LaserDamage
+    {
+        get { return laserDamage; }
+        set { laserDamage = value; }
+    }
 
     /// <summary>
     /// Вид (тип) оружия
@@ -65,10 +105,10 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Префаб пули (снаряда)
     /// </summary>
-    public GameObject BulletPrefab 
+    public GameObject BulletPrefab
     {
         get { return bulletPrefab; }
-        set {  bulletPrefab = value; } 
+        set { bulletPrefab = value; }
     }
 
     /// <summary>
@@ -218,9 +258,12 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     public float RayDistance
     {
         get { return rayDistance; }
-        set {  rayDistance = value; }
+        set { rayDistance = value; }
     }
 
+    #endregion
+
+    #region Other
     public override string[,] ObjectInfoParameters { get; set; }
 
     public override string ObjectInfoHeader { get; set; } = "Weapon";
@@ -253,6 +296,11 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     private void Awake()
     {
+        if (type == Type.Laser || type == Type.Annihilating)
+        {
+            SemiAutoShooting = false;
+        }
+
         foreach (var audioSource in GetComponents<AudioSource>())
         {
             var clipName = audioSource.clip.name;
@@ -275,11 +323,28 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         }
 
         InitializeInfoPanelPrefab();
+        string damage = "";
+        string velocity = "";
+        if (type == Type.Laser)
+        {
+            damage = LaserDamage.ToString();
+            velocity = "N/A";
+        }
+        else if (type == Type.Firearm)
+        {
+            damage = bulletPrefab.GetComponent<Bullet>().Damage.ToString();
+            velocity = bulletPrefab.GetComponent<Bullet>().Velocity.ToString();
+        }
+        else if (type == Type.RPG)
+        {
+            damage = bulletPrefab.GetComponent<Bomb>().damage.ToString();
+            velocity = bulletPrefab.GetComponent<Bomb>().speed.ToString();
+        }
         ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
                                                   { "Shooting type:", SemiAutoShooting ? "Semi-Automatic" : "Automatic" },
                                                   { "Firing Frequency:", Math.Round(1 / IntervalBetweenShoots).ToString() + " per sec." },
-                                                  { "Bullet velocity:", bulletPrefab.GetComponent<Bullet>().Velocity.ToString() + " m/s" },
-                                                  { "Damage:", bulletPrefab.GetComponent<Bullet>().Damage.ToString() + " HP" } };
+                                                  { "Bullet velocity:", velocity  + " m/s" },
+                                                  { "Damage:", damage + " HP" } };
 
         if (BulletsCountInMagazine > magazinCapacity)
         {
@@ -314,16 +379,24 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         ammoScreen.text = BulletsCountInMagazine.ToString() + " / " + BulletsCountInReserve.ToString();
     }
 
+    #endregion
+
     /// <summary>
     /// Произвести выстрел из оружия
     /// </summary>
     public void Shoot()
     {
-        if (BulletsCountInMagazine == 0)
+        //@ redo for each type of weapon
+
+        if (type == Type.Firearm || type == Type.RPG)
         {
-            return;
+            if (BulletsCountInMagazine == 0)
+            {
+                return;
+            }
+            BulletsCountInMagazine--;
         }
-        BulletsCountInMagazine--;
+        
 
         shotSound.Play();
 
@@ -354,18 +427,49 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
             case Type.RPG:
                 FireBomb(bulletDirection);
                 break;
+            case Type.Laser:
+                FireLaser(hit);
+                break;
         }
+    }
+
+    private void FireLaser(RaycastHit hit)
+    {
+        if (laserGO == null) 
+        {
+            laserGO = new GameObject("laserGO", typeof(LineRenderer));
+            laserGO.transform.parent = transform;
+        }
+
+        LineRenderer lineRenderer = laserGO.GetComponent<LineRenderer>();
+        lineRenderer.material = laserMaterial;
+        lineRenderer.material.SetColor("color", laserColor);
+        lineRenderer.startWidth = laserWidth;
+        lineRenderer.endWidth = laserWidth;
+
+        lineRenderer.SetPosition(0, weaponEnd.position);
+        lineRenderer.SetPosition(1, hit.point);
+
+        var entity = hit.transform.GetComponent<Entity>();
+        if (entity != null)
+        {
+            entity.TakeDamage(laserDamage);
+        }
+    }
+
+    public void StopLaser()
+    {
+        if (laserGO != null)
+            Destroy(laserGO);
     }
 
     private void FireBomb(Vector3 direction)
     {
-        Debug.Log("BOMB");
         GameObject bomb = Instantiate(bulletPrefab, WeaponEnd.position, Quaternion.identity);
         var rotation = Quaternion.FromToRotation(bulletPrefab.transform.forward, direction);
         bomb.transform.rotation = rotation;
 
         bomb.GetComponent<Bomb>().GiveKineticEnergy(direction);
-
     }
 
     /// <summary>
