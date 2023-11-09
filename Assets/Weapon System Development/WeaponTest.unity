@@ -17201,12 +17201,16 @@ PrefabInstance:
       objectReference: {fileID: 1934172317}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: type
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: laserWidth
       value: 0.02
       objectReference: {fileID: 0}
+    - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
+      propertyPath: wallPrefab
+      value: 
+      objectReference: {fileID: 363874852184059891, guid: 4624b4038530b5a489238b31b8a8f3f3, type: 3}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: laserDamage
       value: 1

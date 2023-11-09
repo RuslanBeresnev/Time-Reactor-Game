@@ -61,7 +61,6 @@ public class WeaponEditor : Editor
                 weapon.SemiAutoShooting = EditorGUILayout.Toggle("Semi-shooting", weapon.SemiAutoShooting);
             }
 
-
             if (type == Type.Firearm || type == Type.RPG || type == Type.Laser)
             {
                 weapon.IntervalBetweenShoots = EditorGUILayout.FloatField("Interval between shots",
@@ -79,10 +78,16 @@ public class WeaponEditor : Editor
                     weapon.LaserDamage);
                 weapon.LaserWidth = EditorGUILayout.FloatField("Laser width",
                     weapon.LaserWidth);
-                weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material", weapon.LaserMaterial,
-                    typeof(Material), true);
+                weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material", 
+                    weapon.LaserMaterial, typeof(Material), true);
                 weapon.LaserColor = EditorGUILayout.ColorField("Laser color", 
                     weapon.LaserColor);
+            }
+
+            if (type == Type.Wall)
+            {
+                weapon.WallPrefab = (GameObject)EditorGUILayout.ObjectField("Wall prefab", 
+                    weapon.WallPrefab, typeof(GameObject), true);
             }
 
             weapon.ReloadingDuration = EditorGUILayout.FloatField("Reloading duration (s)", weapon.ReloadingDuration);

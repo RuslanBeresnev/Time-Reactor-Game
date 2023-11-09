@@ -29,6 +29,8 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     [HideInInspector][SerializeField] private Material laserMaterial;
     private GameObject laserGO;
 
+    [HideInInspector][SerializeField] private GameObject wallPrefab;
+
     [HideInInspector][SerializeField] private Transform positionInPlayerHand;
     [HideInInspector][SerializeField] private GameObject bulletPrefab;
     [HideInInspector][SerializeField] private Pool pool;
@@ -55,6 +57,18 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     [HideInInspector][SerializeField] private float rayDistance;
 
     #region Свойства
+    /// <summary>
+    /// Префаб стены для постройки
+    /// </summary>
+    public GameObject WallPrefab
+    {
+        get { return wallPrefab; }
+        set { wallPrefab = value; }
+    }
+
+    /// <summary>
+    /// Материал лазера
+    /// </summary>
     public Material LaserMaterial
     {
         get { return laserMaterial; }
@@ -386,8 +400,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     public void Shoot()
     {
-        //@ redo for each type of weapon
-
         if (type == Type.Firearm || type == Type.RPG)
         {
             if (BulletsCountInMagazine == 0)
@@ -397,7 +409,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
             BulletsCountInMagazine--;
         }
         
-
         shotSound.Play();
 
         Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
@@ -430,9 +441,31 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
             case Type.Laser:
                 FireLaser(hit);
                 break;
+            case Type.Wall:
+                BuildWall(hit);
+                break;
         }
     }
 
+    /// <summary>
+    /// Построить стену при выстреле
+    /// </summary>
+    private void BuildWall(RaycastHit hit)
+    {
+        //Поворот барьера к игроку основной стороной 
+        float yRotation = gameObject.transform.rotation.eulerAngles.y;
+        Quaternion rotation = Quaternion.Euler(0, yRotation, 0);
+
+        //Отступ по оси OY, чтобы барьер ставился точно на пол
+        float yOffset = wallPrefab.transform.localScale.y / 2.0f;
+        Vector3 position = new Vector3(hit.point.x, hit.point.y + yOffset, hit.point.z);
+        
+        var wallGO = Instantiate(wallPrefab, position, rotation);
+    } 
+
+    /// <summary>
+    /// Испускать лазер при выстреле
+    /// </summary>
     private void FireLaser(RaycastHit hit)
     {
         if (laserGO == null) 
@@ -457,12 +490,18 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         }
     }
 
+    /// <summary>
+    /// Прекратить испускание лазера
+    /// </summary>
     public void StopLaser()
     {
         if (laserGO != null)
             Destroy(laserGO);
     }
 
+    /// <summary>
+    /// Создать бомбу при выстреле
+    /// </summary>
     private void FireBomb(Vector3 direction)
     {
         GameObject bomb = Instantiate(bulletPrefab, WeaponEnd.position, Quaternion.identity);
