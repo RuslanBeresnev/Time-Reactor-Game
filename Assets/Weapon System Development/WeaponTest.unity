@@ -17238,7 +17238,7 @@ PrefabInstance:
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: laserMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 16d98052cd59ab247ad51a26c80e108c, type: 2}
+      objectReference: {fileID: 2100000, guid: 9d32fc581270e7240a59971669db98f3, type: 2}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: magazinCapacity
       value: 1000
