@@ -78,7 +78,7 @@ public abstract class Projectile : MonoBehaviour, ISerializationCallbackReceiver
 
     protected RaycastHit? CheckCollision()
     {
-        Vector3 currentTrajectory = (transform.position - previousPosition) / Vector3.Distance(transform.position, previousPosition);
+        Vector3 currentTrajectory = (transform.position - previousPosition).normalized;
         var backRay = new Ray(transform.position, -currentTrajectory);
         RaycastHit hit;
         int defaultLayerMask = 1;

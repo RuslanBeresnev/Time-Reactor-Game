@@ -418,12 +418,11 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
         if (Physics.Raycast(rayToScreenCenter, out hit, rayDistance, defaultLayerMask, QueryTriggerInteraction.Ignore))
         {
-            bulletDirection = (hit.point - weaponEnd.position) / Vector3.Distance(hit.point, weaponEnd.position);
+            bulletDirection = (hit.point - weaponEnd.position).normalized;
         }
         else
         {
-            bulletDirection = (rayToScreenCenter.origin + rayToScreenCenter.direction * rayDistance - weaponEnd.position) /
-                Vector3.Distance(weaponEnd.position, rayToScreenCenter.origin + rayToScreenCenter.direction * rayDistance);
+            bulletDirection = (rayToScreenCenter.origin + rayToScreenCenter.direction * rayDistance - weaponEnd.position).normalized;
         }
 
         if (type == Type.Firearm || type == Type.RPG)
