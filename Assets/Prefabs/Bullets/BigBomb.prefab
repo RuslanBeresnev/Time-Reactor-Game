@@ -111,11 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c84c3e76410744db7b212d231a0ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
-  rigidBody: {fileID: 1366478774282323603}
   damage: 50
+  velocity: 15
+  poolName: '"BigBomb" Bullets Pool'
+  explosionPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   range: 3
-  speed: 20
   maxLifetime: 3
   explosionForce: 40
 --- !u!54 &1366478774282323603

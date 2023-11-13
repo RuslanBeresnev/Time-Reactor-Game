@@ -111,12 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c84c3e76410744db7b212d231a0ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  rigidBody: {fileID: 1105157630483054581}
   damage: 10
-  range: 2
-  speed: 20
-  maxLifetime: 0.5
+  velocity: 15
+  lifetime: 0.5
+  backRayDistance: 0.5
+  poolName: '"Bomb" Bullets Pool'
+  explosionPrefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+  explosionRange: 0
   explosionForce: 10
 --- !u!54 &1105157630483054581
 Rigidbody:

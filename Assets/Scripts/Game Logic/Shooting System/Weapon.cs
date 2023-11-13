@@ -345,15 +345,10 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
             damage = LaserDamage.ToString();
             velocity = "N/A";
         }
-        else if (type == Type.Firearm)
+        else if (type == Type.Firearm || type == Type.RPG)
         {
-            damage = bulletPrefab.GetComponent<Bullet>().Damage.ToString();
-            velocity = bulletPrefab.GetComponent<Bullet>().Velocity.ToString();
-        }
-        else if (type == Type.RPG)
-        {
-            damage = bulletPrefab.GetComponent<Bomb>().damage.ToString();
-            velocity = bulletPrefab.GetComponent<Bomb>().speed.ToString();
+            damage = bulletPrefab.GetComponent<Projectile>().Damage.ToString();
+            velocity = bulletPrefab.GetComponent<Projectile>().Velocity.ToString();
         }
         ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
                                                   { "Shooting type:", SemiAutoShooting ? "Semi-Automatic" : "Automatic" },
@@ -409,7 +404,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
             }
             BulletsCountInMagazine--;
         }
-        
+
         shotSound.Play();
 
         Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
@@ -431,20 +426,17 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
                 Vector3.Distance(weaponEnd.position, rayToScreenCenter.origin + rayToScreenCenter.direction * rayDistance);
         }
 
-        switch (type)
+        if (type == Type.Firearm || type == Type.RPG)
         {
-            case Type.Firearm:
-                FireABullet(bulletDirection); 
-                break;
-            case Type.RPG:
-                FireBomb(bulletDirection);
-                break;
-            case Type.Laser:
-                FireLaser(hit);
-                break;
-            case Type.Wall:
-                BuildWall(hit);
-                break;
+            FireProjectile(bulletDirection);
+        }
+        else if (type == Type.Laser)
+        {
+            FireLaser(hit);
+        }
+        else if (type == Type.Wall)
+        {
+            BuildWall(hit);
         }
     }
 
@@ -501,32 +493,20 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Создать бомбу при выстреле
-    /// </summary>
-    private void FireBomb(Vector3 direction)
-    {
-        GameObject bomb = Instantiate(bulletPrefab, WeaponEnd.position, Quaternion.identity);
-        var rotation = Quaternion.FromToRotation(bulletPrefab.transform.forward, direction);
-        bomb.transform.rotation = rotation;
-
-        bomb.GetComponent<Bomb>().GiveKineticEnergy(direction);
-    }
-
-    /// <summary>
     /// Создать пулю при выстреле
     /// </summary>
-    private void FireABullet(Vector3 bulletDirection)
+    private void FireProjectile(Vector3 bulletDirection)
     {
-        var bullet = pool.GetObject();
-        if (bullet != null)
+        var projectile = pool.GetObject();
+        if (projectile != null)
         {
-            var bulletRotation = Quaternion.FromToRotation(bulletPrefab.transform.forward, bulletDirection);
-            bullet.transform.position = weaponEnd.position;
-            bullet.transform.rotation = bulletRotation;
+            var rotation = Quaternion.FromToRotation(bulletPrefab.transform.forward, bulletDirection);
+            projectile.transform.position = weaponEnd.position;
+            projectile.transform.rotation = rotation;
         }
 
-        var bulletComponent = bullet.GetComponent<Bullet>();
-        bulletComponent.GiveBulletKineticEnergy(bulletDirection);
+        var projectileComponent = projectile.GetComponent<Projectile>();
+        projectileComponent.GiveKineticEnergy(bulletDirection);
     }
 
     /// <summary>

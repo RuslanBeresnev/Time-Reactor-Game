@@ -1,72 +1,67 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+/// <summary>
+/// Бомба
+/// </summary>
+public class Bomb : Projectile
 {
     public GameObject explosionPrefab;
-    public Rigidbody rigidBody;
-
-    public float damage;
-    public float range;
-    public float speed;
-    public float maxLifetime;
+    public float explosionRange;
     public float explosionForce;
 
-    private float lifetime;
-
+    private void OnEnable()
+    {
+        StartCoroutine(DestroyAfterLifeTime());
+    }
+    
     void Start()
     {
         rigidBody.useGravity = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void PerformCollisionEffects(Collider hitObjectCollider)
     {
-        lifetime += Time.deltaTime;
-        if (lifetime > maxLifetime)
-            Explode();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("ONCOLLISION");
-        if (collision.collider.GetComponent<Bomb>() != null) return;
         Explode();
     }
 
+    /// <summary>
+    /// Взрыв бомбы с нанесением урона по радиусу
+    /// </summary>
     void Explode()
     {
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, range);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRange);
 
         foreach (Collider col in colliders)
         {
             if (col.GetComponent<Bomb>()) continue;
 
             if (col.GetComponent<Entity>() != null)
-                col.GetComponent<Entity>().TakeDamage(damage);
+                col.GetComponent<Entity>().TakeDamage(Damage);
 
             //@works incorrectly: clones lots of explosions
             //col.GetComponent<Rigidbody>()?.AddExplosionForce(explosionForce, transform.position, range);
         }
-
-        Destroy(gameObject);
 
         //else it won't stop playing particles
         //@ fix it
         Destroy(explosion, 2f);
     }
 
-    public void GiveKineticEnergy(Vector3 direction)
+    protected override IEnumerator DestroyAfterLifeTime()
     {
-        rigidBody.velocity = direction * speed * TimeScale.SharedInstance.Scale;
+        yield return StartCoroutine(TimeScale.SharedInstance.WaitForSeconds(Lifetime));
+        pool.ReturnObject(gameObject);
+        Explode();
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, explosionRange);
     }
 }
