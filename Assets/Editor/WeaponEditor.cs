@@ -51,6 +51,10 @@ public class WeaponEditor : Editor
                 weapon.Pool = (Pool)EditorGUILayout.ObjectField("Pool",
                     weapon.Pool, typeof(Pool), true);
             }
+
+            if (type == Type.Laser)
+            {
+            }
         }
 
         showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");

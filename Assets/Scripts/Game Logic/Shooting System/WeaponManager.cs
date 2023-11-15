@@ -133,9 +133,12 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         }
         else if (!Input.GetMouseButton(0))
         {
-            stopShooting = false;
-            if (WeaponsArsenal[ActiveSlotNumber].Type == Type.Laser)
-                WeaponsArsenal[ActiveSlotNumber].StopLaser();
+            if (WeaponsArsenal[ActiveSlotNumber] != null)
+            {
+                stopShooting = false;
+                if (WeaponsArsenal[ActiveSlotNumber].Type == Type.Laser)
+                    WeaponsArsenal[ActiveSlotNumber].StopLaser();
+            }
         }
     }
 

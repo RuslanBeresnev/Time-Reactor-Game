@@ -51,6 +51,9 @@ public abstract class Projectile : MonoBehaviour, ISerializationCallbackReceiver
     public void GiveKineticEnergy(Vector3 direction)
     {
         rigidBody.velocity = direction * velocity * TimeScale.SharedInstance.Scale;
+
+        Debug.Log("Giving:" + rigidBody.velocity + " == " + rigidBody.velocity.magnitude + " " +
+            direction + " " + velocity + " " + TimeScale.SharedInstance.Scale);
     }
 
     private void Awake()
