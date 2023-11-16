@@ -9,7 +9,7 @@
     ".NETStandard,Version=v2.1/": {
       "ClassLibrary1/1.0.0": {
         "dependencies": {
-          "RoomInteriorGenerator": "1.0.0-alpha5"
+          "RoomInteriorGenerator": "1.0.0-beta2"
         },
         "runtime": {
           "ClassLibrary1.dll": {}
@@ -64,7 +64,7 @@
           }
         }
       },
-      "RoomInteriorGenerator/1.0.0-alpha5": {
+      "RoomInteriorGenerator/1.0.0-beta2": {
         "dependencies": {
           "FSharp.Core": "6.0.0"
         },
@@ -90,12 +90,12 @@
       "path": "fsharp.core/6.0.0",
       "hashPath": "fsharp.core.6.0.0.nupkg.sha512"
     },
-    "RoomInteriorGenerator/1.0.0-alpha5": {
+    "RoomInteriorGenerator/1.0.0-beta2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NdkGQW3Paq8mlpT5+B5ya+1T20CXpAoq9mlZ+4WiXlUn9FJaEXQn0UKIqxZDn+iRKMqOCOi9JLM1pcV2qdsCfA==",
-      "path": "roominteriorgenerator/1.0.0-alpha5",
-      "hashPath": "roominteriorgenerator.1.0.0-alpha5.nupkg.sha512"
+      "sha512": "sha512-mX0f1njrOA75abjdJRxK2Un53EFNyih8kZBRb+degAlXVbDPDdnBAFnE0k109YWsnPjyiaALpVj0qRi6/xVB1g==",
+      "path": "roominteriorgenerator/1.0.0-beta2",
+      "hashPath": "roominteriorgenerator.1.0.0-beta2.nupkg.sha512"
     }
   }
 }
