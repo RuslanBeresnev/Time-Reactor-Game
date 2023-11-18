@@ -8,9 +8,8 @@ using UnityEngine;
 /// </summary>
 public class Bomb : Projectile
 {
-    public GameObject explosionPrefab;
-    public float explosionRange;
-    public float explosionForce;
+    private GameObject explosionPrefab;
+    private float explosionRange;
 
     private void OnEnable()
     {
