@@ -1302,12 +1302,20 @@ PrefabInstance:
       objectReference: {fileID: 2090489622}
     - target: {fileID: 1031649329562479221, guid: b486f9a4672829445936690bf795c6ef, type: 3}
       propertyPath: type
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031649329562479221, guid: b486f9a4672829445936690bf795c6ef, type: 3}
+      propertyPath: laserWidth
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 1031649329562479221, guid: b486f9a4672829445936690bf795c6ef, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 5661181745838182605, guid: 42693fcdede862f4b9a69d1e7ba8d718, type: 3}
+    - target: {fileID: 1031649329562479221, guid: b486f9a4672829445936690bf795c6ef, type: 3}
+      propertyPath: annihilatingTag
+      value: Annihil
+      objectReference: {fileID: 0}
     - target: {fileID: 1031649329562479221, guid: b486f9a4672829445936690bf795c6ef, type: 3}
       propertyPath: positionInPlayerHand
       value: 
@@ -17445,7 +17453,7 @@ PrefabInstance:
       objectReference: {fileID: 5994419726597024171, guid: 9fd98004fdd23f1408fd0274c7131535, type: 3}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: laserColor.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: laserColor.g
@@ -17453,7 +17461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: laserColor.r
-      value: 1
+      value: 0.25171447
       objectReference: {fileID: 0}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: lineRenderer
@@ -17462,7 +17470,7 @@ PrefabInstance:
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: laserMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 9d32fc581270e7240a59971669db98f3, type: 2}
+      objectReference: {fileID: 2100000, guid: 3e87d55ba29565f4c8b3669872c30e6b, type: 2}
     - target: {fileID: 3538383604126601038, guid: 51ed0e01259e49c4eb5b1331cd631b47, type: 3}
       propertyPath: magazinCapacity
       value: 1000

@@ -76,16 +76,25 @@ public class WeaponEditor : Editor
                 weapon.BulletsCountInReserve = EditorGUILayout.IntField("Bullets in reserve", weapon.BulletsCountInReserve);
             }
 
-            if (type == Type.Laser)
+            if (type == Type.Laser || type == Type.Annihilating)
             {
-                weapon.LaserDamage = EditorGUILayout.FloatField("Laser damage",
-                    weapon.LaserDamage);
                 weapon.LaserWidth = EditorGUILayout.FloatField("Laser width",
                     weapon.LaserWidth);
                 weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material", 
                     weapon.LaserMaterial, typeof(Material), true);
                 weapon.LaserColor = EditorGUILayout.ColorField("Laser color", 
                     weapon.LaserColor);
+            }
+
+            if (type == Type.Laser)
+            {
+                weapon.LaserDamage = EditorGUILayout.FloatField("Laser damage",
+                    weapon.LaserDamage);
+            }
+
+            if (type == Type.Annihilating)
+            {
+                weapon.AnnihilatingTag = EditorGUILayout.TagField("Tag: ", weapon.AnnihilatingTag);
             }
 
             if (type == Type.Wall)

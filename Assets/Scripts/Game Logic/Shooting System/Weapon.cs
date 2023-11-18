@@ -29,6 +29,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     [HideInInspector][SerializeField] private Color laserColor;
     [HideInInspector][SerializeField] private Material laserMaterial;
     private GameObject laserGO;
+    [HideInInspector][SerializeField] private string annihilatingTag;
 
     [HideInInspector][SerializeField] private GameObject wallPrefab;
 
@@ -58,6 +59,15 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     [HideInInspector][SerializeField] private float rayDistance;
 
     #region Свойства
+    /// <summary>
+    /// Тэг, означающий, что может быть уничтожено аннигилирующим оружием
+    /// </summary>
+    public string AnnihilatingTag
+    {
+        get { return annihilatingTag; }
+        set { annihilatingTag = value; }
+    }
+
     /// <summary>
     /// Префаб стены для постройки
     /// </summary>
@@ -437,6 +447,10 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         {
             BuildWall(hit);
         }
+        else if (type == Type.Annihilating)
+        {
+            FireAnnihilating(hit);
+        }
     }
 
     /// <summary>
@@ -454,6 +468,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
         Vector3 position = new Vector3(hit.point.x, hit.point.y + yOffset, hit.point.z);
         var wallGO = Instantiate(wallPrefab, position, rotation);
+        wallGO.tag = "Annihil";
     } 
 
     /// <summary>
@@ -461,7 +476,35 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     private void FireLaser(RaycastHit hit)
     {
-        if (laserGO == null) 
+        MakeLaser(hit);
+
+        var entity = hit.transform.GetComponent<Entity>();
+        if (entity != null)
+        {
+            entity.TakeDamage(laserDamage);
+        }
+    }
+
+    /// <summary>
+    /// Испускать аннигилирующий лазер
+    /// </summary>
+    private void FireAnnihilating(RaycastHit hit)
+    {
+        MakeLaser(hit);
+
+        var target = hit.transform.gameObject;
+        if (target.CompareTag(annihilatingTag))
+        {
+            Destroy(target.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Создать лазер
+    /// </summary>
+    private void MakeLaser(RaycastHit hit)
+    {
+        if (laserGO == null)
         {
             laserGO = new GameObject("laserGO", typeof(LineRenderer));
             laserGO.transform.parent = transform;
@@ -479,12 +522,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         lineRenderer.SetPosition(1, hit.point);
 
         lineRenderer.enabled = true;
-
-        var entity = hit.transform.GetComponent<Entity>();
-        if (entity != null)
-        {
-            entity.TakeDamage(laserDamage);
-        }
     }
 
     /// <summary>
