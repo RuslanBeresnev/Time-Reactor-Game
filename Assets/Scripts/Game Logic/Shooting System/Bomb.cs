@@ -16,11 +16,6 @@ public class Bomb : Projectile
     {
         StartCoroutine(DestroyAfterLifeTime());
     }
-    
-    void Start()
-    {
-        rigidBody.useGravity = true;
-    }
 
     protected override void PerformCollisionEffects(Collider hitObjectCollider)
     {
