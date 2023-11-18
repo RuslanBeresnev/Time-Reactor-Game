@@ -465,16 +465,20 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         {
             laserGO = new GameObject("laserGO", typeof(LineRenderer));
             laserGO.transform.parent = transform;
+
+            LineRenderer lineRendererComponent = laserGO.GetComponent<LineRenderer>();
+            lineRendererComponent.material = laserMaterial;
+            lineRendererComponent.material.SetColor("_Color", laserColor);
+            lineRendererComponent.startWidth = laserWidth;
+            lineRendererComponent.endWidth = laserWidth;
         }
 
         LineRenderer lineRenderer = laserGO.GetComponent<LineRenderer>();
-        lineRenderer.material = laserMaterial;
-        lineRenderer.material.SetColor("color", laserColor);
-        lineRenderer.startWidth = laserWidth;
-        lineRenderer.endWidth = laserWidth;
 
         lineRenderer.SetPosition(0, weaponEnd.position);
         lineRenderer.SetPosition(1, hit.point);
+
+        lineRenderer.enabled = true;
 
         var entity = hit.transform.GetComponent<Entity>();
         if (entity != null)
@@ -489,7 +493,9 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     public void StopLaser()
     {
         if (laserGO != null)
-            Destroy(laserGO);
+        {
+            laserGO.GetComponent<LineRenderer>().enabled = false;
+        }
     }
 
     /// <summary>
