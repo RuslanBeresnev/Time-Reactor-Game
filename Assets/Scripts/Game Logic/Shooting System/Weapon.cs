@@ -449,8 +449,9 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         Quaternion rotation = Quaternion.Euler(0, yRotation, 0);
 
         //Отступ, чтобы барьер ставился точно на поверхность
-        float yOffset = wallPrefab.transform.localScale.y / 2.0f * hit.normal.y;
-        
+        var renderer = wallPrefab.GetComponent<Renderer>();
+        float yOffset = renderer.bounds.extents.y * hit.normal.y;
+
         Vector3 position = new Vector3(hit.point.x, hit.point.y + yOffset, hit.point.z);
         var wallGO = Instantiate(wallPrefab, position, rotation);
     } 
