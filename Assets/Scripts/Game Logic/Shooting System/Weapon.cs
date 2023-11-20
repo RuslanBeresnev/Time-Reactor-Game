@@ -404,7 +404,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Произвести выстрел из оружия
     /// </summary>
-    public void Shoot()
+    public virtual void Shoot()
     {
         if (type == Type.Firearm || type == Type.RPG)
         {
@@ -452,24 +452,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
             FireAnnihilating(hit);
         }
     }
-
-    /// <summary>
-    /// Построить стену при выстреле
-    /// </summary>
-    private void BuildWall(RaycastHit hit)
-    {
-        //Поворот барьера к игроку основной стороной 
-        float yRotation = gameObject.transform.rotation.eulerAngles.y;
-        Quaternion rotation = Quaternion.Euler(0, yRotation, 0);
-
-        //Отступ, чтобы барьер ставился точно на поверхность
-        var renderer = wallPrefab.GetComponent<Renderer>();
-        float yOffset = renderer.bounds.extents.y * hit.normal.y;
-
-        Vector3 position = new Vector3(hit.point.x, hit.point.y + yOffset, hit.point.z);
-        var wallGO = Instantiate(wallPrefab, position, rotation);
-        wallGO.tag = "Annihil";
-    } 
 
     /// <summary>
     /// Испускать лазер при выстреле
@@ -538,7 +520,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Создать пулю при выстреле
     /// </summary>
-    private void FireProjectile(Vector3 bulletDirection)
+    protected void FireProjectile(Vector3 bulletDirection)
     {
         var projectile = pool.GetObject();
         if (projectile != null)
@@ -550,6 +532,43 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
         var projectileComponent = projectile.GetComponent<Projectile>();
         projectileComponent.GiveKineticEnergy(bulletDirection);
+    }
+
+    /// <summary>
+    /// Получить RaycastHit при выстреле
+    /// </summary>
+    /// <param name="hit"></param>
+    protected bool GetRaycastHit(ref RaycastHit hit)
+    {
+        Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        int defaultLayerMask = 1;
+
+        return Physics.Raycast(rayToScreenCenter, out hit, RayDistance, defaultLayerMask, QueryTriggerInteraction.Ignore);
+    }
+
+    /// <summary>
+    /// Определить направление выстрела
+    /// </summary>
+    protected Vector3 GetShootingDirection()
+    {
+        Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        RaycastHit hit = new RaycastHit();
+
+        // Эта переменная отвечает за направление пули к центру экрана (прицелу);
+        // Из центра камеры выпускается нормированный луч, пересекает какой-то объект, и задаётся направление от дула оружия до точки
+        // соприкосновения луча с поверхностью в виде единичного вектора
+        Vector3 bulletDirection;
+
+        if (GetRaycastHit(ref hit))
+        {
+            bulletDirection = (hit.point - WeaponEnd.position).normalized;
+        }
+        else
+        {
+            bulletDirection = (rayToScreenCenter.origin + rayToScreenCenter.direction * RayDistance - WeaponEnd.position).normalized;
+        }
+
+        return bulletDirection;
     }
 
     /// <summary>
