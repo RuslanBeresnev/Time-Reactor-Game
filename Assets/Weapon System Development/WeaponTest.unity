@@ -1302,7 +1302,7 @@ PrefabInstance:
       objectReference: {fileID: 2090489622}
     - target: {fileID: 1031649329562479221, guid: b486f9a4672829445936690bf795c6ef, type: 3}
       propertyPath: type
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1031649329562479221, guid: b486f9a4672829445936690bf795c6ef, type: 3}
       propertyPath: laserWidth
