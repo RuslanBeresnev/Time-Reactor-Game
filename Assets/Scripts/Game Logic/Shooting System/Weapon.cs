@@ -453,19 +453,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         //}
     }
 
-    /// <summary>
-    /// Испускать лазер при выстреле
-    /// </summary>
-    private void FireLaser(RaycastHit hit)
-    {
-        MakeLaser(hit);
-
-        var entity = hit.transform.GetComponent<Entity>();
-        if (entity != null)
-        {
-            entity.TakeDamage(laserDamage);
-        }
-    }
+    
 
     /// <summary>
     /// Испускать аннигилирующий лазер
@@ -484,7 +472,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Создать лазер
     /// </summary>
-    private void MakeLaser(RaycastHit hit)
+    protected void MakeLaser(RaycastHit hit)
     {
         if (laserGO == null)
         {
