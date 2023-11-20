@@ -435,22 +435,22 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
             bulletDirection = (rayToScreenCenter.origin + rayToScreenCenter.direction * rayDistance - weaponEnd.position).normalized;
         }
 
-        if (type == Type.Firearm || type == Type.RPG)
-        {
-            FireProjectile(bulletDirection);
-        }
-        else if (type == Type.Laser)
-        {
-            FireLaser(hit);
-        }
-        else if (type == Type.Wall)
-        {
-            BuildWall(hit);
-        }
-        else if (type == Type.Annihilating)
-        {
-            FireAnnihilating(hit);
-        }
+        //if (type == Type.Firearm || type == Type.RPG)
+        //{
+        //    FireProjectile(bulletDirection);
+        //}
+        //else if (type == Type.Laser)
+        //{
+        //    FireLaser(hit);
+        //}
+        //else if (type == Type.Wall)
+        //{
+        //    BuildWall(hit);
+        //}
+        //else if (type == Type.Annihilating)
+        //{
+        //    FireAnnihilating(hit);
+        //}
     }
 
     /// <summary>
@@ -537,7 +537,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Получить RaycastHit при выстреле
     /// </summary>
-    /// <param name="hit"></param>
     protected bool GetRaycastHit(ref RaycastHit hit)
     {
         Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
