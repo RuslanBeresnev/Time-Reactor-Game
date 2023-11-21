@@ -1,0 +1,259 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1704136250896619868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1704136250896619867}
+  - component: {fileID: 1704136250896619942}
+  - component: {fileID: 1704136250896619943}
+  - component: {fileID: 1704136250896619864}
+  - component: {fileID: 1704136250896619865}
+  - component: {fileID: 1704136250896619866}
+  m_Layer: 0
+  m_Name: WeaponTypes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1704136250896619867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704136250896619868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1704136252100618334}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1704136250896619942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704136250896619868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02b4e8daa0becf42a94d7bc4e89957c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  positionInPlayerHand: {fileID: 0}
+  ammoScreen: {fileID: 0}
+  weaponStart: {fileID: 0}
+  weaponEnd: {fileID: 0}
+  shotSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  weaponHitingOnSurfaceSounds: []
+  name: 
+  sprite: {fileID: 0}
+  intervalBetweenShoots: 0
+  semiAutoShooting: 1
+  reloadingDuration: 0
+  magazinCapacity: 0
+  bulletsCountInMagazine: 0
+  bulletsCountInReserve: 0
+  rayDistance: 0
+  laserDamage: 0
+  laserWidth: 0.2
+  laserColor: {r: 0, g: 0, b: 0, a: 0}
+  laserMaterial: {fileID: 0}
+  annihilatingTag: 
+--- !u!114 &1704136250896619943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704136250896619868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03b2c3febf21184c81db7468ef0abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  positionInPlayerHand: {fileID: 0}
+  ammoScreen: {fileID: 0}
+  weaponStart: {fileID: 0}
+  weaponEnd: {fileID: 0}
+  shotSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  weaponHitingOnSurfaceSounds: []
+  name: 
+  sprite: {fileID: 0}
+  intervalBetweenShoots: 0
+  semiAutoShooting: 1
+  reloadingDuration: 0
+  magazinCapacity: 0
+  bulletsCountInMagazine: 0
+  bulletsCountInReserve: 0
+  rayDistance: 0
+  projectilePrefab: {fileID: 0}
+  pool: {fileID: 0}
+--- !u!114 &1704136250896619864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704136250896619868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458ffce668e085545bcfd0679799d636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  positionInPlayerHand: {fileID: 0}
+  ammoScreen: {fileID: 0}
+  weaponStart: {fileID: 0}
+  weaponEnd: {fileID: 0}
+  shotSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  weaponHitingOnSurfaceSounds: []
+  name: 
+  sprite: {fileID: 0}
+  intervalBetweenShoots: 0
+  semiAutoShooting: 1
+  reloadingDuration: 0
+  magazinCapacity: 0
+  bulletsCountInMagazine: 0
+  bulletsCountInReserve: 0
+  rayDistance: 0
+  laserDamage: 0
+  laserWidth: 0.2
+  laserColor: {r: 0, g: 0, b: 0, a: 0}
+  laserMaterial: {fileID: 0}
+--- !u!114 &1704136250896619865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704136250896619868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52028781aaba06e4ab8fa642e5e3143d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  positionInPlayerHand: {fileID: 0}
+  ammoScreen: {fileID: 0}
+  weaponStart: {fileID: 0}
+  weaponEnd: {fileID: 0}
+  shotSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  weaponHitingOnSurfaceSounds: []
+  name: 
+  sprite: {fileID: 0}
+  intervalBetweenShoots: 0
+  semiAutoShooting: 1
+  reloadingDuration: 0
+  magazinCapacity: 0
+  bulletsCountInMagazine: 0
+  bulletsCountInReserve: 0
+  rayDistance: 0
+  projectilePrefab: {fileID: 0}
+  pool: {fileID: 0}
+--- !u!114 &1704136250896619866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704136250896619868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247884ed84a8d304493929c599dfabdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  positionInPlayerHand: {fileID: 0}
+  ammoScreen: {fileID: 0}
+  weaponStart: {fileID: 0}
+  weaponEnd: {fileID: 0}
+  shotSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  weaponHitingOnSurfaceSounds: []
+  name: 
+  sprite: {fileID: 0}
+  intervalBetweenShoots: 0
+  semiAutoShooting: 1
+  reloadingDuration: 0
+  magazinCapacity: 0
+  bulletsCountInMagazine: 0
+  bulletsCountInReserve: 0
+  rayDistance: 0
+  wallPrefab: {fileID: 0}
+--- !u!1 &1704136252100618320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1704136252100618334}
+  - component: {fileID: 1704136252100618335}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1704136252100618334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704136252100618320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1704136250896619867}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1704136252100618335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704136252100618320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d496e9ed3a95f3c4f834149f3ed0ab3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  positionInPlayerHand: {fileID: 0}
+  ammoScreen: {fileID: 0}
+  weaponStart: {fileID: 0}
+  weaponEnd: {fileID: 0}
+  shotSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  weaponHitingOnSurfaceSounds: []
+  name: 
+  sprite: {fileID: 0}
+  intervalBetweenShoots: 0
+  semiAutoShooting: 1
+  reloadingDuration: 0
+  magazinCapacity: 0
+  bulletsCountInMagazine: 0
+  bulletsCountInReserve: 0
+  rayDistance: 0
