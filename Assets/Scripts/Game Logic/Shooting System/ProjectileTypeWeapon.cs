@@ -31,7 +31,7 @@ public class ProjectileTypeWeapon : Weapon
     /// </summary>
     protected void FireProjectile(Vector3 bulletDirection)
     {
-        var projectile = pool.GetObject();
+        var projectile = Pool.GetObject();
         if (projectile != null)
         {
             var rotation = Quaternion.FromToRotation(ProjectilePrefab.transform.forward, bulletDirection);
@@ -47,8 +47,8 @@ public class ProjectileTypeWeapon : Weapon
     {
         base.Awake();
 
-        string damage = projectilePrefab.GetComponent<Projectile>().Damage.ToString();
-        string velocity = projectilePrefab.GetComponent<Projectile>().Velocity.ToString();
+        string damage = ProjectilePrefab.GetComponent<Projectile>().Damage.ToString();
+        string velocity = ProjectilePrefab.GetComponent<Projectile>().Velocity.ToString();
 
         ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
                                                   { "Shooting type:", SemiAutoShooting ? "Semi-Automatic" : "Automatic" },
