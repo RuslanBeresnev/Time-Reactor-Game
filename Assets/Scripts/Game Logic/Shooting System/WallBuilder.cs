@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class WallBuilder : Weapon
 {
+    [HideInInspector][SerializeField] private GameObject wallPrefab;
+
+    /// <summary>
+    /// Префаб стены для постройки
+    /// </summary>
+    public GameObject WallPrefab
+    {
+        get { return wallPrefab; }
+        set { wallPrefab = value; }
+    }
+
     public override void Shoot()
     {
         ShotSound.Play();
@@ -34,5 +45,18 @@ public class WallBuilder : Weapon
         //Навесить на стену тэг, чтобы она разрушалась
         //при стрельбе из аннигилирующего оружия
         wallGO.tag = "Annihil";
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        SemiAutoShooting = false;
+
+        ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
+                                              { "Shooting type:", SemiAutoShooting ? "Semi-Automatic" : "Automatic" },
+                                              { "Firing Frequency:", "N/A" },
+                                              { "Bullet velocity:", "N/A" },
+                                              { "Damage:", "N/A" } };
     }
 }

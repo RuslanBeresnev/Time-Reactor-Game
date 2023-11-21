@@ -24,18 +24,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 {
     [HideInInspector][SerializeField] private Type type;
 
-    [HideInInspector][SerializeField] private float laserDamage;
-    [HideInInspector][SerializeField] private float laserWidth = 0.2f;
-    [HideInInspector][SerializeField] private Color laserColor;
-    [HideInInspector][SerializeField] private Material laserMaterial;
-    private GameObject laserGO;
-    [HideInInspector][SerializeField] private string annihilatingTag;
-
-    [HideInInspector][SerializeField] private GameObject wallPrefab;
-
     [HideInInspector][SerializeField] private Transform positionInPlayerHand;
-    [HideInInspector][SerializeField] private GameObject bulletPrefab;
-    [HideInInspector][SerializeField] private Pool pool;
     [HideInInspector][SerializeField] private TextMeshProUGUI ammoScreen;
     [HideInInspector][SerializeField] private Transform weaponStart;
     [HideInInspector][SerializeField] private Transform weaponEnd;
@@ -60,60 +49,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     #region Свойства
     /// <summary>
-    /// Тэг, означающий, что может быть уничтожено аннигилирующим оружием
-    /// </summary>
-    public string AnnihilatingTag
-    {
-        get { return annihilatingTag; }
-        set { annihilatingTag = value; }
-    }
-
-    /// <summary>
-    /// Префаб стены для постройки
-    /// </summary>
-    public GameObject WallPrefab
-    {
-        get { return wallPrefab; }
-        set { wallPrefab = value; }
-    }
-
-    /// <summary>
-    /// Материал лазера
-    /// </summary>
-    public Material LaserMaterial
-    {
-        get { return laserMaterial; }
-        set { laserMaterial = value; }
-    }
-
-    /// <summary>
-    /// Цвет лазера
-    /// </summary>
-    public Color LaserColor
-    {
-        get { return laserColor; }
-        set { laserColor = value; }
-    }
-
-    /// <summary>
-    /// Ширина лазера
-    /// </summary>
-    public float LaserWidth
-    {
-        get { return laserWidth; }
-        set { laserWidth = value; }
-    }
-
-    /// <summary>
-    /// Урон от лазера
-    /// </summary>
-    public float LaserDamage
-    {
-        get { return laserDamage; }
-        set { laserDamage = value; }
-    }
-
-    /// <summary>
     /// Вид (тип) оружия
     /// </summary>
     public Type Type
@@ -126,24 +61,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// Положение оружия в руке игрока
     /// </summary>
     public Transform PositionInPlayerHand { get; set; }
-
-    /// <summary>
-    /// Префаб пули (снаряда)
-    /// </summary>
-    public GameObject BulletPrefab
-    {
-        get { return bulletPrefab; }
-        set { bulletPrefab = value; }
-    }
-
-    /// <summary>
-    /// Пул объектов (пуль)
-    /// </summary>
-    public Pool Pool
-    {
-        get { return pool; }
-        set { pool = value; }
-    }
 
     /// <summary>
     /// Экран с информацией о количестве патронов
@@ -319,13 +236,8 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         BulletsCountInReserve = bulletsCountInReserve;
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        if (type == Type.Laser || type == Type.Annihilating)
-        {
-            SemiAutoShooting = false;
-        }
-
         foreach (var audioSource in GetComponents<AudioSource>())
         {
             var clipName = audioSource.clip.name;
@@ -348,28 +260,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         }
 
         InitializeInfoPanelPrefab();
-        string damage = "";
-        string velocity = "";
-        if (type == Type.Laser)
-        {
-            damage = LaserDamage.ToString();
-            velocity = "N/A";
-        }
-        else if (type == Type.Firearm || type == Type.RPG)
-        {
-            damage = bulletPrefab.GetComponent<Projectile>().Damage.ToString();
-            velocity = bulletPrefab.GetComponent<Projectile>().Velocity.ToString();
-        }
-        ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
-                                                  { "Shooting type:", SemiAutoShooting ? "Semi-Automatic" : "Automatic" },
-                                                  { "Firing Frequency:", Math.Round(1 / IntervalBetweenShoots).ToString() + " per sec." },
-                                                  { "Bullet velocity:", velocity  + " m/s" },
-                                                  { "Damage:", damage + " HP" } };
-
-        if (BulletsCountInMagazine > magazinCapacity)
-        {
-            BulletsCountInMagazine = magazinCapacity;
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -405,122 +295,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// Произвести выстрел из оружия
     /// </summary>
     public virtual void Shoot()
-    {
-        if (type == Type.Firearm || type == Type.RPG)
-        {
-            if (BulletsCountInMagazine == 0)
-            {
-                return;
-            }
-            BulletsCountInMagazine--;
-        }
-
-        shotSound.Play();
-
-        Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        RaycastHit hit;
-        int defaultLayerMask = 1;
-
-        // Эта переменная отвечает за направление пули к центру экрана (прицелу);
-        // Из центра камеры выпускается нормированный луч, пересекает какой-то объект, и задаётся направление от дула оружия до точки
-        // соприкосновения луча с поверхностью в виде единичного вектора
-        Vector3 bulletDirection;
-
-        if (Physics.Raycast(rayToScreenCenter, out hit, rayDistance, defaultLayerMask, QueryTriggerInteraction.Ignore))
-        {
-            bulletDirection = (hit.point - weaponEnd.position).normalized;
-        }
-        else
-        {
-            bulletDirection = (rayToScreenCenter.origin + rayToScreenCenter.direction * rayDistance - weaponEnd.position).normalized;
-        }
-
-        //if (type == Type.Firearm || type == Type.RPG)
-        //{
-        //    FireProjectile(bulletDirection);
-        //}
-        //else if (type == Type.Laser)
-        //{
-        //    FireLaser(hit);
-        //}
-        //else if (type == Type.Wall)
-        //{
-        //    BuildWall(hit);
-        //}
-        //else if (type == Type.Annihilating)
-        //{
-        //    FireAnnihilating(hit);
-        //}
-    }
-
-    
-
-    /// <summary>
-    /// Испускать аннигилирующий лазер
-    /// </summary>
-    private void FireAnnihilating(RaycastHit hit)
-    {
-        MakeLaser(hit);
-
-        var target = hit.transform.gameObject;
-        if (target.CompareTag(annihilatingTag))
-        {
-            Destroy(target.gameObject);
-        }
-    }
-
-    /// <summary>
-    /// Создать лазер
-    /// </summary>
-    protected void MakeLaser(RaycastHit hit)
-    {
-        if (laserGO == null)
-        {
-            laserGO = new GameObject("laserGO", typeof(LineRenderer));
-            laserGO.transform.parent = transform;
-
-            LineRenderer lineRendererComponent = laserGO.GetComponent<LineRenderer>();
-            lineRendererComponent.material = laserMaterial;
-            lineRendererComponent.material.SetColor("_Color", laserColor);
-            lineRendererComponent.startWidth = laserWidth;
-            lineRendererComponent.endWidth = laserWidth;
-        }
-
-        LineRenderer lineRenderer = laserGO.GetComponent<LineRenderer>();
-
-        lineRenderer.SetPosition(0, weaponEnd.position);
-        lineRenderer.SetPosition(1, hit.point);
-
-        lineRenderer.enabled = true;
-    }
-
-    /// <summary>
-    /// Прекратить испускание лазера
-    /// </summary>
-    public void StopLaser()
-    {
-        if (laserGO != null)
-        {
-            laserGO.GetComponent<LineRenderer>().enabled = false;
-        }
-    }
-
-    /// <summary>
-    /// Создать пулю при выстреле
-    /// </summary>
-    protected void FireProjectile(Vector3 bulletDirection)
-    {
-        var projectile = pool.GetObject();
-        if (projectile != null)
-        {
-            var rotation = Quaternion.FromToRotation(bulletPrefab.transform.forward, bulletDirection);
-            projectile.transform.position = weaponEnd.position;
-            projectile.transform.rotation = rotation;
-        }
-
-        var projectileComponent = projectile.GetComponent<Projectile>();
-        projectileComponent.GiveKineticEnergy(bulletDirection);
-    }
+    { }
 
     /// <summary>
     /// Получить RaycastHit при выстреле

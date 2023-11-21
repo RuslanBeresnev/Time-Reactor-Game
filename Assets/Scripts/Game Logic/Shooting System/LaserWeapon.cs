@@ -1,26 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserWeapon : Weapon
+public class LaserWeapon : LaserTypeWeapon
 {
-    public override void Shoot()
+    protected override void Fire(RaycastHit hit)
     {
-        ShotSound.Play();
-
-        RaycastHit direction = new RaycastHit();
-        if (GetRaycastHit(ref direction))
-        {
-            FireLaser(direction);
-        }
-    }
-
-    /// <summary>
-    /// Испускать лазер при выстреле
-    /// </summary>
-    private void FireLaser(RaycastHit hit)
-    {
-        MakeLaser(hit);
+        base.Fire(hit);
 
         var entity = hit.transform.GetComponent<Entity>();
         if (entity != null)

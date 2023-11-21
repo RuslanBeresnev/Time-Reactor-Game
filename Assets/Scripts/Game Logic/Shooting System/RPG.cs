@@ -1,20 +1,15 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RPG : Weapon
+public class RPG : ProjectileTypeWeapon
 {
-    public override void Shoot()
+    protected override void Awake()
     {
-        if (BulletsCountInMagazine == 0)
-        {
-            return;
-        }
-        BulletsCountInMagazine--;
+        base.Awake();
 
-        ShotSound.Play();
-
-        Vector3 direction = GetShootingDirection();
-        FireProjectile(direction);
+        //РПГ не может вести автоматическую стрельбу
+        SemiAutoShooting = true;
     }
 }
