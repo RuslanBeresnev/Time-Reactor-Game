@@ -11,5 +11,5 @@ public class SpawnPoint : MonoBehaviour
     /// <summary>
     /// Список префабов врагов, которые могут появиться в данной точке
     /// </summary>
-    public List<GameObject> EnemyPrefabs { get => enemyPrefabs; }
+    // public List<GameObject> EnemyPrefabs { get => enemyPrefabs; }
 }
