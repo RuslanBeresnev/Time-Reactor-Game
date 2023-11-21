@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class AnnihilatingWeapon : LaserTypeWeapon
 {
-    [HideInInspector][SerializeField] private string annihilatingTag;
-
     /// <summary>
     /// Тэг, означающий, что может быть уничтожено аннигилирующим оружием
     /// </summary>
-    public string AnnihilatingTag
-    {
-        get { return annihilatingTag; }
-        set { annihilatingTag = value; }
-    }
+    public string AnnihilatingTag { get; set; }
 
     protected override void Fire(RaycastHit hit)
     {

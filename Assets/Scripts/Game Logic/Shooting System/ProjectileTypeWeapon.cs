@@ -2,26 +2,15 @@
 
 public class ProjectileTypeWeapon : Weapon
 {
-    [HideInInspector][SerializeField] private GameObject projectilePrefab;
-    [HideInInspector][SerializeField] private Pool pool;
-
     /// <summary>
     /// Префаб снаряда
     /// </summary>
-    public GameObject ProjectilePrefab
-    {
-        get { return projectilePrefab; }
-        set { projectilePrefab = value; }
-    }
+    public GameObject ProjectilePrefab { get; set; }
 
     /// <summary>
     /// Пул снарядов
     /// </summary>
-    public Pool Pool
-    {
-        get { return pool; }
-        set { pool = value; }
-    }
+    public Pool Pool { get; set; }
 
     public override void Shoot()
     {

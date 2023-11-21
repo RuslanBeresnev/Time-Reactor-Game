@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class WallBuilder : Weapon
 {
-    [HideInInspector][SerializeField] private GameObject wallPrefab;
-
     /// <summary>
     /// Префаб стены для постройки
     /// </summary>
-    public GameObject WallPrefab
-    {
-        get { return wallPrefab; }
-        set { wallPrefab = value; }
-    }
+    public GameObject WallPrefab { get; set; }
 
     public override void Shoot()
     {

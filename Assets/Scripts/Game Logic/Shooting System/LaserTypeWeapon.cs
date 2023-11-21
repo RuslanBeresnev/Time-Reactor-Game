@@ -4,47 +4,28 @@ using UnityEngine;
 
 public class LaserTypeWeapon : Weapon
 {
-    [HideInInspector][SerializeField] private float laserDamage;
-    [HideInInspector][SerializeField] private float laserWidth = 0.2f;
-    [HideInInspector][SerializeField] private Color laserColor;
-    [HideInInspector][SerializeField] private Material laserMaterial;
     protected GameObject laserGO;
 
     /// <summary>
     /// Материал лазера
     /// </summary>
-    public Material LaserMaterial
-    {
-        get { return laserMaterial; }
-        set { laserMaterial = value; }
-    }
+    public Material LaserMaterial { get; set; }
 
     /// <summary>
     /// Цвет лазера
     /// </summary>
-    public Color LaserColor
-    {
-        get { return laserColor; }
-        set { laserColor = value; }
-    }
+    public Color LaserColor {  get; set; }
 
     /// <summary>
     /// Ширина лазера
     /// </summary>
-    public float LaserWidth
-    {
-        get { return laserWidth; }
-        set { laserWidth = value; }
-    }
+    public float LaserWidth { get; set; }
 
     /// <summary>
     /// Урон от лазера
     /// </summary>
-    public float LaserDamage
-    {
-        get { return laserDamage; }
-        set { laserDamage = value; }
-    }
+    public float LaserDamage { get; set; }
+
 
     public override void Shoot()
     {
@@ -73,10 +54,10 @@ public class LaserTypeWeapon : Weapon
             laserGO.transform.parent = transform;
 
             LineRenderer lineRendererComponent = laserGO.GetComponent<LineRenderer>();
-            lineRendererComponent.material = laserMaterial;
-            lineRendererComponent.material.SetColor("_Color", laserColor);
-            lineRendererComponent.startWidth = laserWidth;
-            lineRendererComponent.endWidth = laserWidth;
+            lineRendererComponent.material = LaserMaterial;
+            lineRendererComponent.material.SetColor("_Color", LaserColor);
+            lineRendererComponent.startWidth = LaserWidth;
+            lineRendererComponent.endWidth = LaserWidth;
         }
 
         LineRenderer lineRenderer = laserGO.GetComponent<LineRenderer>();
