@@ -1373,6 +1373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5359263b3770134db8663de8b808c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPositions: []
+  enemyCount: 0
 --- !u!1 &8392053516526186945
 GameObject:
   m_ObjectHideFlags: 0
