@@ -2437,76 +2437,8 @@ MonoBehaviour:
       freeCellsOnLeft: 2
       freeCellsOnTop: 2
       freeCellsOnBottom: 2
-    - variant: {fileID: 6647474741519059165, guid: d11fa02819912dc4eb4e3c3f7181fa3b, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 8292741256075897434, guid: 0f18dd7fbf6cc0143bdbca4e7f1566b8, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
     placementRule: 0
     leafs: []
-  - name: Shelf Top
-    variants:
-    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    placementRule: 1
-    leafs:
-    - name: Tech
-      variants:
-      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 1745108677006244618, guid: 079ee1b393a037346b45db9fca36b8ff, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      placementRule: 9
-      leafs: []
   - name: Shelf Anywhere
     variants:
     - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
@@ -2805,7 +2737,7 @@ MonoBehaviour:
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 0
-    placementRule: 0
+    placementRule: 2
     leafs: []
   - name: Pallet
     variants:
@@ -2828,19 +2760,9 @@ MonoBehaviour:
       freeCellsOnLeft: 2
       freeCellsOnTop: 2
       freeCellsOnBottom: 2
-    - variant: {fileID: 6647474741519059165, guid: d11fa02819912dc4eb4e3c3f7181fa3b, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 8292741256075897434, guid: 0f18dd7fbf6cc0143bdbca4e7f1566b8, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
     placementRule: 0
     leafs: []
-  - name: Shelf Top
+  - name: Shelf
     variants:
     - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
       freeCellsOnRight: 6
@@ -2877,7 +2799,7 @@ MonoBehaviour:
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 1
-    placementRule: 1
+    placementRule: 0
     leafs:
     - name: Tech
       variants:
@@ -3763,16 +3685,6 @@ MonoBehaviour:
       freeCellsOnLeft: 2
       freeCellsOnTop: 2
       freeCellsOnBottom: 2
-    - variant: {fileID: 6647474741519059165, guid: d11fa02819912dc4eb4e3c3f7181fa3b, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 8292741256075897434, guid: 0f18dd7fbf6cc0143bdbca4e7f1566b8, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
     placementRule: 0
     leafs: []
   - name: Shelf Anywhere
