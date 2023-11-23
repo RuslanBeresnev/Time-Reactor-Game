@@ -9,23 +9,22 @@ public class LaserTypeWeapon : Weapon
     /// <summary>
     /// Материал лазера
     /// </summary>
-    public Material LaserMaterial { get; set; }
+    [field: SerializeField] public Material LaserMaterial { get; set; }
 
     /// <summary>
     /// Цвет лазера
     /// </summary>
-    public Color LaserColor {  get; set; }
+    [field: SerializeField] public Color LaserColor {  get; set; }
 
     /// <summary>
     /// Ширина лазера
     /// </summary>
-    public float LaserWidth { get; set; }
+    [field: SerializeField] public float LaserWidth { get; set; }
 
     /// <summary>
     /// Урон от лазера
     /// </summary>
-    public float LaserDamage { get; set; }
-
+    [field: SerializeField] public float LaserDamage { get; set; }
 
     public override void Shoot()
     {

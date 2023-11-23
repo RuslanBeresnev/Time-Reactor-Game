@@ -212,7 +212,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     public override Color ObjectInfoHeaderColor { get; set; } = Color.yellow;
 
-    public void OnBeforeSerialize()
+    public virtual void OnBeforeSerialize()
     {
         positionInPlayerHand = PositionInPlayerHand;
         name = Name;
@@ -224,7 +224,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         bulletsCountInReserve = BulletsCountInReserve;
     }
 
-    public void OnAfterDeserialize()
+    public virtual void OnAfterDeserialize()
     {
         PositionInPlayerHand = positionInPlayerHand;
         Name = name;
@@ -295,7 +295,8 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// Произвести выстрел из оружия
     /// </summary>
     public virtual void Shoot()
-    { }
+    {
+    }
 
     /// <summary>
     /// Получить RaycastHit при выстреле

@@ -139,7 +139,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
                 if (WeaponsArsenal[ActiveSlotNumber].Type == Type.Laser ||
                     WeaponsArsenal[ActiveSlotNumber].Type == Type.Annihilating)
                 {
-                    ((LaserTypeWeapon)WeaponsArsenal[ActiveSlotNumber]).StopLaser();
+                    (WeaponsArsenal[ActiveSlotNumber].GetComponentInChildren<LaserTypeWeapon>()).StopLaser();
                 }
             }
         }

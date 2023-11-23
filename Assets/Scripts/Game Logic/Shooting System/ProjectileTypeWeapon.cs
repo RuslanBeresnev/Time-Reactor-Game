@@ -5,12 +5,20 @@ public class ProjectileTypeWeapon : Weapon
     /// <summary>
     /// Префаб снаряда
     /// </summary>
-    public GameObject ProjectilePrefab { get; set; }
+    [field: SerializeField] public GameObject ProjectilePrefab { get; set; }
 
     /// <summary>
     /// Пул снарядов
     /// </summary>
-    public Pool Pool { get; set; }
+    [field: SerializeField] public Pool Pool { get; set; }
+
+    public override void OnBeforeSerialize()
+    {
+        if (ProjectilePrefab == null)
+        {
+            ProjectilePrefab = new GameObject();
+        }
+    }
 
     public override void Shoot()
     {
@@ -47,18 +55,22 @@ public class ProjectileTypeWeapon : Weapon
     {
         base.Awake();
 
-        string damage = ProjectilePrefab.GetComponent<Projectile>().Damage.ToString();
-        string velocity = ProjectilePrefab.GetComponent<Projectile>().Velocity.ToString();
+        if (BulletsCountInMagazine > MagazinCapacity)
+        {
+            BulletsCountInMagazine = MagazinCapacity;
+        }
+
+        var projectileComponent = ProjectilePrefab.GetComponent<Projectile>();
+        if (projectileComponent == null)
+            return;
+
+        string damage = projectileComponent.Damage.ToString();
+        string velocity = projectileComponent.Velocity.ToString();
 
         ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
                                                   { "Shooting type:", SemiAutoShooting ? "Semi-Automatic" : "Automatic" },
                                                   { "Firing Frequency:", System.Math.Round(1 / IntervalBetweenShoots).ToString() + " per sec." },
                                                   { "Bullet velocity:", velocity  + " m/s" },
                                                   { "Damage:", damage + " HP" } };
-
-        if (BulletsCountInMagazine > MagazinCapacity)
-        {
-            BulletsCountInMagazine = MagazinCapacity;
-        }
     }
 }
