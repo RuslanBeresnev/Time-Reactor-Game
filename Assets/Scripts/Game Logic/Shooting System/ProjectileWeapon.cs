@@ -2,8 +2,6 @@
 
 public class ProjectileWeapon : Weapon
 {
-    //[HideInInspector][SerializeField] private bool semiAutoShooting;
-
     /// <summary>
     /// Префаб снаряда
     /// </summary>

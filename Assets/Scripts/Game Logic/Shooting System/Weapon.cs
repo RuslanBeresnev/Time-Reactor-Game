@@ -17,7 +17,7 @@ public enum Type
 /// <summary>
 /// Класс, реализующий каждое оружие в игре
 /// </summary>
-public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
+public class Weapon : ObjectWithInformation
 {
     [HideInInspector][SerializeField] private Type type;
 
@@ -130,7 +130,11 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Название оружия
     /// </summary>
-    public string Name { get; set; }
+    public string Name 
+    { 
+        get => name; 
+        set => name = value; 
+    }
 
     /// <summary>
     /// Изображение оружия в арсенале игрока
@@ -158,8 +162,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         get => reloadingDuration; 
         set => reloadingDuration = value; 
     }
-
-    
 
     /// <summary>
     /// Звук подбора оружия
@@ -231,30 +233,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     public override string ObjectInfoHeader { get; set; } = "Weapon";
 
     public override Color ObjectInfoHeaderColor { get; set; } = Color.yellow;
-
-    public virtual void OnBeforeSerialize()
-    {
-        //positionInPlayerHand = PositionInPlayerHand;
-        name = Name;
-        //sprite = Sprite;
-        //intervalBetweenShoots = IntervalBetweenShoots;
-        //reloadingDuration = ReloadingDuration;
-        //semiAutoShooting = SemiAutoShooting;
-        bulletsCountInMagazine = BulletsCountInMagazine;
-        bulletsCountInReserve = BulletsCountInReserve;
-    }
-
-    public virtual void OnAfterDeserialize()
-    {
-        //PositionInPlayerHand = positionInPlayerHand;
-        Name = name;
-        //Sprite = sprite;
-        //IntervalBetweenShoots = intervalBetweenShoots;
-        //ReloadingDuration = reloadingDuration;
-        //SemiAutoShooting = semiAutoShooting;
-        BulletsCountInMagazine = bulletsCountInMagazine;
-        BulletsCountInReserve = bulletsCountInReserve;
-    }
 
     private void Awake()
     {
