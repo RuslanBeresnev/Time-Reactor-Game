@@ -12,15 +12,6 @@ public class ProjectileWeapon : Weapon
     /// </summary>
     [field: HideInInspector][field: SerializeField] public Pool Pool { get; set; }
 
-    public override void OnBeforeSerialize()
-    {
-        // Создавать GO - так себе идея
-        if (ProjectilePrefab == null)
-        {
-            ProjectilePrefab = new GameObject();
-        }
-    }
-
     protected override void RedrawAmmoScreen()
     {
         AmmoScreen.text = BulletsCountInMagazine.ToString() + " / " + BulletsCountInReserve.ToString();;
