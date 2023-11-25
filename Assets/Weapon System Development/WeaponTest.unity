@@ -5557,6 +5557,71 @@ Transform:
   m_Father: {fileID: 1947618428}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -163.17, y: 0, z: 90}
+--- !u!1 &353586957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 353586958}
+  - component: {fileID: 353586959}
+  m_Layer: 0
+  m_Name: LaserComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &353586958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353586957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1704136251429986832}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &353586959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353586957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458ffce668e085545bcfd0679799d636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  positionInPlayerHand: {fileID: 514123952}
+  ammoScreen: {fileID: 0}
+  weaponStart: {fileID: 4432884076108086948}
+  weaponEnd: {fileID: 7606611735591628734}
+  shotSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  weaponHitingOnSurfaceSounds: []
+  name: 
+  sprite: {fileID: 0}
+  intervalBetweenShoots: 0
+  reloadingDuration: 0
+  magazinCapacity: 0
+  bulletsCountInMagazine: 0
+  bulletsCountInReserve: 0
+  rayDistance: 200
+  semiAutoShooting: 0
+  <LaserMaterial>k__BackingField: {fileID: 0}
+  <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <LaserWidth>k__BackingField: 0.2
+  <LaserDamage>k__BackingField: 1
 --- !u!1001 &376043786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6619,6 +6684,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &547733666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 547733667}
+  - component: {fileID: 547733668}
+  m_Layer: 0
+  m_Name: WallComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &547733667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547733666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1704136251429986832}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &547733668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547733666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247884ed84a8d304493929c599dfabdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  positionInPlayerHand: {fileID: 514123952}
+  ammoScreen: {fileID: 0}
+  weaponStart: {fileID: 4432884076108086948}
+  weaponEnd: {fileID: 7606611735591628734}
+  shotSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  weaponHitingOnSurfaceSounds: []
+  name: 
+  sprite: {fileID: 0}
+  intervalBetweenShoots: 0
+  reloadingDuration: 0
+  magazinCapacity: 0
+  bulletsCountInMagazine: 0
+  bulletsCountInReserve: 0
+  rayDistance: 200
+  semiAutoShooting: 0
+  <WallPrefab>k__BackingField: {fileID: 363874852184059891, guid: 4624b4038530b5a489238b31b8a8f3f3, type: 3}
 --- !u!1 &562710488
 GameObject:
   m_ObjectHideFlags: 0
@@ -15313,6 +15440,72 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1488734358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1488734359}
+  - component: {fileID: 1488734360}
+  m_Layer: 0
+  m_Name: AnnihilatingComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1488734359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488734358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1704136251429986832}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1488734360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488734358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02b4e8daa0becf42a94d7bc4e89957c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  positionInPlayerHand: {fileID: 514123952}
+  ammoScreen: {fileID: 0}
+  weaponStart: {fileID: 4432884076108086948}
+  weaponEnd: {fileID: 7606611735591628734}
+  shotSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  weaponHitingOnSurfaceSounds: []
+  name: 
+  sprite: {fileID: 0}
+  intervalBetweenShoots: 0
+  reloadingDuration: 0
+  magazinCapacity: 0
+  bulletsCountInMagazine: 0
+  bulletsCountInReserve: 0
+  rayDistance: 200
+  semiAutoShooting: 0
+  <LaserMaterial>k__BackingField: {fileID: 0}
+  <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <LaserWidth>k__BackingField: 0.2
+  <LaserDamage>k__BackingField: 0
+  <AnnihilatingTag>k__BackingField: Annihil
 --- !u!1 &1510572137
 GameObject:
   m_ObjectHideFlags: 0
@@ -16878,6 +17071,69 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1606426077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1606426078}
+  - component: {fileID: 1606426079}
+  m_Layer: 0
+  m_Name: ProjectileComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1606426078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606426077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1704136251429986832}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1606426079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606426077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6c9fa014c07ac4c973670e444350de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  positionInPlayerHand: {fileID: 0}
+  ammoScreen: {fileID: 0}
+  weaponStart: {fileID: 4432884076108086948}
+  weaponEnd: {fileID: 7606611735591628734}
+  shotSound: {fileID: 0}
+  reloadingSound: {fileID: 0}
+  weaponHitingOnSurfaceSounds: []
+  name: 
+  sprite: {fileID: 0}
+  intervalBetweenShoots: 0.2
+  reloadingDuration: 5
+  magazinCapacity: 20
+  bulletsCountInMagazine: 20
+  bulletsCountInReserve: 100
+  rayDistance: 200
+  semiAutoShooting: 0
+  <ProjectilePrefab>k__BackingField: {fileID: 1072976598800286575, guid: 6bd8472b6e79b5449ab8a35729e7db41, type: 3}
+  <Pool>k__BackingField: {fileID: 1934172317}
 --- !u!1 &1621464694
 GameObject:
   m_ObjectHideFlags: 0
@@ -22551,7 +22807,8 @@ MonoBehaviour:
   magazinCapacity: 0
   bulletsCountInMagazine: 0
   bulletsCountInReserve: 0
-  rayDistance: 200
+  rayDistance: 300
+  semiAutoShooting: 0
 --- !u!4 &1704136250493244181
 Transform:
   m_ObjectHideFlags: 0
@@ -23085,70 +23342,14 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1606426078}
+  - {fileID: 353586958}
+  - {fileID: 1488734359}
+  - {fileID: 547733667}
   m_Father: {fileID: 1704136250493244181}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1704136251429986833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704136251429986839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247884ed84a8d304493929c599dfabdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  positionInPlayerHand: {fileID: 0}
-  ammoScreen: {fileID: 0}
-  weaponStart: {fileID: 0}
-  weaponEnd: {fileID: 0}
-  shotSound: {fileID: 0}
-  reloadingSound: {fileID: 0}
-  weaponHitingOnSurfaceSounds: []
-  name: 
-  sprite: {fileID: 0}
-  intervalBetweenShoots: 0
-  reloadingDuration: 0
-  magazinCapacity: 0
-  bulletsCountInMagazine: 0
-  bulletsCountInReserve: 0
-  rayDistance: 0
---- !u!114 &1704136251429986835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704136251429986839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458ffce668e085545bcfd0679799d636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  positionInPlayerHand: {fileID: 514123952}
-  ammoScreen: {fileID: 0}
-  weaponStart: {fileID: 4432884076108086948}
-  weaponEnd: {fileID: 7606611735591628734}
-  shotSound: {fileID: 0}
-  reloadingSound: {fileID: 0}
-  weaponHitingOnSurfaceSounds: []
-  name: 
-  sprite: {fileID: 0}
-  intervalBetweenShoots: 0
-  reloadingDuration: 0
-  magazinCapacity: 0
-  bulletsCountInMagazine: 0
-  bulletsCountInReserve: 0
-  rayDistance: 200
-  <LaserMaterial>k__BackingField: {fileID: 0}
-  <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <LaserWidth>k__BackingField: 0.2
-  <LaserDamage>k__BackingField: 1
 --- !u!1 &1704136251429986839
 GameObject:
   m_ObjectHideFlags: 0
@@ -23158,10 +23359,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1704136251429986832}
-  - component: {fileID: 1704136251429987054}
-  - component: {fileID: 1704136251429987053}
-  - component: {fileID: 1704136251429986835}
-  - component: {fileID: 1704136251429986833}
   m_Layer: 0
   m_Name: WeaponTypes
   m_TagString: Untagged
@@ -23169,69 +23366,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1704136251429987053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704136251429986839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b02b4e8daa0becf42a94d7bc4e89957c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  positionInPlayerHand: {fileID: 0}
-  ammoScreen: {fileID: 0}
-  weaponStart: {fileID: 0}
-  weaponEnd: {fileID: 0}
-  shotSound: {fileID: 0}
-  reloadingSound: {fileID: 0}
-  weaponHitingOnSurfaceSounds: []
-  name: 
-  sprite: {fileID: 0}
-  intervalBetweenShoots: 0
-  reloadingDuration: 0
-  magazinCapacity: 0
-  bulletsCountInMagazine: 0
-  bulletsCountInReserve: 0
-  rayDistance: 0
-  <LaserMaterial>k__BackingField: {fileID: 0}
-  <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <LaserWidth>k__BackingField: 0
-  <LaserDamage>k__BackingField: 0
---- !u!114 &1704136251429987054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704136251429986839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6c9fa014c07ac4c973670e444350de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  positionInPlayerHand: {fileID: 0}
-  ammoScreen: {fileID: 0}
-  weaponStart: {fileID: 4432884076108086948}
-  weaponEnd: {fileID: 7606611735591628734}
-  shotSound: {fileID: 0}
-  reloadingSound: {fileID: 0}
-  weaponHitingOnSurfaceSounds: []
-  name: 
-  sprite: {fileID: 0}
-  intervalBetweenShoots: 0.2
-  reloadingDuration: 5
-  magazinCapacity: 20
-  bulletsCountInMagazine: 20
-  bulletsCountInReserve: 100
-  rayDistance: 200
-  <ProjectilePrefab>k__BackingField: {fileID: 1072976598800286575, guid: 6bd8472b6e79b5449ab8a35729e7db41, type: 3}
-  <Pool>k__BackingField: {fileID: 1934172317}
-  <SemiAutoShooting>k__BackingField: 0
 --- !u!1 &2090681461170502628
 GameObject:
   m_ObjectHideFlags: 0
