@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using UnityEditor.Experimental.GraphView;
 
 /// <summary>
 /// РЈРїСЂР°РІР»РµРЅРёРµ РѕСЂСѓР¶РёРµРј РёРіСЂРѕРєР° Рё РµРіРѕ СЃРјРµРЅР°
@@ -148,10 +149,20 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
             WeaponsArsenal[ActiveSlotNumber].Shoot();
             canShoot = false;
             StartCoroutine(AllowShootAfterIntervalPassing());
-            if (WeaponsArsenal[ActiveSlotNumber].Type == Type.Projectile)
+
+            var weapon = WeaponsArsenal[ActiveSlotNumber];
+            if (weapon.Type == Type.Projectile)
             {
-                var projComp = WeaponsArsenal[ActiveSlotNumber].GetComponentInChildren<ProjectileWeapon>();
-                if (projComp.SemiAutoShooting)
+                var comp = weapon.GetComponentInChildren<ProjectileWeapon>();
+                if (comp.SemiAutoShooting)
+                {
+                    stopShooting = true;
+                }
+            }
+            else if (weapon.Type == Type.Wall)
+            {
+                var comp = weapon.GetComponentInChildren<WallBuilder>();
+                if (comp.SemiAutoShooting)
                 {
                     stopShooting = true;
                 }

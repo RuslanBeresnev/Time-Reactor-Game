@@ -44,8 +44,19 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     [HideInInspector][SerializeField] private int bulletsCountInMagazine;
     [HideInInspector][SerializeField] private int bulletsCountInReserve;
     [HideInInspector][SerializeField] private float rayDistance;
+    [HideInInspector][SerializeField] private bool semiAutoShooting;
+
 
     #region Свойства
+    /// <summary>
+    /// Если указано true, то оружие будет вести полуавтоматическую стрельбу (пистолет), иначе автоматическую (винтовка)
+    /// </summary>
+    public bool SemiAutoShooting 
+    { 
+        get => semiAutoShooting; 
+        set => semiAutoShooting = value; 
+    }
+
     /// <summary>
     /// Вид (тип) оружия
     /// </summary>
@@ -241,6 +252,8 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     private void Awake()
     {
+        SemiAutoShooting = true;
+
         foreach (var audioSource in GetComponents<AudioSource>())
         {
             var clipName = audioSource.clip.name;
@@ -346,7 +359,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         // соприкосновения луча с поверхностью в виде единичного вектора
         Vector3 bulletDirection;
 
-        if (hit.collider.gameObject != null)
+        if (hit.collider != null)
         {
             bulletDirection = (hit.point - WeaponEnd.position).normalized;
         }

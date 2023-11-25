@@ -7,14 +7,14 @@ public class WallBuilder : Weapon
     /// <summary>
     /// Префаб стены для постройки
     /// </summary>
-    public GameObject WallPrefab { get; set; }
+    [field:SerializeField]public GameObject WallPrefab { get; set; }
 
     public override void Shoot()
     {
         //ShotSound.Play();
 
         RaycastHit hit = GetRaycastHit();
-        if (hit.collider.gameObject != null)
+        if (hit.collider != null)
         {
             BuildWall(hit);
         }

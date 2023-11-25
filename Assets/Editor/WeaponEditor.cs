@@ -23,23 +23,6 @@ public class WeaponEditor : Editor
 
         weapon.Type = (Type)EditorGUILayout.EnumPopup("Type", weapon.Type);
 
-        showGeneral = EditorGUILayout.Foldout(showGeneral, "General");
-        if (showGeneral)
-        {
-            weapon.Name = EditorGUILayout.TextField("Name", weapon.Name);
-
-            weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
-                weapon.PositionInPlayerHand, typeof(Transform), true);
-
-            weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
-                weapon.WeaponStart, typeof(Transform), true);
-
-            weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
-                weapon.WeaponEnd, typeof(Transform), true);
-
-            weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
-        }
-
         if (type == Type.Projectile)
         {
             var projectileWeapon = weapon.GetComponentInChildren<ProjectileWeapon>();
@@ -61,48 +44,48 @@ public class WeaponEditor : Editor
             DrawEditorWall(wall);
         }
 
-        showVisual = EditorGUILayout.Foldout(showVisual, "Visual");
-        if (showVisual)
-        {
-            weapon.AmmoScreen = (TextMeshProUGUI)EditorGUILayout.ObjectField("Ammo screen",
-                weapon.AmmoScreen, typeof(TextMeshProUGUI), true);
+        //showVisual = EditorGUILayout.Foldout(showVisual, "Visual");
+        //if (showVisual)
+        //{
+        //    weapon.AmmoScreen = (TextMeshProUGUI)EditorGUILayout.ObjectField("Ammo screen",
+        //        weapon.AmmoScreen, typeof(TextMeshProUGUI), true);
 
-            weapon.Sprite = (Sprite)EditorGUILayout.ObjectField("Sprite",
-                weapon.Sprite, typeof(Sprite), true);
-        }
+        //    weapon.Sprite = (Sprite)EditorGUILayout.ObjectField("Sprite",
+        //        weapon.Sprite, typeof(Sprite), true);
+        //}
 
-        // Ненужно? (добавляются компоненты)
-        showAudio = EditorGUILayout.Foldout(showAudio, "Audio");
-        if (showAudio)
-        {
-            weapon.ShotSound = (AudioSource)EditorGUILayout.ObjectField("Shot sound",
-                weapon.ShotSound, typeof(AudioSource), true);
+        //// Ненужно? (добавляются компоненты)
+        //showAudio = EditorGUILayout.Foldout(showAudio, "Audio");
+        //if (showAudio)
+        //{
+        //    weapon.ShotSound = (AudioSource)EditorGUILayout.ObjectField("Shot sound",
+        //        weapon.ShotSound, typeof(AudioSource), true);
 
-            weapon.ReloadingSound = (AudioSource)EditorGUILayout.ObjectField("Reloading sound",
-                weapon.ReloadingSound, typeof(AudioSource), true);
+        //    weapon.ReloadingSound = (AudioSource)EditorGUILayout.ObjectField("Reloading sound",
+        //        weapon.ReloadingSound, typeof(AudioSource), true);
 
-            EditorGUI.indentLevel++;
-            showAudioList = EditorGUILayout.Foldout(showAudioList, "WeaponHittingOnSurfaceSounds");
-            if (showAudioList)
-            {
-                EditorGUI.indentLevel++;
-                List<AudioSource> list = weapon.WeaponHitingOnSurfaceSounds;
-                int size = Mathf.Max(0, EditorGUILayout.IntField("Size", list.Count));
+        //    EditorGUI.indentLevel++;
+        //    showAudioList = EditorGUILayout.Foldout(showAudioList, "WeaponHittingOnSurfaceSounds");
+        //    if (showAudioList)
+        //    {
+        //        EditorGUI.indentLevel++;
+        //        List<AudioSource> list = weapon.WeaponHitingOnSurfaceSounds;
+        //        int size = Mathf.Max(0, EditorGUILayout.IntField("Size", list.Count));
 
-                while (size > list.Count)
-                    list.Add(null);
-                while (size < list.Count)
-                    list.RemoveAt(list.Count - 1);
+        //        while (size > list.Count)
+        //            list.Add(null);
+        //        while (size < list.Count)
+        //            list.RemoveAt(list.Count - 1);
 
-                for (int i = 0; i < list.Count; i++)
-                {
-                    list[i] = (AudioSource)EditorGUILayout.ObjectField("Audio " + i,
-                        list[i], typeof(AudioSource), true);
-                }
-                EditorGUI.indentLevel--;
-            }
-            EditorGUI.indentLevel--;
-        }
+        //        for (int i = 0; i < list.Count; i++)
+        //        {
+        //            list[i] = (AudioSource)EditorGUILayout.ObjectField("Audio " + i,
+        //                list[i], typeof(AudioSource), true);
+        //        }
+        //        EditorGUI.indentLevel--;
+        //    }
+        //    EditorGUI.indentLevel--;
+        //}
 
 
         if (GUI.changed)
@@ -116,6 +99,23 @@ public class WeaponEditor : Editor
     /// </summary>
     private void DrawEditorProjectile(ProjectileWeapon weapon)
     {
+        showGeneral = EditorGUILayout.Foldout(showGeneral, "General");
+        if (showGeneral)
+        {
+            weapon.Name = EditorGUILayout.TextField("Name", weapon.Name);
+
+            weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
+                weapon.PositionInPlayerHand, typeof(Transform), true);
+
+            weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
+                weapon.WeaponStart, typeof(Transform), true);
+
+            weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
+                weapon.WeaponEnd, typeof(Transform), true);
+
+            weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
+        }
+
         showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
         if (showShooting)
         {
@@ -143,6 +143,23 @@ public class WeaponEditor : Editor
     /// </summary>
     private void DrawEditorLaser(LaserWeapon weapon)
     {
+        showGeneral = EditorGUILayout.Foldout(showGeneral, "General");
+        if (showGeneral)
+        {
+            weapon.Name = EditorGUILayout.TextField("Name", weapon.Name);
+
+            weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
+                weapon.PositionInPlayerHand, typeof(Transform), true);
+
+            weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
+                weapon.WeaponStart, typeof(Transform), true);
+
+            weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
+                weapon.WeaponEnd, typeof(Transform), true);
+
+            weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
+        }
+
         showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
         if (showShooting)
         {
@@ -163,6 +180,23 @@ public class WeaponEditor : Editor
     /// </summary>
     private void DrawEditorAnnihilating(AnnihilatingWeapon weapon)
     {
+        showGeneral = EditorGUILayout.Foldout(showGeneral, "General");
+        if (showGeneral)
+        {
+            weapon.Name = EditorGUILayout.TextField("Name", weapon.Name);
+
+            weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
+                weapon.PositionInPlayerHand, typeof(Transform), true);
+
+            weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
+                weapon.WeaponStart, typeof(Transform), true);
+
+            weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
+                weapon.WeaponEnd, typeof(Transform), true);
+
+            weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
+        }
+
         showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
         if (showShooting)
         {
@@ -183,9 +217,29 @@ public class WeaponEditor : Editor
     /// </summary>
     private void DrawEditorWall(WallBuilder weapon)
     {
+        showGeneral = EditorGUILayout.Foldout(showGeneral, "General");
+        if (showGeneral)
+        {
+            weapon.Name = EditorGUILayout.TextField("Name", weapon.Name);
+
+            weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
+                weapon.PositionInPlayerHand, typeof(Transform), true);
+
+            weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
+                weapon.WeaponStart, typeof(Transform), true);
+
+            weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
+                weapon.WeaponEnd, typeof(Transform), true);
+
+            weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
+        }
+
         showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
         if (showShooting)
         {
+            weapon.SemiAutoShooting = EditorGUILayout.Toggle("SemiAuto shooting",
+                weapon.SemiAutoShooting);
+
             weapon.WallPrefab = (GameObject)EditorGUILayout.ObjectField("Wall prefab",
                 weapon.WallPrefab, typeof(GameObject), true);
         }

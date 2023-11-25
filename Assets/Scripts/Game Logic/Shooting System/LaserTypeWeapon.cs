@@ -37,7 +37,7 @@ public class LaserTypeWeapon : Weapon
         //ShotSound.Play();
 
         RaycastHit hit = GetRaycastHit();
-        if (hit.collider.gameObject != null)
+        if (hit.collider != null)
         {
             Fire(hit);
         }

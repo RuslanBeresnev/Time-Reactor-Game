@@ -14,12 +14,6 @@ public class ProjectileWeapon : Weapon
     /// </summary>
     [field: SerializeField] public Pool Pool { get; set; }
 
-    /// <summary>
-    /// Если указано true, то оружие будет вести полуавтоматическую стрельбу (пистолет), иначе автоматическую (винтовка)
-    /// </summary>
-    [field: SerializeField] public bool SemiAutoShooting { get; set; } = true;
-
-
     public override void OnBeforeSerialize()
     {
         // Создавать GO - так себе идея
