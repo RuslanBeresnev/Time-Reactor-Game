@@ -43,6 +43,8 @@ public class WallBuilder : Weapon
 
     private void Awake()
     {
+        Type = Type.Wall;
+
         foreach (var audioSource in GetComponents<AudioSource>())
         {
             var clipName = audioSource.clip.name;

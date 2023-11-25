@@ -17,6 +17,8 @@ public class LaserWeapon : LaserTypeWeapon
     }
     private void Awake()
     {
+        Type = Type.Laser;
+
         foreach (var audioSource in GetComponents<AudioSource>())
         {
             var clipName = audioSource.clip.name;

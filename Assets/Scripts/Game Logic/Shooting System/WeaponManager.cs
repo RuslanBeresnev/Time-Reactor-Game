@@ -111,31 +111,8 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private IEnumerator AllowShootAfterIntervalPassing()
     {
-        var weapon = WeaponsArsenal[ActiveSlotNumber];
-        var type = weapon.Type;
-        if (type == Type.Projectile)
-        {
-            var component = GetComponentInChildren<ProjectileWeapon>();
-            yield return new WaitForSeconds(component.IntervalBetweenShoots);
-        }
-        else if (type == Type.Laser)
-        {
-            var component = GetComponentInChildren<LaserWeapon>();
-            yield return new WaitForSeconds(component.IntervalBetweenShoots);
-        }
-        else if (type == Type.Annihilating)
-        {
-            var component = GetComponentInChildren<AnnihilatingWeapon>();
-            yield return new WaitForSeconds(component.IntervalBetweenShoots);
-        }
-        else if (type == Type.Wall)
-        {
-            var component = GetComponentInChildren<WallBuilder>();
-            yield return new WaitForSeconds(component.IntervalBetweenShoots);
-        }
-
         // Р—Р°РґРµСЂР¶РєР° РІ СЂРµР°Р»СЊРЅС‹С… СЃРµРєСѓРЅРґР°С…
-        yield return new WaitForSeconds(weapon.IntervalBetweenShoots);
+        yield return new WaitForSeconds(WeaponsArsenal[ActiveSlotNumber].IntervalBetweenShoots);
         canShoot = true;
     }
 
@@ -151,23 +128,10 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
             StartCoroutine(AllowShootAfterIntervalPassing());
 
             var weapon = WeaponsArsenal[ActiveSlotNumber];
-            if (weapon.Type == Type.Projectile)
+            if (weapon.SemiAutoShooting)
             {
-                var comp = weapon.GetComponentInChildren<ProjectileWeapon>();
-                if (comp.SemiAutoShooting)
-                {
-                    stopShooting = true;
-                }
+                stopShooting = true;
             }
-            else if (weapon.Type == Type.Wall)
-            {
-                var comp = weapon.GetComponentInChildren<WallBuilder>();
-                if (comp.SemiAutoShooting)
-                {
-                    stopShooting = true;
-                }
-            }
-            
         }
         else if (!Input.GetMouseButton(0))
         {
@@ -175,15 +139,9 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
             {
                 stopShooting = false;
                 var weapon = WeaponsArsenal[ActiveSlotNumber];
-                if (weapon.Type == Type.Laser)
+                if (weapon.Type == Type.Laser || weapon.Type == Type.Annihilating)
                 {
-                    var comp = weapon.GetComponentInChildren<LaserWeapon>();
-                    comp.StopLaser();
-                }
-                else if (weapon.Type == Type.Annihilating)
-                {
-                    var comp = weapon.GetComponentInChildren<AnnihilatingWeapon>();
-                    comp.StopLaser();
+                    ((LaserTypeWeapon)weapon).StopLaser();
                 }
             }
         }
@@ -194,29 +152,6 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private IEnumerator AllowReloadingAfterIntervalPassing()
     {
-        var weapon = WeaponsArsenal[ActiveSlotNumber];
-        var type = weapon.Type;
-        if (type == Type.Projectile)
-        {
-            var comp = weapon.GetComponentInChildren<ProjectileWeapon>();
-            yield return new WaitForSeconds(comp.ReloadingDuration);
-        }
-        else if (type == Type.Laser)
-        {
-            var comp = weapon.GetComponentInChildren<LaserWeapon>();
-            yield return new WaitForSeconds(comp.ReloadingDuration);
-        }
-        else if (type == Type.Annihilating)
-        {
-            var comp = weapon.GetComponentInChildren<AnnihilatingWeapon>();
-            yield return new WaitForSeconds(comp.ReloadingDuration);
-        }
-        else if (type == Type.Laser)
-        {
-            var comp = weapon.GetComponentInChildren<WallBuilder>();
-            yield return new WaitForSeconds(comp.ReloadingDuration);
-        }
-
         // Р—Р°РґРµСЂР¶РєР° РІ СЂРµР°Р»СЊРЅС‹С… СЃРµРєСѓРЅРґР°С…
         yield return new WaitForSeconds(WeaponsArsenal[ActiveSlotNumber].ReloadingDuration);
         WeaponsArsenal[activeSlotNumber].ReloadWeapon();

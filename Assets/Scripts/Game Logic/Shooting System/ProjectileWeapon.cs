@@ -89,6 +89,9 @@ public class ProjectileWeapon : Weapon
 
     private void Awake()
     {
+        Type = Type.Projectile;
+
+
         foreach (var audioSource in GetComponents<AudioSource>())
         {
             var clipName = audioSource.clip.name;

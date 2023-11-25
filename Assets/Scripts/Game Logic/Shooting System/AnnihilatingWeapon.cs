@@ -22,6 +22,8 @@ public class AnnihilatingWeapon : LaserTypeWeapon
 
     private void Awake()
     {
+        Type = Type.Annihilating;
+
         foreach (var audioSource in GetComponents<AudioSource>())
         {
             var clipName = audioSource.clip.name;

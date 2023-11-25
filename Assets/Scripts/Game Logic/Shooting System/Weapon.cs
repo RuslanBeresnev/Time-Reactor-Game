@@ -312,24 +312,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     public virtual void Shoot()
     {
-        if (type == Type.Projectile)
-        {
-            GetComponentInChildren<ProjectileWeapon>().Shoot();
-        } 
-        else if (type == Type.Laser)
-        {
-            GetComponentInChildren<LaserWeapon>().Shoot();
-
-        }
-        else if (type == Type.Annihilating)
-        {
-            GetComponentInChildren<AnnihilatingWeapon>().Shoot();
-
-        }
-        else if (type == Type.Wall)
-        {
-            GetComponentInChildren<WallBuilder>().Shoot();
-        }
     }
 
     /// <summary>
@@ -415,25 +397,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     public virtual bool ReloadingCanBePerformed()
     {
-        if (type == Type.Projectile)
-        {
-            return GetComponentInChildren<ProjectileWeapon>().ReloadingCanBePerformed();
-        }
-        //else if (type == Type.Laser)
-        //{
-        //    GetComponentInChildren<LaserWeapon>().Shoot();
-
-        //}
-        //else if (type == Type.Annihilating)
-        //{
-        //    GetComponentInChildren<AnnihilatingWeapon>().Shoot();
-
-        //}
-        //else if (type == Type.Wall)
-        //{
-        //    GetComponentInChildren<WallBuilder>().Shoot();
-
-        //}
         return false;
     }
 
@@ -442,27 +405,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     public virtual void ReloadWeapon()
     {
-        if (type == Type.Projectile)
-        {
-            GetComponentInChildren<ProjectileWeapon>().ReloadWeapon();
-        }
-        //else if (type == Type.Laser)
-        //{
-        //    GetComponentInChildren<LaserWeapon>().Shoot();
-
-        //}
-        //else if (type == Type.Annihilating)
-        //{
-        //    GetComponentInChildren<AnnihilatingWeapon>().Shoot();
-
-        //}
-        //else if (type == Type.Wall)
-        //{
-        //    GetComponentInChildren<WallBuilder>().Shoot();
-
-        //}
-
-        
     }
 
     /// <summary>
