@@ -93,9 +93,30 @@ public class ProjectileWeapon : Weapon
         projectileComponent.GiveKineticEnergy(bulletDirection);
     }
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
+        foreach (var audioSource in GetComponents<AudioSource>())
+        {
+            var clipName = audioSource.clip.name;
+            if (clipName.EndsWith("Shot"))
+            {
+                ShotSound = audioSource;
+            }
+            else if (clipName.EndsWith("Reloading"))
+            {
+                ReloadingSound = audioSource;
+            }
+            else if (clipName.StartsWith("Weapon Hitting On Surface"))
+            {
+                WeaponHitingOnSurfaceSounds.Add(audioSource);
+            }
+            else if (clipName == "Weapon Picking Up")
+            {
+                PickUpSound = audioSource;
+            }
+        }
+
+        InitializeInfoPanelPrefab();
 
         if (BulletsCountInMagazine > MagazinCapacity)
         {

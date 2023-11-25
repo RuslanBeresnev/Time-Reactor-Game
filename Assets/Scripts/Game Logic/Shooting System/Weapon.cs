@@ -239,7 +239,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         BulletsCountInReserve = bulletsCountInReserve;
     }
 
-    protected virtual void Awake()
+    private void Awake()
     {
         foreach (var audioSource in GetComponents<AudioSource>())
         {

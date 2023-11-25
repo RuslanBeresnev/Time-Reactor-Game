@@ -83,17 +83,4 @@ public class LaserTypeWeapon : Weapon
             laserGO.GetComponent<LineRenderer>().enabled = false;
         }
     }
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        //SemiAutoShooting = false;
-
-        ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
-                                                  { "Shooting type:", "Automatic" },
-                                                  { "Firing Frequency:", "N/A" },
-                                                  { "Bullet velocity:", "N/A" },
-                                                  { "Damage:", "Full HP" } };
-    }
 }
