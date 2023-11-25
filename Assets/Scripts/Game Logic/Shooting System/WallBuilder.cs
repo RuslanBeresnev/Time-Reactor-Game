@@ -11,12 +11,12 @@ public class WallBuilder : Weapon
 
     public override void Shoot()
     {
-        ShotSound.Play();
+        //ShotSound.Play();
 
-        RaycastHit direction = new RaycastHit();
-        if (GetRaycastHit(ref direction))
+        RaycastHit hit = GetRaycastHit();
+        if (hit.collider.gameObject != null)
         {
-            BuildWall(direction);
+            BuildWall(hit);
         }
     }
 

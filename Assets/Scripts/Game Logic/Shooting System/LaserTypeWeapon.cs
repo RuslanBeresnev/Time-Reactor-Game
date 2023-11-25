@@ -34,12 +34,12 @@ public class LaserTypeWeapon : Weapon
 
     public override void Shoot()
     {
-        ShotSound.Play();
+        //ShotSound.Play();
 
-        RaycastHit direction = new RaycastHit();
-        if (GetRaycastHit(ref direction))
+        RaycastHit hit = GetRaycastHit();
+        if (hit.collider.gameObject != null)
         {
-            Fire(direction);
+            Fire(hit);
         }
     }
 

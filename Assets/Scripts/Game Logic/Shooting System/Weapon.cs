@@ -322,12 +322,15 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Получить RaycastHit при выстреле
     /// </summary>
-    protected bool GetRaycastHit(ref RaycastHit hit)
+    protected RaycastHit GetRaycastHit()
     {
         Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         int defaultLayerMask = 1;
+        RaycastHit hit;
 
-        return Physics.Raycast(rayToScreenCenter, out hit, RayDistance, defaultLayerMask, QueryTriggerInteraction.Ignore);
+        Physics.Raycast(rayToScreenCenter, out hit, RayDistance, defaultLayerMask, QueryTriggerInteraction.Ignore);
+        
+        return hit;
     }
 
     /// <summary>
@@ -336,14 +339,14 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     protected Vector3 GetShootingDirection()
     {
         Ray rayToScreenCenter = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        RaycastHit hit = new RaycastHit();
+        RaycastHit hit = GetRaycastHit();
 
         // Эта переменная отвечает за направление пули к центру экрана (прицелу);
         // Из центра камеры выпускается нормированный луч, пересекает какой-то объект, и задаётся направление от дула оружия до точки
         // соприкосновения луча с поверхностью в виде единичного вектора
         Vector3 bulletDirection;
 
-        if (GetRaycastHit(ref hit))
+        if (hit.collider.gameObject != null)
         {
             bulletDirection = (hit.point - WeaponEnd.position).normalized;
         }

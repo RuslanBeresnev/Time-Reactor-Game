@@ -17,7 +17,7 @@ public class WeaponEditor : Editor
     private bool showAudio = false;
     private bool showAudioList = false;
 
-    private void DrawEditorFirearm(ProjectileWeapon weapon)
+    private void DrawEditorProjectile(ProjectileWeapon weapon)
     {
         showReferences = EditorGUILayout.Foldout(showReferences, "References");
         if (showReferences)
@@ -56,6 +56,41 @@ public class WeaponEditor : Editor
         }
     }
 
+    private void DrawEditorLaser(LaserWeapon weapon)
+    {
+        showReferences = EditorGUILayout.Foldout(showReferences, "References");
+        if (showReferences)
+        {
+            weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
+                weapon.PositionInPlayerHand, typeof(Transform), true);
+
+            weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
+                weapon.WeaponStart, typeof(Transform), true);
+
+            weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
+                weapon.WeaponEnd, typeof(Transform), true);
+
+        }
+
+        showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
+        if (showShooting)
+        {
+            weapon.ReloadingDuration = EditorGUILayout.FloatField("Reloading duration (s)", weapon.ReloadingDuration);
+
+            weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
+
+            weapon.LaserWidth = EditorGUILayout.FloatField("Laser width",
+                    weapon.LaserWidth);
+            weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material",
+                weapon.LaserMaterial, typeof(Material), true);
+            weapon.LaserColor = EditorGUILayout.ColorField("Laser color",
+                weapon.LaserColor);
+
+            weapon.LaserDamage = EditorGUILayout.FloatField("Laser damage",
+                weapon.LaserDamage);
+        }
+    }
+
     public override void OnInspectorGUI()
     {
         Weapon weapon = (Weapon)target;
@@ -66,7 +101,12 @@ public class WeaponEditor : Editor
         if (type == Type.Projectile)
         {
             var projectileWeapon = weapon.GetComponentInChildren<ProjectileWeapon>();
-            DrawEditorFirearm(projectileWeapon);
+            DrawEditorProjectile(projectileWeapon);
+        } 
+        else if (type == Type.Laser)
+        {
+            var laserWeapon = weapon.GetComponentInChildren<LaserWeapon>();
+            DrawEditorLaser(laserWeapon);
         }
 
         showGeneral = EditorGUILayout.Foldout(showGeneral, "General");
