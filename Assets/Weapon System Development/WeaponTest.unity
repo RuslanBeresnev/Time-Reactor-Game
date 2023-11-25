@@ -23936,7 +23936,7 @@ MonoBehaviour:
   <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
   <LaserWidth>k__BackingField: 0.2
   <LaserDamage>k__BackingField: 0
-  <AnnihilatingTag>k__BackingField: Annihil
+  <AnnihilatingTag>k__BackingField: 
 --- !u!82 &921102038015043149
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25980,7 +25980,7 @@ MonoBehaviour:
   <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
   <LaserWidth>k__BackingField: 0.2
   <LaserDamage>k__BackingField: 0
-  <AnnihilatingTag>k__BackingField: Annihil
+  <AnnihilatingTag>k__BackingField: 
 --- !u!4 &4952738168562255400
 Transform:
   m_ObjectHideFlags: 0

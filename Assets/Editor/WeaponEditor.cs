@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using TMPro;
@@ -13,8 +11,6 @@ public class WeaponEditor : Editor
     private bool showGeneral = true;
     private bool showShooting = true;
     private bool showVisual = true;
-    private bool showAudio = true;
-    private bool showAudioList = true;
 
     public override void OnInspectorGUI()
     {
@@ -183,7 +179,7 @@ public class WeaponEditor : Editor
             weapon.LaserColor = EditorGUILayout.ColorField("Laser color",
                 weapon.LaserColor);
 
-            weapon.AnnihilatingTag = EditorGUILayout.TagField("Annihilating tag", 
+            weapon.AnnihilatingTag = EditorGUILayout.TagField("Annihilating tag",
                 weapon.AnnihilatingTag);
         }
 
