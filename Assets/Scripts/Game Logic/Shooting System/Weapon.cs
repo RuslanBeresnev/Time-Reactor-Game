@@ -137,7 +137,11 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Изображение оружия в арсенале игрока
     /// </summary>
-    public Sprite Sprite { get; set; }
+    public Sprite Sprite 
+    { 
+        get => sprite; 
+        set => sprite = value; 
+    }
 
     /// <summary>
     /// Минимальный интервал между выстрелами
@@ -234,7 +238,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     {
         //positionInPlayerHand = PositionInPlayerHand;
         name = Name;
-        sprite = Sprite;
+        //sprite = Sprite;
         //intervalBetweenShoots = IntervalBetweenShoots;
         //reloadingDuration = ReloadingDuration;
         //semiAutoShooting = SemiAutoShooting;
@@ -246,7 +250,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     {
         //PositionInPlayerHand = positionInPlayerHand;
         Name = name;
-        Sprite = sprite;
+        //Sprite = sprite;
         //IntervalBetweenShoots = intervalBetweenShoots;
         //ReloadingDuration = reloadingDuration;
         //SemiAutoShooting = semiAutoShooting;

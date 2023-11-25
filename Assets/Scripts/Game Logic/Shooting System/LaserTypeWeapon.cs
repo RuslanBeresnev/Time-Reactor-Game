@@ -28,8 +28,7 @@ public abstract class LaserTypeWeapon : Weapon
 
     protected override void RedrawAmmoScreen()
     {
-        //Придётся снова для всех создавать AmmoScreen в инспекторе
-        //AmmoScreen.text =  "inf / inf";
+        AmmoScreen.text =  "inf / inf";
     }
 
     /// <summary>

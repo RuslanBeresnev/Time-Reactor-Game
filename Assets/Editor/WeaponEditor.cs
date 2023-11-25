@@ -10,11 +10,11 @@ using TMPro;
 [CustomEditor(typeof(Weapon))]
 public class WeaponEditor : Editor
 {
-    private bool showGeneral = false;
-    private bool showShooting = false;
-    private bool showVisual = false;
-    private bool showAudio = false;
-    private bool showAudioList = false;
+    private bool showGeneral = true;
+    private bool showShooting = true;
+    private bool showVisual = true;
+    private bool showAudio = true;
+    private bool showAudioList = true;
 
     public override void OnInspectorGUI()
     {
@@ -43,16 +43,6 @@ public class WeaponEditor : Editor
             var wall = weapon.GetComponentInChildren<WallBuilder>();
             DrawEditorWall(wall);
         }
-
-        //showVisual = EditorGUILayout.Foldout(showVisual, "Visual");
-        //if (showVisual)
-        //{
-        //    weapon.AmmoScreen = (TextMeshProUGUI)EditorGUILayout.ObjectField("Ammo screen",
-        //        weapon.AmmoScreen, typeof(TextMeshProUGUI), true);
-
-        //    weapon.Sprite = (Sprite)EditorGUILayout.ObjectField("Sprite",
-        //        weapon.Sprite, typeof(Sprite), true);
-        //}
 
         if (GUI.changed)
         {
@@ -102,6 +92,16 @@ public class WeaponEditor : Editor
 
             weapon.ReloadingDuration = EditorGUILayout.FloatField("Reloading duration (s)", weapon.ReloadingDuration);
         }
+
+        showVisual = EditorGUILayout.Foldout(showVisual, "Visual");
+        if (showVisual)
+        {
+            weapon.AmmoScreen = (TextMeshProUGUI)EditorGUILayout.ObjectField("Ammo screen",
+                weapon.AmmoScreen, typeof(TextMeshProUGUI), true);
+
+            weapon.Sprite = (Sprite)EditorGUILayout.ObjectField("Sprite",
+                weapon.Sprite, typeof(Sprite), true);
+        }
     }
 
     /// <summary>
@@ -138,6 +138,16 @@ public class WeaponEditor : Editor
 
             weapon.LaserDamage = EditorGUILayout.FloatField("Laser damage",
                 weapon.LaserDamage);
+        }
+
+        showVisual = EditorGUILayout.Foldout(showVisual, "Visual");
+        if (showVisual)
+        {
+            weapon.AmmoScreen = (TextMeshProUGUI)EditorGUILayout.ObjectField("Ammo screen",
+                weapon.AmmoScreen, typeof(TextMeshProUGUI), true);
+
+            weapon.Sprite = (Sprite)EditorGUILayout.ObjectField("Sprite",
+                weapon.Sprite, typeof(Sprite), true);
         }
     }
 
@@ -176,6 +186,16 @@ public class WeaponEditor : Editor
             weapon.AnnihilatingTag = EditorGUILayout.TagField("Annihilating tag", 
                 weapon.AnnihilatingTag);
         }
+
+        showVisual = EditorGUILayout.Foldout(showVisual, "Visual");
+        if (showVisual)
+        {
+            weapon.AmmoScreen = (TextMeshProUGUI)EditorGUILayout.ObjectField("Ammo screen",
+                weapon.AmmoScreen, typeof(TextMeshProUGUI), true);
+
+            weapon.Sprite = (Sprite)EditorGUILayout.ObjectField("Sprite",
+                weapon.Sprite, typeof(Sprite), true);
+        }
     }
 
     /// <summary>
@@ -208,6 +228,16 @@ public class WeaponEditor : Editor
 
             weapon.WallPrefab = (GameObject)EditorGUILayout.ObjectField("Wall prefab",
                 weapon.WallPrefab, typeof(GameObject), true);
+        }
+
+        showVisual = EditorGUILayout.Foldout(showVisual, "Visual");
+        if (showVisual)
+        {
+            weapon.AmmoScreen = (TextMeshProUGUI)EditorGUILayout.ObjectField("Ammo screen",
+                weapon.AmmoScreen, typeof(TextMeshProUGUI), true);
+
+            weapon.Sprite = (Sprite)EditorGUILayout.ObjectField("Sprite",
+                weapon.Sprite, typeof(Sprite), true);
         }
     }
 }

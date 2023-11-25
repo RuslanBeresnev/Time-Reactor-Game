@@ -30,6 +30,14 @@ public class AnnihilatingWeapon : LaserTypeWeapon
     {
         Type = Type.Annihilating;
 
+        var weapon = transform.parent.parent.GetComponent<Weapon>();
+        if (Type != weapon.Type)
+        {
+            return;
+        }
+
+        RedrawAmmoScreen();
+
         foreach (var audioSource in GetComponents<AudioSource>())
         {
             var clipName = audioSource.clip.name;

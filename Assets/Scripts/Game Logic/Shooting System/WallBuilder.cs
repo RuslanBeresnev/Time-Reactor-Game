@@ -9,6 +9,11 @@ public class WallBuilder : Weapon
     /// </summary>
     [field: HideInInspector][field:SerializeField] public GameObject WallPrefab { get; set; }
 
+    protected override void RedrawAmmoScreen()
+    {
+        AmmoScreen.text = "inf / inf";
+    }
+
     public override void Shoot()
     {
         //ShotSound.Play();
@@ -44,6 +49,14 @@ public class WallBuilder : Weapon
     private void Awake()
     {
         Type = Type.WallBuilder;
+
+        var weapon = transform.parent.parent.GetComponent<Weapon>();
+        if (Type != weapon.Type)
+        {
+            return;
+        }
+
+        RedrawAmmoScreen();
 
         foreach (var audioSource in GetComponents<AudioSource>())
         {

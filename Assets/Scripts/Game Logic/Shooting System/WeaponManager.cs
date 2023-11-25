@@ -82,12 +82,20 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
 
     private void Awake()
     {
-        foreach (var weapon in weaponsArsenal)
+        for (int i = 0; i < weaponsArsenal.Count; i++)
         {
-            WeaponsArsenal.Add(weapon);
+            WeaponsArsenal.Add(weaponsArsenal[i]);
+
+            //Скрытие всех оружий, кроме первого
+            if (i != 0)
+            {
+                weaponsArsenal[i].transform.parent.parent.gameObject.SetActive(false);
+            }
         }
 
         performSerializationAndDeserealization = true;
+
+        
     }
 
     private void FixedUpdate()

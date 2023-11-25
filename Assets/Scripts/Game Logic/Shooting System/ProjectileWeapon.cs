@@ -25,8 +25,7 @@ public class ProjectileWeapon : Weapon
 
     protected override void RedrawAmmoScreen()
     {
-        //Придётся снова для всех создавать AmmoScreen в инспекторе
-        //AmmoScreen.text = BulletsCountInMagazine.ToString() + " / " + BulletsCountInReserve.ToString();;
+        AmmoScreen.text = BulletsCountInMagazine.ToString() + " / " + BulletsCountInReserve.ToString();;
     }
 
     public override bool ReloadingCanBePerformed()
@@ -91,6 +90,13 @@ public class ProjectileWeapon : Weapon
     {
         Type = Type.Projectile;
 
+        var weapon = transform.parent.parent.GetComponent<Weapon>();
+        if (Type != weapon.Type)
+        {
+            return;
+        }
+
+        RedrawAmmoScreen();
 
         foreach (var audioSource in GetComponents<AudioSource>())
         {
