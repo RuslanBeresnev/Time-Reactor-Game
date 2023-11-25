@@ -7,7 +7,7 @@ public class WallBuilder : Weapon
     /// <summary>
     /// Префаб стены для постройки
     /// </summary>
-    [field:SerializeField]public GameObject WallPrefab { get; set; }
+    [field: HideInInspector][field:SerializeField] public GameObject WallPrefab { get; set; }
 
     public override void Shoot()
     {

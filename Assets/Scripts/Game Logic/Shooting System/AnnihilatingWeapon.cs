@@ -7,7 +7,7 @@ public class AnnihilatingWeapon : LaserTypeWeapon
     /// <summary>
     /// Тэг, означающий, что может быть уничтожено аннигилирующим оружием
     /// </summary>
-    [field: SerializeField] public string AnnihilatingTag { get; set; }
+    [field: HideInInspector][field: SerializeField] public string AnnihilatingTag { get; set; }
 
     protected override void Fire(RaycastHit hit)
     {

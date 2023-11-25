@@ -9,22 +9,22 @@ public class LaserTypeWeapon : Weapon
     /// <summary>
     /// Материал лазера
     /// </summary>
-    [field: SerializeField] public Material LaserMaterial { get; set; }
+    [field: HideInInspector][field: SerializeField] public Material LaserMaterial { get; set; }
 
     /// <summary>
     /// Цвет лазера
     /// </summary>
-    [field: SerializeField] public Color LaserColor {  get; set; }
+    [field: HideInInspector][field: SerializeField] public Color LaserColor {  get; set; }
 
     /// <summary>
     /// Ширина лазера
     /// </summary>
-    [field: SerializeField] public float LaserWidth { get; set; }
+    [field: HideInInspector][field: SerializeField] public float LaserWidth { get; set; }
 
     /// <summary>
     /// Урон от лазера
     /// </summary>
-    [field: SerializeField] public float LaserDamage { get; set; }
+    [field: HideInInspector][field: SerializeField] public float LaserDamage { get; set; }
 
     protected override void RedrawAmmoScreen()
     {

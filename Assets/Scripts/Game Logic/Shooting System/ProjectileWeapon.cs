@@ -7,12 +7,12 @@ public class ProjectileWeapon : Weapon
     /// <summary>
     /// Префаб снаряда
     /// </summary>
-    [field: SerializeField] public GameObject ProjectilePrefab { get; set; }
+    [field: HideInInspector][field: SerializeField] public GameObject ProjectilePrefab { get; set; }
 
     /// <summary>
     /// Пул снарядов
     /// </summary>
-    [field: SerializeField] public Pool Pool { get; set; }
+    [field: HideInInspector][field: SerializeField] public Pool Pool { get; set; }
 
     public override void OnBeforeSerialize()
     {
