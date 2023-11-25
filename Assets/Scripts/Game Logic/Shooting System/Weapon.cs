@@ -13,7 +13,7 @@ public enum Type
     Projectile,
     Laser,
     Annihilating,
-    Wall
+    WallBuilder
 }
 
 /// <summary>
@@ -69,7 +69,11 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Положение оружия в руке игрока
     /// </summary>
-    public Transform PositionInPlayerHand { get; set; }
+    public Transform PositionInPlayerHand 
+    { 
+        get => positionInPlayerHand; 
+        set => positionInPlayerHand = value; 
+    }
 
     /// <summary>
     /// Экран с информацией о количестве патронов
@@ -228,7 +232,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     public virtual void OnBeforeSerialize()
     {
-        positionInPlayerHand = PositionInPlayerHand;
+        //positionInPlayerHand = PositionInPlayerHand;
         name = Name;
         sprite = Sprite;
         //intervalBetweenShoots = IntervalBetweenShoots;
@@ -240,7 +244,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
 
     public virtual void OnAfterDeserialize()
     {
-        PositionInPlayerHand = positionInPlayerHand;
+        //PositionInPlayerHand = positionInPlayerHand;
         Name = name;
         Sprite = sprite;
         //IntervalBetweenShoots = intervalBetweenShoots;

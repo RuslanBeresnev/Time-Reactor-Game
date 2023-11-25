@@ -43,7 +43,7 @@ public class WallBuilder : Weapon
 
     private void Awake()
     {
-        Type = Type.Wall;
+        Type = Type.WallBuilder;
 
         foreach (var audioSource in GetComponents<AudioSource>())
         {

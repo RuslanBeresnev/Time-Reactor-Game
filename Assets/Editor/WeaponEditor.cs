@@ -38,7 +38,7 @@ public class WeaponEditor : Editor
             var annihilatingWeapon = weapon.GetComponentInChildren<AnnihilatingWeapon>();
             DrawEditorAnnihilating(annihilatingWeapon);
         }
-        else if (type == Type.Wall)
+        else if (type == Type.WallBuilder)
         {
             var wall = weapon.GetComponentInChildren<WallBuilder>();
             DrawEditorWall(wall);
@@ -53,40 +53,6 @@ public class WeaponEditor : Editor
         //    weapon.Sprite = (Sprite)EditorGUILayout.ObjectField("Sprite",
         //        weapon.Sprite, typeof(Sprite), true);
         //}
-
-        //// Ненужно? (добавляются компоненты)
-        //showAudio = EditorGUILayout.Foldout(showAudio, "Audio");
-        //if (showAudio)
-        //{
-        //    weapon.ShotSound = (AudioSource)EditorGUILayout.ObjectField("Shot sound",
-        //        weapon.ShotSound, typeof(AudioSource), true);
-
-        //    weapon.ReloadingSound = (AudioSource)EditorGUILayout.ObjectField("Reloading sound",
-        //        weapon.ReloadingSound, typeof(AudioSource), true);
-
-        //    EditorGUI.indentLevel++;
-        //    showAudioList = EditorGUILayout.Foldout(showAudioList, "WeaponHittingOnSurfaceSounds");
-        //    if (showAudioList)
-        //    {
-        //        EditorGUI.indentLevel++;
-        //        List<AudioSource> list = weapon.WeaponHitingOnSurfaceSounds;
-        //        int size = Mathf.Max(0, EditorGUILayout.IntField("Size", list.Count));
-
-        //        while (size > list.Count)
-        //            list.Add(null);
-        //        while (size < list.Count)
-        //            list.RemoveAt(list.Count - 1);
-
-        //        for (int i = 0; i < list.Count; i++)
-        //        {
-        //            list[i] = (AudioSource)EditorGUILayout.ObjectField("Audio " + i,
-        //                list[i], typeof(AudioSource), true);
-        //        }
-        //        EditorGUI.indentLevel--;
-        //    }
-        //    EditorGUI.indentLevel--;
-        //}
-
 
         if (GUI.changed)
         {

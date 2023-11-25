@@ -234,14 +234,14 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
 
             if (!IsActiveSlotEmpty())
             {
-                WeaponsArsenal[ActiveSlotNumber].gameObject.SetActive(false);
+                WeaponsArsenal[ActiveSlotNumber].transform.parent.parent.gameObject.SetActive(false);
             }
 
             ActiveSlotNumber = newActiveSlotNumber;
 
             if (!IsActiveSlotEmpty())
             {
-                WeaponsArsenal[ActiveSlotNumber].gameObject.SetActive(true);
+                WeaponsArsenal[ActiveSlotNumber].transform.parent.parent.gameObject.SetActive(true);
             }
         }
     }
@@ -269,12 +269,17 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
             return false;
         }
 
-        WeaponsArsenal[slotNumber] = weapon.GetComponent<Weapon>();
+        var weaponComp = weapon.GetComponent<Weapon>();
+        var typesObj = weapon.transform.Find("WeaponTypes");
+        var weaponTypeObj = typesObj.transform.Find(weaponComp.Type.ToString() + "Component");
+        WeaponsArsenal[slotNumber] = weaponTypeObj.GetComponent<Weapon>();
         weapon.transform.SetParent(weaponCamera.transform);
 
-        WeaponsArsenal[slotNumber].PickUpSound.Play();
+        //Надо добавить аудио
+        //WeaponsArsenal[slotNumber].PickUpSound.Play();
 
-        var positionInPlayerHand = weapon.GetComponent<Weapon>().PositionInPlayerHand;
+        var weaponTypeComp = weaponTypeObj.GetComponent<Weapon>();
+        var positionInPlayerHand = weaponTypeComp.PositionInPlayerHand;
         weapon.transform.position = positionInPlayerHand.position;
         weapon.transform.rotation = positionInPlayerHand.rotation;
         weapon.transform.localScale = positionInPlayerHand.localScale;
@@ -302,7 +307,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         }
 
         var ejectionForce = 200f;
-        GameObject ejectedWeapon = WeaponsArsenal[ActiveSlotNumber].gameObject;
+        GameObject ejectedWeapon = WeaponsArsenal[ActiveSlotNumber].transform.parent.parent.gameObject;
         ejectedWeapon.transform.SetParent(null);
         WeaponsArsenal[ActiveSlotNumber] = null;
 
