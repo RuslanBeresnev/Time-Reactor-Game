@@ -9438,7 +9438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d496e9ed3a95f3c4f834149f3ed0ab3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   positionInPlayerHand: {fileID: 514123952}
   ammoScreen: {fileID: 46268341}
   weaponStart: {fileID: 1657330218}
@@ -11226,7 +11226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponsArsenal:
   - {fileID: 1488734360}
-  - {fileID: 688029410}
+  - {fileID: 84709909}
   - {fileID: 1594173423}
   weaponCamera: {fileID: 1652258266}
   graphicAnalyzer: {fileID: 941838049}
@@ -25534,7 +25534,7 @@ GameObject:
   - component: {fileID: 1704136250493244193}
   - component: {fileID: 1704136250493244195}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: Weapon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,9 +5,15 @@ using UnityEngine;
 
 public class LaserWeapon : LaserTypeWeapon
 {
-    protected override void Fire(RaycastHit hit)
+    public override void Shoot()
     {
-        base.Fire(hit);
+        //ShotSound.Play();
+
+        RaycastHit hit = GetRaycastHit();
+        if (hit.collider == null)
+            return;
+
+        MakeLaser(hit);
 
         var entity = hit.transform.GetComponent<Entity>();
         if (entity != null)
@@ -15,6 +21,7 @@ public class LaserWeapon : LaserTypeWeapon
             entity.TakeDamage(LaserDamage);
         }
     }
+
     private void Awake()
     {
         Type = Type.Laser;

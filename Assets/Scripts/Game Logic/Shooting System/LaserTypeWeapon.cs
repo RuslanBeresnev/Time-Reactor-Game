@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserTypeWeapon : Weapon
+public abstract class LaserTypeWeapon : Weapon
 {
     protected GameObject laserGO;
 
@@ -30,22 +30,6 @@ public class LaserTypeWeapon : Weapon
     {
         //Придётся снова для всех создавать AmmoScreen в инспекторе
         //AmmoScreen.text =  "inf / inf";
-    }
-
-    public override void Shoot()
-    {
-        //ShotSound.Play();
-
-        RaycastHit hit = GetRaycastHit();
-        if (hit.collider != null)
-        {
-            Fire(hit);
-        }
-    }
-
-    protected virtual void Fire(RaycastHit hit)
-    {
-        MakeLaser(hit);
     }
 
     /// <summary>

@@ -9,9 +9,15 @@ public class AnnihilatingWeapon : LaserTypeWeapon
     /// </summary>
     [field: HideInInspector][field: SerializeField] public string AnnihilatingTag { get; set; }
 
-    protected override void Fire(RaycastHit hit)
+    public override void Shoot()
     {
-        base.Fire(hit);
+        //ShotSound.Play();
+
+        RaycastHit hit = GetRaycastHit();
+        if (hit.collider == null)
+            return;
+
+        MakeLaser(hit);
 
         var target = hit.transform.gameObject;
         if (target.CompareTag(AnnihilatingTag))
