@@ -11,7 +11,7 @@ public class AnnihilatingWeapon : LaserTypeWeapon
 
     public override void Shoot()
     {
-        //ShotSound.Play();
+        ShotSound.Play();
 
         RaycastHit hit = GetRaycastHit();
         if (hit.collider == null)

@@ -283,8 +283,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         WeaponsArsenal[slotNumber] = weaponTypeObj.GetComponent<Weapon>();
         weapon.transform.SetParent(weaponCamera.transform);
 
-        //Надо добавить аудио
-        //WeaponsArsenal[slotNumber].PickUpSound.Play();
+        WeaponsArsenal[slotNumber].PickUpSound.Play();
 
         var weaponTypeComp = weaponTypeObj.GetComponent<Weapon>();
         var positionInPlayerHand = weaponTypeComp.PositionInPlayerHand;

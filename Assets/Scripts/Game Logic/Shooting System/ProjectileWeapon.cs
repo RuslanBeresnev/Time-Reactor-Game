@@ -62,8 +62,7 @@ public class ProjectileWeapon : Weapon
         }
         BulletsCountInMagazine--;
 
-        //Надо брать shotsound из родителя -- объекта Weapon
-        //ShotSound.Play();
+        ShotSound.Play();
 
         Vector3 direction = GetShootingDirection();
         FireProjectile(direction);
