@@ -136,7 +136,11 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Длительность перезарядки оружия
     /// </summary>
-    public float ReloadingDuration { get; set; }
+    public float ReloadingDuration 
+    { 
+        get => reloadingDuration; 
+        set => reloadingDuration = value; 
+    }
 
     
 
@@ -217,7 +221,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         name = Name;
         sprite = Sprite;
         //intervalBetweenShoots = IntervalBetweenShoots;
-        reloadingDuration = ReloadingDuration;
+        //reloadingDuration = ReloadingDuration;
         //semiAutoShooting = SemiAutoShooting;
         bulletsCountInMagazine = BulletsCountInMagazine;
         bulletsCountInReserve = BulletsCountInReserve;
@@ -229,7 +233,7 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         Name = name;
         Sprite = sprite;
         //IntervalBetweenShoots = intervalBetweenShoots;
-        ReloadingDuration = reloadingDuration;
+        //ReloadingDuration = reloadingDuration;
         //SemiAutoShooting = semiAutoShooting;
         BulletsCountInMagazine = bulletsCountInMagazine;
         BulletsCountInReserve = bulletsCountInReserve;

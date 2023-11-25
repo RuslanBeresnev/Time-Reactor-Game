@@ -177,6 +177,29 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private IEnumerator AllowReloadingAfterIntervalPassing()
     {
+        var weapon = WeaponsArsenal[ActiveSlotNumber];
+        var type = weapon.Type;
+        if (type == Type.Projectile)
+        {
+            var comp = weapon.GetComponentInChildren<ProjectileWeapon>();
+            yield return new WaitForSeconds(comp.ReloadingDuration);
+        }
+        else if (type == Type.Laser)
+        {
+            var comp = weapon.GetComponentInChildren<LaserWeapon>();
+            yield return new WaitForSeconds(comp.ReloadingDuration);
+        }
+        else if (type == Type.Annihilating)
+        {
+            var comp = weapon.GetComponentInChildren<AnnihilatingWeapon>();
+            yield return new WaitForSeconds(comp.ReloadingDuration);
+        }
+        else if (type == Type.Laser)
+        {
+            var comp = weapon.GetComponentInChildren<WallBuilder>();
+            yield return new WaitForSeconds(comp.ReloadingDuration);
+        }
+
         // Р—Р°РґРµСЂР¶РєР° РІ СЂРµР°Р»СЊРЅС‹С… СЃРµРєСѓРЅРґР°С…
         yield return new WaitForSeconds(WeaponsArsenal[ActiveSlotNumber].ReloadingDuration);
         WeaponsArsenal[activeSlotNumber].ReloadWeapon();
