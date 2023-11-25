@@ -11,85 +11,10 @@ using TMPro;
 public class WeaponEditor : Editor
 {
     private bool showGeneral = false;
-    private bool showReferences = false;
     private bool showShooting = false;
     private bool showVisual = false;
     private bool showAudio = false;
     private bool showAudioList = false;
-
-    private void DrawEditorProjectile(ProjectileWeapon weapon)
-    {
-        showReferences = EditorGUILayout.Foldout(showReferences, "References");
-        if (showReferences)
-        {
-            weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
-                weapon.PositionInPlayerHand, typeof(Transform), true);
-
-            weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
-                weapon.WeaponStart, typeof(Transform), true);
-
-            weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
-                weapon.WeaponEnd, typeof(Transform), true);
-
-            weapon.ProjectilePrefab = (GameObject)EditorGUILayout.ObjectField("Projectile prefab",
-            weapon.ProjectilePrefab, typeof(GameObject), true);
-
-            weapon.Pool = (Pool)EditorGUILayout.ObjectField("Pool",
-                weapon.Pool, typeof(Pool), true);
-        }
-
-        showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
-        if (showShooting)
-        {
-            weapon.SemiAutoShooting = EditorGUILayout.Toggle("Semi-shooting", weapon.SemiAutoShooting);
-            
-            weapon.IntervalBetweenShoots = EditorGUILayout.FloatField("Interval between shots",
-                weapon.IntervalBetweenShoots);
-
-            weapon.MagazinCapacity = EditorGUILayout.IntField("Magazine capacity", weapon.MagazinCapacity);
-            weapon.BulletsCountInMagazine = EditorGUILayout.IntField("Bullets in magazine", weapon.BulletsCountInMagazine);
-            weapon.BulletsCountInReserve = EditorGUILayout.IntField("Bullets in reserve", weapon.BulletsCountInReserve);
-            
-            weapon.ReloadingDuration = EditorGUILayout.FloatField("Reloading duration (s)", weapon.ReloadingDuration);
-
-            weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
-        }
-    }
-
-    private void DrawEditorLaser(LaserWeapon weapon)
-    {
-        showReferences = EditorGUILayout.Foldout(showReferences, "References");
-        if (showReferences)
-        {
-            weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
-                weapon.PositionInPlayerHand, typeof(Transform), true);
-
-            weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
-                weapon.WeaponStart, typeof(Transform), true);
-
-            weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
-                weapon.WeaponEnd, typeof(Transform), true);
-
-        }
-
-        showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
-        if (showShooting)
-        {
-            weapon.ReloadingDuration = EditorGUILayout.FloatField("Reloading duration (s)", weapon.ReloadingDuration);
-
-            weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
-
-            weapon.LaserWidth = EditorGUILayout.FloatField("Laser width",
-                    weapon.LaserWidth);
-            weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material",
-                weapon.LaserMaterial, typeof(Material), true);
-            weapon.LaserColor = EditorGUILayout.ColorField("Laser color",
-                weapon.LaserColor);
-
-            weapon.LaserDamage = EditorGUILayout.FloatField("Laser damage",
-                weapon.LaserDamage);
-        }
-    }
 
     public override void OnInspectorGUI()
     {
@@ -97,6 +22,23 @@ public class WeaponEditor : Editor
         Type type = weapon.Type;
 
         weapon.Type = (Type)EditorGUILayout.EnumPopup("Type", weapon.Type);
+
+        showGeneral = EditorGUILayout.Foldout(showGeneral, "General");
+        if (showGeneral)
+        {
+            weapon.Name = EditorGUILayout.TextField("Name", weapon.Name);
+
+            weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
+                weapon.PositionInPlayerHand, typeof(Transform), true);
+
+            weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
+                weapon.WeaponStart, typeof(Transform), true);
+
+            weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
+                weapon.WeaponEnd, typeof(Transform), true);
+
+            weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
+        }
 
         if (type == Type.Projectile)
         {
@@ -108,89 +50,16 @@ public class WeaponEditor : Editor
             var laserWeapon = weapon.GetComponentInChildren<LaserWeapon>();
             DrawEditorLaser(laserWeapon);
         }
-
-        showGeneral = EditorGUILayout.Foldout(showGeneral, "General");
-        if (showGeneral)
+        else if (type == Type.Annihilating)
         {
-            weapon.Name = EditorGUILayout.TextField("Name", weapon.Name);
+            var annihilatingWeapon = weapon.GetComponentInChildren<AnnihilatingWeapon>();
+            DrawEditorAnnihilating(annihilatingWeapon);
         }
-
-        //showReferences = EditorGUILayout.Foldout(showReferences, "References");
-        //if (showReferences)
-        //{
-        //    weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
-        //        weapon.PositionInPlayerHand, typeof(Transform), true);
-            
-        //    weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
-        //        weapon.WeaponStart, typeof(Transform), true);
-
-        //    weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
-        //        weapon.WeaponEnd, typeof(Transform), true);
-
-        //    if (type == Type.Firearm || type == Type.RPG)
-        //    {
-        //        weapon.BulletPrefab = (GameObject)EditorGUILayout.ObjectField("Bullet prefab",
-        //        weapon.BulletPrefab, typeof(GameObject), true);
-
-        //        weapon.Pool = (Pool)EditorGUILayout.ObjectField("Pool",
-        //            weapon.Pool, typeof(Pool), true);
-        //    }
-
-        //    if (type == Type.Laser)
-        //    {
-        //    }
-        //}
-
-        //showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
-        //if (showShooting)
-        //{
-        //    if (type == Type.Firearm)
-        //    {
-        //        weapon.SemiAutoShooting = EditorGUILayout.Toggle("Semi-shooting", weapon.SemiAutoShooting);
-        //    }
-
-        //    if (type == Type.Firearm || type == Type.RPG || type == Type.Laser)
-        //    {
-        //        weapon.IntervalBetweenShoots = EditorGUILayout.FloatField("Interval between shots",
-        //            weapon.IntervalBetweenShoots);
-
-        //        //@@for different types
-        //        weapon.MagazinCapacity = EditorGUILayout.IntField("Magazine capacity", weapon.MagazinCapacity);
-        //        weapon.BulletsCountInMagazine = EditorGUILayout.IntField("Bullets in magazine", weapon.BulletsCountInMagazine);
-        //        weapon.BulletsCountInReserve = EditorGUILayout.IntField("Bullets in reserve", weapon.BulletsCountInReserve);
-        //    }
-
-        //    if (type == Type.Laser || type == Type.Annihilating)
-        //    {
-        //        weapon.LaserWidth = EditorGUILayout.FloatField("Laser width",
-        //            weapon.LaserWidth);
-        //        weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material", 
-        //            weapon.LaserMaterial, typeof(Material), true);
-        //        weapon.LaserColor = EditorGUILayout.ColorField("Laser color", 
-        //            weapon.LaserColor);
-        //    }
-
-        //    if (type == Type.Laser)
-        //    {
-        //        weapon.LaserDamage = EditorGUILayout.FloatField("Laser damage",
-        //            weapon.LaserDamage);
-        //    }
-
-        //    if (type == Type.Annihilating)
-        //    {
-        //        weapon.AnnihilatingTag = EditorGUILayout.TagField("Tag: ", weapon.AnnihilatingTag);
-        //    }
-
-        //    if (type == Type.Wall)
-        //    {
-        //        weapon.WallPrefab = (GameObject)EditorGUILayout.ObjectField("Wall prefab", 
-        //            weapon.WallPrefab, typeof(GameObject), true);
-        //    }
-
-        //    weapon.ReloadingDuration = EditorGUILayout.FloatField("Reloading duration (s)", weapon.ReloadingDuration);
-            
-        //    weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
-        //}
+        else if (type == Type.Wall)
+        {
+            var wall = weapon.GetComponentInChildren<WallBuilder>();
+            DrawEditorWall(wall);
+        }
 
         showVisual = EditorGUILayout.Foldout(showVisual, "Visual");
         if (showVisual)
@@ -239,6 +108,86 @@ public class WeaponEditor : Editor
         if (GUI.changed)
         {
             EditorUtility.SetDirty(target);
+        }
+    }
+
+    /// <summary>
+    /// Отрисовать инспектор для типа ProjectileWeapon
+    /// </summary>
+    private void DrawEditorProjectile(ProjectileWeapon weapon)
+    {
+        showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
+        if (showShooting)
+        {
+            weapon.ProjectilePrefab = (GameObject)EditorGUILayout.ObjectField("Projectile prefab",
+            weapon.ProjectilePrefab, typeof(GameObject), true);
+
+            weapon.Pool = (Pool)EditorGUILayout.ObjectField("Pool",
+                weapon.Pool, typeof(Pool), true);
+
+            weapon.SemiAutoShooting = EditorGUILayout.Toggle("Semi-shooting", weapon.SemiAutoShooting);
+
+            weapon.IntervalBetweenShoots = EditorGUILayout.FloatField("Interval between shots",
+                weapon.IntervalBetweenShoots);
+
+            weapon.MagazinCapacity = EditorGUILayout.IntField("Magazine capacity", weapon.MagazinCapacity);
+            weapon.BulletsCountInMagazine = EditorGUILayout.IntField("Bullets in magazine", weapon.BulletsCountInMagazine);
+            weapon.BulletsCountInReserve = EditorGUILayout.IntField("Bullets in reserve", weapon.BulletsCountInReserve);
+
+            weapon.ReloadingDuration = EditorGUILayout.FloatField("Reloading duration (s)", weapon.ReloadingDuration);
+        }
+    }
+
+    /// <summary>
+    /// Отрисовать инспектор для типа LaserWeapon
+    /// </summary>
+    private void DrawEditorLaser(LaserWeapon weapon)
+    {
+        showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
+        if (showShooting)
+        {
+            weapon.LaserWidth = EditorGUILayout.FloatField("Laser width",
+                    weapon.LaserWidth);
+            weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material",
+                weapon.LaserMaterial, typeof(Material), true);
+            weapon.LaserColor = EditorGUILayout.ColorField("Laser color",
+                weapon.LaserColor);
+
+            weapon.LaserDamage = EditorGUILayout.FloatField("Laser damage",
+                weapon.LaserDamage);
+        }
+    }
+
+    /// <summary>
+    /// Отрисовать инспектор для типа AnnihilatingWeapon
+    /// </summary>
+    private void DrawEditorAnnihilating(AnnihilatingWeapon weapon)
+    {
+        showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
+        if (showShooting)
+        {
+            weapon.LaserWidth = EditorGUILayout.FloatField("Laser width",
+                    weapon.LaserWidth);
+            weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material",
+                weapon.LaserMaterial, typeof(Material), true);
+            weapon.LaserColor = EditorGUILayout.ColorField("Laser color",
+                weapon.LaserColor);
+
+            weapon.AnnihilatingTag = EditorGUILayout.TagField("Annihilating tag", 
+                weapon.AnnihilatingTag);
+        }
+    }
+
+    /// <summary>
+    /// Отрисовать инспектор для типа WallBuilder
+    /// </summary>
+    private void DrawEditorWall(WallBuilder weapon)
+    {
+        showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
+        if (showShooting)
+        {
+            weapon.WallPrefab = (GameObject)EditorGUILayout.ObjectField("Wall prefab",
+                weapon.WallPrefab, typeof(GameObject), true);
         }
     }
 }
