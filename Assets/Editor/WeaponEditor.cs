@@ -204,6 +204,7 @@ public class WeaponEditor : Editor
                 weapon.Sprite, typeof(Sprite), true);
         }
 
+        // Ненужно? (добавляются компоненты)
         showAudio = EditorGUILayout.Foldout(showAudio, "Audio");
         if (showAudio)
         {

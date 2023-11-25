@@ -9,6 +9,8 @@ public class LaserWeapon : LaserTypeWeapon
     {
         base.Fire(hit);
 
+
+        //Переделать на урон в секунду
         var entity = hit.transform.GetComponent<Entity>();
         if (entity != null)
         {

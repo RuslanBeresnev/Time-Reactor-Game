@@ -26,6 +26,12 @@ public class LaserTypeWeapon : Weapon
     /// </summary>
     [field: SerializeField] public float LaserDamage { get; set; }
 
+    protected override void RedrawAmmoScreen()
+    {
+        //Придётся снова для всех создавать AmmoScreen в инспекторе
+        //AmmoScreen.text =  "inf / inf";
+    }
+
     public override void Shoot()
     {
         ShotSound.Play();

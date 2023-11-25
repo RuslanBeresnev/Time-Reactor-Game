@@ -14,10 +14,17 @@ public class ProjectileTypeWeapon : Weapon
 
     public override void OnBeforeSerialize()
     {
+        // Создавать GO - так себе идея
         if (ProjectilePrefab == null)
         {
             ProjectilePrefab = new GameObject();
         }
+    }
+
+    protected override void RedrawAmmoScreen()
+    {
+        //Придётся снова для всех создавать AmmoScreen в инспекторе
+        //AmmoScreen.text = BulletsCountInMagazine.ToString() + " / " + BulletsCountInReserve.ToString();;
     }
 
     public override void Shoot()
@@ -28,7 +35,8 @@ public class ProjectileTypeWeapon : Weapon
         }
         BulletsCountInMagazine--;
 
-        ShotSound.Play();
+        //Надо брать shotsound из родителя -- объекта Weapon
+        //ShotSound.Play();
 
         Vector3 direction = GetShootingDirection();
         FireProjectile(direction);

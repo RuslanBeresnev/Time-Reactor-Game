@@ -284,9 +284,9 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Перерисовать экран с информацией о количестве патронов
     /// </summary>
-    private void RedrawAmmoScreen()
+    protected virtual void RedrawAmmoScreen()
     {
-        ammoScreen.text = BulletsCountInMagazine.ToString() + " / " + BulletsCountInReserve.ToString();
+        //ammoScreen.text = BulletsCountInMagazine.ToString() + " / " + BulletsCountInReserve.ToString();
     }
 
     #endregion
@@ -296,6 +296,25 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     public virtual void Shoot()
     {
+        if (type == Type.Firearm)
+        {
+            GetComponentInChildren<FirearmWeapon>().Shoot();
+        } 
+        else if (type == Type.Laser)
+        {
+            GetComponentInChildren<LaserWeapon>().Shoot();
+
+        }
+        else if (type == Type.Annihilating)
+        {
+            GetComponentInChildren<AnnihilatingWeapon>().Shoot();
+
+        }
+        else if (type == Type.Wall)
+        {
+            GetComponentInChildren<WallBuilder>().Shoot();
+
+        }
     }
 
     /// <summary>
@@ -376,32 +395,56 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Может ли быть выполнена перезарядка оружия
     /// </summary>
-    public bool ReloadingCanBePerformed()
+    public virtual bool ReloadingCanBePerformed()
     {
-        return BulletsCountInMagazine != magazinCapacity && BulletsCountInReserve != 0;
+        if (type == Type.Firearm)
+        {
+            return GetComponentInChildren<FirearmWeapon>().ReloadingCanBePerformed();
+        }
+        //else if (type == Type.Laser)
+        //{
+        //    GetComponentInChildren<LaserWeapon>().Shoot();
+
+        //}
+        //else if (type == Type.Annihilating)
+        //{
+        //    GetComponentInChildren<AnnihilatingWeapon>().Shoot();
+
+        //}
+        //else if (type == Type.Wall)
+        //{
+        //    GetComponentInChildren<WallBuilder>().Shoot();
+
+        //}
+        return false;
     }
 
     /// <summary>
     /// Перезарядить оружие
     /// </summary>
-    public void ReloadWeapon()
+    public virtual void ReloadWeapon()
     {
-        if (!ReloadingCanBePerformed())
+        if (type == Type.Firearm)
         {
-            return;
+            GetComponentInChildren<FirearmWeapon>().ReloadWeapon();
         }
+        //else if (type == Type.Laser)
+        //{
+        //    GetComponentInChildren<LaserWeapon>().Shoot();
 
-        var bulletsCountToFillMagazine = magazinCapacity - BulletsCountInMagazine;
-        if (BulletsCountInReserve < bulletsCountToFillMagazine)
-        {
-            BulletsCountInMagazine += BulletsCountInReserve;
-            BulletsCountInReserve = 0;
-        }
-        else
-        {
-            BulletsCountInReserve -= bulletsCountToFillMagazine;
-            BulletsCountInMagazine = magazinCapacity;
-        }
+        //}
+        //else if (type == Type.Annihilating)
+        //{
+        //    GetComponentInChildren<AnnihilatingWeapon>().Shoot();
+
+        //}
+        //else if (type == Type.Wall)
+        //{
+        //    GetComponentInChildren<WallBuilder>().Shoot();
+
+        //}
+
+        
     }
 
     /// <summary>

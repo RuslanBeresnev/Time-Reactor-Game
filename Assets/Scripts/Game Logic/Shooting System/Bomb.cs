@@ -37,12 +37,10 @@ public class Bomb : Projectile
             if (col.GetComponent<Entity>() != null)
                 col.GetComponent<Entity>().TakeDamage(Damage);
 
-            //@works incorrectly: clones lots of explosions
+            //почему-то создаёт лишние взрывы
             //col.GetComponent<Rigidbody>()?.AddExplosionForce(explosionForce, transform.position, range);
         }
 
-        //else it won't stop playing particles
-        //@ fix it
         Destroy(explosion, 2f);
     }
 
