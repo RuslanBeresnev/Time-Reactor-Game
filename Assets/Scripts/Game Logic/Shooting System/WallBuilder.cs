@@ -45,10 +45,10 @@ public class WallBuilder : Weapon
     {
         base.Awake();
 
-        SemiAutoShooting = false;
+        //SemiAutoShooting = false;
 
         ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
-                                              { "Shooting type:", SemiAutoShooting ? "Semi-Automatic" : "Automatic" },
+                                              { "Shooting type:", "Semi-Automatic"},
                                               { "Firing Frequency:", "N/A" },
                                               { "Bullet velocity:", "N/A" },
                                               { "Damage:", "N/A" } };

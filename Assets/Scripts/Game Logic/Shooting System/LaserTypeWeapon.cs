@@ -88,10 +88,10 @@ public class LaserTypeWeapon : Weapon
     {
         base.Awake();
 
-        SemiAutoShooting = false;
+        //SemiAutoShooting = false;
 
         ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
-                                                  { "Shooting type:", SemiAutoShooting ? "Semi-Automatic" : "Automatic" },
+                                                  { "Shooting type:", "Automatic" },
                                                   { "Firing Frequency:", "N/A" },
                                                   { "Bullet velocity:", "N/A" },
                                                   { "Damage:", "Full HP" } };

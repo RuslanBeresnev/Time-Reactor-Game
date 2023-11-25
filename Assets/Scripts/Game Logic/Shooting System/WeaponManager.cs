@@ -110,8 +110,31 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private IEnumerator AllowShootAfterIntervalPassing()
     {
+        var weapon = WeaponsArsenal[ActiveSlotNumber];
+        var type = weapon.Type;
+        if (type == Type.Projectile)
+        {
+            var component = GetComponentInChildren<ProjectileWeapon>();
+            yield return new WaitForSeconds(component.IntervalBetweenShoots);
+        }
+        else if (type == Type.Laser)
+        {
+            var component = GetComponentInChildren<LaserWeapon>();
+            yield return new WaitForSeconds(component.IntervalBetweenShoots);
+        }
+        else if (type == Type.Annihilating)
+        {
+            var component = GetComponentInChildren<AnnihilatingWeapon>();
+            yield return new WaitForSeconds(component.IntervalBetweenShoots);
+        }
+        else if (type == Type.Wall)
+        {
+            var component = GetComponentInChildren<WallBuilder>();
+            yield return new WaitForSeconds(component.IntervalBetweenShoots);
+        }
+
         // Р—Р°РґРµСЂР¶РєР° РІ СЂРµР°Р»СЊРЅС‹С… СЃРµРєСѓРЅРґР°С…
-        yield return new WaitForSeconds(WeaponsArsenal[ActiveSlotNumber].IntervalBetweenShoots);
+        yield return new WaitForSeconds(weapon.IntervalBetweenShoots);
         canShoot = true;
     }
 
@@ -125,11 +148,15 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
             WeaponsArsenal[ActiveSlotNumber].Shoot();
             canShoot = false;
             StartCoroutine(AllowShootAfterIntervalPassing());
-
-            if (WeaponsArsenal[ActiveSlotNumber].SemiAutoShooting)
+            if (WeaponsArsenal[ActiveSlotNumber].Type == Type.Projectile)
             {
-                stopShooting = true;
+                var projComp = WeaponsArsenal[ActiveSlotNumber].GetComponentInChildren<ProjectileWeapon>();
+                if (projComp.SemiAutoShooting)
+                {
+                    stopShooting = true;
+                }
             }
+            
         }
         else if (!Input.GetMouseButton(0))
         {

@@ -10,8 +10,7 @@ using UnityEngine.Assertions.Must;
 /// </summary>
 public enum Type
 {
-    Firearm,
-    RPG,
+    Projectile,
     Laser,
     Annihilating,
     Wall
@@ -40,7 +39,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     [HideInInspector][SerializeField] private Sprite sprite;
     //@ typo: shoots=>shots
     [HideInInspector][SerializeField] private float intervalBetweenShoots;
-    [HideInInspector][SerializeField] private bool semiAutoShooting;
     [HideInInspector][SerializeField] private float reloadingDuration;
     [HideInInspector][SerializeField] private int magazinCapacity;
     [HideInInspector][SerializeField] private int bulletsCountInMagazine;
@@ -129,17 +127,18 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// <summary>
     /// Минимальный интервал между выстрелами
     /// </summary>
-    public float IntervalBetweenShoots { get; set; }
+    public float IntervalBetweenShoots 
+    {
+        get => intervalBetweenShoots; 
+        set => intervalBetweenShoots = value;
+    }
 
     /// <summary>
     /// Длительность перезарядки оружия
     /// </summary>
     public float ReloadingDuration { get; set; }
 
-    /// <summary>
-    /// Если указано true, то оружие будет вести полуавтоматическую стрельбу (пистолет), иначе автоматическую (винтовка)
-    /// </summary>
-    public bool SemiAutoShooting { get; set; } = true;
+    
 
     /// <summary>
     /// Звук подбора оружия
@@ -217,9 +216,9 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         positionInPlayerHand = PositionInPlayerHand;
         name = Name;
         sprite = Sprite;
-        intervalBetweenShoots = IntervalBetweenShoots;
+        //intervalBetweenShoots = IntervalBetweenShoots;
         reloadingDuration = ReloadingDuration;
-        semiAutoShooting = SemiAutoShooting;
+        //semiAutoShooting = SemiAutoShooting;
         bulletsCountInMagazine = BulletsCountInMagazine;
         bulletsCountInReserve = BulletsCountInReserve;
     }
@@ -229,9 +228,9 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         PositionInPlayerHand = positionInPlayerHand;
         Name = name;
         Sprite = sprite;
-        IntervalBetweenShoots = intervalBetweenShoots;
+        //IntervalBetweenShoots = intervalBetweenShoots;
         ReloadingDuration = reloadingDuration;
-        SemiAutoShooting = semiAutoShooting;
+        //SemiAutoShooting = semiAutoShooting;
         BulletsCountInMagazine = bulletsCountInMagazine;
         BulletsCountInReserve = bulletsCountInReserve;
     }
@@ -296,9 +295,9 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     public virtual void Shoot()
     {
-        if (type == Type.Firearm)
+        if (type == Type.Projectile)
         {
-            GetComponentInChildren<FirearmWeapon>().Shoot();
+            GetComponentInChildren<ProjectileWeapon>().Shoot();
         } 
         else if (type == Type.Laser)
         {
@@ -313,7 +312,6 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
         else if (type == Type.Wall)
         {
             GetComponentInChildren<WallBuilder>().Shoot();
-
         }
     }
 
@@ -397,9 +395,9 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     public virtual bool ReloadingCanBePerformed()
     {
-        if (type == Type.Firearm)
+        if (type == Type.Projectile)
         {
-            return GetComponentInChildren<FirearmWeapon>().ReloadingCanBePerformed();
+            return GetComponentInChildren<ProjectileWeapon>().ReloadingCanBePerformed();
         }
         //else if (type == Type.Laser)
         //{
@@ -424,9 +422,9 @@ public class Weapon : ObjectWithInformation, ISerializationCallbackReceiver
     /// </summary>
     public virtual void ReloadWeapon()
     {
-        if (type == Type.Firearm)
+        if (type == Type.Projectile)
         {
-            GetComponentInChildren<FirearmWeapon>().ReloadWeapon();
+            GetComponentInChildren<ProjectileWeapon>().ReloadWeapon();
         }
         //else if (type == Type.Laser)
         //{

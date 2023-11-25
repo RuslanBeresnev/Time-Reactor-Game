@@ -17,7 +17,7 @@ public class WeaponEditor : Editor
     private bool showAudio = false;
     private bool showAudioList = false;
 
-    private void DrawEditorFirearm(FirearmWeapon weapon)
+    private void DrawEditorFirearm(ProjectileWeapon weapon)
     {
         showReferences = EditorGUILayout.Foldout(showReferences, "References");
         if (showReferences)
@@ -56,43 +56,6 @@ public class WeaponEditor : Editor
         }
     }
 
-    private void DrawEditorRPG(RPG weapon)
-    {
-        showReferences = EditorGUILayout.Foldout(showReferences, "References");
-        if (showReferences)
-        {
-            weapon.PositionInPlayerHand = (Transform)EditorGUILayout.ObjectField("Position in player hand",
-                weapon.PositionInPlayerHand, typeof(Transform), true);
-
-            weapon.WeaponStart = (Transform)EditorGUILayout.ObjectField("Weapon start",
-                weapon.WeaponStart, typeof(Transform), true);
-
-            weapon.WeaponEnd = (Transform)EditorGUILayout.ObjectField("Weapon end",
-                weapon.WeaponEnd, typeof(Transform), true);
-
-            weapon.ProjectilePrefab = (GameObject)EditorGUILayout.ObjectField("Projectile prefab",
-            weapon.ProjectilePrefab, typeof(GameObject), true);
-
-            weapon.Pool = (Pool)EditorGUILayout.ObjectField("Pool",
-                weapon.Pool, typeof(Pool), true);
-        }
-
-        showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
-        if (showShooting)
-        {
-            weapon.IntervalBetweenShoots = EditorGUILayout.FloatField("Interval between shots",
-                weapon.IntervalBetweenShoots);
-
-            weapon.MagazinCapacity = EditorGUILayout.IntField("Magazine capacity", weapon.MagazinCapacity);
-            weapon.BulletsCountInMagazine = EditorGUILayout.IntField("Bullets in magazine", weapon.BulletsCountInMagazine);
-            weapon.BulletsCountInReserve = EditorGUILayout.IntField("Bullets in reserve", weapon.BulletsCountInReserve);
-
-            weapon.ReloadingDuration = EditorGUILayout.FloatField("Reloading duration (s)", weapon.ReloadingDuration);
-
-            weapon.RayDistance = EditorGUILayout.FloatField("Ray distance", weapon.RayDistance);
-        }
-    }
-
     public override void OnInspectorGUI()
     {
         Weapon weapon = (Weapon)target;
@@ -100,15 +63,10 @@ public class WeaponEditor : Editor
 
         weapon.Type = (Type)EditorGUILayout.EnumPopup("Type", weapon.Type);
 
-        if (type == Type.Firearm)
+        if (type == Type.Projectile)
         {
-            var firearmComponent = weapon.GetComponentInChildren<FirearmWeapon>();
-            DrawEditorFirearm(firearmComponent);
-        }
-        else if (type == Type.RPG)
-        {
-            var rpg = weapon.GetComponentInChildren<RPG>();
-            DrawEditorRPG(rpg);
+            var projectileWeapon = weapon.GetComponentInChildren<ProjectileWeapon>();
+            DrawEditorFirearm(projectileWeapon);
         }
 
         showGeneral = EditorGUILayout.Foldout(showGeneral, "General");
