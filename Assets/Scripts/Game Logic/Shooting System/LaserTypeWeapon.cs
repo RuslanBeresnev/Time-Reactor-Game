@@ -5,19 +5,9 @@ public abstract class LaserTypeWeapon : Weapon
     protected GameObject laserGO;
 
     /// <summary>
-    /// Материал лазера
+    /// Префаб лазера
     /// </summary>
-    [field: HideInInspector][field: SerializeField] public Material LaserMaterial { get; set; }
-
-    /// <summary>
-    /// Цвет лазера
-    /// </summary>
-    [field: HideInInspector][field: SerializeField] public Color LaserColor {  get; set; }
-
-    /// <summary>
-    /// Ширина лазера
-    /// </summary>
-    [field: HideInInspector][field: SerializeField] public float LaserWidth { get; set; }
+    [field: HideInInspector][field: SerializeField] public GameObject LaserPrefab { get; set; }
 
     /// <summary>
     /// Урон от лазера
@@ -36,22 +26,20 @@ public abstract class LaserTypeWeapon : Weapon
     {
         if (laserGO == null)
         {
-            laserGO = new GameObject("laserGO", typeof(LineRenderer));
-            laserGO.transform.parent = transform;
-
-            LineRenderer lineRendererComponent = laserGO.GetComponent<LineRenderer>();
-            lineRendererComponent.material = LaserMaterial;
-            lineRendererComponent.material.SetColor("_Color", LaserColor);
-            lineRendererComponent.startWidth = LaserWidth;
-            lineRendererComponent.endWidth = LaserWidth;
+            laserGO = Instantiate(LaserPrefab);
         }
 
-        LineRenderer lineRenderer = laserGO.GetComponent<LineRenderer>();
+        var direction = (hit.point - WeaponEnd.position).normalized;
+        var rotation = Quaternion.LookRotation(direction);
+        var length = Vector3.Distance(hit.point, WeaponEnd.position);
 
-        lineRenderer.SetPosition(0, WeaponEnd.position);
-        lineRenderer.SetPosition(1, hit.point);
+        var laserTransf = laserGO.transform;
+        laserTransf.localScale = new Vector3(laserTransf.localScale.x, 
+            laserTransf.localScale.y, length);
+        laserTransf.position = WeaponEnd.position;
+        laserTransf.rotation = rotation;
 
-        lineRenderer.enabled = true;
+        laserGO.SetActive(true);
     }
 
     /// <summary>
@@ -61,7 +49,7 @@ public abstract class LaserTypeWeapon : Weapon
     {
         if (laserGO != null)
         {
-            laserGO.GetComponent<LineRenderer>().enabled = false;
+            laserGO.SetActive(false);
         }
     }
 }
