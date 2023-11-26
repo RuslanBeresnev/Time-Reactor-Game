@@ -97,10 +97,22 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         
     }
 
+    private void LateUpdate()
+    {
+        if (weaponsArsenal[activeSlotNumber] is LaserTypeWeapon)
+        {
+            CheckClickForShooting();
+        }
+    }
+
     private void FixedUpdate()
     {
         CheckClickForWeaponReloading();
-        CheckClickForShooting();
+        //Лазер должен отрисовываться в LateUpdate() для плавности картинки
+        if (!(weaponsArsenal[activeSlotNumber] is LaserTypeWeapon))
+        {
+            CheckClickForShooting();
+        }
         CheckClickForWeaponChanging();
         CheckClickForEjectionOrInteraction();
     }

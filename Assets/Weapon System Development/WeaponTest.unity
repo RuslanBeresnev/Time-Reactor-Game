@@ -5597,14 +5597,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   positionInPlayerHand: {fileID: 514123952}
-  ammoScreen: {fileID: 0}
+  ammoScreen: {fileID: 7237683461778288069}
   weaponStart: {fileID: 4432884076108086948}
   weaponEnd: {fileID: 7606611735591628734}
   shotSound: {fileID: 0}
   reloadingSound: {fileID: 0}
   weaponHitingOnSurfaceSounds: []
-  name: 
-  sprite: {fileID: 0}
+  name: laser
+  sprite: {fileID: 21300000, guid: 5f69b99c675b3c14a83e454e771e3e33, type: 3}
   intervalBetweenShoots: 0
   reloadingDuration: 0
   magazinCapacity: 0
@@ -5612,10 +5612,8 @@ MonoBehaviour:
   bulletsCountInReserve: 0
   rayDistance: 200
   semiAutoShooting: 0
-  <LaserMaterial>k__BackingField: {fileID: 0}
-  <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <LaserWidth>k__BackingField: 0.2
-  <LaserDamage>k__BackingField: 1
+  <LaserPrefab>k__BackingField: {fileID: 4334369380828920708, guid: ce89b24a6cf509c4ab64f55726a91d44, type: 3}
+  <LaserDamage>k__BackingField: 5
 --- !u!82 &353586960
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11186,7 +11184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsArsenal:
-  - {fileID: 1488734360}
+  - {fileID: 353586959}
   - {fileID: 921102038098129675}
   - {fileID: 4952738169502404123}
   weaponCamera: {fileID: 1652258266}
@@ -16516,9 +16514,7 @@ MonoBehaviour:
   bulletsCountInReserve: 0
   rayDistance: 200
   semiAutoShooting: 0
-  <LaserMaterial>k__BackingField: {fileID: 0}
-  <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <LaserWidth>k__BackingField: 0.2
+  <LaserPrefab>k__BackingField: {fileID: 4334369380828920708, guid: ce89b24a6cf509c4ab64f55726a91d44, type: 3}
   <LaserDamage>k__BackingField: 0
   <AnnihilatingTag>k__BackingField: Annihil
 --- !u!82 &1488734361
@@ -25855,9 +25851,7 @@ MonoBehaviour:
   bulletsCountInReserve: 0
   rayDistance: 200
   semiAutoShooting: 0
-  <LaserMaterial>k__BackingField: {fileID: 0}
-  <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <LaserWidth>k__BackingField: 0.2
+  <LaserPrefab>k__BackingField: {fileID: 0}
   <LaserDamage>k__BackingField: 1
 --- !u!1 &921102038015043138
 GameObject:
@@ -26117,9 +26111,7 @@ MonoBehaviour:
   bulletsCountInReserve: 0
   rayDistance: 200
   semiAutoShooting: 0
-  <LaserMaterial>k__BackingField: {fileID: 0}
-  <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <LaserWidth>k__BackingField: 0.2
+  <LaserPrefab>k__BackingField: {fileID: 0}
   <LaserDamage>k__BackingField: 0
   <AnnihilatingTag>k__BackingField: 
 --- !u!82 &921102038015043149
@@ -26476,8 +26468,8 @@ MonoBehaviour:
   bulletsCountInReserve: 100
   rayDistance: 200
   semiAutoShooting: 0
-  <ProjectilePrefab>k__BackingField: {fileID: 5994419726597024171, guid: 9fd98004fdd23f1408fd0274c7131535, type: 3}
-  <Pool>k__BackingField: {fileID: 771721112}
+  <ProjectilePrefab>k__BackingField: {fileID: 5661181745838182605, guid: 42693fcdede862f4b9a69d1e7ba8d718, type: 3}
+  <Pool>k__BackingField: {fileID: 2090489622}
 --- !u!82 &921102038098129712
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26989,7 +26981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d496e9ed3a95f3c4f834149f3ed0ab3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 1
   positionInPlayerHand: {fileID: 514123952}
   ammoScreen: {fileID: 7237683461778288069}
   weaponStart: {fileID: 4432884076108086948}
@@ -27191,7 +27183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1976560752252567029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28443,9 +28435,7 @@ MonoBehaviour:
   bulletsCountInReserve: 0
   rayDistance: 200
   semiAutoShooting: 0
-  <LaserMaterial>k__BackingField: {fileID: 0}
-  <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <LaserWidth>k__BackingField: 0.2
+  <LaserPrefab>k__BackingField: {fileID: 0}
   <LaserDamage>k__BackingField: 0
   <AnnihilatingTag>k__BackingField: 
 --- !u!4 &4952738168562255400
@@ -30089,9 +30079,7 @@ MonoBehaviour:
   bulletsCountInReserve: 0
   rayDistance: 200
   semiAutoShooting: 0
-  <LaserMaterial>k__BackingField: {fileID: 0}
-  <LaserColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-  <LaserWidth>k__BackingField: 0.2
+  <LaserPrefab>k__BackingField: {fileID: 0}
   <LaserDamage>k__BackingField: 1
 --- !u!4 &4952738169843024305
 Transform:
@@ -30226,7 +30214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5989198148614249898
 Transform:
   m_ObjectHideFlags: 0
