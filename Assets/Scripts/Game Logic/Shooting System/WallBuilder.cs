@@ -84,5 +84,7 @@ public class WallBuilder : Weapon
                                               { "Firing Frequency:", "N/A" },
                                               { "Bullet velocity:", "N/A" },
                                               { "Damage:", "N/A" } };
+
+        weapon.ObjectInfoParameters = ObjectInfoParameters;
     }
 }

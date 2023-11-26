@@ -60,5 +60,7 @@ public class LaserWeapon : LaserTypeWeapon
                                                   { "Firing Frequency:", "N/A" },
                                                   { "Bullet velocity:", "N/A" },
                                                   { "Damage:", LaserDamage.ToString() } };
+
+        weapon.ObjectInfoParameters = ObjectInfoParameters;
     }
 }

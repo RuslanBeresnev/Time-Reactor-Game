@@ -93,8 +93,6 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         }
 
         performSerializationAndDeserealization = true;
-
-        
     }
 
     private void LateUpdate()

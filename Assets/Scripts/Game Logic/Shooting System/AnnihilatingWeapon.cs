@@ -64,5 +64,7 @@ public class AnnihilatingWeapon : LaserTypeWeapon
                                                   { "Firing Frequency:", "N/A" },
                                                   { "Bullet velocity:", "N/A" },
                                                   { "Damage:", "Full HP" } };
+
+        weapon.ObjectInfoParameters = ObjectInfoParameters;
     }
 }

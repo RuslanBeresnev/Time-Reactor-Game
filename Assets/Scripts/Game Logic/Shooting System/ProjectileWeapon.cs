@@ -126,5 +126,7 @@ public class ProjectileWeapon : Weapon
                                                   { "Firing Frequency:", System.Math.Round(1 / IntervalBetweenShoots).ToString() + " per sec." },
                                                   { "Bullet velocity:", velocity  + " m/s" },
                                                   { "Damage:", damage + " HP" } };
+
+        weapon.ObjectInfoParameters = ObjectInfoParameters;
     }
 }
