@@ -1,11 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class AnnihilatingWeapon : LaserTypeWeapon
 {
+    [SerializeField] private string[] annihilatingTags;
+
     /// <summary>
-    /// Тэг, означающий, что может быть уничтожено аннигилирующим оружием
+    /// Тэги, означающие, что может быть уничтожено аннигилирующим оружием
     /// </summary>
-    [field: HideInInspector][field: SerializeField] public string AnnihilatingTag { get; set; }
+    public string[] AnnihilatingTags 
+    { 
+        get => annihilatingTags; 
+        set => annihilatingTags = value; 
+    }
 
     public override void Shoot()
     {
@@ -18,7 +25,7 @@ public class AnnihilatingWeapon : LaserTypeWeapon
         MakeLaser(hit);
 
         var target = hit.transform.gameObject;
-        if (target.CompareTag(AnnihilatingTag))
+        if (AnnihilatingTags.Contains(target.tag.ToString()))
         {
             Destroy(target.gameObject);
         }

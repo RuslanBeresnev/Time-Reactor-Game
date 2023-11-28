@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using TMPro;
+using System;
 
 /// <summary>
 /// Скрипт, создающий кастомный редактор для Weapon.cs
@@ -11,9 +12,11 @@ public class WeaponEditor : Editor
     private bool showGeneral = true;
     private bool showShooting = true;
     private bool showVisual = true;
+    private bool showTags = true;
 
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
         Weapon weapon = (Weapon)target;
         Type type = weapon.Type;
 
@@ -171,8 +174,33 @@ public class WeaponEditor : Editor
             weapon.LaserPrefab = (GameObject)EditorGUILayout.ObjectField("Laser prefab", 
                 weapon.LaserPrefab, typeof(GameObject), true);
 
-            weapon.AnnihilatingTag = EditorGUILayout.TagField("Annihilating tag",
-                weapon.AnnihilatingTag);
+            EditorGUI.indentLevel++;
+            showTags = EditorGUILayout.Foldout(showTags, "Annihilating tags");
+            if (showTags)
+            {
+                EditorGUI.BeginChangeCheck();
+
+                //Свойство нельзя передать по ссылке, создаём переменную
+                var tags = weapon.AnnihilatingTags;
+
+                for (int i = 0; i < tags.Length; i++)
+                    tags[i] = EditorGUILayout.TagField("Tag " + i, tags[i]);
+
+                if (GUILayout.Button("add"))
+                {
+                    Array.Resize(ref tags, tags.Length + 1);
+                    weapon.AnnihilatingTags = tags;
+                }
+
+                if (GUILayout.Button("remove"))
+                {
+                    Array.Resize(ref tags, tags.Length - 1);
+                    weapon.AnnihilatingTags = tags;
+                }
+
+                if (EditorGUI.EndChangeCheck())
+                    EditorUtility.SetDirty(weapon);
+            }
         }
 
         showVisual = EditorGUILayout.Foldout(showVisual, "Visual");
