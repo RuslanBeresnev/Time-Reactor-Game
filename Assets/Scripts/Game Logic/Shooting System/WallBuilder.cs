@@ -48,8 +48,9 @@ public class WallBuilder : Weapon
     {
         Type = Type.WallBuilder;
 
-        var weapon = transform.parent.parent.GetComponent<Weapon>();
-        if (Type != weapon.Type)
+        //Компонент предка-объекта Weapon
+        var grandpaWeapon = transform.parent.parent.GetComponent<Weapon>();
+        if (Type != grandpaWeapon.Type)
         {
             return;
         }
@@ -77,6 +78,8 @@ public class WallBuilder : Weapon
             }
         }
 
+        grandpaWeapon.WeaponHitingOnSurfaceSounds = WeaponHitingOnSurfaceSounds;
+        
         InitializeInfoPanelPrefab();
 
         ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
@@ -85,6 +88,6 @@ public class WallBuilder : Weapon
                                               { "Bullet velocity:", "N/A" },
                                               { "Damage:", "N/A" } };
 
-        weapon.ObjectInfoParameters = ObjectInfoParameters;
+        grandpaWeapon.ObjectInfoParameters = ObjectInfoParameters;
     }
 }

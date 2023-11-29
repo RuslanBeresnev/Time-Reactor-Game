@@ -35,8 +35,9 @@ public class AnnihilatingWeapon : LaserTypeWeapon
     {
         Type = Type.Annihilating;
 
-        var weapon = transform.parent.parent.GetComponent<Weapon>();
-        if (Type != weapon.Type)
+        //Компонент предка-объекта 
+        var grandpaWeapon = transform.parent.parent.GetComponent<Weapon>();
+        if (Type != grandpaWeapon.Type)
         {
             return;
         }
@@ -64,6 +65,8 @@ public class AnnihilatingWeapon : LaserTypeWeapon
             }
         }
 
+        grandpaWeapon.WeaponHitingOnSurfaceSounds = WeaponHitingOnSurfaceSounds;
+
         InitializeInfoPanelPrefab();
 
         ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
@@ -72,6 +75,6 @@ public class AnnihilatingWeapon : LaserTypeWeapon
                                                   { "Bullet velocity:", "N/A" },
                                                   { "Damage:", "Full HP" } };
 
-        weapon.ObjectInfoParameters = ObjectInfoParameters;
+        grandpaWeapon.ObjectInfoParameters = ObjectInfoParameters;
     }
 }

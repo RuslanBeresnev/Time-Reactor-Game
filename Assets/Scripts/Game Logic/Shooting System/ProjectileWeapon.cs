@@ -78,8 +78,9 @@ public class ProjectileWeapon : Weapon
     {
         Type = Type.Projectile;
 
-        var weapon = transform.parent.parent.GetComponent<Weapon>();
-        if (Type != weapon.Type)
+        //Компонент предка-объекта Weapon
+        var grandpaWeapon = transform.parent.parent.GetComponent<Weapon>();
+        if (Type != grandpaWeapon.Type)
         {
             return;
         }
@@ -107,6 +108,8 @@ public class ProjectileWeapon : Weapon
             }
         }
 
+        grandpaWeapon.WeaponHitingOnSurfaceSounds = WeaponHitingOnSurfaceSounds;
+
         InitializeInfoPanelPrefab();
 
         if (BulletsCountInMagazine > MagazinCapacity)
@@ -116,7 +119,9 @@ public class ProjectileWeapon : Weapon
 
         var projectileComponent = ProjectilePrefab.GetComponent<Projectile>();
         if (projectileComponent == null)
+        {
             return;
+        }
 
         string damage = projectileComponent.Damage.ToString();
         string velocity = projectileComponent.Velocity.ToString();
@@ -127,6 +132,6 @@ public class ProjectileWeapon : Weapon
                                                   { "Bullet velocity:", velocity  + " m/s" },
                                                   { "Damage:", damage + " HP" } };
 
-        weapon.ObjectInfoParameters = ObjectInfoParameters;
+        grandpaWeapon.ObjectInfoParameters = ObjectInfoParameters;
     }
 }

@@ -23,8 +23,9 @@ public class LaserWeapon : LaserTypeWeapon
     {
         Type = Type.Laser;
 
-        var weapon = transform.parent.parent.GetComponent<Weapon>();
-        if (Type != weapon.Type)
+        //Компонент предка-объекта Weapon
+        var grandpaWeapon = transform.parent.parent.GetComponent<Weapon>();
+        if (Type != grandpaWeapon.Type)
         {
             return;
         }
@@ -53,6 +54,8 @@ public class LaserWeapon : LaserTypeWeapon
             }
         }
 
+        grandpaWeapon.WeaponHitingOnSurfaceSounds = WeaponHitingOnSurfaceSounds;
+
         InitializeInfoPanelPrefab();
 
         ObjectInfoParameters = new string[5, 2] { { "Name:", Name },
@@ -61,6 +64,6 @@ public class LaserWeapon : LaserTypeWeapon
                                                   { "Bullet velocity:", "N/A" },
                                                   { "Damage:", LaserDamage.ToString() } };
 
-        weapon.ObjectInfoParameters = ObjectInfoParameters;
+        grandpaWeapon.ObjectInfoParameters = ObjectInfoParameters;
     }
 }
