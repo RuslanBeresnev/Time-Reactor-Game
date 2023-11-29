@@ -3,6 +3,7 @@ using RoomInteriorGenerator;
 using System.Linq;
 using Microsoft.FSharp.Core;
 using UnityEngine;
+using Random = System.Random;
 
 /// <summary>
 /// Процедурная генерация интерьера в комнатах
@@ -14,9 +15,21 @@ public class GenerateInterior : MonoBehaviour
     [SerializeField] private DataTableRowWrapper[] dataTable;
     [SerializeField] private int maximumAmountOfObjects;
     private readonly int floorNumber = GameProperties.FloorNumber;
+    private static System.Random random = new System.Random();
+
+    private static void ShuffleArray(DataTableRowWrapper[] array)
+    {
+        var arrayLength = array.Length;
+        while (arrayLength > 1)
+        {
+            var arrayIndexToSwapWith = random.Next(arrayLength--);
+            (array[arrayLength], array[arrayIndexToSwapWith]) = (array[arrayIndexToSwapWith], array[arrayLength]);
+        }
+    }
 
     private void Start()
     {
+        ShuffleArray(dataTable);
         var dataTableRows = dataTable.Select(row => row.ToDataTableRow()).ToArray();
         var dataTableFs = new DataTable.DataTable<GameObject>(dataTableRows);
 
