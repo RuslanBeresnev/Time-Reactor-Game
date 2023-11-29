@@ -3,7 +3,6 @@ using RoomInteriorGenerator;
 using System.Linq;
 using Microsoft.FSharp.Core;
 using UnityEngine;
-using Random = System.Random;
 
 /// <summary>
 /// Процедурная генерация интерьера в комнатах
