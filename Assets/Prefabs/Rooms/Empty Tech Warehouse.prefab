@@ -80,10 +80,10 @@ Transform:
   - {fileID: 160502541020542259}
   - {fileID: 4027449177429299388}
   - {fileID: 8185106726685381941}
+  - {fileID: 3667774297314857431}
   - {fileID: 4550977443945107173}
   - {fileID: 4351315491500608224}
   - {fileID: 6108364192750578116}
-  - {fileID: 7961426703378604095}
   m_Father: {fileID: 958447763634224889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958447762848205186
@@ -1885,7 +1885,7 @@ Transform:
   m_GameObject: {fileID: 3109216914525856538}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.43, y: -0.284, z: -1.61}
+  m_LocalPosition: {x: 10.3, y: -0.284, z: -2.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1903,7 +1903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f122141f3b3a1240997c44ca05b4772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomLength: 7
+  roomLength: 8
   roomWidth: 10
   dataTable:
   - name: Shelf Bottom
@@ -1913,7 +1913,7 @@ MonoBehaviour:
       freeCellsOnLeft: 0
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
-    - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
       freeCellsOnRight: 6
       freeCellsOnLeft: 0
       freeCellsOnTop: 1
@@ -1923,7 +1923,7 @@ MonoBehaviour:
       freeCellsOnLeft: 0
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
-    - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
       freeCellsOnRight: 6
       freeCellsOnLeft: 0
       freeCellsOnTop: 1
@@ -1944,7 +1944,21 @@ MonoBehaviour:
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     placementRule: 2
-    leafs: []
+    leafs:
+    - name: Tech
+      variants:
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      placementRule: 10
+      leafs: []
   - name: Rails Bottom
     variants:
     - variant: {fileID: 4997656918023441158, guid: 8a2635e0de4e88a4984d625fba025316, type: 3}
@@ -2006,58 +2020,6 @@ MonoBehaviour:
         freeCellsOnBottom: 1
       placementRule: 7
       leafs: []
-  - name: Tech
-    variants:
-    - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 1745108677006244618, guid: 079ee1b393a037346b45db9fca36b8ff, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    placementRule: 0
-    leafs: []
-  - name: Pallet
-    variants:
-    - variant: {fileID: 8189120188402928588, guid: 44238a05821c9e042ab228bf02acd797, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 1
-      freeCellsOnBottom: 1
-    - variant: {fileID: 5673246707281332726, guid: a3a684ba10a05454c81fe10593149855, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    placementRule: 3
-    leafs: []
-  - name: Pallet Anwhere
-    variants:
-    - variant: {fileID: 8889510819854559877, guid: 018a00eb71eb58641ad666127758d809, type: 3}
-      freeCellsOnRight: 2
-      freeCellsOnLeft: 2
-      freeCellsOnTop: 2
-      freeCellsOnBottom: 2
-    - variant: {fileID: 6647474741519059165, guid: d11fa02819912dc4eb4e3c3f7181fa3b, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 8292741256075897434, guid: 0f18dd7fbf6cc0143bdbca4e7f1566b8, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    placementRule: 0
-    leafs: []
   - name: Shelf Top
     variants:
     - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
@@ -2065,7 +2027,7 @@ MonoBehaviour:
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 1
-    - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
       freeCellsOnRight: 6
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
@@ -2075,7 +2037,7 @@ MonoBehaviour:
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 1
-    - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
       freeCellsOnRight: 6
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
@@ -2104,11 +2066,6 @@ MonoBehaviour:
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 1745108677006244618, guid: 079ee1b393a037346b45db9fca36b8ff, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
       - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
@@ -2123,7 +2080,7 @@ MonoBehaviour:
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 1
-    - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
       freeCellsOnRight: 6
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
@@ -2133,7 +2090,7 @@ MonoBehaviour:
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 1
-    - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
       freeCellsOnRight: 6
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
@@ -2155,46 +2112,21 @@ MonoBehaviour:
       freeCellsOnBottom: 1
     placementRule: 0
     leafs:
-    - name: Shelf
+    - name: Tech
       variants:
-      - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
         freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
         freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      placementRule: 8
+      placementRule: 10
       leafs: []
-  maximumAmountOfObjects: 10
+  maximumAmountOfObjects: 15
 --- !u!1 &3274462378827285295
 GameObject:
   m_ObjectHideFlags: 0
@@ -2315,7 +2247,7 @@ Transform:
   m_GameObject: {fileID: 3671315399526227126}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.284, z: 14.31}
+  m_LocalPosition: {x: -1.14, y: -0.284, z: 13.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2333,8 +2265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f122141f3b3a1240997c44ca05b4772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomLength: 4
-  roomWidth: 7
+  roomLength: 6
+  roomWidth: 9
   dataTable:
   - name: Rails Bottom
     variants:
@@ -2344,15 +2276,6 @@ MonoBehaviour:
       freeCellsOnTop: 0
       freeCellsOnBottom: 0
     placementRule: 2
-    leafs: []
-  - name: Rails Right
-    variants:
-    - variant: {fileID: 4997656918023441158, guid: 8a2635e0de4e88a4984d625fba025316, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    placementRule: 4
     leafs: []
   - name: Barrel Corner
     variants:
@@ -2414,108 +2337,113 @@ MonoBehaviour:
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 0
-    placementRule: 0
+    placementRule: 2
     leafs: []
-  - name: Pallet
-    variants:
-    - variant: {fileID: 8189120188402928588, guid: 44238a05821c9e042ab228bf02acd797, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 1
-      freeCellsOnBottom: 1
-    - variant: {fileID: 5673246707281332726, guid: a3a684ba10a05454c81fe10593149855, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    placementRule: 3
-    leafs: []
-  - name: Pallet Anwhere
-    variants:
-    - variant: {fileID: 8889510819854559877, guid: 018a00eb71eb58641ad666127758d809, type: 3}
-      freeCellsOnRight: 2
-      freeCellsOnLeft: 2
-      freeCellsOnTop: 2
-      freeCellsOnBottom: 2
-    placementRule: 0
-    leafs: []
-  - name: Shelf Anywhere
+  - name: Shelf Right
     variants:
     - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnBottom: 6
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
+      freeCellsOnBottom: 6
     - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnBottom: 6
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
+      freeCellsOnBottom: 6
     - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
+      freeCellsOnBottom: 6
     - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
+      freeCellsOnBottom: 6
     - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    placementRule: 0
+      freeCellsOnBottom: 6
+    placementRule: 4
     leafs:
-    - name: Shelf
+    - name: Tech
       variants:
-      - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
         freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
         freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
         freeCellsOnBottom: 0
       placementRule: 8
+      leafs: []
+  - name: Shelf Left
+    variants:
+    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    placementRule: 3
+    leafs:
+    - name: Tech
+      variants:
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      placementRule: 10
       leafs: []
   maximumAmountOfObjects: 15
 --- !u!1 &3674426465114505406
@@ -2612,215 +2540,6 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
   - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
---- !u!1 &3903249736636802038
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7961426703378604095}
-  - component: {fileID: 3419169235413996102}
-  m_Layer: 0
-  m_Name: Data Table Top Left
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7961426703378604095
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3903249736636802038}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.284, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 672318291788753688}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3419169235413996102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3903249736636802038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f122141f3b3a1240997c44ca05b4772, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomLength: 9
-  roomWidth: 7
-  dataTable:
-  - name: Rails Bottom
-    variants:
-    - variant: {fileID: 4997656918023441158, guid: 8a2635e0de4e88a4984d625fba025316, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    placementRule: 2
-    leafs: []
-  - name: Rails Left
-    variants:
-    - variant: {fileID: 4997656918023441158, guid: 8a2635e0de4e88a4984d625fba025316, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    placementRule: 3
-    leafs: []
-  - name: Barrel Corner
-    variants:
-    - variant: {fileID: 7503223149415617574, guid: ae463aac0ad37ee4b8d81e1cd5a1ce45, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 1683992074854707571, guid: 0afbbc45991c3f141a8e990302b293a9, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 9166948555668330389, guid: f836d26167b99b342bda266aa6c4e586, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 4410562846169964135, guid: 902a4175220148e43ae57902002be875, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    placementRule: 5
-    leafs:
-    - name: Box
-      variants:
-      - variant: {fileID: 7684938637862453575, guid: 61899313ff583784e8882b084ada06c6, type: 3}
-        freeCellsOnRight: 1
-        freeCellsOnLeft: 1
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 1
-      - variant: {fileID: 7556680440265912016, guid: 9178c32b053815d4dbad0f6bd8723f2a, type: 3}
-        freeCellsOnRight: 1
-        freeCellsOnLeft: 1
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 1
-      - variant: {fileID: 4796459043632106584, guid: f241d1b85edaa74498573d661031508f, type: 3}
-        freeCellsOnRight: 1
-        freeCellsOnLeft: 1
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 1
-      placementRule: 7
-      leafs: []
-  - name: Tech
-    variants:
-    - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 1745108677006244618, guid: 079ee1b393a037346b45db9fca36b8ff, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    placementRule: 2
-    leafs: []
-  - name: Pallet
-    variants:
-    - variant: {fileID: 8189120188402928588, guid: 44238a05821c9e042ab228bf02acd797, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 1
-      freeCellsOnBottom: 1
-    - variant: {fileID: 5673246707281332726, guid: a3a684ba10a05454c81fe10593149855, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    placementRule: 3
-    leafs: []
-  - name: Pallet Anwhere
-    variants:
-    - variant: {fileID: 8889510819854559877, guid: 018a00eb71eb58641ad666127758d809, type: 3}
-      freeCellsOnRight: 2
-      freeCellsOnLeft: 2
-      freeCellsOnTop: 2
-      freeCellsOnBottom: 2
-    placementRule: 0
-    leafs: []
-  - name: Shelf
-    variants:
-    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    placementRule: 0
-    leafs:
-    - name: Tech
-      variants:
-      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 1745108677006244618, guid: 079ee1b393a037346b45db9fca36b8ff, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      placementRule: 9
-      leafs: []
-  maximumAmountOfObjects: 15
 --- !u!1 &4293316452622494931
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,6 +3051,279 @@ MonoBehaviour:
       placementRule: 6
       leafs: []
   maximumAmountOfObjects: 6
+--- !u!1 &6129108436903760109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3667774297314857431}
+  - component: {fileID: 5319851557770293729}
+  m_Layer: 0
+  m_Name: Data Table Top Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3667774297314857431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129108436903760109}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.91, y: -0.284, z: -2.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 672318291788753688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5319851557770293729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129108436903760109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f122141f3b3a1240997c44ca05b4772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomLength: 10
+  roomWidth: 9
+  dataTable:
+  - name: Shelf Bottom
+    variants:
+    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 1
+      freeCellsOnBottom: 0
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 1
+      freeCellsOnBottom: 0
+    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 1
+      freeCellsOnBottom: 0
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 1
+      freeCellsOnBottom: 0
+    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 1
+      freeCellsOnBottom: 0
+    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 1
+      freeCellsOnBottom: 0
+    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 1
+      freeCellsOnBottom: 0
+    placementRule: 2
+    leafs:
+    - name: Tech
+      variants:
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      placementRule: 10
+      leafs: []
+  - name: Rails Bottom
+    variants:
+    - variant: {fileID: 4997656918023441158, guid: 8a2635e0de4e88a4984d625fba025316, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 0
+    placementRule: 2
+    leafs: []
+  - name: Rails Left
+    variants:
+    - variant: {fileID: 4997656918023441158, guid: 8a2635e0de4e88a4984d625fba025316, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 0
+    placementRule: 3
+    leafs: []
+  - name: Barrel Corner
+    variants:
+    - variant: {fileID: 7503223149415617574, guid: ae463aac0ad37ee4b8d81e1cd5a1ce45, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 0
+    - variant: {fileID: 1683992074854707571, guid: 0afbbc45991c3f141a8e990302b293a9, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 9166948555668330389, guid: f836d26167b99b342bda266aa6c4e586, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 4410562846169964135, guid: 902a4175220148e43ae57902002be875, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    placementRule: 5
+    leafs:
+    - name: Box
+      variants:
+      - variant: {fileID: 7684938637862453575, guid: 61899313ff583784e8882b084ada06c6, type: 3}
+        freeCellsOnRight: 1
+        freeCellsOnLeft: 1
+        freeCellsOnTop: 1
+        freeCellsOnBottom: 1
+      - variant: {fileID: 7556680440265912016, guid: 9178c32b053815d4dbad0f6bd8723f2a, type: 3}
+        freeCellsOnRight: 1
+        freeCellsOnLeft: 1
+        freeCellsOnTop: 1
+        freeCellsOnBottom: 1
+      - variant: {fileID: 4796459043632106584, guid: f241d1b85edaa74498573d661031508f, type: 3}
+        freeCellsOnRight: 1
+        freeCellsOnLeft: 1
+        freeCellsOnTop: 1
+        freeCellsOnBottom: 1
+      placementRule: 7
+      leafs: []
+  - name: Shelf Top
+    variants:
+    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    placementRule: 1
+    leafs:
+    - name: Tech
+      variants:
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      - variant: {fileID: 1745108677006244618, guid: 079ee1b393a037346b45db9fca36b8ff, type: 3}
+        freeCellsOnRight: 1
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 1
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      placementRule: 9
+      leafs: []
+  - name: Shelf Anywhere
+    variants:
+    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    placementRule: 0
+    leafs:
+    - name: Tech
+      variants:
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      placementRule: 10
+      leafs: []
+  maximumAmountOfObjects: 15
 --- !u!1 &6245766073874585808
 GameObject:
   m_ObjectHideFlags: 0
@@ -3563,7 +3555,7 @@ Transform:
   m_GameObject: {fileID: 7929526577670162215}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.610001, y: -0.284, z: 11.8}
+  m_LocalPosition: {x: 8.28, y: -0.284, z: 11.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3582,7 +3574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomLength: 4
-  roomWidth: 11
+  roomWidth: 10
   dataTable:
   - name: Rails Bottom
     variants:
@@ -3645,127 +3637,122 @@ MonoBehaviour:
         freeCellsOnBottom: 1
       placementRule: 7
       leafs: []
-  - name: Tech
-    variants:
-    - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 1745108677006244618, guid: 079ee1b393a037346b45db9fca36b8ff, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    placementRule: 0
-    leafs: []
   - name: Pallet
     variants:
-    - variant: {fileID: 8189120188402928588, guid: 44238a05821c9e042ab228bf02acd797, type: 3}
+    - variant: {fileID: 8889510819854559877, guid: 018a00eb71eb58641ad666127758d809, type: 3}
       freeCellsOnRight: 1
       freeCellsOnLeft: 1
       freeCellsOnTop: 1
       freeCellsOnBottom: 1
-    - variant: {fileID: 5673246707281332726, guid: a3a684ba10a05454c81fe10593149855, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    placementRule: 3
-    leafs: []
-  - name: Pallet Anwhere
-    variants:
-    - variant: {fileID: 8889510819854559877, guid: 018a00eb71eb58641ad666127758d809, type: 3}
-      freeCellsOnRight: 2
-      freeCellsOnLeft: 2
-      freeCellsOnTop: 2
-      freeCellsOnBottom: 2
     placementRule: 0
     leafs: []
-  - name: Shelf Anywhere
+  - name: Shelf Right
     variants:
     - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnBottom: 6
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
+      freeCellsOnBottom: 6
     - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnBottom: 6
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
+      freeCellsOnBottom: 6
     - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
+      freeCellsOnBottom: 6
     - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
+      freeCellsOnBottom: 3
     - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 1
       freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    placementRule: 0
+      freeCellsOnBottom: 6
+    placementRule: 4
     leafs:
-    - name: Shelf
+    - name: Tech
       variants:
-      - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
         freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
         freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 6
-        freeCellsOnTop: 1
-        freeCellsOnBottom: 0
-      placementRule: 8
+      placementRule: 10
       leafs: []
-  maximumAmountOfObjects: 10
+  - name: Shelf Left
+    variants:
+    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 6
+      freeCellsOnBottom: 0
+    placementRule: 3
+    leafs:
+    - name: Tech
+      variants:
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      placementRule: 10
+      leafs: []
+  maximumAmountOfObjects: 6
 --- !u!1 &8511099787252487197
 GameObject:
   m_ObjectHideFlags: 0
@@ -3792,7 +3779,7 @@ Transform:
   m_GameObject: {fileID: 8511099787252487197}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.2, y: -0.34, z: -1.61}
+  m_LocalPosition: {x: 22.59, y: -0.34, z: -2.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3813,99 +3800,41 @@ MonoBehaviour:
   roomLength: 10
   roomWidth: 4
   dataTable:
-  - name: Shelf Top
-    variants:
-    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 1
-    placementRule: 1
-    leafs:
-    - name: Tech
-      variants:
-      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 1745108677006244618, guid: 079ee1b393a037346b45db9fca36b8ff, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      placementRule: 9
-      leafs: []
   - name: Shelf Bottom
     variants:
     - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 6
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
-    - variant: {fileID: 1543414554589398163, guid: 15e41766dadeb194ab5126f2b3405673, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 6
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 6
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
-    - variant: {fileID: 7597089328594152638, guid: d4b8d3b973e8fc241958e45f87541379, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 6
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 6
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 6
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 6
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     placementRule: 2
@@ -3971,58 +3900,112 @@ MonoBehaviour:
         freeCellsOnBottom: 1
       placementRule: 7
       leafs: []
-  - name: Tech
+  - name: Shelf Top
     variants:
-    - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 1745108677006244618, guid: 079ee1b393a037346b45db9fca36b8ff, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    placementRule: 0
-    leafs: []
-  - name: Pallet
-    variants:
-    - variant: {fileID: 8189120188402928588, guid: 44238a05821c9e042ab228bf02acd797, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 1
-      freeCellsOnBottom: 1
-    - variant: {fileID: 5673246707281332726, guid: a3a684ba10a05454c81fe10593149855, type: 3}
-      freeCellsOnRight: 1
+    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
+      freeCellsOnRight: 6
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 1
-    placementRule: 3
-    leafs: []
-  - name: Pallet Anwhere
-    variants:
-    - variant: {fileID: 8889510819854559877, guid: 018a00eb71eb58641ad666127758d809, type: 3}
-      freeCellsOnRight: 2
-      freeCellsOnLeft: 2
-      freeCellsOnTop: 2
-      freeCellsOnBottom: 2
-    - variant: {fileID: 6647474741519059165, guid: d11fa02819912dc4eb4e3c3f7181fa3b, type: 3}
-      freeCellsOnRight: 1
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 8292741256075897434, guid: 0f18dd7fbf6cc0143bdbca4e7f1566b8, type: 3}
-      freeCellsOnRight: 0
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
+      freeCellsOnRight: 6
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
-      freeCellsOnBottom: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    placementRule: 1
+    leafs:
+    - name: Tech
+      variants:
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      placementRule: 9
+      leafs: []
+  - name: Shelf Anywhere
+    variants:
+    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2742422960067847511, guid: 3754193ef891ddd4687656c99a744817, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
+      freeCellsOnRight: 6
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
     placementRule: 0
-    leafs: []
+    leafs:
+    - name: Tech
+      variants:
+      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
+        freeCellsOnRight: 0
+        freeCellsOnLeft: 0
+        freeCellsOnTop: 0
+        freeCellsOnBottom: 0
+      placementRule: 10
+      leafs: []
   maximumAmountOfObjects: 10
 --- !u!1 &8603261603821046197
 GameObject:
@@ -13946,7 +13929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 49002bf03aa06ed46b00eb56f68aacc0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.792
+      value: 0.508
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 49002bf03aa06ed46b00eb56f68aacc0, type: 3}
       propertyPath: m_LocalRotation.w
