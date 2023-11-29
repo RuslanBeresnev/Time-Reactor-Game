@@ -17595,8 +17595,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   differentTypeRooms:
   - {fileID: 739422161736551996, guid: 7ceb23035da18ef4daaff477acdc6b52, type: 3}
-  - {fileID: 739422161736551996, guid: 7ceb23035da18ef4daaff477acdc6b52, type: 3}
-  - {fileID: 739422161736551996, guid: 7ceb23035da18ef4daaff477acdc6b52, type: 3}
+  - {fileID: 958447763634224890, guid: b67eb04170e32d9439677d1e5668685b, type: 3}
+  - {fileID: 7369816470631982228, guid: e0299e4c3d52a14408225c0eca1bdbeb, type: 3}
   centerOfDoor: {fileID: 995469437}
 --- !u!1 &1784115742
 GameObject:
