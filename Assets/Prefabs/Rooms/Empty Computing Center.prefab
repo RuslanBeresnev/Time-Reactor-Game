@@ -661,7 +661,7 @@ MonoBehaviour:
         freeCellsOnBottom: 0
       placementRule: 6
       leafs: []
-  maximumAmountOfObjects: 33
+  maximumAmountOfObjects: 37
 --- !u!1 &3035903590900437867
 GameObject:
   m_ObjectHideFlags: 0
