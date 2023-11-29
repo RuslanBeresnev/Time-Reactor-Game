@@ -44,10 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
-  - {fileID: 7113707171483250045, guid: fb3a884724f702142adf2173a2762b3b, type: 3}
 --- !u!1 &264165213759947530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,10 +1632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
-  - {fileID: 7113707171483250045, guid: fb3a884724f702142adf2173a2762b3b, type: 3}
 --- !u!1 &1591391004342807682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,9 +1676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7113707171483250045, guid: fb3a884724f702142adf2173a2762b3b, type: 3}
 --- !u!1 &1615054911386813014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,9 +1720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
 --- !u!1 &2055550172805513960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,9 +1795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
 --- !u!1 &3081766457405659595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,9 +1839,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
 --- !u!1 &3109216914525856538
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,9 +2136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7113707171483250045, guid: fb3a884724f702142adf2173a2762b3b, type: 3}
 --- !u!1 &3318573196766955833
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,9 +2180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
-  - {fileID: 7113707171483250045, guid: fb3a884724f702142adf2173a2762b3b, type: 3}
 --- !u!1 &3671315399526227126
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,9 +2439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
 --- !u!1 &3779914749046532187
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,9 +2483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
 --- !u!1 &4293316452622494931
 GameObject:
   m_ObjectHideFlags: 0
@@ -2720,9 +2688,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
-  - {fileID: 7113707171483250045, guid: fb3a884724f702142adf2173a2762b3b, type: 3}
 --- !u!1 &5315915661628076481
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,9 +2732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
 --- !u!1 &5825950505649844828
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,8 +2776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
 --- !u!1 &6121050282087982020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3076,33 +3036,33 @@ MonoBehaviour:
   - name: Shelf Bottom
     variants:
     - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     placementRule: 2
@@ -3363,9 +3323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7113707171483250045, guid: fb3a884724f702142adf2173a2762b3b, type: 3}
 --- !u!1 &7415334727246398498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3410,9 +3367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602c3179eb35ce41bacf83a54fe63cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
-  - {fileID: 7503757161129239661, guid: 478bb3e09af3bca4b8a83e8f48caab86, type: 3}
 --- !u!1 &7755965950278540275
 GameObject:
   m_ObjectHideFlags: 0
@@ -3472,23 +3426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5359263b3770134db8663de8b808c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPositions:
-  - {fileID: 3871926939078925953}
-  - {fileID: 7261789525711522621}
-  - {fileID: 46313891520625425}
-  - {fileID: 8033794531803827844}
-  - {fileID: 7026539281036036900}
-  - {fileID: 3470127104199792491}
-  - {fileID: 5338545782820892640}
-  - {fileID: 1497811154058981905}
-  - {fileID: 5048080134986684774}
-  - {fileID: 9003941194094496795}
-  - {fileID: 6984295552699169630}
-  - {fileID: 916387360803957867}
-  - {fileID: 5032883477526413236}
-  - {fileID: 2543198668382167204}
-  - {fileID: 8501694336332536117}
-  enemyCount: 3
 --- !u!1 &7929526577670162215
 GameObject:
   m_ObjectHideFlags: 0
@@ -3606,54 +3543,6 @@ MonoBehaviour:
       freeCellsOnBottom: 1
     placementRule: 0
     leafs: []
-  - name: Shelf Right
-    variants:
-    - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 6
-    - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 6
-    - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 6
-    - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 6
-    - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 3
-    - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 1
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 6
-    placementRule: 4
-    leafs:
-    - name: Tech
-      variants:
-      - variant: {fileID: 2792400050078224592, guid: 4cd10be14ca0fd64bb7c5f6498d866a2, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 4024635925804313944, guid: e2bf89ba30f79de4ca4e771c52394a63, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      placementRule: 10
-      leafs: []
   - name: Shelf Left
     variants:
     - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
@@ -3753,33 +3642,33 @@ MonoBehaviour:
   - name: Shelf Bottom
     variants:
     - variant: {fileID: 6049973881315160572, guid: 0fafb02d94cc0a54bb4f7489f7ae1fad, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 7532960510305032730, guid: 67036ce10f82504499c4865e3c872ae7, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 2957114682617935675, guid: f8ba844a2c8239c47a3c94062937f6b9, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 4786222480205025639, guid: 737e2f91d63927d4782be61b8c25c3cc, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 2688854689808753709, guid: 85bfc60f903a0dd488d6d65585e94364, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     - variant: {fileID: 4675430633431935457, guid: dd06b5e77cbd47a4898fdad5757e6fc2, type: 3}
-      freeCellsOnRight: 6
-      freeCellsOnLeft: 0
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 6
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
     placementRule: 2
@@ -4008,7 +3897,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ef01979daee9649b83e0c88164d772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawner: {fileID: 2135321535327975001}
 --- !u!1001 &958447762722613167
 PrefabInstance:
   m_ObjectHideFlags: 0
