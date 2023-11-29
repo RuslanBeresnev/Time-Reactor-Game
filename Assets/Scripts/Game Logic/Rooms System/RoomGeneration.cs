@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using RoomInteriorGenerator;
 
 /// <summary>
 /// Реализация генерации комнаты случайного типа на каждом этаже
