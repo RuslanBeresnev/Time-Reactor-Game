@@ -7,7 +7,7 @@ using UnityEngine;
 public class Bomb : Projectile
 {
     [SerializeField] private GameObject explosionPrefab;
-    private float explosionRange;
+    [SerializeField] private float explosionRange;
 
     private void OnEnable()
     {
