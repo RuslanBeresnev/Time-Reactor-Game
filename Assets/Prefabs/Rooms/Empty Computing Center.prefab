@@ -1,5 +1,106 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &301955484199276999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2152424823667512795}
+  - component: {fileID: 2182833177917797074}
+  m_Layer: 0
+  m_Name: Data Table Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2152424823667512795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301955484199276999}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.234, y: 0, z: -0.508}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8557440284687928152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2182833177917797074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301955484199276999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f122141f3b3a1240997c44ca05b4772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomLength: 4
+  roomWidth: 2
+  dataTable:
+  - name: Top Shelf
+    variants:
+    - variant: {fileID: 2932643530400583403, guid: a24c928b0ce63bf40862322d410294b8, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 2
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 540895175959011419, guid: ab035eb11da8ade499c622671b2b31d9, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 2
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 8526283217928157, guid: a6a38519b29a4c24290288de7d4dedc1, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 2
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    placementRule: 1
+    leafs: []
+  maximumAmountOfObjects: 1
+--- !u!1 &395881167381979975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8557440284687928152}
+  m_Layer: 0
+  m_Name: Data Table
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8557440284687928152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395881167381979975}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.99, y: -2.11, z: -5.61}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1619512591002487473}
+  - {fileID: 2152424823667512795}
+  - {fileID: 1588135517778657330}
+  m_Father: {fileID: 2932269861102007931}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &579978304523841029
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +237,7 @@ Transform:
   - {fileID: 584031430846091374}
   - {fileID: 3277930203678102534}
   - {fileID: 6821974966647214178}
-  - {fileID: 1588135517778657330}
+  - {fileID: 8557440284687928152}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1108805712386045479
@@ -356,7 +457,7 @@ GameObject:
   - component: {fileID: 1588135517778657330}
   - component: {fileID: 8780598484631906608}
   m_Layer: 0
-  m_Name: Data Table
+  m_Name: Data Table Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -370,12 +471,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088538817883094916}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.4, y: -2.11, z: -5.61}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.131, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2932269861102007931}
+  m_Father: {fileID: 8557440284687928152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8780598484631906608
 MonoBehaviour:
@@ -390,7 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomLength: 12
-  roomWidth: 17
+  roomWidth: 16
   dataTable:
   - name: Table
     variants:
@@ -560,7 +661,7 @@ MonoBehaviour:
         freeCellsOnBottom: 0
       placementRule: 6
       leafs: []
-  maximumAmountOfObjects: 35
+  maximumAmountOfObjects: 33
 --- !u!1 &3035903590900437867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,6 +1375,73 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 7113707171483250045, guid: c9fa0d04844e32841b0fd9ac9ce68386, type: 3}
   - {fileID: 7113707171483250045, guid: fb3a884724f702142adf2173a2762b3b, type: 3}
+--- !u!1 &6953601192022032858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1619512591002487473}
+  - component: {fileID: 1595330419622934943}
+  m_Layer: 0
+  m_Name: Data Table Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1619512591002487473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953601192022032858}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.234, y: 0, z: 7.629}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8557440284687928152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1595330419622934943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953601192022032858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f122141f3b3a1240997c44ca05b4772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomLength: 5
+  roomWidth: 2
+  dataTable:
+  - name: Top Shelf
+    variants:
+    - variant: {fileID: 2932643530400583403, guid: a24c928b0ce63bf40862322d410294b8, type: 3}
+      freeCellsOnRight: 2
+      freeCellsOnLeft: 1
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 540895175959011419, guid: ab035eb11da8ade499c622671b2b31d9, type: 3}
+      freeCellsOnRight: 2
+      freeCellsOnLeft: 1
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    - variant: {fileID: 8526283217928157, guid: a6a38519b29a4c24290288de7d4dedc1, type: 3}
+      freeCellsOnRight: 2
+      freeCellsOnLeft: 1
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 1
+    placementRule: 1
+    leafs: []
+  maximumAmountOfObjects: 1
 --- !u!1 &7654893111715194481
 GameObject:
   m_ObjectHideFlags: 0
