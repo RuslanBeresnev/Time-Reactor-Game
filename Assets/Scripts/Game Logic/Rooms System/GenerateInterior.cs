@@ -3,6 +3,7 @@ using RoomInteriorGenerator;
 using System.Linq;
 using Microsoft.FSharp.Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Процедурная генерация интерьера в комнатах
@@ -90,7 +91,7 @@ public class GenerateInterior : MonoBehaviour
         [SerializeField] private string name;
         [SerializeField] private ObjectVariantWrapper[] variants;
         [SerializeField] private PlacementRuleWrapper placementRule;
-        [SerializeField] private DataTableRowWrapper[] leafDataTable;
+        [SerializeField] private DataTableRowWrapper[] leafs;
 
         /// <summary>
         /// Приведение обертки PlacementRuleWrapper к библиотечному типу PlacementRule
@@ -122,7 +123,7 @@ public class GenerateInterior : MonoBehaviour
         public DataTable.DataTableRow<GameObject> ToDataTableRow()
         {
             var variantsArray = variants.Select(variant => variant.ToObjectVariant()).ToArray();
-            var leafsDataTable = leafDataTable.Select(row => row.ToDataTableRow()).ToArray();
+            var leafsDataTable = leafs.Select(row => row.ToDataTableRow()).ToArray();
             return new DataTable.DataTableRow<GameObject>(name, variantsArray, ToPlacementRule(placementRule),
                 leafsDataTable);
         }
