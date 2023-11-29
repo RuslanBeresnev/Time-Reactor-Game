@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3321403219390372330}
   - component: {fileID: 6817091244932234125}
   m_Layer: 0
-  m_Name: Data Table Bottom Right
+  m_Name: Data Table Top Right
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -440,7 +440,7 @@ MonoBehaviour:
         freeCellsOnBottom: 0
       placementRule: 6
       leafs: []
-  maximumAmountOfObjects: 20
+  maximumAmountOfObjects: 15
 --- !u!1 &1128223526264112877
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 4195019194525540925}
   - component: {fileID: 2474710272650025098}
   m_Layer: 0
-  m_Name: Data Table Left
+  m_Name: Data Table Right
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -636,7 +636,7 @@ MonoBehaviour:
         freeCellsOnBottom: 0
       placementRule: 10
       leafs: []
-  maximumAmountOfObjects: 20
+  maximumAmountOfObjects: 6
 --- !u!1 &4392942606313511763
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 1999292114893627606}
   - component: {fileID: 247172574025527362}
   m_Layer: 0
-  m_Name: Data Table Top
+  m_Name: Data Table Botton
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -758,7 +758,7 @@ Transform:
   m_GameObject: {fileID: 4654099142271683702}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.24, y: 0, z: -8.5}
+  m_LocalPosition: {x: 1.389, y: 0, z: -8.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f122141f3b3a1240997c44ca05b4772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomLength: 20
+  roomLength: 21
   roomWidth: 8
   dataTable:
   - name: Collider
@@ -784,7 +784,7 @@ MonoBehaviour:
     - variant: {fileID: 5425578823560635645, guid: fb718c97d78a8ef4bb8e0f5c3afda25c, type: 3}
       freeCellsOnRight: 6
       freeCellsOnLeft: 6
-      freeCellsOnTop: 2
+      freeCellsOnTop: 3
       freeCellsOnBottom: 3
     placementRule: 0
     leafs: []
@@ -1152,7 +1152,52 @@ MonoBehaviour:
         freeCellsOnBottom: 0
       placementRule: 10
       leafs: []
-  maximumAmountOfObjects: 20
+  - name: Vats
+    variants:
+    - variant: {fileID: 1056063189695192682, guid: f57edaca886a22b489b629939b3d3948, type: 3}
+      freeCellsOnRight: 1
+      freeCellsOnLeft: 1
+      freeCellsOnTop: 1
+      freeCellsOnBottom: 1
+    placementRule: 0
+    leafs:
+    - name: Vat
+      variants:
+      - variant: {fileID: 1056063189695192682, guid: f57edaca886a22b489b629939b3d3948, type: 3}
+        freeCellsOnRight: 1
+        freeCellsOnLeft: 1
+        freeCellsOnTop: 1
+        freeCellsOnBottom: 1
+      placementRule: 7
+      leafs:
+      - name: Vat
+        variants:
+        - variant: {fileID: 1056063189695192682, guid: f57edaca886a22b489b629939b3d3948, type: 3}
+          freeCellsOnRight: 1
+          freeCellsOnLeft: 1
+          freeCellsOnTop: 1
+          freeCellsOnBottom: 1
+        placementRule: 7
+        leafs: []
+    - name: Vat
+      variants:
+      - variant: {fileID: 1056063189695192682, guid: f57edaca886a22b489b629939b3d3948, type: 3}
+        freeCellsOnRight: 1
+        freeCellsOnLeft: 1
+        freeCellsOnTop: 1
+        freeCellsOnBottom: 1
+      placementRule: 6
+      leafs:
+      - name: Vat
+        variants:
+        - variant: {fileID: 1056063189695192682, guid: f57edaca886a22b489b629939b3d3948, type: 3}
+          freeCellsOnRight: 1
+          freeCellsOnLeft: 1
+          freeCellsOnTop: 1
+          freeCellsOnBottom: 1
+        placementRule: 6
+        leafs: []
+  maximumAmountOfObjects: 15
 --- !u!1 &4812375718405005136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,7 +1255,7 @@ GameObject:
   - component: {fileID: 6972592962355987771}
   - component: {fileID: 6279157035756556292}
   m_Layer: 0
-  m_Name: Data Table Bottom Left
+  m_Name: Data Table Top Left
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1723,7 +1768,7 @@ MonoBehaviour:
           freeCellsOnBottom: 0
         placementRule: 7
         leafs: []
-  maximumAmountOfObjects: 20
+  maximumAmountOfObjects: 15
 --- !u!1 &5065320665766626605
 GameObject:
   m_ObjectHideFlags: 0
@@ -47119,7 +47164,7 @@ GameObject:
   - component: {fileID: 2509576153913096847}
   - component: {fileID: 4308641106577864321}
   m_Layer: 0
-  m_Name: Data Table Right
+  m_Name: Data Table Left
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -47181,45 +47226,7 @@ MonoBehaviour:
       freeCellsOnTop: 1
       freeCellsOnBottom: 1
     placementRule: 0
-    leafs:
-    - name: Generator
-      variants:
-      - variant: {fileID: 6680949536643170051, guid: 1232cb3e017b99144ab0806d508ef753, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 4487181764682964603, guid: d6dca3aa480d50b41b2c6bcf9b9282b1, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 4141772204283829460, guid: 7dcf702e06edb4343910580bc6b4409e, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      placementRule: 8
-      leafs: []
-    - name: Generator
-      variants:
-      - variant: {fileID: 6680949536643170051, guid: 1232cb3e017b99144ab0806d508ef753, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 4487181764682964603, guid: d6dca3aa480d50b41b2c6bcf9b9282b1, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      - variant: {fileID: 4141772204283829460, guid: 7dcf702e06edb4343910580bc6b4409e, type: 3}
-        freeCellsOnRight: 0
-        freeCellsOnLeft: 0
-        freeCellsOnTop: 0
-        freeCellsOnBottom: 0
-      placementRule: 9
-      leafs: []
+    leafs: []
   - name: Boxes
     variants:
     - variant: {fileID: 4326446065793547802, guid: d1f928a1c90c66b4e9c99410fb941c1a, type: 3}
@@ -47292,7 +47299,7 @@ MonoBehaviour:
         freeCellsOnBottom: 0
       placementRule: 10
       leafs: []
-  maximumAmountOfObjects: 20
+  maximumAmountOfObjects: 6
 --- !u!1 &8890567920090301689
 GameObject:
   m_ObjectHideFlags: 0
