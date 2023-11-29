@@ -2,6 +2,17 @@
 
 public class LaserWeapon : LaserTypeWeapon
 {
+    [SerializeField, HideInInspector] private float laserDamage;
+
+    /// <summary>
+    /// Урон от лазера
+    /// </summary>
+    public float LaserDamage
+    {
+        get => laserDamage;
+        set => laserDamage = value;
+    }
+
     public override void Shoot()
     {
         ShotSound.Play();
@@ -31,7 +42,6 @@ public class LaserWeapon : LaserTypeWeapon
         }
 
         RedrawAmmoScreen();
-
 
         foreach (var audioSource in GetComponents<AudioSource>())
         {

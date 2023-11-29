@@ -128,8 +128,10 @@ public class WeaponEditor : Editor
         showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
         if (showShooting)
         {
-            weapon.LaserPrefab = (GameObject)EditorGUILayout.ObjectField("Laser prefab",
-                weapon.LaserPrefab, typeof(GameObject), true);
+            weapon.LaserWidth = EditorGUILayout.FloatField("Laser width",
+                   weapon.LaserWidth);
+            weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material",
+                weapon.LaserMaterial, typeof(Material), true);
 
             weapon.LaserDamage = EditorGUILayout.FloatField("Laser damage",
                 weapon.LaserDamage);
@@ -171,8 +173,10 @@ public class WeaponEditor : Editor
         showShooting = EditorGUILayout.Foldout(showShooting, "Shooting");
         if (showShooting)
         {
-            weapon.LaserPrefab = (GameObject)EditorGUILayout.ObjectField("Laser prefab", 
-                weapon.LaserPrefab, typeof(GameObject), true);
+            weapon.LaserWidth = EditorGUILayout.FloatField("Laser width",
+                   weapon.LaserWidth);
+            weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material",
+                weapon.LaserMaterial, typeof(Material), true);
 
             EditorGUI.indentLevel++;
             showTags = EditorGUILayout.Foldout(showTags, "Annihilating tags");

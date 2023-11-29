@@ -2,17 +2,27 @@
 
 public abstract class LaserTypeWeapon : Weapon
 {
-    protected GameObject laserGO;
+    private GameObject laserGO;
+    [SerializeField, HideInInspector] private Material laserMaterial;
+    [SerializeField, HideInInspector] private float laserWidth;
 
     /// <summary>
-    /// Префаб лазера
+    /// Материал лазера
     /// </summary>
-    [field: HideInInspector][field: SerializeField] public GameObject LaserPrefab { get; set; }
+    public Material LaserMaterial 
+    { 
+        get => laserMaterial; 
+        set => laserMaterial = value; 
+    }
 
     /// <summary>
-    /// Урон от лазера
+    /// Ширина лазера
     /// </summary>
-    [field: HideInInspector][field: SerializeField] public float LaserDamage { get; set; }
+    public float LaserWidth
+    { 
+        get => laserWidth; 
+        set => laserWidth = value; 
+    }
 
     protected override void RedrawAmmoScreen()
     {
@@ -26,20 +36,21 @@ public abstract class LaserTypeWeapon : Weapon
     {
         if (laserGO == null)
         {
-            laserGO = Instantiate(LaserPrefab);
+            laserGO = new GameObject("laserGO", typeof(LineRenderer));
+            laserGO.transform.parent = transform;
+
+            LineRenderer lineRendererComponent = laserGO.GetComponent<LineRenderer>();
+            lineRendererComponent.material = LaserMaterial;
+            lineRendererComponent.startWidth = LaserWidth;
+            lineRendererComponent.endWidth = LaserWidth;
         }
 
-        var direction = (hit.point - WeaponEnd.position).normalized;
-        var rotation = Quaternion.LookRotation(direction);
-        var length = Vector3.Distance(hit.point, WeaponEnd.position);
+        LineRenderer lineRenderer = laserGO.GetComponent<LineRenderer>();
 
-        var laserTransf = laserGO.transform;
-        laserTransf.localScale = new Vector3(laserTransf.localScale.x, 
-            laserTransf.localScale.y, length);
-        laserTransf.position = WeaponEnd.position;
-        laserTransf.rotation = rotation;
+        lineRenderer.SetPosition(0, WeaponEnd.position);
+        lineRenderer.SetPosition(1, hit.point);
 
-        laserGO.SetActive(true);
+        lineRenderer.enabled = true;
     }
 
     /// <summary>
@@ -49,7 +60,7 @@ public abstract class LaserTypeWeapon : Weapon
     {
         if (laserGO != null)
         {
-            laserGO.SetActive(false);
+            laserGO.GetComponent<LineRenderer>().enabled = false;
         }
     }
 }
