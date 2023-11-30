@@ -11206,7 +11206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsArsenal:
-  - {fileID: 353586959}
+  - {fileID: 1606426079}
   - {fileID: 921102038098129675}
   - {fileID: 4952738169502404123}
   weaponCamera: {fileID: 1652258266}
@@ -18604,8 +18604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  positionInPlayerHand: {fileID: 0}
-  ammoScreen: {fileID: 0}
+  positionInPlayerHand: {fileID: 514123952}
+  ammoScreen: {fileID: 7237683461778288069}
   weaponStart: {fileID: 4432884076108086948}
   weaponEnd: {fileID: 7606611735591628734}
   shotSound: {fileID: 0}
@@ -26912,7 +26912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d496e9ed3a95f3c4f834149f3ed0ab3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   positionInPlayerHand: {fileID: 514123952}
   ammoScreen: {fileID: 7237683461778288069}
   weaponStart: {fileID: 4432884076108086948}

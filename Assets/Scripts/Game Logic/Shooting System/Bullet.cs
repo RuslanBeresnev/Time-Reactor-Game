@@ -8,13 +8,7 @@ public class Bullet : Projectile
 {
     private void OnEnable()
     {
-        StartCoroutine(DestroyBulletAfterLifeTime());
-    }
-
-    private IEnumerator DestroyBulletAfterLifeTime()
-    {
-        yield return StartCoroutine(TimeScale.SharedInstance.WaitForSeconds(Lifetime));
-        pool.ReturnObject(gameObject);
+        StartCoroutine(DestroyAfterLifeTime());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,9 +20,6 @@ public class Bullet : Projectile
         }
     }
 
-    /// <summary>
-    /// Произвести действия над объектом после столкновения пули с ним
-    /// </summary>
     protected override void PerformCollisionEffects(Collider hitObjectCollider)
     {
         var entity = hitObjectCollider.gameObject.GetComponent<Entity>();

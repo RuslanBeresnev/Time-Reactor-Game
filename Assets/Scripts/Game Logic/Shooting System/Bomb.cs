@@ -23,7 +23,7 @@ public class Bomb : Projectile
     /// <summary>
     /// Взрыв бомбы с нанесением урона по радиусу
     /// </summary>
-    void Explode()
+    private void Explode()
     {
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
