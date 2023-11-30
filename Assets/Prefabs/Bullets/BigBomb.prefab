@@ -119,7 +119,7 @@ MonoBehaviour:
   poolName: '"BigBomb" Bullets Pool'
   explosionPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   explosionRange: 4
-  explosionForce: 40
+  explosionForce: 1000
 --- !u!54 &1366478774282323603
 Rigidbody:
   m_ObjectHideFlags: 0

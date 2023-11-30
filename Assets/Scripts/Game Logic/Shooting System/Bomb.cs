@@ -8,6 +8,7 @@ public class Bomb : Projectile
 {
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private float explosionRange;
+    [SerializeField] private float explosionForce;
 
     private void OnEnable()
     {
@@ -30,13 +31,17 @@ public class Bomb : Projectile
 
         foreach (Collider col in colliders)
         {
-            if (col.GetComponent<Bomb>()) continue;
+            if (col.GetComponent<Bomb>()) 
+                continue;
 
             if (col.GetComponent<Entity>() != null)
                 col.GetComponent<Entity>().TakeDamage(Damage);
 
-            //почему-то создаёт лишние взрывы
-            //col.GetComponent<Rigidbody>()?.AddExplosionForce(explosionForce, transform.position, range);
+            var rb = col.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRange);
+            }
         }
 
         Destroy(explosion, 2f);
