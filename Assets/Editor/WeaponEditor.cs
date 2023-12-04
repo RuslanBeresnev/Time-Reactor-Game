@@ -177,6 +177,8 @@ public class WeaponEditor : Editor
                    weapon.LaserWidth);
             weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material",
                 weapon.LaserMaterial, typeof(Material), true);
+            weapon.AnnihililationFX = (GameObject)EditorGUILayout.ObjectField("Annihilation FX",
+                weapon.AnnihililationFX, typeof(GameObject), true);
 
             EditorGUI.indentLevel++;
             showTags = EditorGUILayout.Foldout(showTags, "Annihilating tags");

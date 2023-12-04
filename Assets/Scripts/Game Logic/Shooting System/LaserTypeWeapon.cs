@@ -3,6 +3,7 @@
 public abstract class LaserTypeWeapon : Weapon
 {
     private GameObject laserGO;
+
     [SerializeField, HideInInspector] private Material laserMaterial;
     [SerializeField, HideInInspector] private float laserWidth;
 

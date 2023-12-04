@@ -6,15 +6,15 @@ using UnityEngine;
 /// </summary>
 public abstract class Projectile : MonoBehaviour, ISerializationCallbackReceiver
 {
-    protected Rigidbody rigidBody;
+    private Rigidbody rigidBody;
     protected Pool pool;
-    protected Vector3 previousPosition;
+    private Vector3 previousPosition;
 
     [SerializeField] private int damage = 1;
     [SerializeField] private int velocity = 15;
     [SerializeField] private float lifetime = 3f;
     // Дальность луча, исходящего в обратную сторону по траектории пули(для небольших скоростей лучше не ставить больше, чем 0.5f)
-    [SerializeField] protected float backRayDistance = 0.5f;
+    [SerializeField] private float backRayDistance = 0.5f;
     // Название пула объектов, в котором хранятся экземпляры данного снаряда
     [SerializeField] private string poolName;
 

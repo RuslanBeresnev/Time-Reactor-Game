@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class AnnihilatingWeapon : LaserTypeWeapon
 {
-    [SerializeField] private string[] annihilatingTags;
+    [SerializeField, HideInInspector] private string[] annihilatingTags;
+    [SerializeField, HideInInspector] private GameObject annihilationFX;
 
     /// <summary>
     /// Тэги, означающие, что может быть уничтожено аннигилирующим оружием
@@ -12,6 +13,15 @@ public class AnnihilatingWeapon : LaserTypeWeapon
     { 
         get => annihilatingTags; 
         set => annihilatingTags = value; 
+    }
+
+    /// <summary>
+    /// Визуальный эффект при аннигиляции
+    /// </summary>
+    public GameObject AnnihililationFX
+    {
+        get => annihilationFX;
+        set => annihilationFX = value;
     }
 
     public override void Shoot()
@@ -27,6 +37,11 @@ public class AnnihilatingWeapon : LaserTypeWeapon
         var target = hit.transform.gameObject;
         if (AnnihilatingTags.Contains(target.tag.ToString()))
         {
+            if (annihilationFX != null)
+            {
+                var annihilFXGO = Instantiate(annihilationFX, hit.point, Quaternion.identity);
+                Destroy(annihilFXGO, 2f);
+            }
             Destroy(target.gameObject);
         }
     }
