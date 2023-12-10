@@ -177,8 +177,8 @@ public class WeaponEditor : Editor
                    weapon.LaserWidth);
             weapon.LaserMaterial = (Material)EditorGUILayout.ObjectField("Laser material",
                 weapon.LaserMaterial, typeof(Material), true);
-            weapon.AnnihililationFX = (GameObject)EditorGUILayout.ObjectField("Annihilation FX",
-                weapon.AnnihililationFX, typeof(GameObject), true);
+            weapon.AnnihilationFX = (GameObject)EditorGUILayout.ObjectField("Annihilation FX",
+                weapon.AnnihilationFX, typeof(GameObject), true);
 
             EditorGUI.indentLevel++;
             showTags = EditorGUILayout.Foldout(showTags, "Annihilating tags");
@@ -207,6 +207,7 @@ public class WeaponEditor : Editor
                 if (EditorGUI.EndChangeCheck())
                     EditorUtility.SetDirty(weapon);
             }
+            EditorGUI.indentLevel--;
         }
 
         showVisual = EditorGUILayout.Foldout(showVisual, "Visual");

@@ -18,7 +18,7 @@ public class AnnihilatingWeapon : LaserTypeWeapon
     /// <summary>
     /// Визуальный эффект при аннигиляции
     /// </summary>
-    public GameObject AnnihililationFX
+    public GameObject AnnihilationFX
     {
         get => annihilationFX;
         set => annihilationFX = value;
@@ -26,8 +26,6 @@ public class AnnihilatingWeapon : LaserTypeWeapon
 
     public override void Shoot()
     {
-        ShotSound.Play();
-
         RaycastHit hit = GetRaycastHit();
         if (hit.collider == null)
             return;
@@ -62,7 +60,7 @@ public class AnnihilatingWeapon : LaserTypeWeapon
         foreach (var audioSource in GetComponents<AudioSource>())
         {
             var clipName = audioSource.clip.name;
-            if (clipName.EndsWith("Shot"))
+            if (clipName == "Laser Tower Attack")
             {
                 ShotSound = audioSource;
             }

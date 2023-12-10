@@ -35,6 +35,11 @@ public abstract class LaserTypeWeapon : Weapon
     /// </summary>
     protected void MakeLaser(RaycastHit hit)
     {
+        if (!ShotSound.isPlaying)
+        {
+            ShotSound.Play();
+        }
+
         if (laserGO == null)
         {
             laserGO = new GameObject("laserGO", typeof(LineRenderer));
@@ -63,5 +68,6 @@ public abstract class LaserTypeWeapon : Weapon
         {
             laserGO.GetComponent<LineRenderer>().enabled = false;
         }
+        ShotSound.Stop();
     }
 }

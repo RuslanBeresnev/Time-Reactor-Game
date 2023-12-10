@@ -28,14 +28,12 @@ public class Weapon : ObjectWithInformation
 
     [HideInInspector][SerializeField] private AudioSource shotSound;
     [HideInInspector][SerializeField] private AudioSource reloadingSound;
-    //@typo: hiting=>hitting
     [HideInInspector][SerializeField] private List<AudioSource> weaponHitingOnSurfaceSounds = new List<AudioSource>();
 
     private System.Random random = new System.Random();
 
     [HideInInspector][SerializeField] new private string name;
     [HideInInspector][SerializeField] private Sprite sprite;
-    //@ typo: shoots=>shots
     [HideInInspector][SerializeField] private float intervalBetweenShoots;
     [HideInInspector][SerializeField] private float reloadingDuration;
     [HideInInspector][SerializeField] private int magazinCapacity;
@@ -44,8 +42,6 @@ public class Weapon : ObjectWithInformation
     [HideInInspector][SerializeField] private float rayDistance;
     [HideInInspector][SerializeField] private bool semiAutoShooting;
 
-
-    #region Свойства
     /// <summary>
     /// Если указано true, то оружие будет вести полуавтоматическую стрельбу (пистолет), иначе автоматическую (винтовка)
     /// </summary>
@@ -225,9 +221,6 @@ public class Weapon : ObjectWithInformation
         set { rayDistance = value; }
     }
 
-    #endregion
-
-    #region Other
     public override string[,] ObjectInfoParameters { get; set; }
 
     public override string ObjectInfoHeader { get; set; } = "Weapon";
@@ -286,10 +279,7 @@ public class Weapon : ObjectWithInformation
     /// </summary>
     protected virtual void RedrawAmmoScreen()
     {
-        //ammoScreen.text = BulletsCountInMagazine.ToString() + " / " + BulletsCountInReserve.ToString();
     }
-
-    #endregion
 
     /// <summary>
     /// Произвести выстрел из оружия
