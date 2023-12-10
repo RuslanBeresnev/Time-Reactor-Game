@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Оружие, стреляющее снарядами типа Projectile
+/// </summary>
 public class ProjectileWeapon : Weapon
 {
     /// <summary>

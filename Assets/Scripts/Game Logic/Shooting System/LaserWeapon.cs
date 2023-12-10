@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Лазерное оружие
+/// </summary>
 public class LaserWeapon : LaserTypeWeapon
 {
     [SerializeField, HideInInspector] private float laserDamage;

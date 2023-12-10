@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Оружие лазерного типа
+/// </summary>
 public abstract class LaserTypeWeapon : Weapon
 {
     private GameObject laserGO;

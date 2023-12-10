@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Строитель барьеров
+/// </summary>
 public class WallBuilder : Weapon
 {
     /// <summary>

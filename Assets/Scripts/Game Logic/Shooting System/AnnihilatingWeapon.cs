@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Аннигилирующий лазер
+/// </summary>
 public class AnnihilatingWeapon : LaserTypeWeapon
 {
     [SerializeField, HideInInspector] private string[] annihilatingTags;
