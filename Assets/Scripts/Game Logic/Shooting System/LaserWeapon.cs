@@ -18,8 +18,6 @@ public class LaserWeapon : LaserTypeWeapon
 
     public override void Shoot()
     {
-        ShotSound.Play();
-
         RaycastHit hit = GetRaycastHit();
         if (hit.collider == null)
             return;

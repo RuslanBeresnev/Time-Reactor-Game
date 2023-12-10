@@ -88,7 +88,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
             //Скрытие всех оружий, кроме первого
             if (i != 0)
             {
-                weaponsArsenal[i].transform.parent.parent.gameObject.SetActive(false);
+                WeaponsArsenal[i].transform.parent.parent.gameObject.SetActive(false);
             }
         }
 
@@ -97,7 +97,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
 
     private void LateUpdate()
     {
-        if (weaponsArsenal[activeSlotNumber] is LaserTypeWeapon)
+        if (WeaponsArsenal[activeSlotNumber] is LaserTypeWeapon)
         {
             CheckClickForShooting();
         }
@@ -107,7 +107,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     {
         CheckClickForWeaponReloading();
         //Лазер должен отрисовываться в LateUpdate() для плавности картинки
-        if (!(weaponsArsenal[activeSlotNumber] is LaserTypeWeapon))
+        if (!(WeaponsArsenal[activeSlotNumber] is LaserTypeWeapon))
         {
             CheckClickForShooting();
         }
@@ -319,6 +319,10 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         if (!IsActiveSlotEmpty())
         {
             WeaponsArsenal[ActiveSlotNumber].StopReloadingSound();
+            if (WeaponsArsenal[ActiveSlotNumber] is LaserTypeWeapon laser)
+            {
+                laser.StopLaser();
+            }
         }
 
         var ejectionForce = 200f;
