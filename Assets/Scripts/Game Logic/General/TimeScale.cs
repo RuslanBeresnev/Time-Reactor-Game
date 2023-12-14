@@ -15,7 +15,7 @@ public class TimeScale : MonoBehaviour
     {
         "Player Walking Sound", "Player Running Sound", "Gun Shot", "Gun Reloading", "Weapon Picking Up",
         "Assault Riffle Shot", "Assault Riffle Reloading", "Activation", "Deactivation",
-        "Time Slowdown", "Time Acceleration"
+        "Time Slowdown", "Time Acceleration", "Laser Tower Attack"
     };
 
     /// <summary>
@@ -81,6 +81,9 @@ public class TimeScale : MonoBehaviour
     {
         foreach (var audioSource in GameObject.FindObjectsOfType<AudioSource>(true))
         {
+            if (audioSource.clip == null)
+                continue;
+
             if (!sourcesWithoutPitchChange.Contains(audioSource.clip.name))
             {
                 audioSource.pitch *= newScale / Scale;
