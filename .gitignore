@@ -69,3 +69,6 @@ crashlytics-build.properties
 # Exceptions
 !*.dll
 !*.obj
+
+# Rider's .idea
+.idea

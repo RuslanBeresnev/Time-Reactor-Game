@@ -12,12 +12,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int enemyCount;
 
     private System.Random random = new();
-
+    
     private void Awake()
     {
         ShuffleSpawnPositions();
     }
-
+    
     /// <summary>
     /// Перемешать позиции спавна врагов в списке spawnPositions
     /// </summary>
@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
             spawnPositions[i] = temp;
         }
     }
-
+    
     /// <summary>
     /// Создать случайных врагов в случайных позициях комнаты (среди начально заданных позиций в spawnPositions)
     /// </summary>
