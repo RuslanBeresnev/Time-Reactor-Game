@@ -81,18 +81,36 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
 
     private void Awake()
     {
-        foreach (var weapon in weaponsArsenal)
+        for (int i = 0; i < weaponsArsenal.Count; i++)
         {
-            WeaponsArsenal.Add(weapon);
+            WeaponsArsenal.Add(weaponsArsenal[i]);
+
+            //Скрытие всех оружий, кроме первого
+            if (i != 0)
+            {
+                WeaponsArsenal[i].transform.parent.parent.gameObject.SetActive(false);
+            }
         }
 
         performSerializationAndDeserealization = true;
     }
 
+    private void LateUpdate()
+    {
+        if (WeaponsArsenal[activeSlotNumber] is LaserTypeWeapon)
+        {
+            CheckClickForShooting();
+        }
+    }
+
     private void FixedUpdate()
     {
         CheckClickForWeaponReloading();
-        CheckClickForShooting();
+        //Лазер должен отрисовываться в LateUpdate() для плавности картинки
+        if (!(WeaponsArsenal[activeSlotNumber] is LaserTypeWeapon))
+        {
+            CheckClickForShooting();
+        }
         CheckClickForWeaponChanging();
         CheckClickForEjectionOrInteraction();
     }
@@ -126,14 +144,22 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
             canShoot = false;
             StartCoroutine(AllowShootAfterIntervalPassing());
 
-            if (WeaponsArsenal[ActiveSlotNumber].SemiAutoShooting)
+            var weapon = WeaponsArsenal[ActiveSlotNumber];
+            if (weapon.SemiAutoShooting)
             {
                 stopShooting = true;
             }
         }
         else if (!Input.GetMouseButton(0))
         {
-            stopShooting = false;
+            if (WeaponsArsenal[ActiveSlotNumber] != null)
+            {
+                stopShooting = false;
+                if (WeaponsArsenal[ActiveSlotNumber] is LaserTypeWeapon laser)
+                {
+                    laser.StopLaser();
+                }
+            }
         }
     }
 
@@ -224,14 +250,14 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
 
             if (!IsActiveSlotEmpty())
             {
-                WeaponsArsenal[ActiveSlotNumber].gameObject.SetActive(false);
+                WeaponsArsenal[ActiveSlotNumber].transform.parent.parent.gameObject.SetActive(false);
             }
 
             ActiveSlotNumber = newActiveSlotNumber;
 
             if (!IsActiveSlotEmpty())
             {
-                WeaponsArsenal[ActiveSlotNumber].gameObject.SetActive(true);
+                WeaponsArsenal[ActiveSlotNumber].transform.parent.parent.gameObject.SetActive(true);
             }
         }
     }
@@ -259,12 +285,16 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
             return false;
         }
 
-        WeaponsArsenal[slotNumber] = weapon.GetComponent<Weapon>();
+        var weaponComp = weapon.GetComponent<Weapon>();
+        var typesObj = weapon.transform.Find("WeaponTypes");
+        var weaponTypeObj = typesObj.transform.Find(weaponComp.Type.ToString() + "Component");
+        WeaponsArsenal[slotNumber] = weaponTypeObj.GetComponent<Weapon>();
         weapon.transform.SetParent(weaponCamera.transform);
 
         WeaponsArsenal[slotNumber].PickUpSound.Play();
 
-        var positionInPlayerHand = weapon.GetComponent<Weapon>().PositionInPlayerHand;
+        var weaponTypeComp = weaponTypeObj.GetComponent<Weapon>();
+        var positionInPlayerHand = weaponTypeComp.PositionInPlayerHand;
         weapon.transform.position = positionInPlayerHand.position;
         weapon.transform.rotation = positionInPlayerHand.rotation;
         weapon.transform.localScale = positionInPlayerHand.localScale;
@@ -289,10 +319,14 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         if (!IsActiveSlotEmpty())
         {
             WeaponsArsenal[ActiveSlotNumber].StopReloadingSound();
+            if (WeaponsArsenal[ActiveSlotNumber] is LaserTypeWeapon laser)
+            {
+                laser.StopLaser();
+            }
         }
 
         var ejectionForce = 200f;
-        GameObject ejectedWeapon = WeaponsArsenal[ActiveSlotNumber].gameObject;
+        GameObject ejectedWeapon = WeaponsArsenal[ActiveSlotNumber].transform.parent.parent.gameObject;
         ejectedWeapon.transform.SetParent(null);
         WeaponsArsenal[ActiveSlotNumber] = null;
 
