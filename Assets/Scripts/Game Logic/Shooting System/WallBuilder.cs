@@ -17,7 +17,10 @@ public class WallBuilder : Weapon
 
     public override void Shoot()
     {
-        ShotSound.Play();
+        if (ShotSound != null)
+        {
+            ShotSound.Play();
+        }
 
         RaycastHit hit = GetRaycastHit();
         if (hit.collider != null)
@@ -62,7 +65,12 @@ public class WallBuilder : Weapon
 
         foreach (var audioSource in GetComponents<AudioSource>())
         {
-            var clipName = audioSource.clip.name;
+            var clipName = audioSource?.clip?.name;
+            if (clipName == null)
+            {
+                continue;
+            }
+
             if (clipName.EndsWith("Shot"))
             {
                 ShotSound = audioSource;

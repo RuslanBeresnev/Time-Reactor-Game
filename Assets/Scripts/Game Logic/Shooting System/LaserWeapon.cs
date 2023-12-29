@@ -46,7 +46,12 @@ public class LaserWeapon : LaserTypeWeapon
 
         foreach (var audioSource in GetComponents<AudioSource>())
         {
-            var clipName = audioSource.clip.name;
+            var clipName = audioSource?.clip?.name;
+            if (clipName == null)
+            {
+                continue;
+            }
+
             if (clipName == "Laser Tower Attack")
             {
                 ShotSound = audioSource;

@@ -5,6 +5,8 @@
 /// </summary>
 public class ProjectileWeapon : Weapon
 {
+    [SerializeField, HideInInspector] private Pool pool;
+
     /// <summary>
     /// Префаб снаряда
     /// </summary>
@@ -13,7 +15,11 @@ public class ProjectileWeapon : Weapon
     /// <summary>
     /// Пул снарядов
     /// </summary>
-    [field: HideInInspector][field: SerializeField] public Pool Pool { get; set; }
+    public Pool Pool 
+    { 
+        get => pool; 
+        set => pool = value; 
+    }
 
     protected override void RedrawAmmoScreen()
     {
@@ -54,7 +60,10 @@ public class ProjectileWeapon : Weapon
         }
         BulletsCountInMagazine--;
 
-        ShotSound.Play();
+        if (ShotSound != null)
+        {
+            ShotSound.Play();
+        }
 
         Vector3 direction = GetShootingDirection();
         FireProjectile(direction);
@@ -92,7 +101,12 @@ public class ProjectileWeapon : Weapon
 
         foreach (var audioSource in GetComponents<AudioSource>())
         {
-            var clipName = audioSource.clip.name;
+            var clipName = audioSource?.clip?.name;
+            if (clipName == null)
+            {
+                continue;
+            }
+
             if (clipName.EndsWith("Shot"))
             {
                 ShotSound = audioSource;
