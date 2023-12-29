@@ -27,7 +27,7 @@ public class WeaponArsenalTests
         yield return null;
 
         Assert.IsNull(weaponManager.WeaponsArsenal[weaponManager.ActiveSlotNumber]);
-        Assert.False(weaponToEject.GetComponent<Rigidbody>().isKinematic);
+        Assert.False(weaponToEject.transform.parent.parent.gameObject.GetComponent<Rigidbody>().isKinematic);
 
         MonoBehaviour.Destroy(weaponToEject);
         MonoBehaviour.Destroy(player);
