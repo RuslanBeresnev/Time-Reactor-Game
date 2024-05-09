@@ -1006,7 +1006,7 @@ MonoBehaviour:
         freeCellsOnBottom: 0
       placementRule: 10
       leafs: []
-  - name: Barrels Right
+  - name: Ammo Boxes & Barrels Right
     variants:
     - variant: {fileID: 9166948555668330389, guid: f836d26167b99b342bda266aa6c4e586, type: 3}
       freeCellsOnRight: 0
@@ -1018,27 +1018,27 @@ MonoBehaviour:
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 0
-    - variant: {fileID: 7503223149415617574, guid: ae463aac0ad37ee4b8d81e1cd5a1ce45, type: 3}
+    - variant: {fileID: 100000, guid: 43d3a99b07d2b6e4bba494676d8f2e94, type: 3}
       freeCellsOnRight: 0
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 0
-    - variant: {fileID: 4410562846169964135, guid: 902a4175220148e43ae57902002be875, type: 3}
+    - variant: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
       freeCellsOnRight: 0
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 0
-    - variant: {fileID: 4796459043632106584, guid: f241d1b85edaa74498573d661031508f, type: 3}
+    - variant: {fileID: 100006, guid: b84a4dea980d19743b89a91212b6cda9, type: 3}
       freeCellsOnRight: 1
       freeCellsOnLeft: 1
       freeCellsOnTop: 0
       freeCellsOnBottom: 0
-    - variant: {fileID: 6016310364066457780, guid: bf3cec21bf864094585556afb2e1115c, type: 3}
+    - variant: {fileID: 100006, guid: 63418f1bcf56c144d8b444b133ac03bb, type: 3}
       freeCellsOnRight: 1
       freeCellsOnLeft: 1
       freeCellsOnTop: 1
       freeCellsOnBottom: 0
-    - variant: {fileID: 6413762049087373717, guid: 833695c4663142c4193a5a7e7ef74d78, type: 3}
+    - variant: {fileID: 100006, guid: 07e438dcfbabe5a4abb2c2f28691f4a4, type: 3}
       freeCellsOnRight: 1
       freeCellsOnLeft: 1
       freeCellsOnTop: 1
@@ -1108,24 +1108,24 @@ MonoBehaviour:
       freeCellsOnBottom: 0
     placementRule: 0
     leafs:
-    - name: Barrels
+    - name: Ammo Boxes & Barrels
       variants:
-      - variant: {fileID: 7503223149415617574, guid: ae463aac0ad37ee4b8d81e1cd5a1ce45, type: 3}
+      - variant: {fileID: 100006, guid: ad2bc093ec0769f4e8db766083ebde53, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 1683992074854707571, guid: 0afbbc45991c3f141a8e990302b293a9, type: 3}
+      - variant: {fileID: 100006, guid: b84a4dea980d19743b89a91212b6cda9, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 9166948555668330389, guid: f836d26167b99b342bda266aa6c4e586, type: 3}
+      - variant: {fileID: 100006, guid: 07e438dcfbabe5a4abb2c2f28691f4a4, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 4410562846169964135, guid: 902a4175220148e43ae57902002be875, type: 3}
+      - variant: {fileID: 100006, guid: 63418f1bcf56c144d8b444b133ac03bb, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
@@ -1135,17 +1135,17 @@ MonoBehaviour:
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 6114500696476926546, guid: ab518d63e340b4f41ae01f495bcce605, type: 3}
+      - variant: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 7556680440265912016, guid: 9178c32b053815d4dbad0f6bd8723f2a, type: 3}
+      - variant: {fileID: 100000, guid: 1c511c98926e05d4083700b3a9cf4f42, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 7684938637862453575, guid: 61899313ff583784e8882b084ada06c6, type: 3}
+      - variant: {fileID: 100000, guid: 43d3a99b07d2b6e4bba494676d8f2e94, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
@@ -1309,24 +1309,24 @@ MonoBehaviour:
         freeCellsOnBottom: 1
       placementRule: 9
       leafs: []
-  - name: Barrel
+  - name: Ammo Boxes & Barrels
     variants:
+    - variant: {fileID: 100006, guid: b84a4dea980d19743b89a91212b6cda9, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 0
+    - variant: {fileID: 100006, guid: ad2bc093ec0769f4e8db766083ebde53, type: 3}
+      freeCellsOnRight: 0
+      freeCellsOnLeft: 0
+      freeCellsOnTop: 0
+      freeCellsOnBottom: 0
     - variant: {fileID: 9166948555668330389, guid: f836d26167b99b342bda266aa6c4e586, type: 3}
       freeCellsOnRight: 0
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
       freeCellsOnBottom: 0
     - variant: {fileID: 7503223149415617574, guid: ae463aac0ad37ee4b8d81e1cd5a1ce45, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 4410562846169964135, guid: 902a4175220148e43ae57902002be875, type: 3}
-      freeCellsOnRight: 0
-      freeCellsOnLeft: 0
-      freeCellsOnTop: 0
-      freeCellsOnBottom: 0
-    - variant: {fileID: 1683992074854707571, guid: 0afbbc45991c3f141a8e990302b293a9, type: 3}
       freeCellsOnRight: 0
       freeCellsOnLeft: 0
       freeCellsOnTop: 0
@@ -1496,19 +1496,19 @@ MonoBehaviour:
       freeCellsOnBottom: 0
     placementRule: 3
     leafs:
-    - name: Barrel
+    - name: Ammo Boxes
       variants:
-      - variant: {fileID: 9166948555668330389, guid: f836d26167b99b342bda266aa6c4e586, type: 3}
+      - variant: {fileID: 100006, guid: b84a4dea980d19743b89a91212b6cda9, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 1683992074854707571, guid: 0afbbc45991c3f141a8e990302b293a9, type: 3}
+      - variant: {fileID: 100006, guid: ad2bc093ec0769f4e8db766083ebde53, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 7503223149415617574, guid: ae463aac0ad37ee4b8d81e1cd5a1ce45, type: 3}
+      - variant: {fileID: 100006, guid: 63418f1bcf56c144d8b444b133ac03bb, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
@@ -1568,19 +1568,19 @@ MonoBehaviour:
         freeCellsOnBottom: 0
       placementRule: 9
       leafs: []
-    - name: Box
+    - name: Ammo Boxes & Ordinary Boxes
       variants:
-      - variant: {fileID: 6114500696476926546, guid: ab518d63e340b4f41ae01f495bcce605, type: 3}
+      - variant: {fileID: 100006, guid: ad2bc093ec0769f4e8db766083ebde53, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 4326446065793547802, guid: d1f928a1c90c66b4e9c99410fb941c1a, type: 3}
+      - variant: {fileID: 100006, guid: b84a4dea980d19743b89a91212b6cda9, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0
         freeCellsOnBottom: 0
-      - variant: {fileID: 6413762049087373717, guid: 833695c4663142c4193a5a7e7ef74d78, type: 3}
+      - variant: {fileID: 100006, guid: 63418f1bcf56c144d8b444b133ac03bb, type: 3}
         freeCellsOnRight: 0
         freeCellsOnLeft: 0
         freeCellsOnTop: 0

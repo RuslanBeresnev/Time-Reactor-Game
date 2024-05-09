@@ -146,7 +146,7 @@ public class Weapon : ObjectWithInformation
     /// </summary>
     public float IntervalBetweenShoots 
     {
-        get => intervalBetweenShoots; 
+        get => intervalBetweenShoots;
         set => intervalBetweenShoots = value;
     }
 
@@ -183,7 +183,7 @@ public class Weapon : ObjectWithInformation
         {
             if (value > magazinCapacity)
             {
-                return;
+                value = magazinCapacity;
             }
 
             var oldBulletsCountInMagazine = bulletsCountInMagazine;

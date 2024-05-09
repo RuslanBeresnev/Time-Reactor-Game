@@ -2,8 +2,8 @@
 using TMPro;
 
 /// <summary>
-/// Реализация объекта, имеющего информацию о себе, которую можно посмотреть через графический анализатор
-/// В методе Awake() класса-наследника нужно вызвать метод InitializePanelPrefab()
+/// Реализация объекта, имеющего информацию о себе, которую можно посмотреть через графический анализатор.
+/// В методе Awake() класса-наследника нужно вызвать метод InitializeInfoPanelPrefab()
 /// </summary>
 public abstract class ObjectWithInformation : MonoBehaviour
 {
@@ -117,5 +117,10 @@ public abstract class ObjectWithInformation : MonoBehaviour
         createdPanel.transform.rotation = setterRotation;
         createdPanel.transform.localScale = setterScale;
         return true;
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(createdPanel);
     }
 }

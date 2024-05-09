@@ -23,7 +23,6 @@ public class ProjectileWeapon : Weapon
     public override bool ReloadingCanBePerformed()
     {
         return BulletsCountInMagazine != MagazinCapacity && BulletsCountInReserve != 0;
-
     }
 
     public override void ReloadWeapon()

@@ -106,7 +106,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     private void FixedUpdate()
     {
         CheckClickForWeaponReloading();
-        //Лазер должен отрисовываться в LateUpdate() для плавности картинки
+        // Лазер должен отрисовываться в LateUpdate() для плавности картинки
         if (!(WeaponsArsenal[activeSlotNumber] is LaserTypeWeapon))
         {
             CheckClickForShooting();
@@ -231,7 +231,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         }
         else if (Input.GetKey(KeyCode.E))
         {
-            PickUpWeapon();
+            PickUpWeaponOrAmmo();
         }
     }
 
@@ -260,19 +260,6 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
                 WeaponsArsenal[ActiveSlotNumber].transform.parent.parent.gameObject.SetActive(true);
             }
         }
-    }
-
-    /// <summary>
-    /// РџСЂРѕРІРµСЂРёС‚СЊ, СЏРІР»СЏРµС‚СЃСЏ Р»Рё РѕСЂСѓР¶РёРµРј РѕР±СЉРµРєС‚, РЅР° РєРѕС‚РѕСЂС‹Р№ СЃРјРѕС‚СЂРёС‚ РёРіСЂРѕРє, Рё РІРµСЂРЅСѓС‚СЊ РµРіРѕ РІ С‚Р°РєРѕРј СЃР»СѓС‡Р°Рµ
-    /// </summary>
-    private GameObject CheckObjectAheadIsWeapon()
-    {
-        (var objectAhead, var _) = graphicAnalyzer.GetComponent<GraphicAnalyzerController>().GetObjectPlayerIsLookingAt();
-        if (objectAhead != null && objectAhead.GetComponent<Weapon>() != null)
-        {
-            return objectAhead;
-        }
-        return null;
     }
 
     /// <summary>
@@ -345,24 +332,54 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     /// <summary>
     /// РџРѕРґРѕР±СЂР°С‚СЊ РѕСЂСѓР¶РёРµ, РЅР° РєРѕС‚РѕСЂРѕРµ СЃРјРѕС‚СЂРёС‚ РёРіСЂРѕРє
     /// </summary>
-    private void PickUpWeapon()
+    private void PickUpWeaponOrAmmo()
     {
-        GameObject weaponInFrontOfPlayer = CheckObjectAheadIsWeapon();
-        if (weaponInFrontOfPlayer != null)
+        (var objectAhead, var _) = graphicAnalyzer.GetComponent<GraphicAnalyzerController>().GetObjectPlayerIsLookingAt();
+        if (objectAhead == null)
+        {
+            return;
+        }
+        var weaponComponent = objectAhead.GetComponent<Weapon>();
+        var ammoComponent = objectAhead.GetComponent<Ammo>();
+
+        if (ammoComponent != null)
+        {
+            // Боеприпас подбирается в любом случае, даже если все слоты для оружием пусты
+            // (в таком случае он просто тратится зря)
+            ammoComponent.PickUp();
+            if (!IsActiveSlotEmpty())
+            {
+                WeaponsArsenal[ActiveSlotNumber].BulletsCountInReserve += ammoComponent.Count;
+                Console.WriteLine(WeaponsArsenal[ActiveSlotNumber].Name);
+                Console.WriteLine(WeaponsArsenal[ActiveSlotNumber].BulletsCountInReserve);
+            }
+            else
+            {
+                for (int slotNumber = 0; slotNumber < GameProperties.PlayerWeaponsArsenalSize; slotNumber++)
+                {
+                    if (WeaponsArsenal[slotNumber] != null)
+                    {
+                        WeaponsArsenal[slotNumber].BulletsCountInReserve += ammoComponent.Count;
+                        break;
+                    }
+                }
+            }
+        }
+        else if (weaponComponent != null)
         {
             if (IsActiveSlotEmpty())
             {
-                TryPutWeaponInSlot(weaponInFrontOfPlayer, ActiveSlotNumber);
+                TryPutWeaponInSlot(objectAhead, ActiveSlotNumber);
             }
             else
             {
                 // РЈСЃС‚Р°РЅРѕРІРєР° РѕСЂСѓР¶РёСЏ РІ РїРµСЂРІС‹Р№ СЃРІРѕР±РѕРґРЅС‹Р№ СЃР»РѕС‚
                 for (int slotNumber = 0; slotNumber < GameProperties.PlayerWeaponsArsenalSize; slotNumber++)
                 {
-                    bool weaponPickedUp = TryPutWeaponInSlot(weaponInFrontOfPlayer, slotNumber);
+                    bool weaponPickedUp = TryPutWeaponInSlot(objectAhead, slotNumber);
                     if (weaponPickedUp)
                     {
-                        weaponInFrontOfPlayer.SetActive(false);
+                        objectAhead.SetActive(false);
                         break;
                     }
                 }
