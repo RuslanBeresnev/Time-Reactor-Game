@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 
 /// <summary>
 /// Абстракция определённой живой сущности
@@ -10,6 +11,8 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
     [SerializeField] protected float maxHealth = 100f;
     // Коэффициент сложности в сражении с сущностью
     [SerializeField] protected float entityHardcoreCoefficient = 1f;
+    // Длительность эффекта плавного увеличения здоровья
+    [SerializeField] protected float healEffectDuration = 1f;
 
     private void Start()
     {
@@ -73,6 +76,35 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
     public virtual void TakeDamage(float damage)
     {
         Health -= damage;
+    }
+
+    /// <summary>
+    /// Плавно увеличивать здоровье в течение нескольких секунд при исцелении
+    /// </summary>
+    public virtual IEnumerator PerformSmoothHealEffect(float recoveryPoints)
+    {
+        float pointsRecovered = 0f;
+
+        while (true)
+        {
+            float pointsRecoveredPerFrame = (1 / healEffectDuration) * Time.deltaTime * recoveryPoints;
+            pointsRecovered += pointsRecoveredPerFrame;
+            Health += pointsRecoveredPerFrame;
+            if (pointsRecovered + pointsRecoveredPerFrame >= recoveryPoints)
+            {
+                Health += recoveryPoints - pointsRecovered;
+                break;
+            }
+            yield return null;
+        }
+    }
+
+    /// <summary>
+    /// Восстановить здоровье на указанное количество единиц
+    /// </summary>
+    public virtual void Heal(float points)
+    {
+        StartCoroutine(PerformSmoothHealEffect(points));
     }
 
     /// <summary>

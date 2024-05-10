@@ -349,7 +349,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
             ammoComponent.PickUp();
             if (!IsActiveSlotEmpty())
             {
-                WeaponsArsenal[ActiveSlotNumber].BulletsCountInReserve += ammoComponent.Count;
+                WeaponsArsenal[ActiveSlotNumber].BulletsCountInReserve += ammoComponent.AmmoCount;
                 Console.WriteLine(WeaponsArsenal[ActiveSlotNumber].Name);
                 Console.WriteLine(WeaponsArsenal[ActiveSlotNumber].BulletsCountInReserve);
             }
@@ -359,7 +359,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
                 {
                     if (WeaponsArsenal[slotNumber] != null)
                     {
-                        WeaponsArsenal[slotNumber].BulletsCountInReserve += ammoComponent.Count;
+                        WeaponsArsenal[slotNumber].BulletsCountInReserve += ammoComponent.AmmoCount;
                         break;
                     }
                 }

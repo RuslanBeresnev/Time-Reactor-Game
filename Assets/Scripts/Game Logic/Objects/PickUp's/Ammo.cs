@@ -6,12 +6,12 @@ using UnityEngine;
 /// </summary>
 public class Ammo : ObjectWithInformation
 {
-    [SerializeField] private int count = 10;
+    [SerializeField] private int ammoCount = 10;
 
     /// <summary>
     /// Количество патронов, которое добавляет боеприпас в запас
     /// </summary>
-    public int Count => count;
+    public int AmmoCount => ammoCount;
 
     public override string[,] ObjectInfoParameters { get; set; }
 
@@ -22,7 +22,7 @@ public class Ammo : ObjectWithInformation
     private void Awake()
     {
         InitializeInfoPanelPrefab();
-        ObjectInfoParameters = new string[1, 2] { { "Bullets:", Count.ToString() } };
+        ObjectInfoParameters = new string[1, 2] { { "Bullets:", AmmoCount.ToString() } };
     }
 
     /// <summary>
