@@ -12,7 +12,7 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
     // Коэффициент сложности в сражении с сущностью
     [SerializeField] protected float entityHardcoreCoefficient = 1f;
     // Длительность эффекта плавного увеличения здоровья
-    [SerializeField] protected float healEffectDuration = 1f;
+    [SerializeField] protected float healEffectDuration = 2f;
 
     private void Start()
     {
@@ -88,6 +88,7 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
         while (true)
         {
             float pointsRecoveredPerFrame = (1 / healEffectDuration) * Time.deltaTime * recoveryPoints;
+            Console.WriteLine(pointsRecoveredPerFrame);
             pointsRecovered += pointsRecoveredPerFrame;
             Health += pointsRecoveredPerFrame;
             if (pointsRecovered + pointsRecoveredPerFrame >= recoveryPoints)

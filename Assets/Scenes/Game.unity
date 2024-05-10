@@ -2351,7 +2351,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   entityHardcoreCoefficient: 0
-  healEffectDuration: 1
+  healEffectDuration: 2
   walkingSpeed: 4
   runningSpeed: 8
   staminaCostPerSecondOfRunning: 10

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Medkit : ObjectWithInformation
 {
     [SerializeField] private int recoveryPoints = 15;
+    [SerializeField] private AudioClip pickUpSound;
 
     /// <summary>
     /// Количество восстанавливаемых единиц здоровья игрока
@@ -29,6 +30,7 @@ public class Medkit : ObjectWithInformation
     /// </summary>
     public void PickUp()
     {
+        AudioSource.PlayClipAtPoint(pickUpSound, transform.position);
         Destroy(gameObject);
     }
 }

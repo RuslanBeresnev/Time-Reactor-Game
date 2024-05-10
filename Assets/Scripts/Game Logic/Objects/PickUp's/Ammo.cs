@@ -6,7 +6,8 @@ using UnityEngine;
 /// </summary>
 public class Ammo : ObjectWithInformation
 {
-    [SerializeField] private int ammoCount = 10;
+    [SerializeField] private int ammoCount = 5;
+    [SerializeField] private AudioClip pickUpSound;
 
     /// <summary>
     /// Количество патронов, которое добавляет боеприпас в запас
@@ -30,6 +31,7 @@ public class Ammo : ObjectWithInformation
     /// </summary>
     public void PickUp()
     {
+        AudioSource.PlayClipAtPoint(pickUpSound, transform.position);
         Destroy(gameObject);
     }
 }
