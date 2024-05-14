@@ -34,13 +34,6 @@ public class StairsMovement : MonoBehaviour
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {
-                    // Если игрок находится на предпоследнем этаже, то не перемещать лестничные структуры
-                    // (Чтобы сгенерировать финальную комнату на последнем этаже)
-                    if (GameProperties.FloorNumber == GameProperties.LastFloorNumber + 1)
-                    {
-                        return;
-                    }
-
                     otherStairsStructure.transform.position = new Vector3(otherStairsStructure.transform.position.x,
                         currentStairsStrucure.transform.position.y - STRUCTURE_OFFSET, otherStairsStructure.transform.position.z);
                     centralWall.transform.position = new Vector3(centralWall.transform.position.x,
@@ -58,11 +51,6 @@ public class StairsMovement : MonoBehaviour
             {
                 if (currentStairsStrucure.name == "Lower Structure")
                 {
-                    if (GameProperties.FloorNumber == GameProperties.LastFloorNumber + 1)
-                    {
-                        return;
-                    }
-
                     otherStairsStructure.transform.position = new Vector3(otherStairsStructure.transform.position.x,
                         currentStairsStrucure.transform.position.y + STRUCTURE_OFFSET, otherStairsStructure.transform.position.z);
                     centralWall.transform.position = new Vector3(centralWall.transform.position.x,

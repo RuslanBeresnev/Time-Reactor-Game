@@ -24,20 +24,22 @@ public class DoorSpawn : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.name != "Player")
         {
-            var playerController = other.gameObject.GetComponent<PlayerController>();
+            return;
+        }
 
-            // Проверка на соответсвие одному направлению входа и выхода (игрок полностью прошёл триггер)
-            if (playerController.PlayerVelocity.z > 0f && onColliderEnterZAxisValue > 0f)
-            {
-                CreateOrDestroyDoorDependingFloorNumber(-GameProperties.FloorNumber - 1);
-            }
-            else if (playerController.PlayerVelocity.z < 0f && onColliderEnterZAxisValue < 0f)
-            {
-                DetermineIfDoorWillOnFloor();
-                CreateOrDestroyDoorDependingFloorNumber(-GameProperties.FloorNumber);
-            }
+        var playerController = other.gameObject.GetComponent<PlayerController>();
+
+        // Проверка на соответсвие одному направлению входа и выхода (игрок полностью прошёл триггер)
+        if (playerController.PlayerVelocity.z > 0f && onColliderEnterZAxisValue > 0f)
+        {
+            CreateOrDestroyDoorDependingFloorNumber(-GameProperties.FloorNumber - 1);
+        }
+        else if (playerController.PlayerVelocity.z < 0f && onColliderEnterZAxisValue < 0f)
+        {
+            DetermineIfDoorWillOnFloor();
+            CreateOrDestroyDoorDependingFloorNumber(-GameProperties.FloorNumber);
         }
     }
 
@@ -49,10 +51,21 @@ public class DoorSpawn : MonoBehaviour
         // Если игрок впервые проходит триггер на данном этаже
         if (GameProperties.DoorOnFloor.Count == -GameProperties.FloorNumber)
         {
+            // На последнем этаже обязательно создаётся дверной проход, так как появляется
+            // комната с временным генератором
+            if (GameProperties.FloorNumber == GameProperties.LastFloorNumber)
+            {
+                GameProperties.DoorOnFloor.Add(true);
+                return;
+            }
+
             // Если на предыдущем этаже нет двери с комнатой, то для данного этажа с некоторым шансом
             // определяется наличие двери (иначе обычная стена). То есть комнаты генерируются минимум
-            // каждый второй этаж, чтобы не было пересечения высоких комнат.
-            if (GameProperties.FloorNumber != 0 && GameProperties.DoorOnFloor[-GameProperties.FloorNumber - 1])
+            // каждый второй этаж, чтобы не было пересечения высоких комнат. Также обычная комната не
+            // появится на нулевом этаже (чтобы верхом не пересекаться с начальным коридором)
+            // и на предпоследнем (чтобы низом не пересекаться с финальной комнатой)
+            if (GameProperties.FloorNumber == 0 || GameProperties.FloorNumber == GameProperties.LastFloorNumber + 1
+                || GameProperties.DoorOnFloor[-GameProperties.FloorNumber - 1])
             {
                 GameProperties.DoorOnFloor.Add(false);
                 return;

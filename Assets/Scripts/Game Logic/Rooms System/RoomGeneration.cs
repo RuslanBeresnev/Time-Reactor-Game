@@ -15,16 +15,18 @@ public class RoomGeneration : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.name != "Player" || GameProperties.FloorNumber == GameProperties.LastFloorNumber)
         {
-            // Комната создаётся, если для данного этажа сгенерировался дверной проём и на данном этаже ранее
-            // не была сгенерирована комната
-            if (GameProperties.DoorOnFloor[-GameProperties.FloorNumber] &&
-                !GameProperties.GeneratedRooms.ContainsKey(GameProperties.FloorNumber))
-            {
-                var randomRoomPrefab = ChooseRandomRoom();
-                CreateAndPlaceRoom(randomRoomPrefab);
-            }
+            return;
+        }
+
+        // Комната создаётся, если для данного этажа сгенерировался дверной проём и на данном этаже ранее
+        // не была сгенерирована комната
+        if (GameProperties.DoorOnFloor[-GameProperties.FloorNumber] &&
+            !GameProperties.GeneratedRooms.ContainsKey(GameProperties.FloorNumber))
+        {
+            var randomRoomPrefab = ChooseRandomRoom();
+            CreateAndPlaceRoom(randomRoomPrefab);
         }
     }
 

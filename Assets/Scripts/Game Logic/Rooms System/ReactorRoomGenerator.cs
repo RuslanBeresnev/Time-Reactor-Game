@@ -9,11 +9,15 @@ public class ReactorRoomGenerator : MonoBehaviour
     // Позиция создания финальной комнаты (совмещённая с центром комнаты) находится в виде пустого GameObject
     // в нижней лестничной структуре ("Lower Structure")
     [SerializeField] private Transform spawnPoint;
+    // Стена со входом в комнату с временным реактором, которая препятствует дальнейшему спуску
+    [SerializeField] private GameObject stopWall;
 
     // Границы для генерации номера самого нижнего этажа лестницы (отрицательные)
     [SerializeField] private int minBoundOfLastFloorNumber;
     [SerializeField] private int maxBoundOfLastFloorNumber;
 
+    // Направление игрока по оси Z (вверх или вниз по лестнице), когда он входит в триггер передвижения структур ступеней
+    private float onColliderEnterZAxisValue;
     private System.Random random = new System.Random();
     private bool finalRoomWasGenerated = false;
 
@@ -24,12 +28,43 @@ public class ReactorRoomGenerator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Финальная комната создаётся на последнем этаже лестницы, когда игрок находится
-        // на предпоследнем этаже и проходит триггер генератора
-        if (GameProperties.FloorNumber == GameProperties.LastFloorNumber + 1 && !finalRoomWasGenerated)
+        if (other.gameObject.name != "Player")
         {
-            GenerateFinalRoom();
-            finalRoomWasGenerated = true;
+            return;
+        }
+
+        // Финальная комната создаётся на последнем этаже лестницы, когда игрок проходит триггер генератора
+        if (GameProperties.FloorNumber == GameProperties.LastFloorNumber)
+        {
+            var playerController = other.gameObject.GetComponent<PlayerController>();
+            onColliderEnterZAxisValue = playerController.PlayerVelocity.z;
+
+            if (!finalRoomWasGenerated)
+            {
+                GenerateFinalRoom();
+                finalRoomWasGenerated = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name != "Player" || GameProperties.FloorNumber != GameProperties.LastFloorNumber)
+        {
+            return;
+        }
+
+        var playerController = other.gameObject.GetComponent<PlayerController>();
+
+        // Проверка на соответсвие одному направлению входа и выхода (игрок полностью прошёл триггер) для того,
+        // чтобы сделать активной/неактивной стену, загораживающую дальнейший спуск на последнем этаже
+        if (playerController.PlayerVelocity.z > 0f && onColliderEnterZAxisValue > 0f)
+        {
+            stopWall.SetActive(false) ;
+        }
+        else if (playerController.PlayerVelocity.z < 0f && onColliderEnterZAxisValue < 0f)
+        {
+            stopWall.SetActive(true);
         }
     }
 
