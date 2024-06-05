@@ -13920,8 +13920,8 @@ MonoBehaviour:
   roomPrefab: {fileID: 769240316600217597, guid: 5c22d245a717ad24093cb225d8ab4e1b, type: 3}
   spawnPoint: {fileID: 308380221}
   stopWall: {fileID: 332031041}
-  minBoundOfLastFloorNumber: -1
-  maxBoundOfLastFloorNumber: -1
+  minBoundOfLastFloorNumber: -50
+  maxBoundOfLastFloorNumber: -20
 --- !u!65 &914495589
 BoxCollider:
   m_ObjectHideFlags: 0
