@@ -13920,8 +13920,8 @@ MonoBehaviour:
   roomPrefab: {fileID: 769240316600217597, guid: 5c22d245a717ad24093cb225d8ab4e1b, type: 3}
   spawnPoint: {fileID: 308380221}
   stopWall: {fileID: 332031041}
-  minBoundOfLastFloorNumber: -75
-  maxBoundOfLastFloorNumber: -30
+  minBoundOfLastFloorNumber: -1
+  maxBoundOfLastFloorNumber: -1
 --- !u!65 &914495589
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17941,7 +17941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1237954296
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33502,7 +33502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2088597244
 Transform:
   m_ObjectHideFlags: 0
