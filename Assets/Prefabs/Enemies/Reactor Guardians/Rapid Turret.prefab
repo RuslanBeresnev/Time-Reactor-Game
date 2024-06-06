@@ -432,9 +432,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607752937e1e34b4dab0b350c8e37af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
-  maxHealth: 1000
-  entityHardcoreCoefficient: 50
+  health: 500
+  maxHealth: 500
+  entityHardcoreCoefficient: 10
   healEffectDuration: 0
   attackComponent: {fileID: 6364267337906452568}
 --- !u!1 &2540888933671980998

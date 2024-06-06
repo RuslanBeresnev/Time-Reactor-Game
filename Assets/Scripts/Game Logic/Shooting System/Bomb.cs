@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -28,14 +29,25 @@ public class Bomb : Projectile
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRange);
+        // Множество компонентов Entity, к которым уже применён урон от взрыва. Это нужно, так как взрыв может коснуться
+        // объекта, состоящего из нескольких коллайдеров, тогда UsefulFeatures.GetFirstEntityComponentInObjectHierarchy()
+        // вернёт один и тот же корневой компонент Entity для всех частей объекта, что неверно.
+        var entitiesWithAppliedExplodeEffect = new HashSet<Entity>();
 
         foreach (Collider col in colliders)
         {
             if (col.GetComponent<Bomb>())
                 continue;
 
-            if (col.GetComponent<Entity>() != null)
-                col.GetComponent<Entity>().TakeDamage(Damage);
+            var entityComponent = UsefulFeatures.GetFirstEntityComponentInObjectHierarchy(col.transform);
+            if (entityComponent != null)
+            {
+                bool itIsNewEntity = entitiesWithAppliedExplodeEffect.Add(entityComponent);
+                if (itIsNewEntity)
+                {
+                    entityComponent.TakeDamage(Damage);
+                }
+            }
 
             var rb = col.GetComponent<Rigidbody>();
             if (rb != null)

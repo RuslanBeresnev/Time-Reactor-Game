@@ -24,10 +24,10 @@ public class LaserWeapon : LaserTypeWeapon
 
         MakeLaser(hit);
 
-        var entity = hit.transform.GetComponent<Entity>();
-        if (entity != null)
+        var entityComponent = UsefulFeatures.GetFirstEntityComponentInObjectHierarchy(hit.transform);
+        if (entityComponent != null)
         {
-            entity.TakeDamage(LaserDamage);
+            entityComponent.TakeDamage(LaserDamage);
         }
     }
 

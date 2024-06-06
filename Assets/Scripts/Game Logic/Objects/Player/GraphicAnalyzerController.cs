@@ -165,9 +165,10 @@ public class GraphicAnalyzerController : MonoBehaviour
         }
 
         (var objectAhead, var hitPoint) = GetObjectPlayerIsLookingAt();
-        if (objectAhead != null && objectAhead.GetComponent<ObjectWithInformation>() != null)
+        if (objectAhead != null &&
+            UsefulFeatures.GetFirstObjectWithInformationComponentInObjectHierarchy(objectAhead.transform) != null)
         {
-            objectPlayerCurrentlyLookingAt = objectAhead.GetComponent<ObjectWithInformation>();
+            objectPlayerCurrentlyLookingAt = UsefulFeatures.GetFirstObjectWithInformationComponentInObjectHierarchy(objectAhead.transform);
             objectPlayerCurrentlyLookingAt.ShowInfoPanel();
             SetTransformOfInfoPanel(hitPoint);
         }

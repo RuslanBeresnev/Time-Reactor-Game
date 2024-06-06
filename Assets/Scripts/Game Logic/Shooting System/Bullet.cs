@@ -22,10 +22,10 @@ public class Bullet : Projectile
 
     protected override void PerformCollisionEffects(Collider hitObjectCollider)
     {
-        var entity = hitObjectCollider.gameObject.GetComponent<Entity>();
-        if (entity != null)
+        var entityComponent = UsefulFeatures.GetFirstEntityComponentInObjectHierarchy(hitObjectCollider.transform);
+        if (entityComponent != null)
         {
-            entity.TakeDamage(Damage);
+            entityComponent.TakeDamage(Damage);
         }
     }
 }
