@@ -31,7 +31,7 @@ public class Bomb : Projectile
 
         foreach (Collider col in colliders)
         {
-            if (col.GetComponent<Bomb>()) 
+            if (col.GetComponent<Bomb>())
                 continue;
 
             if (col.GetComponent<Entity>() != null)
