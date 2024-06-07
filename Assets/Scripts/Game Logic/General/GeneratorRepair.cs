@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 /// <summary>
@@ -10,6 +10,8 @@ using TMPro;
 /// </summary>
 public class GeneratorRepair : MonoBehaviour
 {
+    private static int repairedGeneratorsCount = 0;
+
     [SerializeField] private string analyzerObjectName;
     [SerializeField] private GameObject repairAreaTrigger;
     [SerializeField] private GameObject repairedScreen;
@@ -30,9 +32,25 @@ public class GeneratorRepair : MonoBehaviour
     private float degreeOfRepair = 0f;
 
     /// <summary>
-    /// Событие окончания починки генератора
+    /// Общее количество генераторов, которые предстоит починить
     /// </summary>
-    public UnityEvent RepairCompleted = new();
+    public static int NeedToRepairGeneratorsCount { get; } = 6;
+
+    /// <summary>
+    /// Количество починенных игроком генераторов
+    /// </summary>
+    public static int RepairedGeneratorsCount
+    {
+        get => repairedGeneratorsCount;
+        set
+        {
+            repairedGeneratorsCount = value;
+            if (RepairedGeneratorsCount == NeedToRepairGeneratorsCount)
+            {
+                OnAllGeneratorsHaveBeenRepaired();
+            }
+        }
+    }
 
     private void Start()
     {
@@ -77,7 +95,7 @@ public class GeneratorRepair : MonoBehaviour
 
         if (degreeOfRepair == 1f)
         {
-            RepairCompleted.Invoke();
+            OnGeneratorRepairComplition();
         }
     }
 
@@ -114,14 +132,27 @@ public class GeneratorRepair : MonoBehaviour
     /// <summary>
     /// Действия при завершении процесса починки генератора
     /// </summary>
-    public void OnRepairComplition()
+    private void OnGeneratorRepairComplition()
     {
         repairCompleted = true;
         canPerformRepair = false;
+        RepairedGeneratorsCount += 1;
+
         repairedScreen.SetActive(true);
         whiteCircle.color = Color.green;
         percentage.color = Color.green;
         sideText.text = "Repair completed";
         StartCoroutine(DisableSideTextAfterFewSeconds());
+    }
+
+    /// <summary>
+    /// Действия после починки всех генераторов реактора
+    /// </summary>
+    private static void OnAllGeneratorsHaveBeenRepaired()
+    {
+        SceneManager.LoadScene("Win Menu");
+        Cursor.lockState = CursorLockMode.Confined;
+
+        GameProperties.ResetStatistics();
     }
 }

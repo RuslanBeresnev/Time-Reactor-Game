@@ -59,5 +59,7 @@ public static class GameProperties
 
         GraphicAnalyzerController.AnalyzerIsActive = false;
         GraphicAnalyzerController.StateChanged = null;
+
+        GeneratorRepair.RepairedGeneratorsCount = 0;
     }
 }
