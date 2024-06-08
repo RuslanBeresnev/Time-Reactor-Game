@@ -13968,7 +13968,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 308380221}
   stopWall: {fileID: 332031041}
   minBoundOfLastFloorNumber: -50
-  maxBoundOfLastFloorNumber: -20
+  maxBoundOfLastFloorNumber: -30
 --- !u!65 &914495589
 BoxCollider:
   m_ObjectHideFlags: 0

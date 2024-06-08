@@ -22,10 +22,16 @@ public class MainCameraController : MonoBehaviour
         playerOriginalRotation = player.rotation;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        horizontalAngle += Input.GetAxis("Mouse X") * SettingsOptions.MouseSensitivity * Time.fixedDeltaTime;
-        verticalAngle += Input.GetAxis("Mouse Y") * SettingsOptions.MouseSensitivity * Time.fixedDeltaTime;
+        // Когда игра на паузе, камера не должна вращаться
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
+
+        horizontalAngle += Input.GetAxis("Mouse X") * SettingsOptions.MouseSensitivity * 0.02f;
+        verticalAngle += Input.GetAxis("Mouse Y") * SettingsOptions.MouseSensitivity * 0.02f;
         verticalAngle = Mathf.Clamp(verticalAngle, -70, 70);
 
         var yAxisRotation = Quaternion.AngleAxis(horizontalAngle, Vector3.up);
