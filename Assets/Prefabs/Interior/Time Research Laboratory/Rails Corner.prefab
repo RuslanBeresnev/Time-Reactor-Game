@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &6886706326342510563
 Transform:
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: b1a9d336e06f0094cb61702dfff193b4, type: 3}
       propertyPath: m_Name
       value: Rails_Corner_Small
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b1a9d336e06f0094cb61702dfff193b4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b1a9d336e06f0094cb61702dfff193b4, type: 3}
       propertyPath: m_LocalPosition.x

@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &8959167869535455311
 Transform:
@@ -40,9 +40,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8959167869535455311}
     m_Modifications:
+    - target: {fileID: 100000, guid: 13623c66218113d47be066db0cb4b4c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 13623c66218113d47be066db0cb4b4c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 13623c66218113d47be066db0cb4b4c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 13623c66218113d47be066db0cb4b4c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 13623c66218113d47be066db0cb4b4c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 13623c66218113d47be066db0cb4b4c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 13623c66218113d47be066db0cb4b4c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: 13623c66218113d47be066db0cb4b4c3, type: 3}
       propertyPath: m_Name
       value: Console_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 13623c66218113d47be066db0cb4b4c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 13623c66218113d47be066db0cb4b4c3, type: 3}
       propertyPath: m_LocalPosition.x
