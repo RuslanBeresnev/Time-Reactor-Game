@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /// <summary>
 /// Поведение врага
 /// </summary>
-public class EnemyController : Entity, ISerializationCallbackReceiver
+public class EnemyController : Entity
 {
     [SerializeField] private string enemyType;
     [SerializeField] private float moveSpeed;
@@ -22,32 +22,26 @@ public class EnemyController : Entity, ISerializationCallbackReceiver
     /// <summary>
     /// Имя для поиска цели
     /// </summary>
-    public string TargetName { get; set; }
+    public string TargetName
+    {
+        get => targetName;
+        set => targetName = value;
+    }
 
     /// <summary>
     /// Будет ли враг следовать за целью
     /// </summary>
-    public bool FollowsTheTarget { get; private set; }
+    public bool FollowsTheTarget
+    {
+        get => followsTheTarget;
+        private set => followsTheTarget = value;
+    }
 
     public override string[,] ObjectInfoParameters { get; set; } = null;
 
     public override string ObjectInfoHeader { get; set; } = null;
 
     public override Color ObjectInfoHeaderColor { get; set; } = Color.red;
-
-    public override void OnBeforeSerialize()
-    {
-        base.OnBeforeSerialize();
-        targetName = TargetName;
-        followsTheTarget = FollowsTheTarget;
-    }
-
-    public override void OnAfterDeserialize()
-    {
-        base.OnAfterDeserialize();
-        TargetName = targetName;
-        FollowsTheTarget = followsTheTarget;
-    }
 
     private void Awake()
     {

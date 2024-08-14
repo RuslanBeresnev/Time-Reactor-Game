@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// Описывает поведение лазерной башни при атаке цели
 /// </summary>
-public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
+public class LaserTowerAttack : MonoBehaviour
 {
     [SerializeField] private Transform emitter;
     [SerializeField] private string targetName;
@@ -37,23 +37,19 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
     /// <summary>
     /// Радиус досягаемости цели
     /// </summary>
-    public float ReachRadius { get; private set; }
+    public float ReachRadius
+    {
+        get => reachRadius;
+        private set => reachRadius = value;
+    }
 
     /// <summary>
     /// Количество урона в секунду
     /// </summary>
-    public float DamagePerSecond { get; set; }
-
-    public void OnBeforeSerialize()
+    public float DamagePerSecond
     {
-        reachRadius = ReachRadius;
-        damagePerSecond = DamagePerSecond;
-    }
-
-    public void OnAfterDeserialize()
-    {
-        ReachRadius = reachRadius;
-        DamagePerSecond = damagePerSecond;
+        get => damagePerSecond;
+        set => damagePerSecond = value;
     }
 
     private void Awake()
@@ -115,9 +111,13 @@ public class LaserTowerAttack : MonoBehaviour, ISerializationCallbackReceiver
     /// </summary>
     private bool IsTargetAvailableForAttack()
     {
+        if (Vector3.Distance(target.position, emitter.position) > ReachRadius)
+        {
+            return false;
+        }
+
         var layerMask = LayerMask.GetMask("Default", "Player");
         var laserDirection = (target.position - emitter.position).normalized;
-
         if (Physics.Raycast(emitter.position, laserDirection, out RaycastHit hit, ReachRadius, layerMask, QueryTriggerInteraction.Ignore)
             && hit.transform.name == targetName)
         {

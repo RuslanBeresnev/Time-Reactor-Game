@@ -5,7 +5,7 @@ using System.Collections;
 /// <summary>
 /// Абстракция определённой живой сущности
 /// </summary>
-public abstract class Entity : ObjectWithInformation, ISerializationCallbackReceiver
+public abstract class Entity : ObjectWithInformation
 {
     [SerializeField] protected float health = 100f;
     [SerializeField] protected float maxHealth = 100f;
@@ -57,18 +57,6 @@ public abstract class Entity : ObjectWithInformation, ISerializationCallbackRece
     /// Событие изменения здоровья сущности
     /// </summary>
     public Action<float> HealthChanged { get; set; }
-
-    public virtual void OnBeforeSerialize()
-    {
-        health = Health;
-        maxHealth = MaxHealth;
-    }
-
-    public virtual void OnAfterDeserialize()
-    {
-        Health = health;
-        MaxHealth = maxHealth;
-    }
 
     /// <summary>
     /// Получить урон

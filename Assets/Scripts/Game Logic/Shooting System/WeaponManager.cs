@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 /// <summary>
-/// РЈРїСЂР°РІР»РµРЅРёРµ РѕСЂСѓР¶РёРµРј РёРіСЂРѕРєР° Рё РµРіРѕ СЃРјРµРЅР°
+/// Управление оружием игрока и его смена
 /// </summary>
 public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
 {
@@ -19,17 +19,17 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     private bool stopShooting = false;
     private bool inProcessOfReloading = false;
 
-    // РџРµСЂРµРјРµРЅРЅР°СЏ РЅСѓР¶РЅР° РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РїСЂРѕС†РµСЃСЃС‹ СЃРµСЂРёР°Р»РёР·Р°С†РёРё Рё РґРµСЃРµСЂРёР°Р»РёР·Р°С†РёРё РЅРµ РёСЃРїРѕР»РЅСЏР»РёСЃСЊ РґРѕ СЃС‚Р°СЂС‚Р° РёРіСЂС‹, С‚Р°Рє РєР°Рє
-    // РёР·РЅР°С‡Р°Р»СЊРЅРѕ WeaponsArsenal РїСѓСЃС‚
+    // Переменная нужна для того, чтобы процессы сериализации и десериализации не исполнялись до старта игры, так как
+    // изначально WeaponsArsenal пуст
     private bool performSerializationAndDeserealization = false;
 
     /// <summary>
-    /// РђСЂСЃРµРЅР°Р» РѕСЂСѓР¶РёСЏ РёРіСЂРѕРєР°
+    /// Арсенал оружия игрока
     /// </summary>
     public ObservableCollection<Weapon> WeaponsArsenal { get; private set; } = new ObservableCollection<Weapon>();
 
     /// <summary>
-    /// РРЅРґРµРєСЃ СЃР»РѕС‚Р° СЃ Р°РєС‚РёРІРЅС‹Рј РѕСЂСѓР¶РёРµРј
+    /// Индекс слота с активным оружием
     /// </summary>
     public int ActiveSlotNumber
     {
@@ -49,7 +49,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// РЎРѕР±С‹С‚РёРµ СЃРјРµРЅС‹ Р°РІС‚РёРІРЅРѕРіРѕ РѕСЂСѓР¶РёСЏ РІ СЂСѓРєР°С… РёРіСЂРѕРєР°
+    /// Событие смены автивного оружия в руках игрока
     /// </summary>
     public Action<int, bool> ActiveSlotChanged { get; set; }
 
@@ -85,7 +85,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         {
             WeaponsArsenal.Add(weaponsArsenal[i]);
 
-            //Скрытие всех оружий, кроме первого
+            // Скрытие всех оружий, кроме первого
             if (i != 0)
             {
                 WeaponsArsenal[i].transform.parent.parent.gameObject.SetActive(false);
@@ -116,7 +116,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// РџСЂРѕРІРµСЂРёС‚СЊ РЅР° РїСѓСЃС‚РѕС‚Сѓ С‚РµРєСѓС‰РёР№ СЃР»РѕС‚
+    /// Проверить на пустоту текущий слот
     /// </summary>
     private bool IsActiveSlotEmpty()
     {
@@ -124,17 +124,17 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// РЎРЅРѕРІР° СЂР°Р·СЂРµС€РёС‚СЊ РїСЂРѕРёР·РІРѕРґРёС‚СЊ СЃС‚СЂРµР»СЊР±Сѓ РїРѕ РїСЂРѕС€РµСЃС‚РІРёРё РёРЅС‚РµСЂРІР°Р»Р° РјРµР¶РґСѓ РІС‹СЃС‚СЂРµР»Р°РјРё
+    /// Снова разрешить производить стрельбу по прошествии интервала между выстрелами
     /// </summary>
     private IEnumerator AllowShootAfterIntervalPassing()
     {
-        // Р—Р°РґРµСЂР¶РєР° РІ СЂРµР°Р»СЊРЅС‹С… СЃРµРєСѓРЅРґР°С…
+        // Задержка в реальных секундах
         yield return new WaitForSeconds(WeaponsArsenal[ActiveSlotNumber].IntervalBetweenShoots);
         canShoot = true;
     }
 
     /// <summary>
-    /// РџСЂРѕРІРµСЂРєР° РЅР° СЃС‚СЂРµР»СЊР±Сѓ РІ С‚РµРєСѓС‰РµРј РєР°РґСЂРµ
+    /// Проверка на стрельбу в текущем кадре
     /// </summary>
     private void CheckClickForShooting()
     {
@@ -164,18 +164,18 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// РЎРЅРѕРІР° СЂР°Р·СЂРµС€РёС‚СЊ РїРµСЂРµР·Р°СЂСЏРґРєСѓ РѕСЂСѓР¶РёСЏ РїРѕСЃР»Рµ РїСЂРѕС€РµСЃС‚РІРёСЏ РёРЅС‚РµСЂРІР°Р»Р° РІСЂРµРјРµРЅРё
+    /// Снова разрешить перезарядку оружия после прошествия интервала времени
     /// </summary>
     private IEnumerator AllowReloadingAfterIntervalPassing()
     {
-        // Р—Р°РґРµСЂР¶РєР° РІ СЂРµР°Р»СЊРЅС‹С… СЃРµРєСѓРЅРґР°С…
+        // Задержка в реальных секундах
         yield return new WaitForSeconds(WeaponsArsenal[ActiveSlotNumber].ReloadingDuration);
         WeaponsArsenal[activeSlotNumber].ReloadWeapon();
         inProcessOfReloading = false;
     }
 
     /// <summary>
-    /// РћСЃС‚Р°РЅРѕРІС‚РёС‚СЊ СЃРѕРїСЂРѕС†РµСЃСЃ, РєРѕС‚РѕСЂС‹Р№ Р±Р»РѕРєРёСЂСѓРµС‚ РѕСЂСѓР¶РёРµ РІРѕ РІСЂРµРјСЏ РїРµСЂРµР·Р°СЂСЏРґРєРё
+    /// Остановтить сопроцесс, который блокирует оружие во время перезарядки
     /// </summary>
     private void StopWeaponReloadingCoroutine()
     {
@@ -184,7 +184,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// РџСЂРѕРІРµСЂРєР° РЅР° РїРµСЂРµР·Р°СЂСЏРґРєСѓ Р°РєС‚РёРІРЅРѕРіРѕ РѕСЂСѓР¶РёСЏ РІ СЂСѓРєРµ
+    /// Проверка на перезарядку активного оружия в руке
     /// </summary>
     private void CheckClickForWeaponReloading()
     {
@@ -202,7 +202,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// РџСЂРѕРІРµСЂРєР° РЅР° СЃРјРµРЅСѓ Р°РєС‚РёРІРЅРѕРіРѕ РѕСЂСѓР¶РёСЏ РІ С‚РµРєСѓС‰РµРј РєР°РґСЂРµ
+    /// Проверка на смену активного оружия в текущем кадре
     /// </summary>
     private void CheckClickForWeaponChanging()
     {
@@ -221,7 +221,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// РџСЂРѕРІРµСЂРєР° РЅР° РІС‹Р±СЂР°СЃС‹РІР°РЅРёРµ РїСЂРµРґРјРµС‚Р° РёР»Рё РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ РѕР±СЉРµРєС‚РѕРј РІ С‚РµРєСѓС‰РµРј РєР°РґСЂРµ
+    /// Проверка на выбрасывание предмета или взаимодействие с объектом в текущем кадре
     /// </summary>
     private void CheckClickForEjectionOrInteraction()
     {
@@ -236,7 +236,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// РЎРјРµРЅРёС‚СЊ Р°РєС‚РёРІРЅРѕРµ РѕСЂСѓР¶РёРµ РЅР° РґСЂСѓРіРѕРµ
+    /// Сменить активное оружие на другое
     /// </summary>
     private void ChangeActiveWeapon(int newActiveSlotNumber)
     {
@@ -263,7 +263,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РѕСЂСѓР¶РёРµ РІ СЃР»РѕС‚, РµСЃР»Рё РѕРЅ РїСѓСЃС‚
+    /// Установить оружие в слот, если он пуст
     /// </summary>
     private bool TryPutWeaponInSlot(GameObject weapon, int slotNumber)
     {
@@ -293,7 +293,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     /// <summary>
-    /// Р’С‹Р±СЂРѕСЃРёС‚СЊ Р°РєС‚РёРІРЅРѕРµ РѕСЂСѓР¶РёРµ
+    /// Выбросить активное оружие
     /// </summary>
     private void EjectWeapon()
     {
@@ -323,14 +323,14 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
         ejectedWeapon.GetComponent<Rigidbody>().AddForce(ejectedWeapon.transform.forward * ejectionForce * TimeScale.SharedInstance.Scale);
         ejectedWeapon.GetComponent<Weapon>().SetUpWeaponPartsLayersAndColliders("Default", true);
 
-        // Р—РґРµСЃСЊ РїСЂРёСЃРІР°РёРІР°РёРІР°РµС‚СЃСЏ СЃРєРѕСЂРѕСЃС‚СЊ, Р±Р»РёР·РєР°СЏ Рє РЅСѓР»СЋ, РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ СѓСЃР»РѕРІРёРµ РІ РєРѕСЂСѓС‚РёРЅРµ РЅРµ СЃСЂР°Р±РѕС‚Р°Р»Рѕ СЂР°РЅСЊС€Рµ РІСЂРµРјРµРЅРё
-        // (С‚Р°Рє РєР°Рє СЃРёР»Р° Р±СЂРѕСЃРєР° РїСЂРёРјРµРЅСЏРµС‚СЃСЏ Рє РѕР±СЉРµРєС‚Сѓ С‚РѕР»СЊРєРѕ СЃРѕ СЃР»РµРґСѓСЋС‰РµРіРѕ РєР°РґСЂР°)
+        // Здесь присваиваивается скорость, близкая к нулю, для того, чтобы условие в корутине не сработало раньше времени
+        // (так как сила броска применяется к объекту только со следующего кадра)
         ejectedWeapon.GetComponent<Rigidbody>().velocity = new Vector3(0.01f, 0, 0);
         StartCoroutine(ejectedWeapon.GetComponent<Weapon>().PerformActionsAfterFallOfEjectedWeapon());
     }
 
     /// <summary>
-    /// РџРѕРґРѕР±СЂР°С‚СЊ РѕСЂСѓР¶РёРµ, РЅР° РєРѕС‚РѕСЂРѕРµ СЃРјРѕС‚СЂРёС‚ РёРіСЂРѕРє
+    /// Подобрать оружие, на которое смотрит игрок
     /// </summary>
     private void PickUpWeaponOrAmmo()
     {
@@ -373,7 +373,7 @@ public class WeaponManager : MonoBehaviour, ISerializationCallbackReceiver
             }
             else
             {
-                // РЈСЃС‚Р°РЅРѕРІРєР° РѕСЂСѓР¶РёСЏ РІ РїРµСЂРІС‹Р№ СЃРІРѕР±РѕРґРЅС‹Р№ СЃР»РѕС‚
+                // Установка оружия в первый свободный слот
                 for (int slotNumber = 0; slotNumber < GameProperties.PlayerWeaponsArsenalSize; slotNumber++)
                 {
                     bool weaponPickedUp = TryPutWeaponInSlot(objectAhead, slotNumber);

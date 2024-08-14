@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Абстрактный класс снарядов, реализующий полёт и обработку коллизий
 /// </summary>
-public abstract class Projectile : MonoBehaviour, ISerializationCallbackReceiver
+public abstract class Projectile : MonoBehaviour
 {
     private Rigidbody rigidBody;
     protected Pool pool;
@@ -21,30 +21,28 @@ public abstract class Projectile : MonoBehaviour, ISerializationCallbackReceiver
     /// <summary>
     /// Количество получаемого сущностью урона
     /// </summary>
-    public int Damage { get; private set; }
+    public int Damage
+    {
+        get => damage;
+        private set => damage = value;
+    }
 
     /// <summary>
     /// Скорость полёта снаряда
     /// </summary>
-    public int Velocity { get; private set; }
+    public int Velocity
+    {  
+        get => velocity;
+        private set => velocity = value;
+    }
 
     /// <summary>
     /// Время жизни снаряда
     /// </summary>
-    public float Lifetime { get; private set; }
-
-    public void OnBeforeSerialize()
+    public float Lifetime
     {
-        velocity = Velocity;
-        damage = Damage;
-        lifetime = Lifetime;
-    }
-
-    public void OnAfterDeserialize()
-    {
-        Velocity = velocity;
-        Damage = damage;
-        Lifetime = lifetime;
+        get => lifetime;
+        private set => lifetime = value;
     }
 
     public void GiveKineticEnergy(Vector3 direction)
